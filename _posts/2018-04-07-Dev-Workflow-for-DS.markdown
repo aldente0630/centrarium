@@ -3,7 +3,7 @@ layout: post
 title:  Development Workflows for Data Scientists
 date:   2018-04-08 21:00:00
 author: Youngmin Kim
-categories: Data_Science
+categories: Data-Science
 ---  
   
   
