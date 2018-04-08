@@ -1,8 +1,10 @@
 ---
 layout: post
-title: 데이터 과학자를 위한 개발 작업흐름 (번역 중)
----
-  
+title:  Development Workflows for Data Scientists"
+date:   2018-04-08 21:00:00
+author: Youngmin Kim
+categories: Data Science
+---  
   
    
 **이 글은 Ciara Byrne의 [*Development Workflows for Data Scientists: Enabling Fast, Efficient, and Reproducible Results for Data Science Teams*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf)을 번역한 것입니다.**
