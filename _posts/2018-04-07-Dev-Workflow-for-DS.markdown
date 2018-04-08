@@ -6,18 +6,17 @@ author: Youngmin Kim
 categories: Data_Science
 ---  
   
-   
-**이 글은 Ciara Byrne의 [*Development Workflows for Data Scientists: Enabling Fast, Efficient, and Reproducible Results for Data Science Teams*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf)을 번역한 것입니다.**
   
+**Ciara Byrne의 [*Development Workflows for Data Scientists: Enabling Fast, Efficient, and Reproducible Results for Data Science Teams*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf)을 번역했습니다.**
   
   
 - - -
-## 데이터 과학자를 위한 개발 작업흐름
+## 데이터 과학자를 위한 개발 작업 흐름
   
   
-소프트웨어 개발의 고전 *The Mythical Man Month*의 저자 [Fred Brooks에 따르면](https://www.fastcompany.com/3023543/why-good-programming-projects-go-bad?show_rev_content) 엔지니어는 빌드하기 위해 배우는 반면 과학자는 배우기 위해 빌드한다. "데이터 과학"라는 용어에 "과학'이란 단어가 포함된 건 실수가 아니다. 엔지니어나 소프트웨어 개발자의 작업과 달리 데이터 과학 프로젝트 결과물은 코드가 아니다. 결과물은 쓸모있는 통찰이다. 
+  소프트웨어 개발 고전인 *The Mythical Man Month* 저자 [Fred Brooks에 따르면](https://www.fastcompany.com/3023543/why-good-programming-projects-go-bad?show_rev_content) 엔지니어는 빌드하기 위해 배우는 반면 과학자는 배우기 위해 빌드한다. "데이터 과학"이라는 용어에 "과학'이란 단어가 붙은 건 실수가 아니다. 엔지니어나 소프트웨어 개발자 작업과 달리 데이터 과학 프로젝트 결과물은 코드가 아니다. 결과물은 쓸모있는 통찰이다. 
   
-"데이터 과학자는 개발자와 매우 다른 형태로 코딩과 연관을 맺는다."라고 Alluvium의 CEO이자 [해커 스타일로 배우는 기계학습](http://shop.oreilly.com/product/0636920018483.do)의 공저자인 [Drew Conway가 말한다.](https://www.fastcompany.com/3016160/what-hackers-should-know-about-machine-learning?show_rev_content) Conway는 계속 얘기한다.  
+"데이터 과학자는 개발자와 매우 다른 형태로 코딩과 연관을 맺는다." Alluvium의 CEO이자 [해커 스타일로 배우는 기계학습](http://shop.oreilly.com/product/0636920018483.do)의 공저자인 [Drew Conway가 말한다.](https://www.fastcompany.com/3016160/what-hackers-should-know-about-machine-learning?show_rev_content) Conway는 계속 얘기한다.  
 > 나는 코딩을 관심있는 질문에 대해 어떤 통찰을 얻기 위한 도구로 본다. 그 코드는 어느 정도 1회성이다. 개발자는 더 큰 시스템 내에서 빌드할 목적으로 코드를 작성한다. 그들은 어떻게 하면 재사용될 수 있게 작성할까 고민한다.
 
 그러나 데이터 과학자는 유용한 통찰을 얻기 위해 코드를 종종 작성하며 그 통찰은 쉽게 사용될 수 있게 코드 형태로 감싸진다. 그 결과 데이터 과학 팀들은 업무 향상을 위해 소프트웨어 모범 사례를 차용하고 있다. 그러나 어떤 모범 사례가 데이터 과학과 가장 관련있을까? 데이터 과학자의 어떤 영역에서 새로운 모범 사례 개발이 필요할까? 데이터 과학 팀은 어떻게 작업흐름을 향상시켰고 무슨 이익을 봤을까? 이것이 이 보고서가 답하고자 하는 질문들이다.
