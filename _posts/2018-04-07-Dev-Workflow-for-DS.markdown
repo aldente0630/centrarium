@@ -50,5 +50,5 @@ categories: Data-Science
   
 ### 결과 감사를 위해서
   
-  은행 또는 의료 같은 규제 산업에서 데이터 과학자는 작업 흐름을 설계할 때 모형의 준법과 감사 가능 여부를 고려해야한다. 예를 들어 캐나다 은행 [Scotiabank](http://www.scotiabank.com/gls/en/index.html#about)의 데이터 과학과 모형 혁신 팀은 신용 카드 지불 내역에서 패턴을 발견하기위해 [deep-learning 모형을 구축했다.](https://blogs.wsj.com/cio/2017/02/06/scotiabank-deploys-deep-learning-to-improve-credit-card-collections/) 모형은 잠재 체납 고객뿐만 아니라 지불을 깜박했을 가능성 있는 고객을 식별하고 지불에 관해 그들에게 접근하는 가장 좋은 방법을 제시한다.
+  은행 또는 의료 같은 규제 산업에서 데이터 과학자는 작업 흐름을 설계할 때 모형의 준법  감사 가능 여부를 고려해야한다. 예를 들어 캐나다 은행 [Scotiabank](http://www.scotiabank.com/gls/en/index.html#about)의 데이터 과학과 모형 혁신 팀은 신용 카드 지불 내역에서 패턴을 발견하기위해 [deep-learning 모형을 구축했다.](https://blogs.wsj.com/cio/2017/02/06/scotiabank-deploys-deep-learning-to-improve-credit-card-collections/) 모형은 잠재 체납 고객뿐만 아니라 지불을 깜박했을 가능성 있는 고객을 식별하고 지불에 관해 그들에게 접근하는 가장 좋은 방법을 제시한다.
 (번역 중)
