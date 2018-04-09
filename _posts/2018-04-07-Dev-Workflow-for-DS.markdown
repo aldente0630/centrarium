@@ -35,7 +35,7 @@ categories: Data-Science
   
   또한 팀은 어떤 결론도 이끌어내지 못했더라도 특정 결과에 도달하기 위해 수행했던 단계 모두를 기록하길 원한다. 그렇지 않으면 막다른 곳이라고 증명하기 위해 이미 탐색했던 이득을 장차 잃어버리게 될 것이다. 회사 내 데이터 과학자는 프로젝트 탐색 단계에서 실행한 모든 단계, 사용한 도구, 데이터 원천과 도달한 결론을 기록하며 코드북을 생성한다.
   
-  BinaryEdge팀은 익숙한 포맷(데이터 구조를 *선험적으로* 알고 있는)에서 하는 작업의 경우 작업 흐름 중 대부분 단계를 자동화해놨다. 새로운 유형의 데이터를 처리하는 경우는 먼저 작업 흐름의 단계 모두를 수동으로 실행하면서 데이터에서 지식을 최대한 이끌어낸다.
+  BinaryEdge팀은 익숙한 포맷(데이터 구조를 *선험적으로* 알고 있는)에서 하는 작업의 경우 작업 흐름 중 대부분 단계를 자동화해놨다. 새로운 유형의 데이터를 처리하는 경우 먼저 작업 흐름의 단계 모두를 수동으로 실행하면서 데이터에서 지식을 최대한 이끌어낸다.
 
 ### 결과를 재현하고 재사용하기 위해
   
@@ -46,7 +46,7 @@ categories: Data-Science
 
   [GitHub](https://github.com/) 기계 학습 팀은 기계 학습 및 빅데이터 기술을 사용하여 사용자 지향 기능을 구현한다. 재사용은 팀 우선 순위 중 하나다. "우린 각자의 작업 위로 빌드를 시도합니다." 데이터 제품 팀 데이터 과학자 Ho-Hsiang Wu는 말한다. "우리는 모형을 개선하기 위해 각 모형으로 돌아가 별도의 반복을 해볼 수 있습니다."
   
-  데이터 과학 업무 흐름을 개선하기 위해 생성 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
+  데이터 과학 업무 흐름을 개선하기 위해 생성한 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
   
 ### 결과 감사를 위해서
   
