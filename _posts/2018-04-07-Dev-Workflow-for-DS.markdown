@@ -46,7 +46,7 @@ categories: Data-Science
 
   [GitHub](https://github.com/) 기계 학습 팀은 기계 학습 및 빅데이터 기술을 사용하여 사용자 지향 기능을 구현한다. 재사용은 팀 우선 순위 중 하나다. "우린 각자의 작업 위로 빌드를 시도합니다." 데이터 제품 팀 데이터 과학자 Ho-Hsiang Wu는 말한다. "우리는 모형을 개선하기 위해 각 모형으로 돌아가 별도의 반복을 해볼 수 있습니다."
   
-  데이터 과학 업무 흐름을 개선하기 위해 생성된 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
+  데이터 과학 업무 흐름을 개선하기 위해 생성 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
   
 ### 결과 감사를 위해서
   
