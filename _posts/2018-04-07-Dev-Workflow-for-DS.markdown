@@ -39,6 +39,9 @@ categories: Data-Science
 
 ### 결과를 재현하고 재사용하기 위해
   
-  재현성은 소프트웨어 개발의 재사용성만큼이나 과학에서 교리처럼 중요하지만 데이터 과학 프로젝트에서는 종종 둘 다 고려해야 할 사항이다. Airbnb는 재현과 재사용을 위해 이전 데이터 과학 작업을 쉽게 찾아낼 수 있도록 [힘을 합쳐 노력했다.](https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091) 이 회사는 데이터 과학 작업에 기여하고 평가하는 절차를 정의하고 데이터 과학 팀을 뛰어 넘는 작업을 공유하기 위해 [*Knowledge Repo*](https://github.com/airbnb/knowledge-repo)라는 도구를 만들었다. 
+  재현성은 소프트웨어 개발의 재사용성만큼이나 과학에서 교리처럼 중요하지만 데이터 과학 프로젝트에서는 종종 둘 다 고려해야 할 사항이다. Airbnb는 재현과 재사용을 위해 이전 데이터 과학 작업을 쉽게 찾아낼 수 있도록 [힘을 합쳐 노력했다.](https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091) 이 회사는 데이터 과학 작업에 기여하고 평가하는 절차를 정의하고 데이터 과학 팀 너머로 작업을 잘 공유하기 위해 [*Knowledge Repo*](https://github.com/airbnb/knowledge-repo)라는 도구를 만들었다. 
+  
+  Airbnb는 데이터 과학자가 Knowledge Repo에 새로운 작업을 추가하고 이를 검색할 수 있도록 작업 흐름을 특별히 도입했다. Knowledge Repo 핵심 관리자 인 Nikki Ray가 말한다. "기본적으로 단기 비용과 장기 비용 균형을 맞추어야했습니다." Ray는 .
+> 단기적으로 당신은 특정 포맷을 통과하고 조금 더 긴 실제 리뷰 주기를 거쳐야한다. 만 장기적으로는 질문에 덜 대답하고 연구는 다른 사람들이 할 수있는 한 곳에서 할 수 있습니다. 앞으로 그것을 찾으십시오.
  
 (번역 중)
