@@ -47,5 +47,8 @@ categories: Data-Science
   [GitHub](https://github.com/) 기계 학습 팀은 기계 학습 및 빅데이터 기술을 사용하여 사용자 지향 기능을 구현한다. 재사용은 팀 우선 순위 중 하나다. "우린 각자의 작업 위로 빌드를 시도합니다." 데이터 제품 팀 데이터 과학자 Ho-Hsiang Wu는 말한다. "우리는 모형을 개선하기 위해 각 모형으로 돌아가 별도의 반복을 해볼 수 있습니다."
   
   데이터 과학 업무 흐름을 개선하기 위해 생성된 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
- 
+  
+### 결과 감사를 위해서
+  
+  은행 또는 의료 같은 규제 산업에서 데이터 과학자는 작업 흐름을 설계할 때 모형의 준법과 감사 가능 여부를 고려해야한다. 예를 들어 캐나다 은행 [Scotiabank](http://www.scotiabank.com/gls/en/index.html#about)의 데이터 과학과 모형 혁신 팀은 신용 카드 지불 내역에서 패턴을 발견하기위해 deep-learning 모형을 구축했다. 모형은 잠재적으로 체납 고객뿐만 아니라 지불을 잊어 버렸을 가능성이있는 고객을 식별하고 지불에 관해 그들에게 접근하는 가장 좋은 방법을 제시합니다.
 (번역 중)
