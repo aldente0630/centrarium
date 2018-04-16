@@ -27,3 +27,7 @@ categories: Data-Science
   Spotify와 Netflix 등 전자 상거래 회사는 LTV를 구독료 설정 등 가격 결정에 자주 사용한다. Airbnb 같은 마켓플레이스 기업에서 사용자 LTV를 알면 다양한 마케팅 채널에 예산을 효율적으로 할당하고 키워드 기반 온라인 마케팅에 대해 보다 정확한 입찰 가격을 계산하고 목록 세그먼트를 더 잘 만들 수 있다.
   
   과거 데이터를 사용해서 기존 목록 [과거 가치를 계산](https://medium.com/swlh/diligence-at-social-capital-part-3-cohorts-and-revenue-ltv-ab65a07464e1)할 수 있지만 새 목록 LTV를 예측하기 위해 기계 학습을 사용하여 한 걸음 더 나아갔다.
+    
+## LTV 모델링을 위한 기계학습 작업 흐름
+ 
+  dd
