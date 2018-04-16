@@ -32,4 +32,4 @@ categories: Data-Science
  
   데이터 과학자는 일반적으로 피쳐 엔지니어링, 프로토타이핑 및 모형 선택 같은 기계학습 관련 작업에 익숙하다. 그러나 모형 프로토타입을 제품에 사용하려면 종종 데이터 과학자가 익숙하지 않은 데이터 엔지니어링 기술들의 직교 집합이 필요하다.
 
-![] (https://cdn-images-1.medium.com/max/1600/1*zT1gNPErRqizxlngxXCtBA.png)
+![ㅁㅁ] (https://cdn-images-1.medium.com/max/1600/1*zT1gNPErRqizxlngxXCtBA.png)
