@@ -32,4 +32,6 @@ categories: Data-Science
  
   데이터 과학자는 일반적으로 피쳐 엔지니어링, 프로토타이핑 및 모형 선택 같은 기계학습 관련 작업에 익숙하다. 그러나 모형 프로토타입을 제품에 사용하려면 종종 데이터 과학자가 익숙하지 않은 데이터 엔지니어링 기술들의 직교 집합이 필요하다.
 
-![ㅁㅁ](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb1.png)
+![](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb1.png)
+  
+  다행히도 Airbnb에는 ML 모형 제ㅍ 엔지니어링 작업을 추상화하는 기계 학습 도구가 있습니다. 사실 우리는 이러한 놀라운 도구가 없으면 우리 모델을 생산에 투입 할 수 없었습니다. 이 게시물의 나머지 부분은 네 가지 주제로 구성되어 있으며 각 과제를 해결하는 데 사용한 도구와 함께 제공됩니다.
