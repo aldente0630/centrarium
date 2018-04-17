@@ -71,8 +71,7 @@ categories: Data-Science
     features: {
       city: "City in which the listing is located."
       country: "Country in which the listing is located."
-       is_active: "If the listing is active as of the date partition."
-    }
-  
+      is_active: "If the listing is active as of the date partition."
+    }  
   
   학습 데이터를 구성하는데 여러 변수가 필요한 경우 Zipline은 지능형 key join을 자동으로 수행하고 배후에서 학습 데이터를 다시 채운다. 숙소 LTV 모형을 위해 기존 Zipline 변수를 사용하고 우리만의 변수를 추가했다. 결론적으로 우리 모형에는 변수 150개 이상
