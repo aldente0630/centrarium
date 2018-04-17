@@ -50,7 +50,8 @@ Airbnb에서 피쳐 엔지니어링은 종종 Hive 쿼리를 작성하여 처음
   
 이 내부 도구의 크라우드소스적 특징으로 인해 데이터 과학자는 다른 사람들이 과거 프로젝트에서 준비했던 다양한, 고품질의, 검증된 변수들을 사용할 수 있다. 원하는 변수를 사용할 수 없는 경우 사용자는 다음과 같은 변수 구성 파일을 이용하여 자신만의 변수를 만들 수 있다.
   
-    source: {
+ '''{.json}
+   source: {
       type: hive
       query:"""
         SELECT
@@ -73,5 +74,6 @@ Airbnb에서 피쳐 엔지니어링은 종종 Hive 쿼리를 작성하여 처음
       country: "Country in which the listing is located."
       is_active: "If the listing is active as of the date partition."
     }  
+'''  
   
 학습 데이터를 구성하는데 여러 변수가 필요한 경우 Zipline은 지능형 key join을 자동으로 수행하고 배후에서 학습 데이터를 다시 채운다. 숙소 LTV 모형을 위해 기존 Zipline 변수를 사용하고 우리만의 변수를 일부 추가했다. 결론적으로 우리 모형에는 변수 150개 이상
