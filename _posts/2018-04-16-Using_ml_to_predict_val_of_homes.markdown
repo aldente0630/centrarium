@@ -59,7 +59,7 @@ source: {
       , dim_city as city
       , dim_country as country
       , dim_is_active as is_active
-      , CONCAT(ds, ' 23:59:59.999') as ts
+      , CONCAT(ds, '23:59:59.999') as ts
     FROM
       core_data.dim_listings
     WHERE
