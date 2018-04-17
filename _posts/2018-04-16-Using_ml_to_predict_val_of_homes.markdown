@@ -71,7 +71,7 @@ categories: Data-Science
     features: {
       city: "City in which the listing is located."
       country: "Country in which the listing is located."
-      is_active: "If the listing is active as of the date partition."
+       is_active: "If the listing is active as of the date partition."
     }
   
   
