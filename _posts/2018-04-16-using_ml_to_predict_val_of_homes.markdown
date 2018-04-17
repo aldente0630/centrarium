@@ -82,3 +82,6 @@ features: {
 * **가격:** 야간 요금, 청소비, 유사한 숙소와 관련있는 가격 포인트
 * **이용가능성:** 이용가능한 총 숙박일수, 
 
+![](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb2.png)
+  
+과 결과 변수가 정의되면, 우리는 과거의 데이터로부터 학습 할 수 있도록 모델을 훈련시킬 수 있습니다.
