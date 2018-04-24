@@ -155,4 +155,48 @@ Airbnb에서 우리는 Jupyter 노트북을 Airflow 기계 학습 파이프 라�
 
 다음은 LTV 모델에서 적합 함수 및 변형 함수가 정의되는 방법을 보여주는 코드 스 니펫입니다. fit 함수는 프레임 워크에 XGBoost 모델이 훈련되고 이전에 정의한 파이프 라인에 따라 데이터 변환이 수행된다는 사실을 알려줍니다.
 
+```{.python}
+def fit(X_train, y_train):
+    import multiprocessing
+    from ml_helpers.sklearn_extensions import DenseMatrixConverter
+    from ml_helpers.data import split_records
+    from xgboost import XGBRegressor
+
+    global model
+    
+    model = {}
+    n_subset = N_EXAMPLES
+    X_subset = {k: v[:n_subset] for k, v in X_train.iteritems()}
+    model['transformations'] = ExtendedPipeline([
+                ('features', features),
+                ('densify', DenseMatrixConverter()),
+            ]).fit(X_subset)
+    
+    # apply transforms in parallel
+    Xt = model['transformations'].transform_parallel(X_train)
+    
+    # fit the model in parallel
+    model['regressor'] = XGBRegressor().fit(Xt, y_train)
+        
+def transform(X):
+    # return dictionary
+    global model
+    Xt = model['transformations'].transform(X)
+    return {'score': model['regressor'].predict(Xt)}
+```
+
 노트북이 병합되면 ML Automator는 숙련 된 모델을 Python UDF로 래핑하고 아래의 것과 같은 Airflow 파이프 라인을 만듭니다. 데이터 직렬화, 주기적 재 학습 스케줄링 및 분산 스코어링과 같은 데이터 엔지니어링 작업은 모두이 일괄 처리 작업의 일부로 캡슐화됩니다. 결과적으로이 프레임 워크는 데이터 과학자와 함께 모델을 생산에 투입하는 전담 데이터 엔지니어가있는 것처럼 데이터 과학자를위한 모델 개발 비용을 크게 절감합니다!
+
+참고 : 생산 단계를 넘어서 시간이 지남에 따라 모델 성능을 추적하거나 모델링을 위해 탄성 계산 환경을 활용하는 것과 같은 다른 주제가 있습니다. 여기서는이 게시물에서 다루지 않을 것입니다. 안심하십시오, 이들은 개발중인 모든 활동 영역입니다.
+
+배운 교훈과 앞을 향한 교훈
+
+지난 몇 달간, 데이터 과학자들은 ML Infra와 매우 밀접하게 제휴를 맺었으며이 협력을 통해 많은 훌륭한 패턴과 아이디어가 생겨났습니다. 사실, 우리는 이러한 도구가 Airbnb에서 기계 학습 모델을 개발하는 방법에 대한 새로운 패러다임을 열 것이라고 믿습니다.
+
+첫째, 개별 툴의 차별화 된 강점을 결합하여 기능 엔지니어링을위한 Zipline, 모델 프로토 타이핑을위한 파이프 라인, 모델 선택 및 벤치마킹을위한 AutoML, 그리고 최종적으로 생산 자동화를위한 ML Automator를 통해 개발주기를 대폭 단축했습니다. 
+
+둘째, 노트북 구동 디자인은 진입 장벽을 줄여줍니다. 프레임 워크에 익숙하지 않은 데이터 과학자는 실제 사례가 과다하게 등장하는 즉시 액세스 할 수 있습니다. 프로덕션 환경에서 사용되는 노트북은 정확하고, 자체 문서화되며, 최신으로 보장됩니다. 이 디자인은 신규 사용자의 강력한 입양을 유도합니다.
+
+결과적으로 팀은 ML 제품 아이디어에 더 많은 투자를 할 의향이 있습니다 :이 글을 쓰는 시점에서 우리는 유사한 접근 방법을 통해 ML 제품 아이디어를 탐색하는 여러 다른 팀이 있습니다 : 목록 검사 대기열 우선 순위 지정, cohosts를 추가하고, 낮은 품질의 목록을 자동으로 표시합니다.
+
+우리는이 프레임 워크의 미래와 함께 가져온 새로운 패러다임에 대해 매우 흥분하고 있습니다. 프로토 타입 제작과 생산 간 격차를 줄임으로써 우리는 데이터 과학자와 엔지니어가 종단 간 기계 학습 프로젝트를 추구하고 제품을 더 효과적으로 만들 수있게되었습니다.
