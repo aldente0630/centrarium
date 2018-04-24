@@ -95,9 +95,9 @@ features: {
   
 * **데이터 대체:** 누락 된 데이터가 있는지, 그리고 데이터가 무작위로 누락되었는지 확인해야합니다. 그렇지 않은 경우 왜 그 원인을 조사하고 근본 원인을 이해해야합니다. 그렇다면 누락 된 값을 대신해야합니다.
   
-* **범주 형 변수 인코딩:** 모델에서 문자열에 맞추는 방법을 모르기 때문에 종종 모델에서 원시 범주를 사용할 수 없습니다. 카테고리 수가 적 으면 ![one-hot 인코딩](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 사용을 고려할 수 있습니다. 그러나 카디널리티가 높으면 ![서수 인코딩](https://www.kaggle.com/general/16927)을 사용하여 각 카테고리의 빈도 수를 인코딩하는 것이 좋습니다.
+* **범주 형 변수 인코딩:** 모델에서 문자열에 맞추는 방법을 모르기 때문에 종종 모델에서 원시 범주를 사용할 수 없습니다. 카테고리 수가 적 으면 [one-hot 인코딩](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 사용을 고려할 수 있습니다. 그러나 카디널리티가 높으면 [서수 인코딩](https://www.kaggle.com/general/16927)을 사용하여 각 카테고리의 빈도 수를 인코딩하는 것이 좋습니다.
   
-이 단계에서는 사용할 기능 중 무엇이 가장 적합한 지 모르기 때문에 신속하게 반복 할 수있는 코드를 작성하는 것이 중요합니다. ![Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 ![Spark](https://spark.apache.org/docs/latest/ml-pipeline.html)와 같은 오픈 소스 도구에서 일반적으로 사용할 수있는 파이프 라인 구조는 프로토 타이핑을위한 매우 편리한 도구입니다. 파이프 라인을 사용하여 데이터 과학자는 기능을 변형해야하는 방법과 훈련 할 모델을 설명하는 고급 청사진을 지정할 수 있습니다. 좀 더 구체적으로하기 위해 LTV 모델 파이프 라인의 코드 스 니펫이 있습니다.
+이 단계에서는 사용할 기능 중 무엇이 가장 적합한 지 모르기 때문에 신속하게 반복 할 수있는 코드를 작성하는 것이 중요합니다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html)와 같은 오픈 소스 도구에서 일반적으로 사용할 수있는 파이프 라인 구조는 프로토 타이핑을위한 매우 편리한 도구입니다. 파이프 라인을 사용하여 데이터 과학자는 기능을 변형해야하는 방법과 훈련 할 모델을 설명하는 고급 청사진을 지정할 수 있습니다. 좀 더 구체적으로하기 위해 LTV 모델 파이프 라인의 코드 스 니펫이 있습니다.
   
 ```python
 transforms = []
@@ -132,9 +132,9 @@ features = FeatureUnion(transforms)
 또한 파이프 라인은 모델 변환에서 데이터 변환을 분리합니다. 위의 코드에 나와 있지 않지만 데이터 과학자는 모델 피팅 추정을 지정하는 마지막 단계를 추가 할 수 있습니다. 다른 평가자를 탐구함으로써 데이터 과학자는 모델 선택 오류를 개선하기 위해 최상의 모델을 선택하기 위해 모델 선택을 수행 할 수 있습니다.
   
 ## 모형 선택 수행
->*사용한 도구: 다양한 ![AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
+>*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
 
-이전 섹션에서 언급했듯이 우리는 어떤 후보 모델이 생산에 가장 적합한 지 결정해야합니다. 이러한 결정을 내리기 위해서는 모델 해석 가능성과 모델 복잡성 간의 절충점을 고려해야합니다. 예를 들어, 희소 선형 모델은 해석하기 쉽지만 일반화하기에 충분히 복잡하지는 않습니다. 트리 기반 모델은 비선형 패턴을 캡처 할만큼 충분히 유연하지만 해석하기는 어렵습니다. 이를 ![바이어스 - 분산 (Bias-Variance) 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고합니다.
+이전 섹션에서 언급했듯이 우리는 어떤 후보 모델이 생산에 가장 적합한 지 결정해야합니다. 이러한 결정을 내리기 위해서는 모델 해석 가능성과 모델 복잡성 간의 절충점을 고려해야합니다. 예를 들어, 희소 선형 모델은 해석하기 쉽지만 일반화하기에 충분히 복잡하지는 않습니다. 트리 기반 모델은 비선형 패턴을 캡처 할만큼 충분히 유연하지만 해석하기는 어렵습니다. 이를 [바이어스 - 분산 (Bias-Variance) 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고합니다.
 
 보험 또는 신용 심사와 같은 응용 프로그램에서 모델은 의도적으로 특정 고객을 차별하는 것을 피하는 것이 중요하기 때문에 모델을 해석 할 수 있어야합니다. 그러나 이미지 분류와 같은 응용 프로그램에서는 해석 가능한 모델보다 성능 분류자를 갖는 것이 훨씬 더 중요합니다.
 
