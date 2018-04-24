@@ -133,33 +133,35 @@ features = FeatureUnion(transforms)
   
 ## 모형 선택 수행
 >*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
-
+  
 이전 섹션에서 언급했듯이 우리는 어떤 후보 모델이 생산에 가장 적합한 지 결정해야합니다. 이러한 결정을 내리기 위해서는 모델 해석 가능성과 모델 복잡성 간의 절충점을 고려해야합니다. 예를 들어, 희소 선형 모델은 해석하기 쉽지만 일반화하기에 충분히 복잡하지는 않습니다. 트리 기반 모델은 비선형 패턴을 캡처 할만큼 충분히 유연하지만 해석하기는 어렵습니다. 이를 [바이어스 - 분산 (Bias-Variance) 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고합니다.
-
+  
 ![Figure referenced from Introduction to Statistical Learning with R by James, Witten, Hastie, and Tibshirani](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
-
+  
 보험 또는 신용 심사와 같은 응용 프로그램에서 모델은 의도적으로 특정 고객을 차별하는 것을 피하는 것이 중요하기 때문에 모델을 해석 할 수 있어야합니다. 그러나 이미지 분류와 같은 응용 프로그램에서는 해석 가능한 모델보다 성능 분류자를 갖는 것이 훨씬 더 중요합니다.
-
+  
 모델 선택에 많은 시간이 소요될 수 있으므로 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 도구를 사용하여 프로세스 속도를 향상시키는 방법을 실험했습니다. 다양한 모델을 탐색하여 어떤 유형의 모델이 가장 잘 수행되는 경향이 있는지 발견했습니다. 예를 들어, [eXtreme 그라디언트 부스트 트리 (XGBoost)](https://github.com/dmlc/xgboost)는 평균 응답 모델, 능선 회귀 모델 및 단일 의사 결정 트리와 같은 벤치 마크 모델보다 월등히 뛰어나다는 것을 알게되었습니다.
-
+  
 ![Comparing RMSE allows us to perform model selection](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb4.png)
-
+  
 우리의 주요 목표는 상장 가치를 예측하는 것이었기 때문에 XGBoost를 사용하여 최종 모델을 쉽게 생산할 수 있었고 해석 가능성에 대한 유연성을 선호했습니다.
-
+  
 ## Taking Model Prototypes to Production
->*사용한 도구: Airbnb’s notebook translation framework - ML Automator*
-
+>*사용한 도구: Airbnb’s notebook translation framework — ML Automator*
+  
 이전에 언급했듯이 생산 파이프 라인을 구축하는 것은 로컬 랩톱에서 프로토 타입을 제작하는 것과 상당히 다릅니다. 예를 들어 정기적 인 재교육을 어떻게 수행 할 수 있습니까? 얼마나 많은 수의 예제를 효율적으로 채점합니까? 우리는 시간이 지남에 따라 모델 성능을 모니터링하는 파이프 라인을 어떻게 구축합니까?
+  
+Airbnb에서 우리는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8) 기계 학습 파이프 라인으로 자동 변환하는 **ML Automator**라는 프레임 워크를 구축했습니다. 이 프레임 워크는 이미 Python으로 프로토 타입을 작성하는 데 익숙한 데이터 과학자를 위해 특별히 설계되었으며 제한된 데이터 엔지니어링 경험을 바탕으로 자신의 모델을 프로덕션으로 가져 가고자합니다.
+  
+![A simplified overview of the ML Automator Framework (photo credit: Aaron Keys)](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb5.png)
 
-Airbnb에서 우리는 Jupyter 노트북을 Airflow 기계 학습 파이프 라인으로 자동 변환하는 ML Automator라는 프레임 워크를 구축했습니다. 이 프레임 워크는 이미 Python으로 프로토 타입을 작성하는 데 익숙한 데이터 과학자를 위해 특별히 설계되었으며 제한된 데이터 엔지니어링 경험을 바탕으로 자신의 모델을 프로덕션으로 가져 가고자합니다.
+* 첫째, 프레임 워크는 사용자가 노트북에 모델 구성을 지정해야합니다. 이 모델 구성의 목적은 프레임 워크에 교육 테이블의 위치, 교육을 위해 할당 할 계산 리소스의 수 및 점수 계산 방법을 알려주는 것입니다.
 
-첫째, 프레임 워크는 사용자가 노트북에 모델 구성을 지정해야합니다. 이 모델 구성의 목적은 프레임 워크에 교육 테이블의 위치, 교육을 위해 할당 할 계산 리소스의 수 및 점수 계산 방법을 알려주는 것입니다.
-
-또한 데이터 과학자는 특정 적합성 및 변형 기능을 작성해야합니다. fit 함수는 학습이 정확하게 수행되는 방법을 지정하며, 변환 함수는 분산 스코어링을위한 Python UDF로 래핑됩니다 (필요한 경우).
-
+* 또한 데이터 과학자는 특정 *적합성* 및 *변형* 기능을 작성해야합니다. fit 함수는 학습이 정확하게 수행되는 방법을 지정하며, 변환 함수는 분산 스코어링을위한 Python UDF로 래핑됩니다 (필요한 경우).
+  
 다음은 LTV 모델에서 적합 함수 및 변형 함수가 정의되는 방법을 보여주는 코드 스 니펫입니다. fit 함수는 프레임 워크에 XGBoost 모델이 훈련되고 이전에 정의한 파이프 라인에 따라 데이터 변환이 수행된다는 사실을 알려줍니다.
-
-```{.python}
+  
+```python
 def fit(X_train, y_train):
     import multiprocessing
     from ml_helpers.sklearn_extensions import DenseMatrixConverter
@@ -188,12 +190,14 @@ def transform(X):
     Xt = model['transformations'].transform(X)
     return {'score': model['regressor'].predict(Xt)}
 ```
+  
+노트북이 병합되면 ML Automator는 숙련 된 모델을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 래핑하고 아래의 것과 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프 라인을 만듭니다. 데이터 직렬화, 주기적 재 학습 스케줄링 및 분산 스코어링과 같은 데이터 엔지니어링 작업은 모두이 일괄 처리 작업의 일부로 캡슐화됩니다. 결과적으로이 프레임 워크는 데이터 과학자와 함께 모델을 생산에 투입하는 전담 데이터 엔지니어가있는 것처럼 데이터 과학자를위한 모델 개발 비용을 크게 절감합니다!
 
-노트북이 병합되면 ML Automator는 숙련 된 모델을 Python UDF로 래핑하고 아래의 것과 같은 Airflow 파이프 라인을 만듭니다. 데이터 직렬화, 주기적 재 학습 스케줄링 및 분산 스코어링과 같은 데이터 엔지니어링 작업은 모두이 일괄 처리 작업의 일부로 캡슐화됩니다. 결과적으로이 프레임 워크는 데이터 과학자와 함께 모델을 생산에 투입하는 전담 데이터 엔지니어가있는 것처럼 데이터 과학자를위한 모델 개발 비용을 크게 절감합니다!
+![A graph view of our LTV Airflow DAG, running in production](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb6.png)
 
-참고 : 생산 단계를 넘어서 시간이 지남에 따라 모델 성능을 추적하거나 모델링을 위해 탄성 계산 환경을 활용하는 것과 같은 다른 주제가 있습니다. 여기서는이 게시물에서 다루지 않을 것입니다. 안심하십시오, 이들은 개발중인 모든 활동 영역입니다.
+**참고**: 생산 단계를 넘어서 시간이 지남에 따라 모델 성능을 추적하거나 모델링을 위해 탄성 계산 환경을 활용하는 것과 같은 다른 주제가 있습니다. 여기서는이 게시물에서 다루지 않을 것입니다. 안심하십시오, 이들은 개발중인 모든 활동 영역입니다.
 
-배운 교훈과 앞을 향한 교훈
+## 배운 교훈과 앞을 향한 교훈
 
 지난 몇 달간, 데이터 과학자들은 ML Infra와 매우 밀접하게 제휴를 맺었으며이 협력을 통해 많은 훌륭한 패턴과 아이디어가 생겨났습니다. 사실, 우리는 이러한 도구가 Airbnb에서 기계 학습 모델을 개발하는 방법에 대한 새로운 패러다임을 열 것이라고 믿습니다.
 
