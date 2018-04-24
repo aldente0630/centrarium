@@ -125,25 +125,29 @@ for field in categorical:
 features = FeatureUnion(transforms)
 ```
   
-높은 수준에서 우리는 파이프 라인을 사용하여 유형이 바이너리, 범주 또는 숫자인지 여부에 따라 다양한 유형의 기능에 대한 데이터 변환을 지정합니다. FeatureUnion은 기능을 열 단위로 결합하여 최종 교육 데이터 세트를 작성합니다.
+높은 수준에서 우리는 파이프 라인을 사용하여 유형이 바이너리, 범주 또는 숫자인지 여부에 따라 다양한 유형의 기능에 대한 데이터 변환을 지정합니다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 기능을 열 단위로 결합하여 최종 교육 데이터 세트를 작성합니다.
   
-프로토 타입을 파이프 라인으로 작성하면 데이터 변환을 사용하여 지루한 데이터 변환을 추상화 할 수 있다는 이점이 있습니다. 집합 적으로 이러한 변환을 통해 교육 및 평가 과정에서 일관되게 데이터가 변형되므로 프로토 타입을 프로덕션으로 변환 할 때 데이터 변환의 공통적 인 문제를 해결할 수 있습니다.
+프로토 타입을 파이프 라인으로 작성하면 [데이터 변환](http://scikit-learn.org/stable/data_transforms.html)을 사용하여 지루한 데이터 변환을 추상화 할 수 있다는 이점이 있습니다. 집합 적으로 이러한 변환을 통해 교육 및 평가 과정에서 일관되게 데이터가 변형되므로 프로토 타입을 프로덕션으로 변환 할 때 데이터 변환의 공통적 인 문제를 해결할 수 있습니다.
   
-또한 파이프 라인은 모델 변환에서 데이터 변환을 분리합니다. 위의 코드에 나와 있지 않지만 데이터 과학자는 모델 피팅 추정을 지정하는 마지막 단계를 추가 할 수 있습니다. 다른 평가자를 탐구함으로써 데이터 과학자는 모델 선택 오류를 개선하기 위해 최상의 모델을 선택하기 위해 모델 선택을 수행 할 수 있습니다.
+또한 파이프 라인은 모델 변환에서 데이터 변환을 분리합니다. 위의 코드에 나와 있지 않지만 데이터 과학자는 모델 피팅 [추정](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)을 지정하는 마지막 단계를 추가 할 수 있습니다. 다른 평가자를 탐구함으로써 데이터 과학자는 모델 선택 오류를 개선하기 위해 최상의 모델을 선택하기 위해 모델 선택을 수행 할 수 있습니다.
   
 ## 모형 선택 수행
 >*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
 
 이전 섹션에서 언급했듯이 우리는 어떤 후보 모델이 생산에 가장 적합한 지 결정해야합니다. 이러한 결정을 내리기 위해서는 모델 해석 가능성과 모델 복잡성 간의 절충점을 고려해야합니다. 예를 들어, 희소 선형 모델은 해석하기 쉽지만 일반화하기에 충분히 복잡하지는 않습니다. 트리 기반 모델은 비선형 패턴을 캡처 할만큼 충분히 유연하지만 해석하기는 어렵습니다. 이를 [바이어스 - 분산 (Bias-Variance) 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고합니다.
 
+![Figure referenced from Introduction to Statistical Learning with R by James, Witten, Hastie, and Tibshirani](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
+
 보험 또는 신용 심사와 같은 응용 프로그램에서 모델은 의도적으로 특정 고객을 차별하는 것을 피하는 것이 중요하기 때문에 모델을 해석 할 수 있어야합니다. 그러나 이미지 분류와 같은 응용 프로그램에서는 해석 가능한 모델보다 성능 분류자를 갖는 것이 훨씬 더 중요합니다.
 
-모델 선택에 많은 시간이 소요될 수 있으므로 다양한 AutoML 도구를 사용하여 프로세스 속도를 향상시키는 방법을 실험했습니다. 다양한 모델을 탐색하여 어떤 유형의 모델이 가장 잘 수행되는 경향이 있는지 발견했습니다. 예를 들어, eXtreme 그라디언트 부스트 트리 (XGBoost)는 평균 응답 모델, 능선 회귀 모델 및 단일 의사 결정 트리와 같은 벤치 마크 모델보다 월등히 뛰어나다는 것을 알게되었습니다.
+모델 선택에 많은 시간이 소요될 수 있으므로 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 도구를 사용하여 프로세스 속도를 향상시키는 방법을 실험했습니다. 다양한 모델을 탐색하여 어떤 유형의 모델이 가장 잘 수행되는 경향이 있는지 발견했습니다. 예를 들어, [eXtreme 그라디언트 부스트 트리 (XGBoost)](https://github.com/dmlc/xgboost)는 평균 응답 모델, 능선 회귀 모델 및 단일 의사 결정 트리와 같은 벤치 마크 모델보다 월등히 뛰어나다는 것을 알게되었습니다.
+
+![Comparing RMSE allows us to perform model selection](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb4.png)
 
 우리의 주요 목표는 상장 가치를 예측하는 것이었기 때문에 XGBoost를 사용하여 최종 모델을 쉽게 생산할 수 있었고 해석 가능성에 대한 유연성을 선호했습니다.
 
-## 모형 선택 수행
->*사용한 도구: 다양한 AutoML 프레임워크 
+## Taking Model Prototypes to Production
+>*사용한 도구: Airbnb’s notebook translation framework - ML Automator*
 
 이전에 언급했듯이 생산 파이프 라인을 구축하는 것은 로컬 랩톱에서 프로토 타입을 제작하는 것과 상당히 다릅니다. 예를 들어 정기적 인 재교육을 어떻게 수행 할 수 있습니까? 얼마나 많은 수의 예제를 효율적으로 채점합니까? 우리는 시간이 지남에 따라 모델 성능을 모니터링하는 파이프 라인을 어떻게 구축합니까?
 
