@@ -97,7 +97,7 @@ features: {
   
 * **범주형 변수 인코딩:** 문자열 값에 모형을 적합시킬 수 없기 때문에 종종 모형에선 범주를 그대로 사용할 수 없다. 범주 수가 적으면 [one-hot 인코딩](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 사용을 고려할 수 있다. 그러나 차원 수가 높으면 [서수 인코딩](https://www.kaggle.com/general/16927)을 사용하여 각 범주의 빈도 수를 인코딩하는게 좋다.
   
-이 단계에서는 사용할 변수 조합 중 무엇이 가장 적합한지 모르기 때문에 신속히 반복을 가능하게 하는 코드를 작성하는게 중요하다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html) 같은 오픈 소스 도구에서 일반적으로 사용할 수 있는 파이프라인 구조는 프로토타이핑을 위한 매우 편리한 도구다. 파이프라인을 사용하여 데이터 과학자는 변수 변환 방법과 훈련시킬 모형을 서술하는 고수준의 청사진을 특정할 수 있다. 좀 더 구체화하기 위해 LTV 모형 파이프라인 코드 스니펫은 아래와 같다.
+이 단계에서는 사용할 변수 조합 중 무엇이 가장 적합한지 모르기 때문에 신속한 반복을 가능하게 하는 코드를 작성하는게 중요하다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html) 같은 오픈 소스 도구에서 일반적으로 사용할 수 있는 파이프라인 구조는 프로토타이핑을 위한 매우 편리한 도구다. 파이프라인을 사용하여 데이터 과학자는 변수 변환 방법과 훈련시킬 모형을 서술하는 고수준의 청사진을 지정할 수 있다. 좀 더 구체화하기 위해 LTV 모형 파이프라인 코드 스니펫은 아래와 같다.
   
 ```python
 transforms = []
@@ -124,10 +124,10 @@ for field in categorical:
     
 features = FeatureUnion(transforms)
 ```
+  
+고수준에서 파이프라인을 사용하여 다양한 유형의 변수에 대해 유형이 불리언, 범주형 또는 수치형인지에 따라 데이터 변환을 지정한다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 변수를 컬럼 단위로 결합하여 최종 훈련 데이터셋을 생성한다.
   
-높은 수준에서 우리는 파이프 라인을 사용하여 유형이 바이너리, 범주 또는 숫자인지 여부에 따라 다양한 유형의 기능에 대한 데이터 변환을 지정합니다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 기능을 열 단위로 결합하여 최종 교육 데이터 세트를 작성합니다.
-  
-프로토 타입을 파이프 라인으로 작성하면 [데이터 변환](http://scikit-learn.org/stable/data_transforms.html)을 사용하여 지루한 데이터 변환을 추상화 할 수 있다는 이점이 있습니다. 집합 적으로 이러한 변환을 통해 교육 및 평가 과정에서 일관되게 데이터가 변형되므로 프로토 타입을 프로덕션으로 변환 할 때 데이터 변환의 공통적 인 문제를 해결할 수 있습니다.
+프로토타입을 파이프라인으로 작성하면 [데이터 변환](http://scikit-learn.org/stable/data_transforms.html)을 사용하여 지루한 데이터 변환을 추상화시킬 수 있다는 이점이 있다. 총체적으로 이러한 변환을 통해 훈련 및 평가 과정에서 일관성있게 데이터가 변환되므로 프로토타입을 제품화할 때 데이터 변환의 공통 문제를 해결할 수 있다.
   
 또한 파이프 라인은 모델 변환에서 데이터 변환을 분리합니다. 위의 코드에 나와 있지 않지만 데이터 과학자는 모델 피팅 [추정](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)을 지정하는 마지막 단계를 추가 할 수 있습니다. 다른 평가자를 탐구함으로써 데이터 과학자는 모델 선택 오류를 개선하기 위해 최상의 모델을 선택하기 위해 모델 선택을 수행 할 수 있습니다.
   
