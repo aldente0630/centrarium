@@ -94,10 +94,10 @@ features: {
 위 훈련 데이터셋 예제처럼 모형 적합하기 전에 데이터 처리를 종종 해줘야한다.
   
 * **결측값 대체:** 데이터 결측이 있는지 또 데이터 결측이 무작위로 발생했는지 확인해야한다. 무작위로 발생하지 않다면 왜 발생했는지 조사하고 근본 원인을 이해해야한다. 무작위로 발생했다면 결측값 대체를 수행한다.
-  
+  
 * **범주형 변수 인코딩:** 문자열 값에 모형을 적합시킬 수 없기 때문에 종종 모형에선 범주를 그대로 사용할 수 없다. 범주 수가 적으면 [one-hot 인코딩](http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html) 사용을 고려할 수 있다. 그러나 차원 수가 높으면 [서수 인코딩](https://www.kaggle.com/general/16927)을 사용하여 각 범주의 빈도 수를 인코딩하는게 좋다.
-  
-이 단계에서는 사용할 변수 조합 중 무엇이 가장 적합한지 모르기 때문에 신속히 반복을 가능하게 하는 코드를 작성하는게 중요하다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html)와 같은 오픈 소스 도구에서 일반적으로 사용할 수있는 파이프 라인 구조는 프로토 타이핑을위한 매우 편리한 도구입니다. 파이프 라인을 사용하여 데이터 과학자는 기능을 변형해야하는 방법과 훈련 할 모델을 설명하는 고급 청사진을 지정할 수 있습니다. 좀 더 구체적으로하기 위해 LTV 모델 파이프 라인의 코드 스 니펫이 있습니다.
+  
+이 단계에서는 사용할 변수 조합 중 무엇이 가장 적합한지 모르기 때문에 신속히 반복을 가능하게 하는 코드를 작성하는게 중요하다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) 및 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html) 같은 오픈 소스 도구에서 일반적으로 사용할 수 있는 파이프라인 구조는 프로토타이핑을 위한 매우 편리한 도구다. 파이프라인을 사용하여 데이터 과학자는 변수 변환 방법과 훈련시킬 모형을 서술하는 고수준의 청사진을 특정할 수 있다. 좀 더 구체화하기 위해 LTV 모형 파이프라인 코드 스니펫은 아래와 같다.
   
 ```python
 transforms = []
