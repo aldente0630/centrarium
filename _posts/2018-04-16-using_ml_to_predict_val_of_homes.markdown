@@ -131,20 +131,20 @@ features = FeatureUnion(transforms)
   
 또한 파이프라인은 모형 적합과 데이터 변환을 분리한다. 위 코드에 나와있지 않지만 데이터 과학자는 모형 적합 [추정자](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)를 마지막에 지정하는 단계를 추가할 수 있다. 데이터 과학자는 표본 외 오차를 개선하기 위해 여러 추정자를 탐색하며 최적 모형을 선택하는 모형 선택 과정을 수행할 수 있다.
   
-## 모형 선택 과정 수행
+## 모형 선택 수행
 >*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
   
-이전 구문에서 언급했듯이 우리는 어떤 모형 후보가 제품화에 가장 적합한지 결정해야한다. 이러한 결정을 내리기 위해서는 모형 해석 가능성과 모형 복잡도 간의 절충점을 고려해야한다. 예를 들어, 희소 선형 모형은 해석하기 쉽지만 데이터를 일반화하기에는 복잡도가 충분하지 않습니다. 트리 기반 모형은 비선형 패턴을 잡아낼만큼 충분히 유연하지만 해석하기가 어렵다. 이를 [편의 - 분산 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고 한다.
+이전 구문에서 언급했듯이 우리는 어떤 모형 후보가 제품화에 가장 적합한지 결정해야한다. 이러한 결정을 내리기 위해서는 모형 해석 가능성과 모형 복잡도 간의 절충점을 고려해야한다. 예를 들어, 희소 선형 모형은 해석하기 쉽지만 데이터를 일반화하기에는 복잡도가 충분하지않다. 트리 기반 모형은 비선형 패턴을 잡아낼만큼 충분히 유연하지만 해석하기가 어렵다. 이를 [편의 - 분산 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고 한다.
   
-![James, Witten, Hastie, and TibshiraniIntroduction to Statistical Learning with R by ](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
+![James, Witten, Hastie와 Tibshirani가 쓴 Introduction to Statistical Learning with R에서 참조한 그림](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
   
-보험 또는 신용 심사와 같은 응용 프로그램에서 모델은 의도적으로 특정 고객을 차별하는 것을 피하는 것이 중요하기 때문에 모델을 해석 할 수 있어야합니다. 그러나 이미지 분류와 같은 응용 프로그램에서는 해석 가능한 모델보다 성능 분류자를 갖는 것이 훨씬 더 중요합니다.
+보험 또는 신용 심사와 같은 적용 사례에서 모형은 의도적으로 특정 고객을 차별하는 걸 피하는게 중요하기 때문에 모형을 해석할 수 있어야한다. 그러나 이미지 분류 같은 적용 사례에서는 해석 가능한 모형보다 성능이 뛰어난 분류기를 갖는게 훨씬 더 중요하다.
+  
+모형 선택에 많은 시간이 소요될 수 있으므로 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 도구를 사용하여 수행 속도를 향상시키는 방법을 실험했다. 다양한 모형을 탐색하여 어떤 유형의 모형이 성능이 보통 우수한지 발견했다. 예를 들어, [eXtreme gradient boosted trees(XGBoost)](https://github.com/dmlc/xgboost)는 평균 응답 모형, 능선 회귀 모형 및 단일 의사 결정 트리와 같은 벤치마크 모형보다 월등히 뛰어나다는 것을 알게되었다.
   
-모델 선택에 많은 시간이 소요될 수 있으므로 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 도구를 사용하여 프로세스 속도를 향상시키는 방법을 실험했습니다. 다양한 모델을 탐색하여 어떤 유형의 모델이 가장 잘 수행되는 경향이 있는지 발견했습니다. 예를 들어, [eXtreme 그라디언트 부스트 트리 (XGBoost)](https://github.com/dmlc/xgboost)는 평균 응답 모델, 능선 회귀 모델 및 단일 의사 결정 트리와 같은 벤치 마크 모델보다 월등히 뛰어나다는 것을 알게되었습니다.
+![RMSE 비교를 통해 모형 선택 수행이 가능하다](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb4.png)
   
-![Comparing RMSE allows us to perform model selection](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb4.png)
-  
-우리의 주요 목표는 상장 가치를 예측하는 것이었기 때문에 XGBoost를 사용하여 최종 모델을 쉽게 생산할 수 있었고 해석 가능성에 대한 유연성을 선호했습니다.
+주된 목표는 숙소 가치를 예측하는 것이었기 때문에 해석 가능성보단 유연성을 고려한 XGBoost를 최종 모형으로 사용하는 것에 이견이 없었다.
   
 ## Taking Model Prototypes to Production
 >*사용한 도구: Airbnb’s notebook translation framework — ML Automator*
