@@ -146,8 +146,8 @@ features = FeatureUnion(transforms)
   
 주된 목표는 숙소 가치를 예측하는 것이었기 때문에 해석 가능성보단 유연성을 고려한 XGBoost를 최종 모형으로 사용하는 것에 이견이 없었다.
   
-## Taking Model Prototypes to Production
->*사용한 도구: Airbnb’s notebook translation framework — ML Automator*
+## 모형 프로토타입을 제품화시키기
+>*사용한 도구: Airbnb의 노트북 변환 프레임워크 — ML Automator*
   
 이전에 언급했듯이 생산 파이프 라인을 구축하는 것은 로컬 랩톱에서 프로토 타입을 제작하는 것과 상당히 다릅니다. 예를 들어 정기적 인 재교육을 어떻게 수행 할 수 있습니까? 얼마나 많은 수의 예제를 효율적으로 채점합니까? 우리는 시간이 지남에 따라 모델 성능을 모니터링하는 파이프 라인을 어떻게 구축합니까?
   
