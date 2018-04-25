@@ -127,13 +127,13 @@ features = FeatureUnion(transforms)
   
 고수준에서 파이프라인을 사용하여 다양한 유형의 변수에 대해 유형이 불리언, 범주형 또는 수치형인지에 따라 데이터 변환을 지정한다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 변수를 컬럼 단위로 결합하여 최종 훈련 데이터셋을 생성한다.
   
-프로토타입을 파이프라인을 통해 작성하면 [데이터 변환 법칙](http://scikit-learn.org/stable/data_transforms.html)를 사용하여 지루한 데이터 변환을 추상화시킬 수 있다는 이점이 있다. 총괄하여 이러한 변환을 통해 훈련 및 평가 과정에서 일관성있게 데이터가 변환되므로 프로토타입을 제품화할 때 데이터 변환에 관한 보편적인 문제를 해결할 수 있다.
-  
-또한 파이프라인은 모형 적합과 데이터 변환을 분리한다. 위 코드에 나와있지 않지만 데이터 과학자는 모형 적합 [추정 법칙](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)을 지정하는 마지막 단계를 추가 할 수 있다. 다른 추정 법칙을 탐색함으로써 데이터 과학자는 표본 외 오차를 개선하기 위해 최상의 모형을 선택하기 위해 모델 선택을 수행 할 수 있습니다.
-  
-## 모형 선택 수행
+프로토타입을 파이프라인을 통해 작성하면 [데이터 변환자](http://scikit-learn.org/stable/data_transforms.html)를 사용하여 지루한 데이터 변환을 추상화시킬 수 있다는 이점이 있다. 총괄하여 이러한 변환을 통해 훈련 및 평가 과정에서 일관성있게 데이터가 변환되므로 프로토타입을 제품화할 때 데이터 변환에 관한 보편적인 문제를 해결할 수 있다.
+  
+또한 파이프라인은 모형 적합과 데이터 변환을 분리한다. 위 코드에 나와있지 않지만 데이터 과학자는 모형 적합 [추정자](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)을 마지막에 지정하는 단계를 추가할 수 있다. 데이터 과학자는 표본 외 오차를 개선하기 위해 여러 추정자를 탐색하며 최적 모형을 선택하는 모형 선택 과정을 수행할 수 있다.
+  
+## 모형 선택 과정 수행
 >*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
-  
+  
 이전 섹션에서 언급했듯이 우리는 어떤 후보 모델이 생산에 가장 적합한 지 결정해야합니다. 이러한 결정을 내리기 위해서는 모델 해석 가능성과 모델 복잡성 간의 절충점을 고려해야합니다. 예를 들어, 희소 선형 모델은 해석하기 쉽지만 일반화하기에 충분히 복잡하지는 않습니다. 트리 기반 모델은 비선형 패턴을 캡처 할만큼 충분히 유연하지만 해석하기는 어렵습니다. 이를 [바이어스 - 분산 (Bias-Variance) 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고합니다.
   
 ![Figure referenced from Introduction to Statistical Learning with R by James, Witten, Hastie, and Tibshirani](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
