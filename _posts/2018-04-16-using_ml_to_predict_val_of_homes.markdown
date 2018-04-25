@@ -127,7 +127,7 @@ features = FeatureUnion(transforms)
   
 고수준에서 파이프라인을 사용하여 다양한 유형의 변수에 대해 유형이 불리언, 범주형 또는 수치형인지에 따라 데이터 변환을 지정한다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 변수를 컬럼 단위로 결합하여 최종 훈련 데이터셋을 생성한다.
   
-프로토타입을 파이프라인을 통해 작성하면 [데이터 변환자](http://scikit-learn.org/stable/data_transforms.html)를 사용하여 지루한 데이터 변환을 추상화시킬 수 있다는 이점이 있다. 총괄하여 이러한 변환을 통해 훈련 및 평가 과정에서 일관성있게 데이터가 변환되므로 프로토타입을 제품화할 때 데이터 변환에 관한 보편적인 문제를 해결할 수 있다.
+프로토타입을 파이프라인을 통해 작성하면 [데이터 변환자](http://scikit-learn.org/stable/data_transforms.html)를 사용하여 지루한 데이터 변환을 추상화시킬 수 있다는 이점이 있다. 총괄하자면 이러한 변환을 통해 훈련 및 평가 과정에서 일관성있게 데이터가 변환되므로 프로토타입을 제품화할 때 데이터 변환에 관한 보편적인 문제를 해결할 수 있다.
   
 또한 파이프라인은 모형 적합과 데이터 변환을 분리한다. 위 코드에 나와있지 않지만 데이터 과학자는 모형 적합 [추정자](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)를 마지막에 지정하는 단계를 추가할 수 있다. 데이터 과학자는 표본 외 오차를 개선하기 위해 여러 추정자를 탐색하며 최적 모형을 선택하는 모형 선택 과정을 수행할 수 있다.
   
