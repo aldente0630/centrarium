@@ -149,21 +149,21 @@ features = FeatureUnion(transforms)
 ## 모형 프로토타입을 제품화시키기
 >*사용한 도구: Airbnb의 노트북 변환 프레임워크 — ML Automator*
   
-이전에 언급했듯이 제품화 파이프라인을 구축하는건 로컬 랩탑에서 프로토타입을 만드는 것과 상당히 다르다. 예를 들어 주기적으로 재훈련을 어떻게 수행할 수 있을까? 얼마나 많은 수의 예제를 효율적으로 채점합니까? 우리는 시간이 지남에 따라 모델 성능을 모니터링하는 파이프 라인을 어떻게 구축합니까?
-  
-Airbnb에서 우리는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8) 기계 학습 파이프 라인으로 자동 변환하는 **ML Automator**라는 프레임 워크를 구축했습니다. 이 프레임 워크는 이미 Python으로 프로토 타입을 작성하는 데 익숙한 데이터 과학자를 위해 특별히 설계되었으며 제한된 데이터 엔지니어링 경험을 바탕으로 자신의 모델을 프로덕션으로 가져 가고자합니다.
-  
-![A simplified overview of the ML Automator Framework (photo credit: Aaron Keys)](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb5.png)
+이전에 언급했듯이 제품화 파이프라인을 구축하는건 로컬 랩탑에서 프로토타입을 만드는 것과 상당히 다르다. 예를 들어 재훈련을 어떻게 주기적으로 수행할 수 있을까? 대용량 표본을 어떻게 효율적으로 스코어링할 수 있을까? 모형 성능 추이를 모니터링하는 파이프라인을 어떻게 구축할 수 있을까?
+  
+Airbnb는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8) 기계 학습 파이프라인으로 자동 변환하는 **ML Automator**라는 프레임워크를 구축했다. 이 프레임워크는 Python으로 프로토타입을 작성하는데 이미 익숙하고 한정된 데이터 엔지니어링 경험을 기반으로 자신의 모형을 제품화시키고자하는 데이터 과학자를 위해 특별히 설계되었다. 
+  
+![ML Automator 프레임 워크의 단순화한 개요](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb5.png)
 
-* 첫째, 프레임 워크는 사용자가 노트북에 모델 구성을 지정해야합니다. 이 모델 구성의 목적은 프레임 워크에 교육 테이블의 위치, 교육을 위해 할당 할 계산 리소스의 수 및 점수 계산 방법을 알려주는 것입니다.
+* 첫째, 프레임워크르 사용하기 위해선 사용자가 노트북에 모형 환경설정을 지정해야한다. 이 모형 환경설정의 목적은 프레임워크에 훈련 테이블 위치, 훈련을 위해 할당할 계산 자원의 수 및 스코어 계산 방법을 알려주는 것이다.
 
-* 또한 데이터 과학자는 특정 *적합성* 및 *변형* 기능을 작성해야합니다. fit 함수는 학습이 정확하게 수행되는 방법을 지정하며, 변환 함수는 분산 스코어링을위한 Python UDF로 래핑됩니다 (필요한 경우).
-  
-다음은 LTV 모델에서 적합 함수 및 변형 함수가 정의되는 방법을 보여주는 코드 스 니펫입니다. fit 함수는 프레임 워크에 XGBoost 모델이 훈련되고 이전에 정의한 파이프 라인에 따라 데이터 변환이 수행된다는 사실을 알려줍니다.
+* 또한 데이터 과학자는 특정한 *적합* 및 *변환* 함수를 작성해야한다. 적합 함수는 훈련이 정확하게 수행되는 방법을 지정하며 변환 함수는 (필요한 경우) 분산 스코어링을 위해 Python UDF로 감싸진다.
+  
+다음은 LTV 모형에서 적합 함수 및 변환 함수가 정의되는 방법을 보여주는 코드 스니펫이다. 적합 함수는 프레임워크에 XGBoost 모형이 훈련되고 이전에 정의한 파이프라인에 따라 데이터 변환이 수행된다는 사실을 알려준다.
   
 ```python
 def fit(X_train, y_train):
-    import multiprocessing
+    import multiprocessing
     from ml_helpers.sklearn_extensions import DenseMatrixConverter
     from ml_helpers.data import split_records
     from xgboost import XGBRegressor
