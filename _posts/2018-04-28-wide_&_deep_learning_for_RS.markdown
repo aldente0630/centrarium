@@ -2,13 +2,12 @@
 layout:     post
 title:      Wide & Deep Learning for Recommender Systems
 date:       2018-04-28 00:00:00
-author:     Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra, Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil, Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, Hemal Shah
+author:     Google Inc.
 categories: Data-Science
 ---  
   
   
-**Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra,Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil,Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, Hemal Shah의 [*Wide & Deep Learning for Recommender Systems
-*](https://arxiv.org/pdf/1606.07792v1.pdf)을 번역했습니다.**
+**Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra,Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil,Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, Hemal Shah의 [*Wide & Deep Learning for Recommender Systems*](https://arxiv.org/pdf/1606.07792v1.pdf)을 번역했습니다.**
   
   
 - - -
