@@ -191,7 +191,7 @@ def transform(X):
     return {'score': model['regressor'].predict(Xt)}
 ```
   
-노트북이 병합되면 ML Automator는 훈련된 모형을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 감싸고 아래와 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프라인을 만든다. 데이터 직렬화, 주기적인 재훈련 스케줄링 및 분산 스코어링 같은 데이터 엔지니어링 작업 모두가 일 배치 작업의 일부로 캡슐화된다. 결과적으로 이 프레임워크는 데이터 과학자와 함께 모형을 제품화하는 전담 데이터 엔지니어가 있는 것처럼 데이터 과학자를 위한 모형 개발 비용을 크게 절감시킨다!
+노트북이 병합되면 ML Automator는 훈련된 모형을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 감싸고 아래와 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프라인을 만든다. 데이터 직렬화, 주기적인 재훈련 스케줄링 및 분산 스코어링 같은 데이터 공학 작업 모두가 일 배치 작업의 일부로 캡슐화된다. 결과적으로 이 프레임워크는 데이터 과학자와 함께 모형을 제품화하는 전담 데이터 공학자가 있는 것처럼 데이터 과학자를 위한 모형 개발 비용을 크게 절감시킨다!
   
 ![A graph view of our LTV Airflow DAG, running in production](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb6.png)
   
@@ -207,4 +207,4 @@ def transform(X):
 
 * **결과적으로 팀은 기계학습 제품 아이디어에 더 많은 투자를 할 수 있다:** 이 글을 쓰는 시점에 숙소 조사 큐 우선 순위 지정하기, 동업 호스트 추가하기, 낮은 품질의 숙소를 자동으로 표시하기 같은 기계학습 제품 아이디어를 비슷한 접근 방식을 통해 탐색하는 여러 다른 팀들이 있다. 
 
-우리는 이 프레임워크의 미래 그리고 동반된 새 패러다임에 매우 열광하고 있다. 프로토타입 구현과 제품화 간의 격차를 줄임으로써 데이터 과학자와 엔지니어는 종단 간 기계학습 프로젝트를 추구하고 제품을 더 효과적으로 만들 수 있게 되었다.
+우리는 이 프레임워크의 미래 그리고 동반된 새 패러다임에 매우 열광하고 있다. 프로토타입 구현과 제품화 간의 격차를 줄임으로써 데이터 과학자와 공학자는 종단 간 기계학습 프로젝트를 추구하고 제품을 더 효과적으로 만들 수 있게 되었다.
