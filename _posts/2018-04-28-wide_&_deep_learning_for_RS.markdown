@@ -38,7 +38,7 @@ categories: Data-Science
 * TensorFlow 고수준 API를 통한 오프소스 구현[^1]
   
 아이디어는 단순하지만 Wide & Deep 프레임워크는 모형 훈련 및 서빙 속도 요건을 만족시키면서 모바일 앱 스토어 앱 가입율을 크게 향상시켰다.
-
-[^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
-
+  
 ## 2. 추천시스템 개요
+  
+[^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
