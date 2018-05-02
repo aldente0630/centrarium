@@ -36,4 +36,4 @@ categories: Data-Science
 * 우리는 TensorFlow의 높은 수준의 API와 함께 구현을 오픈 소스했습니다.[^1]
 아이디어는 간단하지만 Wide & Deep 프레임 워크는 모바일 앱 스토어의 앱 획득 속도를 크게 향상시키는 동시에 교육 및 서빙 속도 요구 사항.
 
-[^1]: See Wide & Deep Tutorial on [http://tensorflow.org](http://tensorflow.org).
+[^1]: See Wide & Deep Tutorial on [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep).
