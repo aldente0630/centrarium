@@ -50,8 +50,7 @@ categories: Data-Science
 ### 3.1 Wide 구성 요소
   
 Wide 구성 요소는 그림 1(좌측)에 그려진 일반화 선형 모형 \\(y=\mathbf{w^Tx}+b\\)의 형태이다. \\(y\\)는 예측, \\(\mathbf{x}=[x_1, x_2, ..., x_d]\\)는 \\(d\\)개의 변수 벡터, \\(\mathbf{w}=[w_1, w_2, ..., w_d]\\)는 모형 파라미터이고 \\(b\\)는 편의이다. 변수 집합은 원천 입력값들과 변환한 변수들을 포함한다. 가장 중요한 변환 중 하나는 다음과 같이 정의되는 *교차곱 변환*이다.
-  
-\\(\phi_k(\mathbf{x})=\prod_{i=1}^d x^{c_{ki}}_i\\)   \\(c_{ki}\in\{0,1\}\\)
+\\( \phi_k(\mathbf{x})=\prod_{i=1}^d x^{c_{ki}}_i c_{ki}\in\{0,1\} \\)
 여기서 \\(c_{ki})\\는 
 
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
