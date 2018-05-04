@@ -45,6 +45,7 @@ categories: Data-Science
 ![](https://aldente0630.github.io/assets/wide_&_deep_learning_for_RS2.png)
   
 데이터베이스에는 100만 개가 넘는 앱이 있기 때문에 요구되는 서비스 대기 시간(대부분 O(10) 밀리세컨드)내로 모든 질의문마다 전체 앱에 철저히 점수를 부여하는건 어렵다. 따라서 질의문을 수신한 후 첫 단계는 *검색*이다. 검색 시스템은 다양한 신호(일반적으로 기계 학습 모형과 사람이 정의한 규칙의 조합)를 사용하여 질의문과 가장 일치하는 품목의 짧은 목록을 반환한다. 후보 범위를 줄인 후 순위 시스템은 점수로 모든 품목의 순위를 매긴다. 점수는 대개 P (y | x), 사용자 기능 (예 : 국가, 언어, 인구 통계), 컨텍스트 특징 (예 : 기기, 시간대, 하루)을 포함하여 기능 x가 주어진 사용자 작업 라벨의 확률 노출 수 (예 : 앱 연령, 앱의 과거 통계). 본 논문에서는 Wide & Deep 학습 프레임 워크를 사용하여 순위 모델에 초점을 맞 춥니 다.
+\\({e}^{i\pi}+1=0\\)
 
 
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
