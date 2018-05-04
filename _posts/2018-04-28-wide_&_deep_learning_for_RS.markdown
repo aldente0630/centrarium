@@ -61,6 +61,6 @@ Deep 구성 요소는 그림 1(우측)과 같은 피드-포워드 신경망이�
   
 $$a^{(l+1)}=f(W^{(l)}a^{(l)}+b^{(l)})$$
   
-여기서 \\(l\\)은 층의 개수이고 \\(f\\)는 활성화 함수
+여기서 \\(l\\)은 층의 개수이고 \\(f\\)는 종종 정류된 선형 단위(ReLU)라고 불리는 활성화 함수이다. \\(a^{(l)}\\), \\(b^{(l)}와 \\(W^{(l)}\\)는 \\(l\\)번째 층의 출력값, 편의, 모형 가중치이다.
   
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
