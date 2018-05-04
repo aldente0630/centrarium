@@ -53,6 +53,6 @@ Wide 구성 요소는 그림 1(좌측)에 그려진 일반화 선형 모형 \\(y
   
 $$\phi_k(\mathbf{x})=\prod_{i=1}^d x^{c_{ki}}_i, c_{ki}\in\{0,1\}$$
   
-여기서 \\(c_{ki}\\)는 \\(i\\)번째 변수가 \\(k\\)번째 변환 \\(\phi_k\\) 일부이면 1이고 그렇지 않으면 0인 불리언 변수이다. 이진값 변수의 경우 구성 변수들("gender = female"과 "language = en")이 모두 1인 경우에만 교차곱 변수 변환(예: "AND(gender = female, language = en)")은 1이다. 그렇지 않으면 0이다. 이것은 이진값 변수 간 교호 작용을 포착하고 일반화 선형 모형에 비선형성을 추가다.
+여기서 \\(c_{ki}\\)는 \\(i\\)번째 변수가 \\(k\\)번째 변환 \\(\phi_k\\) 일부이면 1이고 그렇지 않으면 0인 불리언 변수이다. 이진값 변수의 경우 구성 변수들("gender = female"과 "language = en")이 모두 1인 경우에만 교차곱 변수 변환(예: "AND(gender = female, language = en)")은 1이다. 그렇지 않으면 0이다. 이것은 이진값 변수 간 교호 작용을 잡아내고 일반화 선형 모형에 비선형성을 추가한다.
   
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
