@@ -49,7 +49,7 @@ categories: Data-Science
 ## 3. Wide & Deep 학습
 ### 3.1 Wide 구성 요소
   
-Wide 구성 요소는 그림 1(좌측)에 그려진 일반화 선형 모형 \\(y=\mathbf{w^Tx}+b\\)의 형태이다.
+Wide 구성 요소는 그림 1(좌측)에 그려진 일반화 선형 모형 \\(y=\mathbf{w^Tx}+b\\)의 형태이다. \\(y\\)는 예측, \\(\mathbf{x}=[x_1, x_2, ..., x_d]\\)는 d개의 변수 
 
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
 
