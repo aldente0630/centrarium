@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Development Workflows for Data Scientists (in ranslation)
+title:      Development Workflows for Data Scientists (in Translation)
 date:       2018-04-08 21:00:00
 author:     Ciara Byrne
 categories: Data-Science
