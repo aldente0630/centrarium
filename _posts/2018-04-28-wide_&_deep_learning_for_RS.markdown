@@ -83,4 +83,6 @@ $$P(Y=1|\mathbf{x})=\sigma(\mathbf{w^T_{wide}}[\mathbf{x},\phi(\mathbf{x})]+\mat
   
 ### 4.1 데이터 생성
   
+이 단계에서는 일정 기간 내 사용자 및 앱 노출 데이터를 사용하여 훈련 데이터를 생성한다. 각 샘플은 노출 한 번에 해당한다. 레이블은 앱 구매이다. 즉, 노출한 앱을 설치하면 1이고 그렇지 않으면 0이다.
+
 [^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
