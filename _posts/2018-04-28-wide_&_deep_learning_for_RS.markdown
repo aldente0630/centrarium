@@ -71,7 +71,7 @@ Wide & Deep 모형 공동 훈련은 미니 배치 확률적 최적화를 이용�
   
 결합된 모형은 그림1(중앙)에 나와있다. 로지스틱 회귀 문제의 경우 모형 예측은 다음과 같다.
   
-$$P(Y=1\|\mathbf{x})=\sigma(\mathbf{w^T_{wide}\[mathbf{x},\phi(\mathbf{x})\]}$$
+$$P(Y=1|\mathbf{x})=\sigma(\mathbf{w^T_{wide}\[\mathbf{x},\phi(\mathbf{x})\]}$$
   
 여기서 Y는 이진 클래스 레이블이고, σ (·)는 시그 모이 드 함수, φ (x)는 원래 특징 x의 교차 곱 변환, b는 바이어스 항이다. wwide는 모든 와이드 모델 가중치의 벡터이고, wdeep은 최종 활성화에 적용된 가중치 (a (lf))입니다.
   
