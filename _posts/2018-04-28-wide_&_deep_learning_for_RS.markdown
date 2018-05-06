@@ -73,7 +73,7 @@ Wide & Deep 모형 공동 훈련은 미니 배치 확률적 최적화를 이용�
   
 $$P(Y=1|\mathbf{x})=\sigma(\mathbf{w^T_{wide}}[\mathbf{x},\phi(\mathbf{x})]+\mathbf{w^T_{deep}}a^{(l_f)}+b)$$
   
-여기서 \\(Y\\)는 이진값 클래스 레이블이고 \\(\sigma(\cdot)\\)는 시그모이드 함수, \\(\phi(\mathbf{x})\\)는 원래 변수 \\(\mathbf{x}\\)의 교차곱 변수 변환, \\(b\\)는 편의 항이다. \\(\mathbf{w_{wide}}\\)는 Wide 모형의 모든 가중치 벡터이고 \\(\mathbf{w_{deep}}\\)은 최종 출력값 \\(a^{(l_f)}\\)에 적용된 가중치이다.
+여기서 \\(Y\\)는 이진값 클래스 레이블이고 \\(\sigma(\cdot)\\)는 시그모이드 함수, \\(\phi(\mathbf{x})\\)는 원래 변수 \\(\mathbf{x}\\)의 교차곱 변수 변환, \\(b\\)는 편의항이다. \\(\mathbf{w_{wide}}\\)는 Wide 모형의 모든 가중치 벡터이고 \\(\mathbf{w_{deep}}\\)은 최종 출력값 \\(a^{(l_f)}\\)에 적용된 가중치이다.
   
 ## 4. 시스템 구현
   
