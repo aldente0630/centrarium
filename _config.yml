@@ -9,7 +9,7 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: Stat Overflow
+title: Stats Overflow
 subtitle: "A simple yet classy theme for your Jekyll website or blog"
 email: aldente0630@gmail.com
 name: Youngmin Kim
