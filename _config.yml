@@ -14,13 +14,13 @@ subtitle: "The Answer to Data, Science and Everything"
 email: aldente0630@gmail.com
 name: Youngmin Kim
 description: >
-  A simple yet classy theme for your Jekyll website or blog.
+  A Data Scientist's Tech Blog
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
 baseurl: " " # the subpath of your site, e.g. /blog/
 url: "https://aldente0630.github.io" # the base hostname & protocol for your site
-cover: "/assets/header_image2.jpg"
+cover: "/assets/header_image3.jpg"
 logo: "/assets/logo.png"
 
 # Build settings
