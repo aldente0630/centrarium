@@ -87,14 +87,14 @@ social:
 
   - name: GitHub
     icon: github
-    username: Youngmin Kim
+    username: "@aldente0630"
     url: https://github.com/aldente0630
     desc: Fork me on GitHub
     share: true
 
   - name: LinkedIn
     icon: linkedin
-    username: Youngmin Kim
+    username: "@aldente0630"
     url: https://www.linkedin.com/in/youngmin-kim-18850b126
     desc: Connect with me on LinkedIn
     share: true
