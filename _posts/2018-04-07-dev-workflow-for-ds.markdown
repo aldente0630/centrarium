@@ -11,7 +11,8 @@ categories: Data-Science
   
   
 - - -
-  
+## 머릿말
+  
 ## 데이터 과학자를 위한 개발 작업 흐름
   
 소프트웨어 개발 고전인 *The Mythical Man Month* 저자 [Fred Brooks에 따르면](https://www.fastcompany.com/3023543/why-good-programming-projects-go-bad?show_rev_content) 엔지니어는 빌드하기 위해 배우는 반면 과학자는 배우기 위해 빌드한다. "데이터 과학"이라는 용어에 "과학'이란 단어가 붙은 건 실수가 아니다. 엔지니어나 소프트웨어 개발자 작업과 달리 데이터 과학 프로젝트 결과물은 코드가 아니다. 결과물은 쓸모있는 통찰이다. 
@@ -70,5 +71,7 @@ Scotiabank의 Shergill은 이러한 역할을보다 유동적 인 것으로보�
 [Fast Forward Labs](https://www.fastforwardlabs.com/)의 데이터 연구 과학자 인 Friederike Schuur는 자연 언어 처리 (NLP) 또는 심층 학습과 같은 특정 유형의 알고리즘 전문가를 비롯하여 [역할의 확산](http://blog.fastforwardlabs.com/2017/01/10/five-trends-we-expect-to-come-to-fruition-in-2017.html)이 나타나고 있다고 말합니다. "데이터 과학은 이러한 새로운 전문 직책을 열었습니다."라고 Schuur는 말합니다. "그런 일이 발생할 때마다 당신은 터치 포인트를 만들고 있으며, 그 터치 포인트는 잠재적 인 마찰 포인트가되고 있습니다."
   
 마찰 지점을 없애는 것은 좋은 팀 워크 플로우가 필요한 이유 중 하나입니다. 때로는 전혀 새로운 역할까지도 필요합니다. Baidu의 수석 과학자 Andrew Ng는 모든 비즈니스 요구 사항을 테스트 세트로 변환하는 [AI 제품 관리자](https://www.youtube.com/watch?v=eyovmAtoUx0&feature=youtu.be)의 역할을지지합니다. 프로젝트의 전체 수명주기 동안 데이터 과학 팀은 스크럼 마스터, 디자이너, 소프트웨어 개발자, 개발자 및 심지어 감사원과 협력 할 수도 있습니다.
+
+## 데이터과학 
 
 (번역 중)
