@@ -13,7 +13,7 @@ exclude:
 title: Stats Overflow
 subtitle: "The Answer to Data, Science and Everything"
 email: aldente0630@gmail.com
-name: Youngmin Kim
+name: aldente0630
 description: >
   A Data Scientist's Tech Blog
 # Base URL of site (i.e. /blog). It should always start with a slash,
@@ -94,8 +94,8 @@ social:
 
   - name: LinkedIn
     icon: linkedin
-    username: "aldente0630"
-    url: https://www.linkedin.com/in/youngmin-kim-18850b126
+    username:
+    url: 
     desc: Connect with me on LinkedIn
     share: true
 
