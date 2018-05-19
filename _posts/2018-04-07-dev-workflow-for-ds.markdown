@@ -9,9 +9,10 @@ categories: Data-Science
   
 **Ciara Byrne의 [*Development Workflows for Data Scientists: Enabling Fast, Efficient, and Reproducible Results for Data Science Teams*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf)을 번역했습니다.**
   
-  
 - - -
 ## 머릿말
+  
+데이터 과학 분야는 모든 산업을 폭풍으로 몰아 넣었습니다. 데이터 과학자 직책은 지속적으로 최고의 일자리 목록에 올라 있으며, 데이터 엔지니어 및 데이터 분석가와 같은 직무로 새로운 직무를 시작할 수 있습니다. 데이터 수집의 폭발과 모든 업계의 거대한 데이터 프로젝트의 백 로그는 "우리가 익사하고 통찰력을 잃었습니다."라는 상황을 초래했습니다.
   
 ## 데이터 과학자를 위한 개발 작업 흐름
   
@@ -72,6 +73,6 @@ Scotiabank의 Shergill은 이러한 역할을보다 유동적 인 것으로보�
   
 마찰 지점을 없애는 것은 좋은 팀 워크 플로우가 필요한 이유 중 하나입니다. 때로는 전혀 새로운 역할까지도 필요합니다. Baidu의 수석 과학자 Andrew Ng는 모든 비즈니스 요구 사항을 테스트 세트로 변환하는 [AI 제품 관리자](https://www.youtube.com/watch?v=eyovmAtoUx0&feature=youtu.be)의 역할을지지합니다. 프로젝트의 전체 수명주기 동안 데이터 과학 팀은 스크럼 마스터, 디자이너, 소프트웨어 개발자, 개발자 및 심지어 감사원과 협력 할 수도 있습니다.
 
-## 데이터과학 
+## 데이터과학 업무 절차
 
 (번역 중)
