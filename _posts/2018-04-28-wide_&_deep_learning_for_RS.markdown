@@ -133,3 +133,4 @@ Wide & Deep 모형을 5천억 개가 넘는 샘플로 훈련시킨다. 일련의
   
 추천 시스템에서 암기와 일반화는 중요하다. 넓은 선형 모형은 교차곱 변수 변환을 통해 희소한 변수 간 교호 작용을 효과적으로 암기할 수 있지만 깊은 신경망은 저차원 임베딩을 통해 이전에 보이지않던 변수 간 교호 작용을 일반화할 수 있다. 두 가지 모형 유형의 장점을 결합하기 위해 Wide & Deep 학습 프레임워크를 제시했다. 대규모 상업 앱 스토어 Google Play 추천 시스템에서 프레임워크를 구축하고 평가했다. 온라인 실험 결과에 따르면 Wide & Deep 모형은 넓은 쪽만 사용한 모형과 깊은 쪽만 사용한 모형 대비해서 앱 가입율을 크게 향상시켰다.
   
+[^1]: [http://tensorflow.org](https://tensorflowkorea.gitbooks.io/tensorflow-kr/content/g3doc/tutorials/wide_and_deep)의 Wide & Deep 튜토리얼을 보라.
