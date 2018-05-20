@@ -54,15 +54,15 @@ BinaryEdge팀은 익숙한 포맷(데이터 구조를 *선험적으로* 알고 �
 재현성은 소프트웨어 개발의 재사용성만큼이나 과학에서 교리처럼 중요하지만 데이터 과학 프로젝트에서는 종종 둘 다 고려해야 할 사항이다. Airbnb는 재현과 재사용을 위해 이전 데이터 과학 작업을 쉽게 찾아낼 수 있도록 [힘을 합쳐 노력했다.](https://medium.com/airbnb-engineering/scaling-knowledge-at-airbnb-875d73eff091) 이 회사는 데이터 과학 작업에 기여하고 평가하는 절차를 정의하고 데이터 과학 팀 너머로 작업을 잘 공유할 수 있게 [*Knowledge Repo*](https://github.com/airbnb/knowledge-repo)라는 도구를 만들었다. 
   
 Airbnb는 데이터 과학자가 Knowledge Repo에 새로운 작업을 추가하고 이를 검색할 수 있도록 특별한 작업 흐름을 도입했다. Knowledge Repo 핵심 관리자인 Nikki Ray가 말한다. "기본적으로 장단기 비용 균형을 맞춰야 했습니다." Ray는 부연한다.
-> 단기적으로 사용자는 특정 양식을 통과해야 되고 좀 더 긴 검토 주기를 거쳐야 합니다. 하지만 장기적으로 질문을 더 적게 받게 되죠. 연구는 나중에 다른 사람이 쉽게 찾을 수 있도록 한 곳에 모아둡니다.
+> 단기적으로 사용자는 특정 양식을 통과해야 하고 좀 더 긴 검토 주기를 거쳐야 합니다. 하지만 장기적으로 질문을 더 적게 받게 되죠. 다른 사람이 나중에 쉽게 찾을 수 있도록 연구를 한 곳에 모아둡니다.
   
-[GitHub](https://github.com/) 기계 학습 팀은 기계 학습과 빅데이터 기술을 사용하여 사용자 지향 기능을 구현한다. 재사용은 팀 우선 순위 중 하나다. "우린 각자 작업 위로 빌드를 시도합니다." 데이터 제품 팀 데이터 과학자 Ho-Hsiang Wu는 말한다. "우리는 모형을 개선하기 위해 각 모형으로 돌아가 별도의 반복을 해볼 수 있습니다."
+[GitHub](https://github.com/) 기계 학습 팀은 기계 학습과 빅데이터 기술을 사용하여 사용자 지향 기능을 구현한다. 재사용은 팀 우선 순위 중 하나이다. "우린 각자의 작업 기반으로 빌드를 시도합니다." 데이터 제품 팀 데이터 과학자 Ho-Hsiang Wu는 말한다. "우리는 모형을 개선하기 위해 작업했던 모형으로 돌아가 추가 작업을 해볼 수 있습니다."
   
-데이터 과학 업무 흐름을 개선하기 위해 생성한 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상 사람들과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾을 수 있습니다."
+데이터 과학 업무 흐름을 개선하기 위해 생성한 도구 또한 재사용할 수 있다. "재사용하고 다른 도구와 결합하기 위해 기존 코드가 Python, R 또는 Java로 짜여있더라도 명령행 도구로 쉽게 바꿀 수 있어요." [Data Science Workshop](https://datascienceworkshops.com/) 창립자이자 [*Data Science at Command Line*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf) 저자인 Jeroen Janssens가 얘기한다. "GitHub 덕택에 다른 세상에 사는 사람과 도구를 공유하거나 다른 이가 만든 도구를 쉽게 찾아낼 수 있습니다."
   
 ### 결과 감사를 위해서
   
-은행 또는 의료 같은 규제 산업에서 데이터 과학자는 작업 흐름을 설계할 때 모형의 준법 및 감사 가능 여부를 고려해야한다. 예를 들어 캐나다 은행 [Scotiabank](http://www.scotiabank.com/gls/en/index.html#about)의 데이터 과학 및 모형 혁신 팀은 신용 카드 지불 내역에서 패턴을 발견하기위해 [deep-learning 모형을 구축했다.](https://blogs.wsj.com/cio/2017/02/06/scotiabank-deploys-deep-learning-to-improve-credit-card-collections/) 모형은 잠재 체납 고객뿐만 아니라 지불을 깜박했을 가능성이 있는 고객을 식별하고 그들에게 지불에 관해 접근하는 가장 좋은 방안을 제시한다.
+은행 또는 의료 같은 규제 산업에서 데이터 과학자는 작업 흐름을 설계할 때 모형의 준법 및 감사 가능 여부를 고려해야한다. 예를 들어 캐나다 은행 [Scotiabank](http://www.scotiabank.com/gls/en/index.html#about)의 데이터 과학 및 모형 혁신 팀은 신용 카드 지불 내역에서 패턴을 발견하기위해 [딥러닝 모형을 구축했다.](https://blogs.wsj.com/cio/2017/02/06/scotiabank-deploys-deep-learning-to-improve-credit-card-collections/) 모형은 잠재 체납 고객뿐만 아니라 지불을 까먹었을법한 고객을 식별하고 지불 관련해서 접근하는 가장 좋은 방법을 제시한다.
   
 미래의 은행 내부 감사인은 새로운 모형이 규정을 준수하고 실제 고객에 대한 의사 결정을 돕기에 충분한 품질인지 평가하게될 것이다. 감사는 재현 가능하고 최대 한도로 자동화한 작업 흐름을 통해 훨씬 쉬워질 것이다.  
   
