@@ -6,4 +6,6 @@ permalink: /about/
 
 <img src="{{ site.baseurl }}/assets/profile-placeholder.jpg" title="Profile Picture" class="profile">
   
-업데이트 예정
+* **Aldente0630
+  
+
