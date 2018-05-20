@@ -22,11 +22,8 @@ categories: Data-Science
 
 Ciara Byrne은 이 질문에 답하기 위해 여러 회사의 데이터 과학 및 분석팀을 둘러본다. 그녀는 팀 내 관행과 우선 순위, 도구와 기술, 기능과 관심사의 주제들로 우리를 이끈다. 변화의 속도가 엄청 빠르고 데이터 속 지식과 통찰에 대한 수요가 매우 커지더라도 소프트웨어 공학과 데이터 과학의 이중 체계를 통해 과제를 수행해낼 수 있음을 알려주는 여정이다.
   
-<div class="pull-right">
 — GitHub의 찬사
-</div>
-  
-  
+    
 ## 데이터 과학자를 위한 개발 작업 흐름
   
 소프트웨어 개발 고전인 *The Mythical Man Month* 저자 [Fred Brooks에 따르면](https://www.fastcompany.com/3023543/why-good-programming-projects-go-bad?show_rev_content) 엔지니어는 빌드하기 위해 배우는 반면 과학자는 배우기 위해 빌드한다. "데이터 과학"이라는 용어에 "과학'이란 단어가 실수로 붙은 게 아니다. 엔지니어나 소프트웨어 개발자 작업과 달리 데이터 과학 프로젝트 결과물은 코드가 아니다. 결과물은 쓸모있는 통찰이다. 
