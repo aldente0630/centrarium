@@ -6,6 +6,7 @@ permalink: /about/
 
 <img src="{{ site.baseurl }}/assets/profile-placeholder.jpg" title="Profile Picture" class="profile">
   
-* **Aldente0630
+* Aldente0630
+> dd
   
 
