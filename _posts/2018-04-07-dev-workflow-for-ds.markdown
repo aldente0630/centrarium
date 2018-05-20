@@ -81,7 +81,7 @@ Scotiabank의 Shergill은 이 역할을 딱딱하게 구분하기보다는 시�
   
 [Fast Forward Labs](https://www.fastforwardlabs.com/)의 데이터 과학자인 Friederike Schuur는 자연 언어 처리 (NLP) 또는 심층 학습 같은 특정 유형 알고리즘 전문가를 포함하여 [역할의 확산](http://blog.fastforwardlabs.com/2017/01/10/five-trends-we-expect-to-come-to-fruition-in-2017.html)이 나타나고 있다고 말한다. "데이터 과학에서 새로운 전문 분야가 계속 만들어지고 있어요."라고 Schuur는 말한다. "그에 대해 고객은 매순간 접점을 만들어내고 접점은 잠재적으로 마찰이 발생할 수 있는 지점이 되고 있죠."
   
-마찰 지점을 없애기 위해서라도 좋은 팀 업무 흐름이 필요하다. 때로는 완전히 새로운 역할까지 필요하다. Baidu의 수석 과학자 Andrew Ng는 모든 비즈니스 요구 사항을 테스트셋으로 바꾸는 [AI 제품 관리자](https://www.youtube.com/watch?v=eyovmAtoUx0&feature=youtu.be) 역할을 지지한다. 프로젝트 전체 수명 주기 동안 데이터 과학 팀은 스크럼 마스터, 디자이너, 소프트웨어 개발자, 개발자 심지어 감사원과도 협력할 수 있다.
+마찰 지점을 없애기 위해서라도 좋은 팀 업무 흐름이 필요하다. 때로는 완전히 새로운 역할까지 필요하다. Baidu의 수석 과학자 Andrew Ng은 모든 비즈니스 요구 사항을 테스트셋으로 바꾸는 [AI 제품 관리자](https://www.youtube.com/watch?v=eyovmAtoUx0&feature=youtu.be) 역할을 지지한다. 프로젝트 전체 수명 주기 동안 데이터 과학 팀은 스크럼 마스터, 디자이너, 소프트웨어 개발자, 개발자 심지어 감사원과도 협력할 수 있다.
 
 ## 데이터과학 업무 절차
 
