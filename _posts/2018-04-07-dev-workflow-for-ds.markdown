@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 데이터 과학자를 위한 개발 업무 흐름
+title: 데이터 과학자를 위한 개발 업무 흐름ㅇㅇ
 date: 2018-04-08 21:00:00
 author: Ciara Byrne
 categories: Data-Science
