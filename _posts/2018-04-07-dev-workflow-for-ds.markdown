@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Development Workflows for Data Scientists
+title:      데이터과학자를 위한 개발 업무 흐름
 date:       2018-04-08 21:00:00
 author:     Ciara Byrne
 categories: Data-Science
