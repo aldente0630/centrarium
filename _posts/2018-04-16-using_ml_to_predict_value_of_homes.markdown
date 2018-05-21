@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 에어비앤비에서 기계학습 이용해서 숙소 가치를 예측하는 법
+title: 에어비앤비에서 기계학습 이용해서 숙소 가치를 예측하는 방법
 date: 2018-04-16 00:00:00
 author: Robert Chang
 categories: Data-Science
