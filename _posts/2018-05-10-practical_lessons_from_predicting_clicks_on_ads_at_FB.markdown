@@ -54,4 +54,5 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
 
 ![하이브리드 모형 구조](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB1.png)
 
+
 (번역 중)
