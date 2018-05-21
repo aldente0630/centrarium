@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 데이터과학자를 위한 개발 업무 흐름 — 빠르고 효율적이고 재생산가능한 결과 데이터 과학자 팀이 만들게하기
+title: 데이터과학자를 위한 개발 업무 흐름 — 데이터 과학 팀을 위한 빠르고 효율적이고 재현 가능한 결과 구현
 date: 2018-04-08 21:00:00
 author: Ciara Byrne
 categories: Data-Science
