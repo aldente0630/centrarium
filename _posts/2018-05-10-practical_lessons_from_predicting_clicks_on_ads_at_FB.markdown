@@ -1,8 +1,8 @@
 ---
-layout:     post
-title:      Practical Lessons from Predicting Clicks on Ads at Facebook
-date:       2018-05-10 00:00:00
-author:     Facebook
+layout: post
+title: 광고 클릭 예측을 통해 페이스북이 얻은 실용적인 교훈
+date: 2018-05-10 00:00:00
+author: Facebook
 categories: Data-Science
 ---  
   
