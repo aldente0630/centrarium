@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Wide & Deep Learning for Recommender Systems
-date:       2018-04-28 00:00:00
+title:      추천시스템을 위한 와이드 앤 딥 러닝
+date:       2018-04-28 00:00:00
 author:     Google Inc.
 categories: Data-Science
 ---  
