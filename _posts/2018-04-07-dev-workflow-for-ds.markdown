@@ -1,12 +1,12 @@
 ---
 layout: post
 title: 데이터 과학자를 위한 개발 업무 흐름
-date: 2018-04-08 21:00:00
+date: 2018-04-08 00:00:00
 author: Ciara Byrne
 categories: Data-Science
----  
-  
-  
+---
+
+
 **Ciara Byrne의 [*Development Workflows for Data Scientists: Enabling Fast, Efficient, and Reproducible Results for Data Science Teams*](https://resources.github.com/downloads/development-workflows-data-scientists.pdf)을 번역했습니다.**
   
   
