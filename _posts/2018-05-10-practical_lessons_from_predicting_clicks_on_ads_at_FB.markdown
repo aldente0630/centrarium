@@ -65,6 +65,6 @@ $$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j
   
 여기서 \\(\mathbf{w}\\)는 선형 클릭 점수의 *가중치* 벡터이다.
   
-[7]에서 기술 된 probit regression (BOPR)에 대한 베이지안 온라인 학습 계획에서, 가능성과 우선 순위는 다음에 의해 주어진다.
+T. Graepel, J. Quiñonero Candela, T. Borchert과 R. Herbrich가 2010년 ICML 13~20쪽에 저술한 '웹 규모 베이지안 클릭율 예측' 에서 기술 된 probit regression (BOPR)에 대한 베이지안 온라인 학습 계획에서, 가능성과 우선 순위는 다음에 의해 주어진다.
   
 (번역 중)
