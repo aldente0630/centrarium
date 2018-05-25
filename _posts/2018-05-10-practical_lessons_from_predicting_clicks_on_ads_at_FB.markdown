@@ -68,8 +68,11 @@ $$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j
 논문[^2]에서 저술한대로 프로빗 회귀분석을 위한 최신 베이지안 온라인 학습 체계(BOPR)는 우도와 사전확률을 다음과 같이 정의한다.
 
 $$p(y|\mathbf{x}, \mathbf{w})=\Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \beta}\right), $$
+  
 $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
+여기서 \\(\phi(t)\\)는 표준 정규 분포 누적 밀도 함수이고 \\(\N(t)\\)는 표준 정규 분포 밀도 함수이다.
+
 (번역 중)
   
 [^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
