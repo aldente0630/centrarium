@@ -61,7 +61,7 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
   
 광고 노출 레이블 \\((\mathbf{x}, y)\\)이 주어질 때 활성 가중치 선형 조합은 다음과 같다.
   
-$$s(y, \mathbf{x}, \mathbf{w}) = y $$
+$$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}_T\mathbf{x}$$
 
   
 (번역 중)
