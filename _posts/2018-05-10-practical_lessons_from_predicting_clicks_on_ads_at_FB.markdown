@@ -71,7 +71,7 @@ $$p(y|\mathbf{x}, \mathbf{w})=\Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \bet
   
 $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
-여기서 \\(\phi(t)\\)는 표준 정규 분포의 누적 밀도 함수이고 \\(N(t)\\)는 표준 정규 분포 밀도 함수이다.
+여기서 \\(\hi(t)\\)는 표준 정규 분포의 누적 밀도 함수이고 \\(N(t)\\)는 표준 정규 분포 밀도 함수이다.
 
 (번역 중)
   
