@@ -66,6 +66,8 @@ $$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j
 여기서 \\(\mathbf{w}\\)는 클릭 선형 점수의 *가중치* 벡터이다.
   
 논문[^2]에서 저술한대로 프로빗 회귀분석을 위한 최신 베이지안 온라인 학습 체계(BOPR)는 우도와 사전확률을 다음과 같이 정의한다.
+
+$$p(y|\mathbf{x}, \mathbf{w})=\Phi({s(y, \mathbf{x}, \mathbf{w}) \over \beta})$$
   
 (번역 중)
   
