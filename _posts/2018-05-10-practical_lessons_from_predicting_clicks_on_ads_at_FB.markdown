@@ -46,7 +46,7 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
   
 *보정*은 평균 예측 CTR과 관측된 CTR 간의 비율이다. 즉, 실제로 관측된 클릭 수에 대한 예측 클릭 수 비율이다. 정확하고 잘 보정된 CTR 예측은 온라인 입찰 및 경매 성공에 필수이므로 보정은 매우 중요한 척도이다. 보정 값이 1과 다르지 않을수록 모형은 더 좋은 것이다. 실험에서는 보정값이 일반적이지 않은 경우에만 언급할 것이다.
   
-보정을 고려하지 않는다면 ROC 아래 면적(AUC) 또한 순위 품질을 측정하는데 꽤 좋은 척도이다. 실제 환경에서는 잠재적인 광고 게재 미달 또는 게재 초과를 피하기 위해 최적 순서를 산출하는 것 대신 예측 자체가 정확하길 기대한다. NE는 예측 *적합도*를 측정하고 보정을 암시적으로 반영한다. 예를 들어 모형이 과대 예측을 2배로 하고 보정을 위해 전체 배율 0.5를 적용하면 AUC는 동일하지만 해당 NE는 향상된다. 측정 기준에 대한 심도있는 연구는 (J. Yi, Y. Chen, J. Li, S. Sett과 T. W. Yan이 2013년 KDD 1294-1302쪽에 기재한 '예측 모형 성과: 오프라인과 온라인 평가') 논문을 참조하라.
+보정을 고려하지 않는다면 ROC 아래 면적(AUC) 또한 순위 품질을 측정하는데 꽤 좋은 척도이다. 실제 환경에서는 잠재적인 광고 게재 미달 또는 게재 초과를 피하기 위해 최적 순서를 산출하는 것 대신 예측 자체가 정확하길 기대한다. NE는 예측 *적합도*를 측정하고 보정을 암시적으로 반영한다. 예를 들어 모형이 과대 예측을 2배로 하고 보정을 위해 전체 배율 0.5를 적용하면 AUC는 동일하지만 해당 NE는 향상된다. 측정 기준에 대한 심도있는 연구는 논문[^1]을 참조하라.
 
 ## 3. 예측 모형 구조
   
@@ -65,6 +65,9 @@ $$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j
   
 여기서 \\(\mathbf{w}\\)는 클릭 선형 점수의 *가중치* 벡터이다.
   
-T. Graepel, J. Quiñonero Candela, T. Borchert과 R. Herbrich가 2010년 ICML 13~20쪽에 저술한 'Microsoft 검색 엔진 Bing의 스폰서 검색 광고 웹 규모 클릭율에 대한 베이지안 예측' 논문에서 고안한 프로빗 회귀분석(BOPR) 위한 베이지안 온라인 학습 체계 probit regression (BOPR)에 대한 베이지안 온라인 학습 계획에서, 가능성과 우선 순위는 다음에 의해 주어진다.
+논문[^2]에서 고안한 프로빗 회귀분석(BOPR) 위한 베이지안 온라인 학습 체계 probit regression (BOPR)에 대한 베이지안 온라인 학습 계획에서, 가능성과 우선 순위는 다음에 의해 주어진다.
   
 (번역 중)
+  
+[^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
+[^2]: T. Graepel, J. Quiñonero Candela, T. Borchert, and R. Herbrich. Web-scale bayesian click-through rate prediction for sponsored search advertising in Microsoft’s Bing search engine. In ICML, pages 13–20, 2010.
