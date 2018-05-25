@@ -61,13 +61,14 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
   
 광고 노출 레이블 \\((\mathbf{x}, y)\\)이 주어질 때 활성 가중치 선형 조합은 다음과 같다.
   
-$$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j,i_{j}}}$$
+$$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j,i_{j}}}, $$
   
 여기서 \\(\mathbf{w}\\)는 클릭 선형 점수의 *가중치* 벡터이다.
   
 논문[^2]에서 저술한대로 프로빗 회귀분석을 위한 최신 베이지안 온라인 학습 체계(BOPR)는 우도와 사전확률을 다음과 같이 정의한다.
 
-$$p(y|\mathbf{x}, \mathbf{w})=\Phi({s(y, \mathbf{x}, \mathbf{w}) \over \beta})$$
+$$p(y|\mathbf{x}, \mathbf{w})=\Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \beta}\right), $$
+$$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2)$$
   
 (번역 중)
   
