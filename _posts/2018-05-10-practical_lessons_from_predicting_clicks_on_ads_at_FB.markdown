@@ -72,6 +72,11 @@ $$p(y|\mathbf{x}, \mathbf{w})=\Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \bet
 $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
 여기서 \\(\Phi(t)\\)는 표준 정규 분포의 누적 밀도 함수이고 \\(N(t)\\)는 표준 정규 분포의 밀도 함수이다.
+  
+온라인 교육은 모멘트 매칭을 통한 기대 전파를 통해 이루어집니다. 결과 모델은 평균과 분산으로 구성됩니다.
+가중치 벡터 \\(\mathbf{w}\\)의 근사 사후 분포 BOPR 알고리즘의 추론은 \\(p(\mathbf{w}|y, \mathbf{x})\\)를 계산하여 \\(p(\mathbf{w})\\)에 가장 근접한 인수 분해 가우스 근사로 다시 투영하는 것입니다. 따라서, 갱신 알고리즘은 비 - 제로 성분 \\(\mathbf{x}\\)의 모든 평균 및 분산에 대한 갱신 방정식으로 만 표현 될 수있다 ([7] 참조):
+
+$$\mu_i_{j} \leftarrow \mu_i_{j} + y \cdot {\sigma^2_i_{j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
 
 (번역 중)
   
