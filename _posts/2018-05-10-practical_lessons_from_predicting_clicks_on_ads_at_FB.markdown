@@ -75,11 +75,11 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
 적률 매칭을 이용한 기대값 전파를 통해 온라인 학습을 진행한다. 가중치 벡터 \\(\mathbf{w}\\)에 대한 근사 사후 분포의 평균 및 분산으로 결과 모형은 이루어진다. BOPR 알고리즘 추론은 \\(p(\mathbf{w}|y, \mathbf{x})\\)를 계산하여 \\(p(\mathbf{w})\\)에 가장 근접한 인수 분해 가우스 근사로 다시 투영하는 것입니다. 따라서, 갱신 알고리즘은 비 - 제로 성분 \\(\mathbf{x}\\)의 모든 평균 및 분산에 대한 갱신 방정식으로 만 표현 될 수있다 (논문[^2] 참조)
 
-$$\mu_i \leftarrow, $$
+$$\mu_i_j \leftarrow, $$
 
-$$\mu_i_j \leftarrow \mu_i_j + y \cdot {\sigma^2_i_{j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
+$$\mu_i_j \leftarrow \mu_i_j + y \cdot {\sigma^2_i_j \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
   
-$$\sigma^2_i_j \leftarrow \sigma^2_i_j \cdot \left\[1 - {\sigma^2_i_{j} \over \Sigma^2} \cdot w {s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right], $$
+$$\sigma^2_i_j \leftarrow \sigma^2_i_j \cdot \left\[1 - {\sigma^2_i_j \over \Sigma^2} \cdot w {s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right], $$
 
 (번역 중)
   
