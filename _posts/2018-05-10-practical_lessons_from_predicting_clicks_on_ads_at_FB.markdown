@@ -77,9 +77,9 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
 
 $$\mu_i \leftarrow, $$
 
-$$\mu_{i}_{j} \leftarrow \mu_{i}_{j} + y \cdot {\sigma^2_i_{j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
+$$\mu_i_j \leftarrow \mu_i_j + y \cdot {\sigma^2_i_{j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
   
-$$\sigma^2_{i}_{j} \leftarrow \sigma^2_{i}_{j} \cdot \left\[1 - {\sigma^2_i_{j} \over \Sigma^2} \cdot w {s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right], $$
+$$\sigma^2_i_j \leftarrow \sigma^2_i_j \cdot \left\[1 - {\sigma^2_i_{j} \over \Sigma^2} \cdot w {s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right], $$
 
 (번역 중)
   
