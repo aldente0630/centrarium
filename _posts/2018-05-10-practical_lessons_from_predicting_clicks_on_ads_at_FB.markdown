@@ -77,11 +77,11 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
 
 $$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
   
-$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot 1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
+$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)], $$
   
 $$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}, $$
 
-여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t)/\Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론은 SGD 체계 상의 신념 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
+여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t)/\Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론은 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
 
 (번역 중)
   
