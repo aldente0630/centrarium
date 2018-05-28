@@ -85,13 +85,13 @@ $$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}. $$
   
 BOPR을 우도 함수에 대한 SGD와 비교하자면
   
-$$p(y|mathbf{x}, mathbf{w})=sigmoid(s(y, mathbf{x}, mathbf{w})), $$
+$$p(y|\mathbf{x}, \mathbf{w})=sigmoid(s(y, \mathbf{x}, \mathbf{w})), $$
   
 여기서 \\(sigmoid(t) = \exp t /(1 + \exp t)\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한다음 기울기 방향으로 좌표 별로 보폭만큼 이동하면서 이루어진다.
 
-$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, mathbf{x}, mathbf{w})), $$
+$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})), $$
   
-g는 모든 비 - 제로 성분들에 대한 대수 우도 구배이고 g (s) : = [y (y + 1) / 2-y · sigmoid (s)]에 의해 주어진다. 식 (3)은 단계 크기 ηij가 신념 불확도 σ에 의해 자동적으로 제어되는 평균 벡터 μ에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3 절에서 우리는 다양한 스텝 크기 함수 η를 제시하고 BOPR과 비교할 것이다.
+여기서 \\(g\\)는 모든 비 - 제로 성분들에 대한 대수 우도 구배이고 \\(g(s) := \[y(y + 1)/2 - y \cdot sigmoid(s)]\\)에 의해 주어진다. 식 (3)은 단계 크기 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3 절에서 우리는 다양한 스텝 크기 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
   
 위에서 설명한 SGD 기반 LR 및 BOPR은 모두 하나씩 교육 데이터에 적응할 때 스트림 학습자입니다.
 
