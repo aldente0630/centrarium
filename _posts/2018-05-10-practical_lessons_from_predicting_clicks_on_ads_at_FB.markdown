@@ -39,8 +39,9 @@ Varian 또는 Edelman 등이 쓴 2007년경 논문은 Google과 Yahoo!가 개척
 **평가 척도:** 기계 학습 모형에 영향을 주는 요인에 대해 가장 큰 관심이 있기에 이익과 수익에 직접 관련된 지표 대신 예측 정확도를 사용한다. 본 작업에서는 정규화 엔트로피(NE)와 정을 주요 평가 척도로 사용한다.
   
 *정규화 엔트로피* 또는 보다 정확하게 정규화 크로스 엔트로피는 노출 당 평균 로그 손실을 모든 노출에 대해 백그라운드 클릭률(CTR)로 모형이 예측한 경우 평균 로그 손실이 될 값으로 나눈 것과 같다. 즉, 백그라운드 CTR의 엔트로피로 정규화한 예측 로그 손실이다. 백그라운드 CTR은 훈련 데이터셋의 관측된 평균 CTR이다. 척도를 정규화한 로그 손실이라고 보는 것이 더 이해하기 쉽다. 값이 낮을수록 모형의 예측력이 좋은 것이다. 정규화한 이유는 백그라운드 CTR이 0 또는 1에 가까울수록 로그 손실을 더 좋게 달성 할 수 있기 때문이다. 백그라운드 CTR 엔트로피로 나누면 NE는 백그라운드 CTR에 덜 민감해진다. 주어진 훈련 데이터셋이 레이블  \\(y_i \in \\{-1, +1\\}\\)과 예측 클릭 확률 \\(p_i, i = 1, 2, ... N\\)의 \\(N\\)개 샘플을 가진다고 하자. 관측된 평균 CTR이 \\(p\\)라면,
-  
-$$NE={-{1 \over N}\sum_{i=1}^n({1+y_i \over 2} \log(p_i) + {1-y_i \over 2} \log(1 - p_i)) \over -(p * \log(p) + (1-p) * \log(1-p))} (1)$$
+
+<div class="pull-right"> (1) </div>  
+$$NE = {-{1 \over N}\sum_{i=1}^n({1+y_i \over 2} \log(p_i) + {1-y_i \over 2} \log(1 - p_i)) \over -(p * \log(p) + (1-p) * \log(1-p))}$$
   
 NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요소이며 \\(RIG = 1 - NE\\)이다.
   
@@ -57,17 +58,18 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
 **그림 1: 하이브리드 모형 구조. 입력 변수를 부스팅 결정 트리 통해 변환한다. 각 트리의 출력을 희소 선형 분류기에 대한 범주형 입력 변수로 처리한다. 부스팅 결정 트리가 매우 강력한 변수 변환임이 입증됐다.**
   
 평가할 온라인 학습 기법은 희소 선형 분류기를 적용한 *Stochastic Gradient Descent*(SGD) 알고리즘을 기반으로 한다. 변수 변환 후 광고 노출은 구조화된 벡터 
-\\(\mathbf{x}=(\mathbf{e}\_{i_1}, ..., \mathbf{e}\_{i_n})\\)의 함수로 주어진다. 여기서 \\(\mathbf{e}\_{i}\\)는 i번째 단위 벡터이고 \\(i_1, ... , i_n\\)은 n개 범주형 입력 변수의 값이다. 클릭함 또는 클릭하지 않음을 나타내는 이진 레이블 \\(y \in \\{+1, -1\\}\\)을 훈련 단계에서 갖고 있다고 가정한다.
+\\(\mathbf{x} = (\mathbf{e}\_{i_1}, ..., \mathbf{e}\_{i_n})\\)의 함수로 주어진다. 여기서 \\(\mathbf{e}\_{i}\\)는 i번째 단위 벡터이고 \\(i_1, ... , i_n\\)은 n개 범주형 입력 변수의 값이다. 클릭함 또는 클릭하지 않음을 나타내는 이진 레이블 \\(y \in \\{+1, -1\\}\\)을 훈련 단계에서 갖고 있다고 가정한다.
   
 광고 노출 레이블 \\((\mathbf{x}, y)\\)이 있을 때 활성 가중치 선형 조합은 다음과 같다.
-  
-$$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j,i_{j}}}, (2) $$
+
+<div class="pull-right"> (2) </div>
+$$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j,i_{j}}},$$
   
 여기서 \\(\mathbf{w}\\)는 클릭 선형 점수의 *가중치* 벡터이다.
   
 논문[^2]에서 저술한대로 프로빗 회귀분석을 위한 최신 베이지안 온라인 학습 체계(BOPR)는 우도와 사전확률을 다음과 같이 정의한다.
 
-$$p(y|\mathbf{x}, \mathbf{w})=\Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \beta}\right), $$
+$$p(y|\mathbf{x}, \mathbf{w}) = \Phi\left({s(y, \mathbf{x}, \mathbf{w}) \over \beta}\right), $$
   
 $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
@@ -75,25 +77,29 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
 적률 매칭과 함께 기대값 전파를 통해 온라인 학습을 진행한다. 가중치 벡터 \\(\mathbf{w}\\)에 대한 근사 사후 분포의 평균 및 분산으로 결과 모형은 이루어진다. BOPR 알고리즘에서 추론은 \\(p(\mathbf{w}\|y, \mathbf{x})\\)를 계산하고 가장 가깝게 분해된 \\(p(\mathbf{w})\\)의 가우시안 근사에 그것을 투영시키는 작업이다. 따라서 갱신 알고리즘은 0이 아닌 모든 성분 \\(\mathbf{x}\\)의 평균 및 분산에 관한 갱신 방정식만 가지고 표현할 수 있다(논문[^2] 참조).
 
-$$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), (3) $$
-  
-$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)\right], (4) $$
-  
-$$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}. (5) $$
+<div class="pull-right"> (3) </div>
+$$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right),$$
 
-여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t)/\Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
+<div class="pull-right"> (4) </div>
+$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)\right],$$
+  
+<div class="pull-right"> (5) </div>
+$$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}.$$
+
+여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t) / \Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
   
 BOPR을 우도 함수에 대한 SGD와 비교하자면
   
-$$p(y|\mathbf{x}, \mathbf{w})=sigmoid(s(y, \mathbf{x}, \mathbf{w})), $$
+$$p(y|\mathbf{x}, \mathbf{w}) = sigmoid(s(y, \mathbf{x}, \mathbf{w})),$$
   
 이고 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한 다음 좌표 별 기울기 방향으로 보폭만큼 이동하면서 이루어진다.
 
-$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})), (6) $$
+<div class="pull-right"> (6) </div>
+$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})),$$
   
-여기서 \\(g\\)는 0이 아닌 모든 성분의 로그 우도에 관한 기울기이고 \\(g(s) := \[y(y + 1)/2 - y \cdot sigmoid(s)]\\)로 구할 수 있다. 식 (3)은 보폭 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3절에서 다양한 보폭 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
+여기서 \\(g\\)는 0이 아닌 모든 성분의 로그 우도에 관한 기울기이고 \\(g(s) := \[y(y + 1) / 2 - y \cdot sigmoid(s)]\\)로 구할 수 있다. 식 (3)은 보폭 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3절에서 다양한 보폭 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
   
-위에서 설명한 SGD 기반 LR과 BOPR 모두 훈련 데이터 하나마다 적응하는 스트림 학습기이다.
+위에서 설명한 SGD 기반 LR과 BOPR 모두 훈련 데이터 하나 하나에 적응하는 스트림 학습기이다.
 
 ### 3.1 의사 결정 트리 변수 변환
 
