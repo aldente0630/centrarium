@@ -87,7 +87,7 @@ BOPR을 우도 함수에 대한 SGD와 비교하자면
   
 $$p(y|\mathbf{x}, \mathbf{w})=sigmoid(s(y, \mathbf{x}, \mathbf{w})), $$
   
-여기서 \\(sigmoid(t) = \exp t /(1 + \exp t)\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한다음 기울기 방향으로 좌표 별로 보폭만큼 이동하면서 이루어진다.
+여기서 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한다음 기울기 방향으로 좌표 별로 보폭만큼 이동하면서 이루어진다.
 
 $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})), $$
   
