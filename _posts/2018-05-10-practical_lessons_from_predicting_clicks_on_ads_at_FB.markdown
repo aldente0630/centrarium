@@ -95,7 +95,7 @@ $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \math
   
 위에서 설명한 SGD 기반 LR 및 BOPR은 모두 하나씩 교육 데이터에 적응할 때 스트림 학습자입니다.
 
-### 3.1 
+### 3.1 의사 결정 트리 변수 변환
 
 (번역 중)
   
