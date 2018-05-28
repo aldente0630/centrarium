@@ -41,6 +41,7 @@ Varian 또는 Edelman 등이 쓴 2007년경 논문은 Google과 Yahoo!가 개척
 *정규화 엔트로피* 또는 보다 정확하게 정규화 크로스 엔트로피는 노출 당 평균 로그 손실을 모든 노출에 대해 백그라운드 클릭률(CTR)로 모형이 예측한 경우 평균 로그 손실이 될 값으로 나눈 것과 같다. 즉, 백그라운드 CTR의 엔트로피로 정규화한 예측 로그 손실이다. 백그라운드 CTR은 훈련 데이터셋의 관측된 평균 CTR이다. 척도를 정규화한 로그 손실이라고 보는 것이 더 이해하기 쉽다. 값이 낮을수록 모형의 예측력이 좋은 것이다. 정규화한 이유는 백그라운드 CTR이 0 또는 1에 가까울수록 로그 손실을 더 좋게 달성 할 수 있기 때문이다. 백그라운드 CTR 엔트로피로 나누면 NE는 백그라운드 CTR에 덜 민감해진다. 주어진 훈련 데이터셋이 레이블  \\(y_i \in \\{-1, +1\\}\\)과 예측 클릭 확률 \\(p_i, i = 1, 2, ... N\\)의 \\(N\\)개 샘플을 가진다고 하자. 관측된 평균 CTR이 \\(p\\)라면,
 
 <div class="pull-right"> (1) </div>  
+  
 $$NE = {-{1 \over N}\sum_{i=1}^n({1+y_i \over 2} \log(p_i) + {1-y_i \over 2} \log(1 - p_i)) \over -(p * \log(p) + (1-p) * \log(1-p))}$$
   
 NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요소이며 \\(RIG = 1 - NE\\)이다.
@@ -63,6 +64,7 @@ NE는 기본적으로 상대 정보 이득(RIG) 계산에 사용하는 구성요
 광고 노출 레이블 \\((\mathbf{x}, y)\\)이 있을 때 활성 가중치 선형 조합은 다음과 같다.
 
 <div class="pull-right"> (2) </div>
+  
 $$s(y, \mathbf{x}, \mathbf{w}) = y\cdot\mathbf{w}^T\mathbf{x}=y\sum_{j=1}^n{w_{j,i_{j}}},$$
   
 여기서 \\(\mathbf{w}\\)는 클릭 선형 점수의 *가중치* 벡터이다.
@@ -78,12 +80,15 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
 적률 매칭과 함께 기대값 전파를 통해 온라인 학습을 진행한다. 가중치 벡터 \\(\mathbf{w}\\)에 대한 근사 사후 분포의 평균 및 분산으로 결과 모형은 이루어진다. BOPR 알고리즘에서 추론은 \\(p(\mathbf{w}\|y, \mathbf{x})\\)를 계산하고 가장 가깝게 분해된 \\(p(\mathbf{w})\\)의 가우시안 근사에 그것을 투영시키는 작업이다. 따라서 갱신 알고리즘은 0이 아닌 모든 성분 \\(\mathbf{x}\\)의 평균 및 분산에 관한 갱신 방정식만 가지고 표현할 수 있다(논문[^2] 참조).
 
 <div class="pull-right"> (3) </div>
+  
 $$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right),$$
 
 <div class="pull-right"> (4) </div>
+  
 $$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)\right],$$
   
 <div class="pull-right"> (5) </div>
+  
 $$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}.$$
 
 여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t) / \Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
@@ -95,6 +100,7 @@ $$p(y|\mathbf{x}, \mathbf{w}) = sigmoid(s(y, \mathbf{x}, \mathbf{w})),$$
 이고 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한 다음 좌표 별 기울기 방향으로 보폭만큼 이동하면서 이루어진다.
 
 <div class="pull-right"> (6) </div>
+  
 $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})),$$
   
 여기서 \\(g\\)는 0이 아닌 모든 성분의 로그 우도에 관한 기울기이고 \\(g(s) := \[y(y + 1) / 2 - y \cdot sigmoid(s)]\\)로 구할 수 있다. 식 (3)은 보폭 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3절에서 다양한 보폭 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
