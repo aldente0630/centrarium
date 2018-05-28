@@ -75,11 +75,11 @@ $$p(\mathbf{w}) = \prod_{k=1}^N N(w_k;\mu_k,\sigma_k^2), $$
   
 적률 매칭과 함께 기대값 전파를 통해 온라인 학습을 진행한다. 가중치 벡터 \\(\mathbf{w}\\)에 대한 근사 사후 분포의 평균 및 분산으로 결과 모형은 이루어진다. BOPR 알고리즘에서 추론은 \\(p(\mathbf{w}\|y, \mathbf{x})\\)를 계산하고 가장 가깝게 분해된 \\(p(\mathbf{w})\\)의 가우시안 근사에 그것을 투영시키는 작업이다. 따라서 갱신 알고리즘은 0이 아닌 모든 성분 \\(\mathbf{x}\\)의 평균 및 분산에 관한 갱신 방정식만 가지고 표현할 수 있다(논문[^2] 참조).
 
-$$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), $$
+$$\mu_{i_j} \leftarrow \mu_{i_j} + y \cdot {\sigma^2_{i_j} \over \Sigma} \cdot v \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right), (3) $$
   
-$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)\right], $$
+$$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over \Sigma^2} \cdot w \left({s(y, \mathbf{x}, \mathbf{\mu}) \over \Sigma}\right)\right], (4) $$
   
-$$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}. $$
+$$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}. (5) $$
 
 여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t)/\Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
   
@@ -87,13 +87,13 @@ BOPR을 우도 함수에 대한 SGD와 비교하자면
   
 $$p(y|\mathbf{x}, \mathbf{w})=sigmoid(s(y, \mathbf{x}, \mathbf{w})), $$
   
-여기서 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한다음 기울기 방향으로 좌표 별로 보폭만큼 이동하면서 이루어진다.
+이고 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한다음 좌표 별 기울기 방향으로 보폭만큼 이동하면서 이루어진다.
 
-$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})), $$
+$$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \mathbf{w})), (6) $$
   
-여기서 \\(g\\)는 모든 비 - 제로 성분들에 대한 대수 우도 구배이고 \\(g(s) := \[y(y + 1)/2 - y \cdot sigmoid(s)]\\)에 의해 주어진다. 식 (3)은 단계 크기 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3 절에서 우리는 다양한 스텝 크기 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
+여기서 \\(g\\)는 0이 아닌 모든 성분의 로그 우도에 관한 기울기이고 \\(g(s) := \[y(y + 1)/2 - y \cdot sigmoid(s)]\\)로 구할 수 있다. 식 (3)은 보폭 \\(\eta_{i_j}\\)가 신념 불확도 \\(\sigma\\)에 의해 자동적으로 제어되는 평균 벡터 \\(\mu\\)에 대한 (6)과 같은 좌표 그라데이션 방향으로 볼 수있다. 3.3절에서 다양한 보폭 함수 \\(\eta\\)를 제시하고 BOPR과 비교할 것이다.
   
-위에서 설명한 SGD 기반 LR 및 BOPR은 모두 하나씩 교육 데이터에 적응할 때 스트림 학습자입니다.
+위에서 설명한 SGD 기반 LR과 BOPR 모두 훈련 데이터 하나마다 적응하는 스트림 학습기이다.
 
 ### 3.1 의사 결정 트리 변수 변환
 
