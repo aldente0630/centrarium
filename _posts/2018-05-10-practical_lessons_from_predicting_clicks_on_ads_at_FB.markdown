@@ -109,6 +109,8 @@ $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \math
 
 ### 3.1 의사 결정 트리 변수 변환
 
+선형 분류기의 입력 특성을 변환하여 정확성을 향상시키는 두 가지 간단한 방법이 있습니다. 연속 피쳐의 경우 비선형 변환을 학습하기위한 간단한 트릭은 피쳐를 비우고 빈 인덱스를 범주 형 피쳐로 처리하는 것입니다. 선형 분류기는 피쳐에 대해 조각 별 일정한 비선형 맵을 효과적으로 습득합니다. 유용한 bin 경계를 익히는 것이 중요하며이를 수행하는 방법을 최대화하는 많은 정보가 있습니다.
+
 (번역 중)
   
 [^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
