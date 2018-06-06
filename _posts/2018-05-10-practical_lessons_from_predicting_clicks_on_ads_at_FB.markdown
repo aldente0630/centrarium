@@ -139,24 +139,36 @@ $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \math
 
 ### 3.3 온라인 선형 분류기
   
-데이터 신선도를 최대화하기 위해 선형 분류기를 온라인으로, 즉 라벨이 지정된 광고 노출 수가 직접적으로 발생하도록 교육하는 것이 하나의 옵션입니다. 다음 섹션 4에서는 실시간 교육 데이터를 생성 할 수있는 인프라를 설명합니다. 이 섹션에서는 로지스틱 회귀에 대한 SGD 기반 온라인 학습의 학습 속도 설정 방법을 몇 가지 평가합니다. 그런 다음 BOPR 모델에 대한 온라인 학습에 가장 적합한 대안을 비교합니다.
+데이터 신선도를 최대화하기 위해 선형 분류기를 온라인으로, 즉 레이블을 지정된 광고 노출이 발생하자마자 훈련시키는 것도 하나의 옵션이다. 다음 4절에서 실시간 훈련 데이터를 생성할 수있는 인프라를 설명한다. 이 절에서는 로지스틱 회귀에 대한 SGD 기반 온라인 학습의 학습률 설정 방법을 몇 가지 평가한다. 그런 다음 BOPR 모형에 대한 온라인 학습의 가장 적합한 대안을 비교한다.
 
 (6)의 맥락에서 다음 선택안을 탐색했다.
 
-1. 좌표 별 학습률 : \\(t\\)번째 반복에서 변수 \\(i\\)에 대한 학습률을 다음과 같이 설정한다.
+\1. 좌표 별 학습률 : \\(t\\)번째 반복에서 변수 \\(i\\)에 대한 학습률을 다음과 같이 설정한다.
   
 $$\eta_{t, i} = {\alpha \over \beta + \sqrt{\sum_{j=1}^t{\bigtriangledown_{j, i}^2}}}. $$
 
 여기서 \\(\alpha, \beta\\)는(논문[^3]에서 제안한) 조정 가능한 매개변수이다.
 
-2. 가중치 별 제곱근 학습률:
+\2. 가중치 별 제곱근 학습률:
 
 $$\eta_{t, i} = {\alpha \over \sqrt{n_{t, i}}}, $$
 
-여기서 \\(n_{t, i}\\)는 \\(t\\)번째 반복까지 변수 \\(i\\)에 대한 훈련 총 샘플 수이다.
+여기서 \\(n_{t, i}\\)는 \\(t\\)번째 반복까지 변수 \\(i\\)에 대한 총 훈련 샘플 수이다.
+
+\3. 가중치 별 학습률:
+
+$$\eta_{t, i} = {\alpha \over n_{t, i}}. $$
+
+\4. 전역 학습률
+
+$$\eta_{t, i} = {\alpha \over \sqrt{t}}. $$
+
+\5. 상수 학습률
+
+$$\eta_{t, i} = \alpha. $$
   
 (번역 중)
   
 [^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
 [^2]: T. Graepel, J. Quiñonero Candela, T. Borchert, and R. Herbrich. Web-scale bayesian click-through rate prediction for sponsored search advertising in Microsoft’s Bing search engine. In ICML, pages 13–20, 2010.
-[^3]: ] H. B. McMahan, G. Holt, D. Sculley, M. Young, D. Ebner, J. Grady, L. Nie, T. Phillips, E. Davydov, D. Golovin, S. Chikkerur, D. Liu, M. Wattenberg, A. M. Hrafnkelsson, T. Boulos, and J. Kubica. Ad click prediction: a view from the trenches. In KDD, 2013.
+[^3]: H. B. McMahan, G. Holt, D. Sculley, M. Young, D. Ebner, J. Grady, L. Nie, T. Phillips, E. Davydov, D. Golovin, S. Chikkerur, D. Liu, M. Wattenberg, A. M. Hrafnkelsson, T. Boulos, and J. Kubica. Ad click prediction: a view from the trenches. In KDD, 2013.
