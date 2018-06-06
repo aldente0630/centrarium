@@ -167,6 +167,10 @@ $$\eta_{t, i} = {\alpha \over \sqrt{t}}. $$
 
 $$\eta_{t, i} = \alpha. $$
   
+처음 세 가지 방법은 학습 속도를 피쳐별로 개별적으로 설정합니다. 마지막 두 개는 모든 기능에 동일한 비율을 사용합니다. 모든 튜닝 가능한 파라미터는 그리드 검색에 의해 최적화됩니다 (표 2 참조).
+  
+우리는 지속적인 학습을 위해 학습 속도를 0.00001까지 낮춘다. 위의 학습률 체계를 사용하여 동일한 데이터에 대해 LR 모델을 학습하고 테스트합니다. 실험 결과는 그림 3에 나와 있습니다.
+  
 (번역 중)
   
 [^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
