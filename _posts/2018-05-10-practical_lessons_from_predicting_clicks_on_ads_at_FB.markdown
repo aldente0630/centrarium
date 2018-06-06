@@ -143,27 +143,27 @@ $$w_{i_j} \leftarrow w_{i_j} + y \cdot \eta_{i_j} \cdot g(s(y, \mathbf{x}, \math
 
 (6)의 맥락에서 다음 선택안을 탐색했다.
 
-\\1. 좌표 별 학습률: \\(t\\)번째 반복에서 변수 \\(i\\)에 대한 학습률을 다음과 같이 설정한다.
+\1. 좌표 별 학습률: \\(t\\)번째 반복에서 변수 \\(i\\)에 대한 학습률을 다음과 같이 설정한다.
   
 $$\eta_{t, i} = {\alpha \over \beta + \sqrt{\sum_{j=1}^t{\bigtriangledown_{j, i}^2}}}. $$
 
 여기서 \\(\alpha, \beta\\)는(논문[^3]에서 제안한) 조정 가능한 매개변수이다.
 
-\\2. 가중치 별 제곱근 학습률:
+\2. 가중치 별 제곱근 학습률:
 
 $$\eta_{t, i} = {\alpha \over \sqrt{n_{t, i}}}, $$
 
 여기서 \\(n_{t, i}\\)는 \\(t\\)번째 반복까지 변수 \\(i\\)에 대한 총 훈련 샘플 수이다.
 
-\\3. 가중치 별 학습률:
+\3. 가중치 별 학습률:
 
 $$\eta_{t, i} = {\alpha \over n_{t, i}}. $$
 
-\\4. 전역 학습률:
+\4. 전역 학습률:
 
 $$\eta_{t, i} = {\alpha \over \sqrt{t}}. $$
 
-\\5. 상수 학습률:
+\5. 상수 학습률:
 
 $$\eta_{t, i} = \alpha. $$
   
@@ -172,6 +172,8 @@ $$\eta_{t, i} = \alpha. $$
 ![표 2](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB4.PNG)
   
 연속적인 학습을 위해 학습률을 0.00001 단위로 낮췄다. 위 학습률 체계를 이용하여 동일 데이터에 LR 모형을 훈련시키고 테스트했다. 실험 결과는 그림 3에 나와있다.
+
+![그림 3](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB5.PNG)
   
 (번역 중)
   
