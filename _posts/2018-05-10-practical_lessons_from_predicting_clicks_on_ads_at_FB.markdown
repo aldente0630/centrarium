@@ -170,10 +170,14 @@ $$\eta_{t, i} = \alpha. $$
 처음 세 방법은 학습률을 변수 별로 개별 설정한다. 마지막 두 개는 모든 변수에 동일한 학습률을 사용한다. 조정 가능한 모든 매개 변수는 격자 탐색 기법으로 최적화한다(표 2 참조).
   
 ![표 2](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB4.PNG)
+
+**표 2: 학습률 매개변수**
   
 연속적인 학습을 위해 학습률을 0.00001 단위로 낮췄다. 위 학습률 체계를 이용하여 동일 데이터에 LR 모형을 훈련시키고 테스트했다. 실험 결과는 그림 3에 나와있다.
 
 ![그림 3](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB5.PNG)
+
+**그림 3: SGD를 사용하는 LR에 대한 다양한 학습률 체계에 대한 실험 결과이다. X축은 서로 다른 학습률 체계에 해당한다. 왼쪽 y 주축에 보정을 고 표준화 된 엔트로피는 오른쪽 y 보조축에 표준화 엔트로피를 표시다.**
   
 (번역 중)
   
