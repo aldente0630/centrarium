@@ -185,8 +185,19 @@ $$\eta_{t, i} = \alpha. $$
   
 좌표 별 SGD을 적용해 훈련시킨 LR 예측 성능과 BOPR를 비교하기위해 실험을 수행했다. LR과 BOPR 모형을 동일한 훈련 데이터로 학습시키고 익일 예측 성능을 평가했다. 그 결과는 표 3에 나와있다.
 
+![표 3](https://aldente0630.github.io/assets/practical_lessons_from_predicting_clicks_on_ads_at_FB6.PNG)
+
+아마도 갱신 방정식이 질적으로 유사하다는 점을 고려한다면 BOPR과 좌표 별 학습률 적용한 SGD를 통해 훈련시킨 LR은 NE와 보정(표에 표시되지 않음) 관점에서 예측 성능이 매우 비슷하리라 기대할 수 있다.
+  
+BOPR 대비 LR의 한 가지 장점은 평균 및 분산에 비해 각 희소 변수값에 관한 가중치만 정하면 되므로 모형 크기가 절반이 된다는 점이다. 구현에 달려있지만 모형 크기가 작을수록 캐시 지역성은 낫고 캐시 조회는 빨라진다. 예측 시간의 계산 비용 측면에서 LR 모형은 변수 벡터를 가중치 벡터에 대해 내적 한번만 하면 되지만 BOPR 모형은 변수 벡터를 분산 벡터와 평균 벡터 각각에 대해 두번 내적해야 한다.
+  
+LR 대비 BOPR의 한 가지 중요한 장점은 베이지안 공식이므로 클릭 확률에 대한 완전한 예측 분포를 제공한다. 이것을 예측 분포 백분위 수를 계산하는 데 사용할 수 있으며 탐색 / 획득 학습 체계(논문[^4])에 사용할 수 있다.
+
+## 4. 온라인 데이터 접합부
+
 (번역 중)
   
 [^1]: J. Yi, Y. Chen, J. Li, S. Sett, and T. W. Yan. Predictive model performance: Offline and online evaluations. In KDD, pages 1294–1302, 2013.
 [^2]: T. Graepel, J. Quiñonero Candela, T. Borchert, and R. Herbrich. Web-scale bayesian click-through rate prediction for sponsored search advertising in Microsoft’s Bing search engine. In ICML, pages 13–20, 2010.
 [^3]: H. B. McMahan, G. Holt, D. Sculley, M. Young, D. Ebner, J. Grady, L. Nie, T. Phillips, E. Davydov, D. Golovin, S. Chikkerur, D. Liu, M. Wattenberg, A. M. Hrafnkelsson, T. Boulos, and J. Kubica. Ad click prediction: a view from the trenches. In KDD, 2013.
+[^4]: O. Chapelle and L. Li. An empirical evaluation of thompson sampling. In *Advances in Neural Information Processing Systems,* volume 24, 2012.
