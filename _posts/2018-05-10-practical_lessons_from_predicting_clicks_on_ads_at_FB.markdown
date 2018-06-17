@@ -90,13 +90,13 @@ $$\sigma^2_{i_j} \leftarrow \sigma^2_{i_j} \cdot \left[1 - {\sigma^2_{i_j} \over
   
 $$\Sigma^2 = \beta^2 + \sum_{j=1}^n{\sigma^2_{i_j}}.$$
 
-여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t) / \Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 SGD 체계 상의 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\)로 볼 수 있다.
+여기서 보정 함수 \\(v\\)와 \\(w\\)는 \\(v(t):=N(t) / \Phi(t)\\)와 \\(w(t):= v(t) \cdot \[v(t) + t]\\)로 정의한다. 이 추론을 신뢰 벡터 \\(\mu\\)와 \\(\sigma\\) 기반의 SGD 체계로 볼 수 있다.
   
-BOPR을 우도 함수에 대한 SGD와 비교하자면
+BOPR와 우도 함수가
   
 $$p(y|\mathbf{x}, \mathbf{w}) = sigmoid(s(y, \mathbf{x}, \mathbf{w})),$$
   
-이고 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한 다음 좌표 별 기울기 방향으로 보폭만큼 이동하면서 이루어진다.
+인 SGD를 비교해보자. 여기서 \\(sigmoid(t) = \exp(t) /(1 + \exp(t))\\)이다. 결과 알고리즘을 *로지스틱 회귀*(LR)라고 부른다. 모형 추론은 로그 우도에 대한 도함수를 계산한 다음 좌표 별 기울기 방향으로 보폭만큼 이동하면서 이루어진다.
 
 <div class="pull-right"> (6) </div>
   
