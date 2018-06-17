@@ -3,7 +3,7 @@ layout: post
 title: 아파치 에어플로우로 작업흐름 개발해보기
 date: 2018-06-17 00:00:00
 author: Michal Karzynski
-categories: Data-Science
+categories: Data-Engineering
 ---  
   
   
