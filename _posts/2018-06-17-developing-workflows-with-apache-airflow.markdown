@@ -33,5 +33,7 @@ Airflow는 각 태스크에서 오류가 발생할 때마다 여러 번 재실�
 * DAG가 시작되면 Airflow는 데이터베이스에 **DAG 런** 항목을 만든다.
 * 특정 DAG 런 맥락에서 태스크를 실행하면 **태스크 인스턴스**가 만들어진다.
 * `AIRFLOW_HOME`은 DAG 정의 파일과 Airflow 플러그인을 저장하는 디렉토리이다.
+
+Airflow 문서는 여러 [개념들](https://airflow.apache.org/concepts.html)에 대해 자세한 정보를 제공한다.
   
 (번역 중)
