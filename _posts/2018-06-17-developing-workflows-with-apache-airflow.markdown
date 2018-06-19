@@ -86,7 +86,7 @@ ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
  ```
 
 `airflow version` 명령을 실행시키면 Airflow는 `AIRFLOW_HOME`에 기본 구성 파일 airflow.cfg를 만든다.
-```
+```bash
 airflow_home
 ├── airflow.cfg
 └── unittests.cfg
@@ -95,5 +95,10 @@ airflow_home
 본 튜토리얼은 `airflow.cfg`에 저장한 환경설정 기본값을 사용한다. 하지만 Airflow 설정을 조정하고 싶은 경우 해당 파일을 변경하라. Airflow [환경설정](https://airflow.apache.org/configuration.html)에 관한 자세한 내용은 문서를 참조하라.
 
 ## Airflow DB 초기화하기
+  
+다음 단계는 Airflow SQLite 데이터베이스를 만들고 초기화하는 명령을 실행하는 것이다.
+```bash
+(venv) $ airflow webserver
+ ```
 
 (번역 중)
