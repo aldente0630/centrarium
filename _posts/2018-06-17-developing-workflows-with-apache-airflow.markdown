@@ -40,7 +40,7 @@ Airflow는 각 태스크에서 오류가 발생할 때마다 여러 번 재실�
 | 실행했을 때 | DAG 런 | 태스크 인스턴스 | [xcom_pull](https://airflow.incubator.apache.org/concepts.html#xcoms)|
 | 기본 클래스 | DAG | BaseOperator | |
 
-Airflow 설명서는 여러 [개념들](https://airflow.apache.org/concepts.html)에 대해 상세한 정보를 제공한다.
+Airflow 문서는 여러 [개념들](https://airflow.apache.org/concepts.html)에 대해 상세한 정보를 제공한다.
 
 ## 선행요건
   
@@ -74,7 +74,7 @@ $ source venv/bin/activate
 (venv) $ export AIRFLOW_HOME=`pwd`/airflow_home
 ```
 
-이제 Airflow 명령을 실행할 수 있다. 다음 명령어를 실행 시도해보자.
+이제 Airflow 명령을 실행할 수 있다. 다음 명령어 실행을 시도해보자.
 ```bash
 (venv) $ airflow version
   ____________       _____________
@@ -92,7 +92,7 @@ airflow_home
 └── unittests.cfg
  ```
    
-`airflow.cfg`에 저장된 기본 구성 값은이 자습서에서는 문제가 없지만 모든 기류 설정을 조정하려는 경우 변경할 파일입니다. 기류 [구성](https://airflow.apache.org/configuration.html)에 대한 자세한 내용은 문서를 참조하십시오.
+본 튜토리얼은 `airflow.cfg`에 저장한 기본 환경설정 값을 사용한다. 하지만 Airflow 설정을 조정하고 싶은 경우 해당 파일을 변경하라. Airflow [환경설정](https://airflow.apache.org/configuration.html)에 대한 자세한 내용은 문서를 참조하라.
 
 ## Airflow DB 초기화하기
 
