@@ -61,7 +61,10 @@ $ virtualenv -p `which python3` venv
 $ source venv/bin/activate
 (venv) $
 ```
-
-
+  
+이제 Airflow 1.8을 설치해보자.
+```bash
+(venv) $ pip install airflow==1.8.0
+```
   
 (번역 중)
