@@ -101,4 +101,13 @@ airflow_home
 (venv) $ airflow webserver
  ```
 
+데이터베이스는 기본적으로 `airflow.db`에 작성된다.
+```bash
+airflow_home
+├── airflow.cfg
+├── airflow.db        <- Airflow SQLite DB
+└── unittests.cfg
+ ```
+ > 로컬 테스트와 개발 용도로 SQLite를 사용해도 괜찮지만 동시 액세스를 지원하지 않기 때문에 프로덕션 환경에서는 Postgres나 MySQL 같이 보다 강력한 데이터베이스 솔루션을 사용하고 싶을 것입니다.
+
 (번역 중)
