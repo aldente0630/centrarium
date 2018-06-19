@@ -98,7 +98,7 @@ airflow_home
   
 다음 단계는 Airflow SQLite 데이터베이스를 만들고 초기화하는 명령을 실행하는 것이다.
 ```bash
-(venv) $ airflow webserver
+(venv) $ airflow initdb
  ```
 
 데이터베이스는 기본적으로 `airflow.db`에 작성된다.
@@ -111,5 +111,12 @@ airflow_home
  > SQLite는 로컬 테스트와 개발 용도로 사용해도 괜찮지만 동시 액세스를 지원하지 않기 때문에 프로덕션 환경에서는 Postgres나 MySQL 같이 보다 강력한 데이터베이스 솔루션을 사용하는 편이 좋을 것이다.
  
 ### Airflow 웹 서버 시작하기
+  
+Airflow UI는 Flask 웹 응용 프로그램 형태로 제공된다. 다음 명령을 실행해서 시작할 수 있다.
+```bash
+(venv) $ airflow webserver
+ ``` 
+  
+이제 브라우저가 Airflow가 시작된 호스트의 포트 8080으로 이동하여 Airflow UI를 방문 할 수 있습니다 (예 : http : // localhost : 8080 / admin /
 
 (번역 중)
