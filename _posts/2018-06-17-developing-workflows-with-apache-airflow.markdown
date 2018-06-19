@@ -92,6 +92,8 @@ airflow_home
 └── unittests.cfg
  ```
    
-`airflow.cfg`에 저장된 기본 구성 값은이 자습서에서는 문제가 없지만 모든 기류 설정을 조정하려는 경우 변경할 파일입니다. 기류 구성에 대한 자세한 내용은 문서를 참조하십시오.
+`airflow.cfg`에 저장된 기본 구성 값은이 자습서에서는 문제가 없지만 모든 기류 설정을 조정하려는 경우 변경할 파일입니다. 기류 [구성](https://airflow.apache.org/configuration.html)에 대한 자세한 내용은 문서를 참조하십시오.
+
+## Airflow DB 초기화하기
 
 (번역 중)
