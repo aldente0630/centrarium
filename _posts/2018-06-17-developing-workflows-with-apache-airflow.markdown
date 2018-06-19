@@ -117,10 +117,10 @@ Airflow UI는 Flask 웹 응용 프로그램 형태로 제공된다. 다음 명�
 (venv) $ airflow webserver
  ``` 
   
-이제 브라우저가 Airflow가 시작된 호스트의 포트 8080으로 이동하여 Airflow UI를 방문 할 수 있습니다 (예 : http : // localhost : 8080 / admin /
+이제 브라우저에서 Airflow가 구동된 호스트 포트 `8080`으로 이동하여 Airflow UI를 방문할 수 있다. (예컨대 http://localhost:8080/admin/)
   
-> Airflow에는 DAG 예제 몇 가지가 있다. 이 예제는 dags_folder에 적어도 하나의 DAG 정의 파일이 있어야 작동합니다. airflow.cfg의 load_examples 설정을 변경하여 예제 DAG를 숨길 수 있습니다.
+> Airflow상에 DAG 예제 몇 가지가 있다. 이 예제들은 `dags_folder`에 적어도 DAG 정의 파일이 한개 이상 있어야 작동한다. `airflow.cfg`의 `load_examples` 설정을 변경하여 DAG 예제를 숨길 수 있다.
   
-## Airflow DAG 처음 만들어보기
+## 처음 만들어보는 Airflow DAG 
 
 (번역 중)
