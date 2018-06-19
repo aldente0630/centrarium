@@ -85,7 +85,7 @@ ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
    v1.8.0rc5+apache.incubating
  ```
 
-`airflow version` 명령이 작동되면 Airflow는 `AIRFLOW_HOME`에 기본 구성 파일인 airflow.cfg도 만든다.
+`airflow version` 명령을 실행시키면 Airflow는 `AIRFLOW_HOME`에 기본 구성 파일 airflow.cfg를 만든다.
 ```
 airflow_home
 ├── airflow.cfg
