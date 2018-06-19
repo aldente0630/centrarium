@@ -94,7 +94,7 @@ airflow_home
    
 본 튜토리얼은 `airflow.cfg`에 저장한 환경설정 기본값을 사용한다. 하지만 Airflow 설정을 조정하고 싶은 경우 해당 파일을 변경하라. Airflow [환경설정](https://airflow.apache.org/configuration.html)에 관한 자세한 내용은 문서를 참조하라.
 
-## Airflow DB 초기화하기
+### Airflow DB 초기화하기
   
 다음 단계는 Airflow SQLite 데이터베이스를 만들고 초기화하는 명령을 실행하는 것이다.
 ```bash
@@ -109,5 +109,7 @@ airflow_home
 └── unittests.cfg
  ```
  > SQLite는 로컬 테스트와 개발 용도로 사용해도 괜찮지만 동시 액세스를 지원하지 않기 때문에 프로덕션 환경에서는 Postgres나 MySQL 같이 보다 강력한 데이터베이스 솔루션을 사용하는 편이 좋을 것이다.
+ 
+### Airflow 웹 서버 시작하기
 
 (번역 중)
