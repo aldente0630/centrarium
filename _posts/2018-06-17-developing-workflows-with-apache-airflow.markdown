@@ -86,5 +86,12 @@ ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
  ```
 
 `airflow version` 명령이 작동되면 Airflow는 `AIRFLOW_HOME`에 기본 구성 파일인 airflow.cfg도 만든다.
+```
+airflow_home
+├── airflow.cfg
+└── unittests.cfg
+ ```
+   
+`airflow.cfg`에 저장된 기본 구성 값은이 자습서에서는 문제가 없지만 모든 기류 설정을 조정하려는 경우 변경할 파일입니다. 기류 구성에 대한 자세한 내용은 문서를 참조하십시오.
 
 (번역 중)
