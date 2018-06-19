@@ -52,4 +52,16 @@ $ virtualenv --version
 15.1.0
 ```
   
+## Airflow 설치하기
+
+본 튜토리얼을 위한 작업 공간 디렉토리를 만들고 그 안에 파이썬3 Virtualenv 디렉토리를 만들자.
+```bash
+$ cd /path/to/my/airflow/workspace
+$ virtualenv -p `which python3` venv
+$ source venv/bin/activate
+(venv) $
+```
+
+
+  
 (번역 중)
