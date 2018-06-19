@@ -67,4 +67,22 @@ $ source venv/bin/activate
 (venv) $ pip install airflow==1.8.0
 ```
   
+이제 DAG 정의 파일과 Airflow 플러그인이 저장되는 `AIRFLOW_HOME` 디렉토리를 만들어야한다. 디렉토리가 만들어지면 `AIRFLOW_HOME` 환경 변수를 설정하자.
+```bash
+(venv) $ cd /path/to/my/airflow/workspace
+(venv) $ mkdir airflow_home
+(venv) $ export AIRFLOW_HOME=`pwd`/airflow_home
+```
+
+이제 Airflow 명령을 실행할 수 있다. 다음을 실행하여 시도해 보겠습니다.
+```bash
+(venv) $ airflow version
+  ____________       _____________
+ ____    |__( )_________  __/__  /________      __
+____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+ _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+   v1.8.0rc5+apache.incubating
+ ```
+  
 (번역 중)
