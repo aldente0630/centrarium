@@ -74,7 +74,7 @@ $ source venv/bin/activate
 (venv) $ export AIRFLOW_HOME=`pwd`/airflow_home
 ```
 
-이제 Airflow 명령을 실행할 수 있다. 다음을 실행하여 시도해 보겠습니다.
+이제 Airflow 명령을 실행할 수 있다. 다음 명령어를 실행 시도해보자.
 ```bash
 (venv) $ airflow version
   ____________       _____________
@@ -84,5 +84,7 @@ ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
  _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
    v1.8.0rc5+apache.incubating
  ```
-  
+
+`airflow version` 명령이 작동되면 Airflow는 `AIRFLOW_HOME`에 기본 구성 파일인 airflow.cfg도 만든다.
+
 (번역 중)
