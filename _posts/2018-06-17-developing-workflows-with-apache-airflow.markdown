@@ -122,5 +122,42 @@ Airflow UI는 Flask 웹 응용 프로그램 형태로 제공된다. 다음 명�
 > Airflow상에 DAG 예제 몇 가지가 있다. 이 예제들은 `dags_folder`에 적어도 DAG 정의 파일이 한개 이상 있어야 작동한다. `airflow.cfg`의 `load_examples` 설정을 변경하여 DAG 예제를 숨길 수 있다.
   
 ## 처음 만들어보는 Airflow DAG 
+  
+좋아, 모든 것이 준비되면 코드를 작성해 보자. 우리는 Hello World 워크 플로를 작성하여 시작할 것이며,이 워크 플로우는 "Hello world!"를 로그에 보내지 않습니다.
+  
+DAG 정의 파일이 AIRFLOW_HOME / dags에 저장 될 디렉토리 인 dags_folder를 만듭니다. 이 디렉토리에 hello_world.py라는 파일이 생성됩니다.
+```bash
+airflow_home
+├── airflow.cfg
+├── airflow.db
+├── dags                <- Your DAGs directory
+│   └── hello_world.py  <- Your DAG definition file
+└── unittests.cfg
+ ``` 
+   
+dags / hello_world.py에 다음 코드를 추가합니다.
+```python
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.python_operator import PythonOperator
+
+def print_hello():
+    return 'Hello world!'
+
+dag = DAG('hello_world', description='Simple tutorial DAG',
+          schedule_interval='0 12 * * *',
+          start_date=datetime(2017, 3, 20), catchup=False)
+
+dummy_operator = DummyOperator(task_id='dummy_task', retries=3, dag=dag)
+
+hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hello, dag=dag)
+
+dummy_operator >> hello_operator
+```
+  
+이 파일은 아무 것도 수행하지 않는 DummyOperator와 작업이 실행될 때 print_hello 함수를 호출하는 PythonOperator라는 두 개의 연산자만으로 간단한 DAG를 생성합니다.
+
+## DAG 실행시켜보기
 
 (번역 중)
