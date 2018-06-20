@@ -123,9 +123,9 @@ Airflow UI는 Flask 웹 응용 프로그램 형태로 제공된다. 다음 명�
   
 ## 처음 만들어보는 Airflow DAG 
   
-좋아, 모든 것이 준비되면 코드를 작성해 보자. 우리는 Hello World 워크 플로를 작성하여 시작할 것이며,이 워크 플로우는 "Hello world!"를 로그에 보내지 않습니다.
+좋다, 모든 게 준비됐다면 코드를 작성해보자. Hello World 작업흐름을 만들어볼 것이다. 이 작업흐름은 "Hello world!" 로그 찍는 일만 할거다. 
   
-DAG 정의 파일이 AIRFLOW_HOME / dags에 저장 될 디렉토리 인 dags_folder를 만듭니다. 이 디렉토리에 hello_world.py라는 파일이 생성됩니다.
+DAG 정의 파일이 `AIRFLOW_HOME/dags`에 저장되게 `dags_folder`를 만들어라. 이 디렉토리에 `hello_world.py` 파일을 만들자.
 ```bash
 airflow_home
 ├── airflow.cfg
@@ -134,8 +134,8 @@ airflow_home
 │   └── hello_world.py  <- Your DAG definition file
 └── unittests.cfg
  ``` 
-   
-dags / hello_world.py에 다음 코드를 추가합니다.
+  
+`dags/hello_world.py`에 다음 코드를 추가하자.
 ```python
 from datetime import datetime
 from airflow import DAG
@@ -156,8 +156,8 @@ hello_operator = PythonOperator(task_id='hello_task', python_callable=print_hell
 dummy_operator >> hello_operator
 ```
   
-이 파일은 아무 것도 수행하지 않는 DummyOperator와 작업이 실행될 때 print_hello 함수를 호출하는 PythonOperator라는 두 개의 연산자만으로 간단한 DAG를 생성합니다.
+이 파일은 아무 일도 하지 않는 `DummyOperator`와 태스크가 실행될 때 `print_hello` 함수를 호출하는 `PythonOperator` 오퍼레이터 두 개만 가지고 간단한 DAG를 생성한다.
 
-## DAG 실행시켜보기
+## DAG 돌려보기
 
 (번역 중)
