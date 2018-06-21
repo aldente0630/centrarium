@@ -198,11 +198,11 @@ DAG를 구동시키려면 먼저 작업흐름을 켜고(화살표 1) **DAG 동�
 
 또한 `execute` 메서드는 `airflow.exceptions` 중 하나인 `AirflowSkipException`을 발생시킬 수 있다. 이 경우 태스크 인스턴스는 건너 뛴 상태로 전환된다.
   
-다른 형태의 예외가 발생하면 최대 `retiries` 횟수에 도달 할 때까지 작업이 재 시도됩니다.
+다른 형태의 예외가 발생하면 `retiries` 최대 횟수에 도달할 때까지 작업을 재시도한다.
   
-> execute 메소드는 여러 번 재 시도 할 수 있으므로 멱등 원이어야합니다.
+> execute 메소드는 여러 번 재시도될 수 있으므로 [멱등](https://ko.wikipedia.org/wiki/멱등법칙)이어야한다.
   
-plugins / my_operators.py라는 Airflow 플러그인 파일에서 첫 번째 연산자를 만듭니다. 먼저 airflow_home / plugins 디렉토리를 만든 다음 my_operators.py 파일을 다음 내용과 함께 추가하십시오.
+`plugins/my_operators.py`라는 Airflow 플러그인 파일을 작성하여 첫 연산자를 만들어 볼 거다. 먼저 `airflow_home/plugins` 디렉토리를 만든 다음 `my_operators.py` 파일에 다음 내용을 적어 추가해라.
 ```python
 import logging
 
@@ -228,9 +228,9 @@ class MyFirstPlugin(AirflowPlugin):
     operators = [MyFirstOperator]
  ```
    
-이 파일에서 MyFirstOperator라는 새 연산자를 정의합니다. execute 메소드는 매우 간단합니다. 로그에는 "Hello World!"와 자체 단일 매개 변수의 값만 있습니다. 매개 변수는 __init__ 함수에서 설정됩니다.
+이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나의 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
   
-또한 MyFirstPlugin이라는 Airflow 플러그인을 정의하고 있습니다. airflow_home / plugins 디렉토리에 저장된 파일에 플러그인을 정의하여 Airflow에 플러그인을 제공하는 기능과 플러그인이 정의한 모든 연산자를 제공합니다. airflow.operators import MyFirstOperator에서이 연산자를 나중에 가져올 수 있습니다.
+또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있습니다. airflow_home / plugins 디렉토리에 저장된 파일에 플러그인을 정의하여 Airflow에 플러그인을 제공하는 기능과 플러그인이 정의한 모든 연산자를 제공합니다. airflow.operators import MyFirstOperator에서이 연산자를 나중에 가져올 수 있습니다.
   
 문서에서 Airflow 플러그인에 대해 자세히 읽을 수 있습니다.
 
