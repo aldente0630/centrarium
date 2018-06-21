@@ -191,4 +191,89 @@ DAG를 구동시키려면 먼저 작업흐름을 켜고(화살표 1) **DAG 동�
 이 단계의 코드는 GitHub의 해당 [커밋](https://github.com/postrational/airflow_tutorial/tree/f91257e88ce2c0d30b032e92dc004c06754376fd/airflow_home)을 통해 받을 수 있다.
 
 ## 처음 만들어보는 Airflow 오퍼레이터 
+  
+우리 자신의 기류 운영자를 작성해 봅시다. 연산자는 단일 작업을 수행하는 워크 플로 논리 블록입니다. 연산자는 Python 클래스 (BaseOperator의 하위 클래스)로 작성되며 __init__ 함수를 사용하여 작업 설정을 구성하고 execute라는 메서드는 작업 인스턴스가 실행될 때 호출 할 수 있습니다.
+  
+execute 메서드가 반환하는 값은 return_value 키 아래에 Xcom 메시지로 저장됩니다. 나중에이 주제를 다룰 것입니다.
+
+또한 execute 메서드는 airflow.kip에서 AirflowSkipException을 발생시킬 수 있습니다. 이 경우 작업 인스턴스는 건너 뛴 상태로 전환됩니다.
+  
+다른 예외가 발생하면 최대 재시도 횟수에 도달 할 때까지 작업이 재 시도됩니다.
+  
+> execute 메소드는 여러 번 재 시도 할 수 있으므로 멱등 원이어야합니다.
+  
+plugins / my_operators.py라는 Airflow 플러그인 파일에서 첫 번째 연산자를 만듭니다. 먼저 airflow_home / plugins 디렉토리를 만든 다음 my_operators.py 파일을 다음 내용과 함께 추가하십시오.
+```python
+import logging
+
+from airflow.models import BaseOperator
+from airflow.plugins_manager import AirflowPlugin
+from airflow.utils.decorators import apply_defaults
+
+log = logging.getLogger(__name__)
+
+class MyFirstOperator(BaseOperator):
+
+    @apply_defaults
+    def __init__(self, my_operator_param, *args, **kwargs):
+        self.operator_param = my_operator_param
+        super(MyFirstOperator, self).__init__(*args, **kwargs)
+
+    def execute(self, context):
+        log.info("Hello World!")
+        log.info('operator_param: %s', self.operator_param)
+
+class MyFirstPlugin(AirflowPlugin):
+    name = "my_first_plugin"
+    operators = [MyFirstOperator]
+ ```
+   
+이 파일에서 MyFirstOperator라는 새 연산자를 정의합니다. execute 메소드는 매우 간단합니다. 로그에는 "Hello World!"와 자체 단일 매개 변수의 값만 있습니다. 매개 변수는 __init__ 함수에서 설정됩니다.
+  
+또한 MyFirstPlugin이라는 Airflow 플러그인을 정의하고 있습니다. airflow_home / plugins 디렉토리에 저장된 파일에 플러그인을 정의하여 Airflow에 플러그인을 제공하는 기능과 플러그인이 정의한 모든 연산자를 제공합니다. airflow.operators import MyFirstOperator에서이 연산자를 나중에 가져올 수 있습니다.
+  
+문서에서 Airflow 플러그인에 대해 자세히 읽을 수 있습니다.
+
+> PYTHONPATH가 사용자 정의 모듈이 저장된 디렉토리를 포함하도록 설정되었는지 확인하십시오.
+  
+이제 연산자를 테스트 할 새 DAG를 만들어야합니다. dags / test_operators.py 파일을 만들고 다음 내용으로 채 웁니다.
+```python
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators import MyFirstOperator
+
+dag = DAG('my_test_dag', description='Another tutorial DAG',
+          schedule_interval='0 12 * * *',
+          start_date=datetime(2017, 3, 20), catchup=False)
+
+dummy_task = DummyOperator(task_id='dummy_task', dag=dag)
+
+operator_task = MyFirstOperator(my_operator_param='This is a test.',
+                                task_id='my_first_operator_task', dag=dag)
+
+dummy_task >> operator_task
+```
+  
+여기서는 DummyOperator 작업을 사용하여 my_test_dag라는 간단한 DAG를 만들고 새 MyFirstOperator를 사용하여 다른 작업을 만들었습니다. DAG 정의 중에 여기서 my_operator_param에 대한 구성 값을 전달하는 방법에 유의하십시오.
+  
+이 단계에서 소스 트리는 다음과 같습니다.
+```bash
+airflow_home
+├── airflow.cfg
+├── airflow.db
+├── dags
+│   └── hello_world.py
+│   └── test_operators.py  <- Second DAG definition file
+├── plugins
+│   └── my_operators.py    <- Your plugin file
+└── unittests.cfg
+```
+  
+이 단계에서 모든 코드를 GitHub의이 커밋에서 사용할 수 있습니다.
+  
+새 운영자를 테스트하려면 (CTRL-C) Airflow 웹 서버 및 스케줄러를 중지하고 다시 시작해야합니다. 그런 다음 Airflow UI로 돌아가서 my_test_dag DAG를 켜고 실행을 시작하십시오. my_first_operator_task에 대한 로그를 살펴보십시오.
+
+## Airflow 오퍼레이터 
+
 (번역 중)
