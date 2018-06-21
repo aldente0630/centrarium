@@ -168,7 +168,7 @@ $ source venv/bin/activate
 (venv) $ airflow scheduler
 ```
   
-> 스케줄러는 실행시킬 태스크를 이그제큐터로 보낸다. Airflow는 스케줄러에 의해 자동 시작되는 이그제큐터로 `SequentialExecutor`를 기본적으로 사용한다. 프로덕션단계에서는 `CeleryExecutor` 같이 보다 탄탄한 이그제큐터를 사용해보고 싶을 것이다.
+> 스케줄러는 실행시킬 태스크를 이그제큐터로 보낸다. Airflow는 스케줄러에 의해 자동 시작되는 이그제큐터로 `SequentialExecutor`를 기본적으로 사용한다. 프로덕션 단계에서는 `CeleryExecutor` 같이 보다 탄탄한 이그제큐터를 사용해보고 싶을 것이다.
   
 브라우저에서 Airflow UI를 새로고침하면 Airflow UI에 `hello_world` DAG가 표시된다.
 
