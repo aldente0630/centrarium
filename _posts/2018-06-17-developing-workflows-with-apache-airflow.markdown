@@ -255,7 +255,7 @@ operator_task = MyFirstOperator(my_operator_param='This is a test.',
 dummy_task >> operator_task
 ```
   
-`DummyOperator` 태스크를 이용해서 `my_test_dag`라는 간단한 DAG를 만들었고 새로 만든 `MyFirstOperator`를 이용해 또 다른 태스크를 만들었다. DAG 정의 중 `my_operator_param`에 대한 환결설정 값 전달하는 방법에 유의해라.
+`DummyOperator` 태스크를 이용해서 `my_test_dag`라는 간단한 DAG를 만들었고 새로 만든 `MyFirstOperator`를 이용해 또 다른 태스크를 만들었다. DAG 정의 중 `my_operator_param`에 대한 환경설정 값 전달하는 방법에 유의해라.
   
 이 단계에서 소스 트리는 다음과 같다.
 ```bash
@@ -272,7 +272,7 @@ airflow_home
   
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/fc918909763eba0a1671ecda4629b4ffec45c441/airflow_home)을 통해 받을 수 있다.
   
-새로운 오퍼레이터를 테스트해보려면 Airflow 웹 서버와 스케줄러를 중지한 후(CTRL-C) 재시작시켜야 한다. 그런 다음 Airflow UI로 돌아가 `my_test_dag` DAG를 켜고 실행시켜라. `my_first_operator_task` 로그를 살펴봐라.
+새로운 오퍼레이터를 테스트해보려면 Airflow 웹 서버와 스케줄러를 중지시킨 후(CTRL-C) 재시작해야 한다. 그런 다음 Airflow UI로 돌아가 `my_test_dag` DAG를 켜고 실행시켜라. `my_first_operator_task` 로그를 살펴봐라.
 
 ## Airflow 오퍼레이터 디버깅하기
 
