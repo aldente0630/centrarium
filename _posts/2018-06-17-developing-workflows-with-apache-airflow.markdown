@@ -232,7 +232,7 @@ class MyFirstPlugin(AirflowPlugin):
   
 또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 이 오퍼레이터를 `from airflow.operators import MyFirstOperator` 문구로 불러올 수 있다.
   
-[Airflow 플러그인](https://airflow.apache.org/plugins.html)는 문서에서 더 자세한 정보를 얻을 수 있다.
+[Airflow 플러그인](https://airflow.apache.org/plugins.html)은 문서에서 더 자세한 정보를 얻을 수 있다.
 
 > `PYTHONPATH`가 사용자 정의 모듈을 저장한 디렉토리를 포함하도록 설정됐는지 확인해라.
   
@@ -255,9 +255,9 @@ operator_task = MyFirstOperator(my_operator_param='This is a test.',
 dummy_task >> operator_task
 ```
   
-여기서는 `DummyOperator` 태스크를 이용해서 `my_test_dag`라는 간단한 DAG를 만들었고 새로 만든 `MyFirstOperator`를 이용해 다른 태스크를 만들었다. DAG 정의 중에 여기서 my_operator_param에 대한 구성 값을 전달하는 방법에 유의하십시오.
+`DummyOperator` 태스크를 이용해서 `my_test_dag`라는 간단한 DAG를 만들었고 새로 만든 `MyFirstOperator`를 이용해 또 다른 태스크를 만들었다. DAG 정의 중 `my_operator_param`에 대한 환결설정 값 전달하는 방법에 유의해라.
   
-이 단계에서 소스 트리는 다음과 같습니다.
+이 단계에서 소스 트리는 다음과 같다.
 ```bash
 airflow_home
 ├── airflow.cfg
@@ -270,9 +270,9 @@ airflow_home
 └── unittests.cfg
 ```
   
-이 단계에서 모든 코드를 GitHub의이 커밋에서 사용할 수 있습니다.
+이 단계의 코드는 GitHub의 해당 [커밋](https://github.com/postrational/airflow_tutorial/tree/fc918909763eba0a1671ecda4629b4ffec45c441/airflow_home)을 통해 받을 수 있다.
   
-새 운영자를 테스트하려면 (CTRL-C) Airflow 웹 서버 및 스케줄러를 중지하고 다시 시작해야합니다. 그런 다음 Airflow UI로 돌아가서 my_test_dag DAG를 켜고 실행을 시작하십시오. my_first_operator_task에 대한 로그를 살펴보십시오.
+새로운 오퍼레이터를 테스트해보려면 Airflow 웹 서버와 스케줄러를 중지한 후(CTRL-C) 재시작시켜야 한다. 그런 다음 Airflow UI로 돌아가 `my_test_dag` DAG를 켜고 실행시켜라. `my_first_operator_task` 로그를 살펴봐라.
 
 ## Airflow 오퍼레이터 디버깅하기
 
