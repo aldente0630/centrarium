@@ -160,7 +160,7 @@ dummy_operator >> hello_operator
 
 ## DAG 돌려보기
   
-DAG를 실행하려면 두번째 터미널을 열고 다음 명령을 실행해서 Airflow 스케줄러를 시작하자.
+DAG를 돌리려면 두번째 터미널을 열고 다음 명령을 실행해서 Airflow 스케줄러를 구동시키자.
 ```bash
 $ cd /path/to/my/airflow/workspace
 $ export AIRFLOW_HOME=`pwd`/airflow_home
@@ -168,9 +168,9 @@ $ source venv/bin/activate
 (venv) $ airflow scheduler
 ```
   
-> 스케줄러는 실행을 위한 태스크를 보냅니다. 스케줄러에 의해 자동 시작되는  기본 Airflow 설정은 스케줄러에 의해 자동 시작되는 `SequentialExecutor`라는 실행 프로그램에 의존한다. 프로덕션에서는. `CeleryExecutor`와 같이보다 강력한 실행 프로그램을 사용하려고합니다.
+> 스케줄러는 실행시킬 태스크를 이그제큐터로 보낸다. Airflow는 스케줄러에 의해 자동 시작되는 이그제큐터로 `SequentialExecutor`를 기본적으로 사용한다. 프로덕션단계에서는 `CeleryExecutor` 같이 보다 탄탄한 이그제큐터를 사용해보고 싶을 것이다.
   
-브라우저에서 Airflow UI를 다시로드하면 Airflow UI에 hello_world DAG가 표시됩니다.
+브라우저에서 Airflow UI를 새로고침하면 Airflow UI에 `hello_world` DAG가 표시된다.
 
 DAG 실행을 시작하려면 먼저 워크 플로를 켜고 (화살표 1) 트리거 다그 버튼 (화살표 2)을 클릭하고 마지막으로 그래프보기 (화살표 3)를 클릭하여 실행 진행률을 확인합니다.
   
