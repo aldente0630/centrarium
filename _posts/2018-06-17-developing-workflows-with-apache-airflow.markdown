@@ -188,7 +188,7 @@ DAG를 구동시키려면 먼저 작업흐름을 켜고(화살표 1) **DAG 동�
 [2017-03-19 13:49:58,818] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 13:49:58,818] {python_operator.py:81} INFO - Done. Returned value was: Hello world!
 ```
   
-이 단계의 코드는 GitHub의 해당 [커밋](https://github.com/postrational/airflow_tutorial/tree/f91257e88ce2c0d30b032e92dc004c06754376fd/airflow_home)을 통해 받을 수 있다.
+이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/f91257e88ce2c0d30b032e92dc004c06754376fd/airflow_home)을 통해 받을 수 있다.
 
 ## 처음 만들어보는 Airflow 오퍼레이터 
   
@@ -270,7 +270,7 @@ airflow_home
 └── unittests.cfg
 ```
   
-이 단계의 코드는 GitHub의 해당 [커밋](https://github.com/postrational/airflow_tutorial/tree/fc918909763eba0a1671ecda4629b4ffec45c441/airflow_home)을 통해 받을 수 있다.
+이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/fc918909763eba0a1671ecda4629b4ffec45c441/airflow_home)을 통해 받을 수 있다.
   
 새로운 오퍼레이터를 테스트해보려면 Airflow 웹 서버와 스케줄러를 중지한 후(CTRL-C) 재시작시켜야 한다. 그런 다음 Airflow UI로 돌아가 `my_test_dag` DAG를 켜고 실행시켜라. `my_first_operator_task` 로그를 살펴봐라.
 
