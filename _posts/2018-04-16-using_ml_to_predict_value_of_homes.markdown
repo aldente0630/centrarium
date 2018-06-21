@@ -23,14 +23,14 @@ cover: /assets/using_machine_learning_to_predict_value_of_homes_on_airbnb7.png
     
 ## LTV란 무엇인가?
   
-전자 상거래 및 마켓플레이스 기업에서 인기있는 개념인 고객 생애 가치(LTV)는 사용자 당 고정 시간 동안 발생할 추정 가치를 뜻하며 대개 달러 단위로 측정된다.
+전자 상거래와 마켓플레이스 기업에서 인기있는 개념인 고객 생애 가치(LTV)는 사용자가 고정 시간 동안 발생시킬 추정 가치를 뜻하며 대개 달러 단위로 측정된다.
   
 Spotify와 Netflix 등 전자 상거래 회사는 LTV를 구독료 설정 등 가격 결정에 자주 사용한다. Airbnb 같은 마켓플레이스 기업에서 사용자 LTV를 알면 다양한 마케팅 채널에 예산을 효율적으로 할당하고 키워드 기반 온라인 마케팅에 대해 보다 정확한 입찰 가격을 계산하고 숙소 세그먼트를 더 잘 만들 수 있다.
   
-과거 데이터를 사용해서 기존 숙소 [과거 가치를 계산](https://medium.com/swlh/diligence-at-social-capital-part-3-cohorts-and-revenue-ltv-ab65a07464e1)할 수 있지만 새 숙소 LTV를 예측하기 위해 기계 학습을 사용하여 한 걸음 더 나아갔다.
+과거 데이터를 사용해서 기존 숙소 [과거 가치를 계산](https://medium.com/swlh/diligence-at-social-capital-part-3-cohorts-and-revenue-ltv-ab65a07464e1)할 수 있지만 새 숙소의 LTV를 예측하기 위해 기계 학습을 적용해보았다.
   
 ## LTV 모델링을 위한 기계학습 작업 흐름
-  
+  
 데이터 과학자는 일반적으로 피쳐 엔지니어링, 프로토타이핑 및 모형 선택 같은 기계학습 관련 작업에 익숙하다. 그러나 모형 프로토타입을 제품으로 사용하려면 종종 데이터 과학자가 익숙하지 않은 데이터 공학 기술의 직교 집합이 필요하다.
   
 ![](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb1.png)
