@@ -159,5 +159,30 @@ dummy_operator >> hello_operator
 이 파일은 아무 일도 하지 않는 `DummyOperator`와 태스크가 실행될 때 `print_hello` 함수를 호출하는 `PythonOperator` 오퍼레이터 두 개만 가지고 간단한 DAG를 생성한다.
 
 ## DAG 돌려보기
+  
+DAG를 실행하려면 두 번째 터미널을 열고 다음 명령을 실행하여 기류 스케줄러를 시작하십시오.
+```bash
+$ cd /path/to/my/airflow/workspace
+$ export AIRFLOW_HOME=`pwd`/airflow_home
+$ source venv/bin/activate
+(venv) $ airflow scheduler
+```
+  
+스케줄러는 실행을위한 작업을 보냅니다. 기본 Airflow 설정은 스케줄러에 의해 자동으로 시작되는. `SequentialExecutor`라는 실행 프로그램에 의존합니다. 프로덕션에서는. `CeleryExecutor`와 같이보다 강력한 실행 프로그램을 사용하려고합니다.
+  
+브라우저에서 Airflow UI를 다시로드하면 Airflow UI에 hello_world DAG가 표시됩니다.
 
+DAG 실행을 시작하려면 먼저 워크 플로를 켜고 (화살표 1) 트리거 다그 버튼 (화살표 2)을 클릭하고 마지막으로 그래프보기 (화살표 3)를 클릭하여 실행 진행률을 확인합니다.
+  
+두 작업 모두 성공 상태가 될 때까지 그래프보기를 다시로드 할 수 있습니다. 작업이 완료되면 hello_task를 클릭 한 다음 로그보기를 클릭 할 수 있습니다. 모든 것이 예상대로 작동하면 로그에 여러 줄이 표시되고 그 중 다음과 같은 내용이 표시됩니다.
+```python
+[2017-03-19 13:49:58,789] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
+[2017-03-19 13:49:58,789] {base_task_runner.py:95} INFO - Subtask: Starting attempt 1 of 1
+[2017-03-19 13:49:58,789] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
+[2017-03-19 13:49:58,790] {base_task_runner.py:95} INFO - Subtask: 
+[2017-03-19 13:49:58,800] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 13:49:58,800] {models.py:1342} INFO - Executing <Task(PythonOperator): hello_task> on 2017-03-19 13:49:44.775843
+[2017-03-19 13:49:58,818] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 13:49:58,818] {python_operator.py:81} INFO - Done. Returned value was: Hello world!
+```
+  
+이 단계에서 가져야하는 코드는 GitHub의이 커밋에서 사용할 수 있습니다.
 (번역 중)
