@@ -160,7 +160,7 @@ dummy_operator >> hello_operator
 
 ## DAG 돌려보기
   
-DAG를 실행하려면 두 번째 터미널을 열고 다음 명령을 실행하여 기류 스케줄러를 시작하십시오.
+DAG를 실행하려면 두번째 터미널을 열고 다음 명령을 실행해서 Airflow 스케줄러를 시작하자.
 ```bash
 $ cd /path/to/my/airflow/workspace
 $ export AIRFLOW_HOME=`pwd`/airflow_home
@@ -168,7 +168,7 @@ $ source venv/bin/activate
 (venv) $ airflow scheduler
 ```
   
-스케줄러는 실행을위한 작업을 보냅니다. 기본 Airflow 설정은 스케줄러에 의해 자동으로 시작되는. `SequentialExecutor`라는 실행 프로그램에 의존합니다. 프로덕션에서는. `CeleryExecutor`와 같이보다 강력한 실행 프로그램을 사용하려고합니다.
+> 스케줄러는 실행을 위한 태스크를 보냅니다. 스케줄러에 의해 자동 시작되는  기본 Airflow 설정은 스케줄러에 의해 자동 시작되는 `SequentialExecutor`라는 실행 프로그램에 의존한다. 프로덕션에서는. `CeleryExecutor`와 같이보다 강력한 실행 프로그램을 사용하려고합니다.
   
 브라우저에서 Airflow UI를 다시로드하면 Airflow UI에 hello_world DAG가 표시됩니다.
 
@@ -184,5 +184,7 @@ DAG 실행을 시작하려면 먼저 워크 플로를 켜고 (화살표 1) 트�
 [2017-03-19 13:49:58,818] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 13:49:58,818] {python_operator.py:81} INFO - Done. Returned value was: Hello world!
 ```
   
-이 단계에서 가져야하는 코드는 GitHub의이 커밋에서 사용할 수 있습니다.
+이 단계에서 가져야하는 코드는 GitHub의 이 [커밋](https://github.com/postrational/airflow_tutorial/tree/f91257e88ce2c0d30b032e92dc004c06754376fd/airflow_home)에서 사용할 수 있습니다.
+
+## 처음 만들어보는 Airflow 오퍼레이이이터터터터 
 (번역 중)
