@@ -228,15 +228,15 @@ class MyFirstPlugin(AirflowPlugin):
     operators = [MyFirstOperator]
  ```
    
-이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나의 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
+이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
   
-또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있습니다. airflow_home / plugins 디렉토리에 저장된 파일에 플러그인을 정의하여 Airflow에 플러그인을 제공하는 기능과 플러그인이 정의한 모든 연산자를 제공합니다. airflow.operators import MyFirstOperator에서이 연산자를 나중에 가져올 수 있습니다.
+또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 이 오퍼레이터를 `from airflow.operators import MyFirstOperator` 문구로 불러올 수 있다.
   
-문서에서 Airflow 플러그인에 대해 자세히 읽을 수 있습니다.
+[Airflow 플러그인](https://airflow.apache.org/plugins.html)는 문서에서 더 자세한 정보를 얻을 수 있다.
 
-> PYTHONPATH가 사용자 정의 모듈이 저장된 디렉토리를 포함하도록 설정되었는지 확인하십시오.
+> `PYTHONPATH`가 사용자 정의 모듈을 저장한 디렉토리를 포함하도록 설정됐는지 확인해라.
   
-이제 연산자를 테스트 할 새 DAG를 만들어야합니다. dags / test_operators.py 파일을 만들고 다음 내용으로 채 웁니다.
+이제 오퍼레이터를 테스트할 새 DAG를 만들어야한다. `dags/test_operators.py` 파일을 만들고 다음 내용으로 채우자.
 ```python
 from datetime import datetime
 from airflow import DAG
@@ -255,7 +255,7 @@ operator_task = MyFirstOperator(my_operator_param='This is a test.',
 dummy_task >> operator_task
 ```
   
-여기서는 DummyOperator 작업을 사용하여 my_test_dag라는 간단한 DAG를 만들고 새 MyFirstOperator를 사용하여 다른 작업을 만들었습니다. DAG 정의 중에 여기서 my_operator_param에 대한 구성 값을 전달하는 방법에 유의하십시오.
+여기서는 `DummyOperator` 태스크를 이용해서 `my_test_dag`라는 간단한 DAG를 만들었고 새로 만든 `MyFirstOperator`를 이용해 다른 태스크를 만들었다. DAG 정의 중에 여기서 my_operator_param에 대한 구성 값을 전달하는 방법에 유의하십시오.
   
 이 단계에서 소스 트리는 다음과 같습니다.
 ```bash
@@ -274,6 +274,6 @@ airflow_home
   
 새 운영자를 테스트하려면 (CTRL-C) Airflow 웹 서버 및 스케줄러를 중지하고 다시 시작해야합니다. 그런 다음 Airflow UI로 돌아가서 my_test_dag DAG를 켜고 실행을 시작하십시오. my_first_operator_task에 대한 로그를 살펴보십시오.
 
-## Airflow 오퍼레이터 
+## Airflow 오퍼레이터 디버깅하기
 
 (번역 중)
