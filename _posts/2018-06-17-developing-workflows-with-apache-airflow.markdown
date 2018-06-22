@@ -353,4 +353,85 @@ Out[2]: 'This is a test.'
 
 ## 처음 만들어보는 Airflow 센서
   
+기류 센서는 일반적으로 다른 시스템에서 장시간 실행되는 작업을 모니터링하는 데 사용되는 특별한 유형의 운영자입니다.
+  
+센서를 만들려면 `BaseSensorOperator`의 하위 클래스를 정의하고 해당 쐐기 함수를 재정의합니다. `poke` 함수는 다음 중 하나가 발생할 때까지 `poke_interval` 초마다 계속해서 호출됩니다.
+  
+* `poke`는 `True`를 반환합니다. `False`를 반환하면 다시 호출됩니다.
+* `poke`가 `airflow.exceptions`에서 `AirflowSkipException`을 발생 시키면 Sensor 작업 인스턴스의 상태가 Skipped로 설정됩니다.
+* `poke`는 또 다른 예외를 발생 시키며,이 경우 `retries`의 최대 횟수에 도달 할 때까지 재 시도됩니다.
+  
+Airflow의 코드베이스에는 많은 [사전 정의 된 센서](https://github.com/apache/incubator-airflow/blob/master/airflow/operators/sensors.py)가 있습니다.
+  
+`my_operators.py` 파일에 새 Sensor를 추가하려면 다음 코드를 추가합니다.
+```python
+from datetime import datetime
+from airflow.operators.sensors import BaseSensorOperator
+
+class MyFirstSensor(BaseSensorOperator):
+
+    @apply_defaults
+    def __init__(self, *args, **kwargs):
+        super(MyFirstSensor, self).__init__(*args, **kwargs)
+
+    def poke(self, context):
+        current_minute = datetime.now().minute
+        if current_minute % 3 != 0:
+            log.info("Current minute (%s) not is divisible by 3, sensor will retry.", current_minute)
+            return False
+
+        log.info("Current minute (%s) is divisible by 3, sensor finishing.", current_minute)
+        return True
+```
+  
+여기서 우리는 현재의 분이 3으로 나눌 수있는 숫자가 될 때까지 기다릴 매우 간단한 센서를 만들었습니다. 이런 일이 발생하면 센서의 조건이 충족되고 종료됩니다. 이것은 고의적 인 예입니다. 실제 상황에서는 예측할 수없는 시간을 예측할 수 있습니다.
+  
+또한 플러그인 클래스를 변경하여 새로운 센서를 내보낼 `operator`에 추가하십시오.
+```python
+class MyFirstPlugin(AirflowPlugin):
+    name = "my_first_plugin"
+    operators = [MyFirstOperator, MyFirstSensor]
+```
+  
+이제 운영자를 DAG에 배치 할 수 있습니다.
+```python
+from datetime import datetime
+from airflow import DAG
+from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators import MyFirstOperator, MyFirstSensor
+
+
+dag = DAG('my_test_dag', description='Another tutorial DAG',
+          schedule_interval='0 12 * * *',
+          start_date=datetime(2017, 3, 20), catchup=False)
+
+dummy_task = DummyOperator(task_id='dummy_task', dag=dag)
+
+sensor_task = MyFirstSensor(task_id='my_sensor_task', poke_interval=30, dag=dag)
+
+operator_task = MyFirstOperator(my_operator_param='This is a test.',
+                                task_id='my_first_operator_task', dag=dag)
+
+dummy_task >> sensor_task >> operator_task
+```
+  
+웹 서버 및 스케줄러를 다시 시작하고 새 워크 플로를 사용해보십시오.
+  
+`my_sensor_task` 태스크의 **로그보기**를 누르면 다음과 유사한 내용이 표시됩니다.
+```bash
+[2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
+[2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: Starting attempt 1 of 1
+[2017-03-19 14:13:28,720] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
+[2017-03-19 14:13:28,720] {base_task_runner.py:95} INFO - Subtask: 
+[2017-03-19 14:13:28,728] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:28,728] {models.py:1342} INFO - Executing <Task(MyFirstSensor): my_sensor_task> on 2017-03-19 14:13:05.651721
+[2017-03-19 14:13:28,743] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:28,743] {my_operators.py:34} INFO - Current minute (13) not is divisible by 3, sensor will retry.
+[2017-03-19 14:13:58,747] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:58,747] {my_operators.py:34} INFO - Current minute (13) not is divisible by 3, sensor will retry.
+[2017-03-19 14:14:28,750] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:14:28,750] {my_operators.py:34} INFO - Current minute (14) not is divisible by 3, sensor will retry.
+[2017-03-19 14:14:58,752] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:14:58,752] {my_operators.py:34} INFO - Current minute (14) not is divisible by 3, sensor will retry.
+[2017-03-19 14:15:28,756] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:15:28,756] {my_operators.py:37} INFO - Current minute (15) is divisible by 3, sensor finishing.
+[2017-03-19 14:15:28,757] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:15:28,756] {sensors.py:83} INFO - Success criteria met. Exiting.
+```
+  
+이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/cb9b6b90e578d514439255a425ee42f181d33ccb/airflow_home)을 통해 받을 수 있다.
+
 (번역 중)
