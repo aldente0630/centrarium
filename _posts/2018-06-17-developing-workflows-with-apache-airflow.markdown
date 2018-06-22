@@ -230,7 +230,7 @@ class MyFirstPlugin(AirflowPlugin):
    
 이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
   
-또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 이 오퍼레이터를 `from airflow.operators import MyFirstOperator`를 써서 불러올 수 있다.
+또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 오퍼레이터는 `from airflow.operators import MyFirstOperator`를 써서 불러올 수 있다.
   
 [Airflow 플러그인](https://airflow.apache.org/plugins.html)은 문서에서 더 자세한 정보를 얻을 수 있다.
 
@@ -294,7 +294,7 @@ airflow_home
 (venv) $ pip install ipython
 ```
   
-그러면 연산자의 `execute` 메소드 같은 코드에 IPython의 `embed()` 명령을 적을 수 있다 (예 : 연산자의 `execute` 메소드).
+그러면 연산자의 `execute` 메소드 같은 코드 내에 IPython의 `embed()` 명령을 적을 수 있다.
 ```python
 ef execute(self, context):
     log.info("Hello World!")
@@ -304,12 +304,12 @@ ef execute(self, context):
     log.info('operator_param: %s', self.operator_param)
 ```
   
-이제 `airflow test` 명령을 다시 실행하면 다음과 같습니다.
+이제 `airflow test` 명령을 다시 실행하면 다음과 같다.
 ```bash
 (venv) $ airflow test my_test_dag my_first_operator_task 2017-03-18T18:00:00.0
 ```
   
-작업은 실행되지만 실행이 멈추고 IPython 셸에 드롭됩니다.이 쉘에서 코드에서 `embed()`을 배치 한 위치를 탐색 할 수 있습니다.
+태스크가 실행되다가 멈추면서 IPython 쉘로 떨어진다. 이 쉘을 통해 코드 내 `embed()`를 위치시킨 부분을 탐색할 수 있다.
 ```python
 In [1]: context
 Out[1]:
