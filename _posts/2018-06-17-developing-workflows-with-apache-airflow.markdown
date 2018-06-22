@@ -434,6 +434,42 @@ dummy_task >> sensor_task >> operator_task
   
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/cb9b6b90e578d514439255a425ee42f181d33ccb/airflow_home)을 통해 받을 수 있다.
 
-** Xcom으로 오퍼레이터 간 커뮤니케이션하기
+**Xcom으로 오퍼레이터 간 커뮤니케이션하기
+  
+대부분의 워크 플로 시나리오에서 다운 스트림 작업은 업스트림 작업의 일부 정보를 사용해야합니다. 각 작업 인스턴스는 다른 프로세스, 다른 컴퓨터에서 실행되기 때문에 Airflow는 이러한 목적으로 Xcom이라는 통신 메커니즘을 제공합니다.
+  
+각 작업 인스턴스는 xcom_push 함수를 사용하여 Xcom에 정보를 저장할 수 있으며 다른 작업 인스턴스는 xcom_pull을 사용하여이 정보를 검색 할 수 있습니다. Xcoms를 사용하여 전달 된 정보는 공기 흐름 데이터베이스 (xcom 테이블)에 저장되어 저장되므로 큰 개체보다는 작은 정보 비트 만 저장하는 것이 좋습니다.
+  
+센서를 향상시켜 Xcom에 값을 저장하십시오. 우리는 xcom_push () 함수를 사용합니다.이 함수는 값이 저장 될 키와 값 자체를 인수로 취합니다.
+```python
+class MyFirstSensor(BaseSensorOperator):
+    ...
 
-(번역 중)
+    def poke(self, context):
+        ...
+        log.info("Current minute (%s) is divisible by 3, sensor finishing.", current_minute)
+        task_instance = context['task_instance']
+        task_instance.xcom_push('sensors_minute', current_minute)
+        return True
+```
+  
+이제 DAG의 센서에서 하류에있는 연산자에서 Xcom에서 검색하여이 값을 사용할 수 있습니다. 여기서 우리는 xcom_pull () 함수에 값을 저장 한 작업 인스턴스의 작업 ID와 값이 저장된 키라는 두 개의 인수를 제공합니다.
+```python
+class MyFirstOperator(BaseOperator):
+    ...
+
+    def execute(self, context):
+        log.info("Hello World!")
+        log.info('operator_param: %s', self.operator_param)
+        task_instance = context['task_instance']
+        sensors_minute = task_instance.xcom_pull('my_sensor_task', key='sensors_minute')
+        log.info('Valid minute as determined by sensor: %s', sensors_minute)
+```
+  
+최종 버전의 코드는 GitHub의 커밋에 포함됩니다.
+  
+DAG 실행을 시작하고 운영자 로그를 보면 업스트림 센서에서 생성 한 값을 표시 할 수 있습니다.
+  
+문서에서 Airflow XComs에 대한 자세한 내용을 볼 수 있습니다.
+  
+Airflow에 대한 간단한 소개가 유용했기를 바랍니다. 자신의 워크 플로우와 데이터 처리 파이프 라인을 재미있게 개발하십시오!
