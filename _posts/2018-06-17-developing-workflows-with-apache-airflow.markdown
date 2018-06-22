@@ -345,8 +345,12 @@ In [2]: self.operator_param
 Out[2]: 'This is a test.'
 ```
   
-물론 파이썬의 인터랙티브 디버거 인 `pdb`(`import pdb; pdb.set_trace()`) 나 IPython의 향상된 버전 인 `ipdb`(`import ipdb; ipdb.set_trace()`)를 사용할 수도 있습니다. 또는 `airflow test` 기반 실행 구성을 사용하여 PyCharm과 같은 IDE에서 중단 점을 설정할 수도 있습니다.
+물론 [파이썬의 인터랙티브 디버거](https://docs.python.org/3/library/pdb.html)인 `pdb`(`import pdb; pdb.set_trace()`) 나 [IPython의 향상된 버전](https://pypi.org/project/ipdb/)인 `ipdb`(`import ipdb; ipdb.set_trace()`)를 사용할 수도 있다. 또는 PyCharm같은 IDE로 중단점을 설정하는 [실행 환경설정](https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html) 기반 `airflow test`을 사용해볼 수도 있다.
+
+![PyCharm 디버그 설정](https://aldente0630.github.io/assets/developing_workflows_with_apache_airflow4.PNG)
   
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/45fe1a53d1306ad4e385dc7e85d8e606f860f750/airflow_home)을 통해 받을 수 있다.
+
+## 처음 만들어보는 Airflow 센서
   
 (번역 중)
