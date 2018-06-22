@@ -386,14 +386,14 @@ class MyFirstSensor(BaseSensorOperator):
   
 현재 시각의 분 단위가 3으로 나뉠 수있는 숫자가 될 때까지 기다리는 매우 간단한 센서를 만들었다. 이런 일이 발생하면 센서 조건이 충족되고 종료된다. 이건 인위적인 예이다. 실제 상황에서는 단지 시간이 아니라 예측할 수 없는 무언가를 확인하는 용도로 쓸 수 있다.
   
-플러그인 클래스를 또 변경해서 새로운 센서를 내보낼 `operator`에 추가.
+플러그인 클래스를 다시 변경해서 새로운 센서를 `operator`에 추가하여 내보내라.
 ```python
 class MyFirstPlugin(AirflowPlugin):
     name = "my_first_plugin"
     operators = [MyFirstOperator, MyFirstSensor]
 ```
   
-이제 운영자를 DAG에 배치 할 수 있습니다.
+이제 오퍼레이터를 DAG에서 사용할 수 있다.
 ```python
 from datetime import datetime
 from airflow import DAG
@@ -415,9 +415,9 @@ operator_task = MyFirstOperator(my_operator_param='This is a test.',
 dummy_task >> sensor_task >> operator_task
 ```
   
-웹 서버 및 스케줄러를 다시 시작하고 새 워크 플로를 사용해보십시오.
+웹 서버 및 스케줄러를 재시작하고 새로운 작업흐름을 이용해봐라.
   
-`my_sensor_task` 태스크의 **로그보기**를 누르면 다음과 유사한 내용이 표시됩니다.
+`my_sensor_task` 태스크의 **로그 보기**를 누르면 다음과 유사한 내용이 표시된다.
 ```bash
 [2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
 [2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: Starting attempt 1 of 1
@@ -433,5 +433,7 @@ dummy_task >> sensor_task >> operator_task
 ```
   
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/cb9b6b90e578d514439255a425ee42f181d33ccb/airflow_home)을 통해 받을 수 있다.
+
+** Xcom으로 오퍼레이터 간 커뮤니케이션하기
 
 (번역 중)
