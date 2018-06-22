@@ -230,7 +230,7 @@ class MyFirstPlugin(AirflowPlugin):
    
 이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
   
-또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 이 오퍼레이터를 `from airflow.operators import MyFirstOperator` 문구로 불러올 수 있다.
+또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 이 오퍼레이터를 `from airflow.operators import MyFirstOperator`를 써서 불러올 수 있다.
   
 [Airflow 플러그인](https://airflow.apache.org/plugins.html)은 문서에서 더 자세한 정보를 얻을 수 있다.
 
@@ -276,7 +276,7 @@ airflow_home
 
 ## Airflow 오퍼레이터 디버깅하기
   
-DAG 실행을 트리거하고 모든 업스트림 작업이 완료 될 때까지 기다렸다가 새 운영자를 다시 시도해야하는 경우 디버깅이 빨리 지루할 수 있습니다. 고맙게도 Airflow에는 `airflow test` 명령이 있습니다.이 명령을 사용하여 특정 DAG 실행 상황에서 단일 운영자를 수동으로 시작할 수 있습니다.
+DAG 런을 동작시키고 모든 업스트림 작업이 완료 될 때까지 기다렸다가 새 운영자를 다시 시도해야하는 경우 디버깅이 빨리 지루할 수 있습니다. 고맙게도 Airflow에는 `airflow test` 명령이 있습니다.이 명령을 사용하여 특정 DAG 실행 상황에서 단일 운영자를 수동으로 시작할 수 있습니다.
   
 이 명령은 dag 이름, 작업 이름 및 특정 DAG 실행과 관련된 날짜의 3 가지 인수를 사용합니다.
 ```bash
