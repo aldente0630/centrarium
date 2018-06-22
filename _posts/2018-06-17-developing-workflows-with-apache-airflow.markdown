@@ -276,7 +276,7 @@ airflow_home
 
 ## Airflow 오퍼레이터 디버깅하기
   
-DAG 실행을 트리거하고 모든 업스트림 작업이 완료 될 때까지 기다렸다가 새 운영자를 다시 시도해야하는 경우 디버깅이 빨리 지루할 수 있습니다. 고맙게도 Airflow에는 공기 흐름 테스트 명령이 있습니다.이 명령을 사용하여 특정 DAG 실행 상황에서 단일 운영자를 수동으로 시작할 수 있습니다.
+DAG 실행을 트리거하고 모든 업스트림 작업이 완료 될 때까지 기다렸다가 새 운영자를 다시 시도해야하는 경우 디버깅이 빨리 지루할 수 있습니다. 고맙게도 Airflow에는 `airflow test` 명령이 있습니다.이 명령을 사용하여 특정 DAG 실행 상황에서 단일 운영자를 수동으로 시작할 수 있습니다.
   
 이 명령은 dag 이름, 작업 이름 및 특정 DAG 실행과 관련된 날짜의 3 가지 인수를 사용합니다.
 ```bash
@@ -293,4 +293,60 @@ DAG 실행을 트리거하고 모든 업스트림 작업이 완료 될 때까지
 ```bash
 (venv) $ pip install ipython
 ```
+  
+그런 다음 코드에 IPython의 `embed()` 명령을 배치 할 수 있습니다 (예 : 연산자의 `execute` 메소드).
+```python
+ef execute(self, context):
+    log.info("Hello World!")
+
+    from IPython import embed; embed()
+
+    log.info('operator_param: %s', self.operator_param)
+```
+  
+이제 `airflow test` 명령을 다시 실행하면 다음과 같습니다.
+```bash
+(venv) $ airflow test my_test_dag my_first_operator_task 2017-03-18T18:00:00.0
+```
+  
+작업은 실행되지만 실행이 멈추고 IPython 셸에 드롭됩니다.이 쉘에서 코드에서 `embed()`을 배치 한 위치를 탐색 할 수 있습니다.
+```python
+In [1]: context
+Out[1]:
+{'END_DATE': '2017-03-18',
+ 'conf': <module 'airflow.configuration' from '/path/to/my/airflow/workspace/venv/lib/python3.6/site-packages/airflow/configuration.py'>,
+ 'dag': <DAG: my_test_dag>,
+ 'dag_run': None,
+ 'ds': '2017-03-18',
+ 'ds_nodash': '20170318',
+ 'end_date': '2017-03-18',
+ 'execution_date': datetime.datetime(2017, 3, 18, 18, 0),
+ 'latest_date': '2017-03-18',
+ 'macros': <module 'airflow.macros' from '/path/to/my/airflow/workspace/venv/lib/python3.6/site-packages/airflow/macros/__init__.py'>,
+ 'next_execution_date': datetime.datetime(2017, 3, 19, 12, 0),
+ 'params': {},
+ 'prev_execution_date': datetime.datetime(2017, 3, 18, 12, 0),
+ 'run_id': None,
+ 'tables': None,
+ 'task': <Task(MyFirstOperator): my_first_operator_task>,
+ 'task_instance': <TaskInstance: my_test_dag.my_first_operator_task 2017-03-18 18:00:00 [running]>,
+ 'task_instance_key_str': 'my_test_dag__my_first_operator_task__20170318',
+ 'test_mode': True,
+ 'ti': <TaskInstance: my_test_dag.my_first_operator_task 2017-03-18 18:00:00 [running]>,
+ 'tomorrow_ds': '2017-03-19',
+ 'tomorrow_ds_nodash': '20170319',
+ 'ts': '2017-03-18T18:00:00',
+ 'ts_nodash': '20170318T180000',
+ 'var': {'json': None, 'value': None},
+ 'yesterday_ds': '2017-03-17',
+ 'yesterday_ds_nodash': '20170317'}
+
+In [2]: self.operator_param
+Out[2]: 'This is a test.'
+```
+  
+물론 파이썬의 인터랙티브 디버거 인 `pdb`(`import pdb; pdb.set_trace()`) 나 IPython의 향상된 버전 인 `ipdb`(`import ipdb; ipdb.set_trace()`)를 사용할 수도 있습니다. 또는 `airflow test` 기반 실행 구성을 사용하여 PyCharm과 같은 IDE에서 중단 점을 설정할 수도 있습니다.
+  
+이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/45fe1a53d1306ad4e385dc7e85d8e606f860f750/airflow_home)을 통해 받을 수 있다.
+  
 (번역 중)
