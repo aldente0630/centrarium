@@ -353,17 +353,17 @@ Out[2]: 'This is a test.'
 
 ## 처음 만들어보는 Airflow 센서
   
-기류 센서는 일반적으로 다른 시스템에서 장시간 실행되는 작업을 모니터링하는 데 사용되는 특별한 유형의 운영자입니다.
+Airflow 센서는 일반적으로 다른 시스템에서 장시간 실행 중인 태스크를 모니터링하는데 사용하는 특별한 유형의 오퍼레이터이다.
   
-센서를 만들려면 `BaseSensorOperator`의 하위 클래스를 정의하고 해당 쐐기 함수를 재정의합니다. `poke` 함수는 다음 중 하나가 발생할 때까지 `poke_interval` 초마다 계속해서 호출됩니다.
+센서를 만들려면 `BaseSensorOperator` 하위 클래스를 정의하고 `poke` 함수를 오버라이드한다. `poke` 함수는 다음 중 하나가 발생할 때까지 `poke_interval` 초마다 계속해서 호출된다.
   
-* `poke`는 `True`를 반환합니다. `False`를 반환하면 다시 호출됩니다.
-* `poke`가 `airflow.exceptions`에서 `AirflowSkipException`을 발생 시키면 Sensor 작업 인스턴스의 상태가 Skipped로 설정됩니다.
-* `poke`는 또 다른 예외를 발생 시키며,이 경우 `retries`의 최대 횟수에 도달 할 때까지 재 시도됩니다.
+* `poke`가 `True`를 반환한다. `False`를 반환하면 다시 호출된다.
+* `poke`가 `airflow.exceptions`의 `AirflowSkipException`을 발생시키면 센서 태스크 인스턴스 상태가 건너뜀으로 설정된다.
+* `poke`가 다른 종류의 예외를 발생시킬 경우 `retries` 최대 횟수에 도달할 때까지 재시도된다.
   
-Airflow의 코드베이스에는 많은 [사전 정의 된 센서](https://github.com/apache/incubator-airflow/blob/master/airflow/operators/sensors.py)가 있습니다.
+Airflow 코드베이스에 [사전 정의한 센서](https://github.com/apache/incubator-airflow/blob/master/airflow/operators/sensors.py)가 많이 있다.
   
-`my_operators.py` 파일에 새 Sensor를 추가하려면 다음 코드를 추가합니다.
+`my_operators.py` 파일에 새로운 센서를 만드려면 다음 코드를 추가해라.
 ```python
 from datetime import datetime
 from airflow.operators.sensors import BaseSensorOperator
@@ -384,9 +384,9 @@ class MyFirstSensor(BaseSensorOperator):
         return True
 ```
   
-여기서 우리는 현재의 분이 3으로 나눌 수있는 숫자가 될 때까지 기다릴 매우 간단한 센서를 만들었습니다. 이런 일이 발생하면 센서의 조건이 충족되고 종료됩니다. 이것은 고의적 인 예입니다. 실제 상황에서는 예측할 수없는 시간을 예측할 수 있습니다.
+현재 시각의 분 단위가 3으로 나뉠 수있는 숫자가 될 때까지 기다리는 매우 간단한 센서를 만들었다. 이런 일이 발생하면 센서 조건이 충족되고 종료된다. 이건 인위적인 예이다. 실제 상황에서는 단지 시간이 아니라 예측할 수 없는 무언가를 확인하는 용도로 쓸 수 있다.
   
-또한 플러그인 클래스를 변경하여 새로운 센서를 내보낼 `operator`에 추가하십시오.
+플러그인 클래스를 또 변경해서 새로운 센서를 내보낼 `operator`에 추가.
 ```python
 class MyFirstPlugin(AirflowPlugin):
     name = "my_first_plugin"
