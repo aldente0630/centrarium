@@ -434,13 +434,13 @@ dummy_task >> sensor_task >> operator_task
   
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/cb9b6b90e578d514439255a425ee42f181d33ccb/airflow_home)을 통해 받을 수 있다.
 
-## Xcom으로 오퍼레이터 간 커뮤니케이션하기
+## Xcom으로 오퍼레이터 간 통신하기
   
-대부분의 워크 플로 시나리오에서 다운 스트림 작업은 업스트림 작업의 일부 정보를 사용해야합니다. 각 작업 인스턴스는 다른 프로세스, 다른 컴퓨터에서 실행되기 때문에 Airflow는 이러한 목적으로 Xcom이라는 통신 메커니즘을 제공합니다.
+대부분의 작업흐름 시나리오에서 후행 태스크는 선행 태스크의 일부 정보를 사용해야한다. 각 태스크 인스턴스는 다른 프로세스, 또는 다른 머신에서 실행되기 때문에 Airflow는 이 목적으로 Xcom이라는 통신 메커니즘을 제공한다.
   
-각 작업 인스턴스는 xcom_push 함수를 사용하여 Xcom에 정보를 저장할 수 있으며 다른 작업 인스턴스는 `xcom_pull`을 사용하여이 정보를 검색 할 수 있습니다. `xcoms_pull`를 사용하여 전달 된 정보는 공기 흐름 데이터베이스 (`xcom` 테이블)에 저장되어 저장되므로 큰 개체보다는 작은 정보 비트 만 저장하는 것이 좋습니다.
+각 태스크 인스턴스는 `xcom_push` 함수를 사용해서 Xcom에 정보를 저장할 수 있으며 다른 태스크 인스턴스는 `xcom_pull`을 사용해서 해당 정보를 불러올 수 있다. `xcoms_pull`를 사용하여 전달한 정보는 Airflow 데이터베이스(`xcom` 테이블)에 [피클화](https://docs.python.org/3/library/pickle.html)시켜 저장하므로 크기가 큰 객체보다는 작은 크기 정보만 저장하는 것이 좋다.
   
-센서를 향상시켜 Xcom에 값을 저장하십시오. 우리는 xcom_push () 함수를 사용합니다.이 함수는 값이 저장 될 키와 값 자체를 인수로 취합니다.
+센서를 발전시켜 Xcom에 값을 저장해보자. `xcom_push()` 함수를 사용하자. 이 함수는 값이 저장될 키와 값 자체를 인자로 취한다.
 ```python
 class MyFirstSensor(BaseSensorOperator):
     ...
@@ -453,7 +453,7 @@ class MyFirstSensor(BaseSensorOperator):
         return True
 ```
   
-이제 DAG의 센서에서 하류에있는 연산자에서 Xcom에서 검색하여이 값을 사용할 수 있습니다. 여기서 우리는 xcom_pull () 함수에 값을 저장 한 작업 인스턴스의 작업 ID와 값이 저장된 키라는 두 개의 인수를 제공합니다.
+DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 두 개의 인자로 넣어서 `xcom_pull()` 함수을 사용해보자.
 ```python
 class MyFirstOperator(BaseOperator):
     ...
