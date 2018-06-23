@@ -64,7 +64,7 @@ source: {
     FROM
       core_data.dim_listings
     WHERE
-      ds BETWEEN '{start_date}' AND '{end_date}'
+      ds BETWEEN '{{ start_date }}' AND '{{ end_date }}'
       """
   dependencies: [core_data.dim_listings]
   is_snapshot: true
