@@ -453,7 +453,7 @@ class MyFirstSensor(BaseSensorOperator):
         return True
 ```
   
-DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 두 개의 인자로 넣어서 `xcom_pull()` 함수을 사용해보자.
+DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 인자 두 개 를 넣어서 `xcom_pull()` 함수 사용해보자.
 ```python
 class MyFirstOperator(BaseOperator):
     ...
@@ -465,10 +465,10 @@ class MyFirstOperator(BaseOperator):
         sensors_minute = task_instance.xcom_pull('my_sensor_task', key='sensors_minute')
         log.info('Valid minute as determined by sensor: %s', sensors_minute)
 ```
+
+최종 버전의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/15bd74b0d513485673b410fd2b7d989a987cc20b/airflow_home)을 통해 받을 수 있다.
   
-최종 버전의 코드는 GitHub의 커밋에 포함됩니다.
-  
-DAG 실행을 시작하고 운영자 로그를 보면 업스트림 센서에서 생성 한 값을 표시 할 수 있습니다.
+DAG 런을 동작시키고 운영자 로그를 보면 업스트림 센서에서 생성 한 값을 표시 할 수 있습니다.
   
 문서에서 Airflow XComs에 대한 자세한 내용을 볼 수 있습니다.
   
