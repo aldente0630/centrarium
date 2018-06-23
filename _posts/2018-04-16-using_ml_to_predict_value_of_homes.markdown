@@ -51,7 +51,7 @@ Airbnb에서 피쳐 엔지니어링은 종종 Hive 쿼리를 작성하여 처음
   
 이 사내 도구의 크라우드소스적 특징으로 인해 데이터 과학자는 다른 사람들이 과거 프로젝트에서 준비했던 고품질의 검증된 변수를 다양하게 사용할 수 있다. 원하는 변수를 사용할 수 없는 경우 사용자는 다음과 같은 변수 구성 파일을 이용하여 자신만의 변수를 만들 수 있다.
   
- ```json
+ ```
 source: {
   type: hive
   query:"""
@@ -60,12 +60,12 @@ source: {
       , dim_city as city
       , dim_country as country
       , dim_is_active as is_active
-      , CONCAT(ds, '23:59:59.999') as ts
+      , CONCAT(ds, ' 23:59:59.999') as ts
     FROM
       core_data.dim_listings
     WHERE
       ds BETWEEN '{{ start_date }}' AND '{{ end_date }}'
-      """
+  """
   dependencies: [core_data.dim_listings]
   is_snapshot: true
   start_date: 2010-01-01
