@@ -472,4 +472,4 @@ DAG 런을 동작시키고 오퍼레이터 로그를 보면 선행 센서에서 
   
 Airflow XComs에 대한 상세한 내용은 [문서](https://airflow.incubator.apache.org/concepts.html#xcoms)에 볼 수 있다.
   
-Airflow에 대한 간략한 소개가 유용했기를 바란다. 나 만의 작업흐름과 데이터 처리 파이프 라인을 재미있게 개발해보자!
+Airflow에 대한 간략한 소개가 유용했기를 바란다. 나만의 작업흐름과 데이터 처리 파이프 라인을 재미있게 개발해보자!
