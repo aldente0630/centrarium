@@ -71,9 +71,9 @@ source: {
   start_date: 2010-01-01
 }
 features: {
-  city: "City in which the listing is located."
-  country: "Country in which the listing is located."
-  is_active: "If the listing is active as of the date partition."
+  city: "숙소가 위치한 도시."
+  country: "숙소가 위치한 국가."
+  is_active: "날짜 파티션에 대한 숙소 활성화 여부."
 }
  ```
   
