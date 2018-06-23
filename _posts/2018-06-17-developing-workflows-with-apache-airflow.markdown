@@ -468,8 +468,8 @@ class MyFirstOperator(BaseOperator):
 
 최종 버전의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/15bd74b0d513485673b410fd2b7d989a987cc20b/airflow_home)을 통해 받을 수 있다.
   
-DAG 런을 동작시키고 오퍼레이터 로그를 보면 선행 센서에서 생성한 값을 볼 수 있다.
+DAG 런을 동작시키고 오퍼레이터 로그를 보면 선행 센서에서 생성한 값을 확인할 수 있다.
   
 Airflow XComs에 대한 상세한 내용은 [문서](https://airflow.incubator.apache.org/concepts.html#xcoms)에 볼 수 있다.
   
-Airflow에 대한 간략한 소개가 유용했기를 바란다. 본인 만의 작업흐름과 데이터 처리 파이프 라인을 재미있게 개발하시길!
+Airflow에 대한 간략한 소개가 유용했기를 바란다. 나 만의 작업흐름과 데이터 처리 파이프 라인을 재미있게 개발하자!
