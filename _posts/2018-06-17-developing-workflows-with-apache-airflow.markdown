@@ -44,7 +44,7 @@ Airflow 문서는 여러 [개념들](https://airflow.apache.org/concepts.html)�
 
 ## 선행요건
   
-Airflow는 파이썬으로 짜여있다. 컴퓨터에 파이썬이 이미 깔려있다고 가정하겠다. 참고로 난 파이썬3를 사용하고 있다(지금이 2017년이기 때문이지, 이봐들 어서!). 그러나 Airflow는 파이썬2도 지원한다. Virtualenv 또한 깔려있다고 가정하겠다.
+Airflow는 파이썬으로 짜여있다. 컴퓨터에 파이썬이 이미 깔려있다고 가정하겠다. 참고로 난 파이썬3를 사용하고 있다(지금이 2017년이기 때문이지, 이봐들 어서!). 그러나 Airflow는 파이썬2도 지원한다. virtualenv 또한 깔려있다고 가정하겠다.
 ```bash
 $ python3 --version
 Python 3.6.0
@@ -54,7 +54,7 @@ $ virtualenv --version
   
 ## Airflow 설치하기
 
-본 튜토리얼을 위한 작업 공간 디렉토리를 만들고 그 안에 파이썬3 Virtualenv 디렉토리를 만들자.
+본 튜토리얼을 위한 작업 공간 디렉토리를 만들고 그 안에 파이썬3 virtualenv 디렉토리를 만들자.
 ```bash
 $ cd /path/to/my/airflow/workspace
 $ virtualenv -p `which python3` venv
