@@ -123,7 +123,7 @@ Airflow UI는 Flask 웹 응용 프로그램 형태로 제공된다. 다음 명�
   
 ## 처음 만들어보는 Airflow DAG 
   
-좋다, 모든 게 준비됐다면 코드를 작성해보자. Hello World 작업흐름을 만들어볼 것이다. 이 작업흐름은 "Hello world!" 로그 찍는 일만 할거다. 
+좋다, 모든 게 준비됐다면 코드를 작성해보자. Hello World 작업흐름을 만들어볼 것이다. 이 작업흐름은 "Hello world!" 로그 찍는 일만 한다. 
   
 DAG 정의 파일이 `AIRFLOW_HOME/dags`에 저장되게 `dags_folder`를 만들어라. 이 디렉토리에 `hello_world.py` 파일을 만들자.
 ```bash
