@@ -415,7 +415,7 @@ operator_task = MyFirstOperator(my_operator_param='This is a test.',
 dummy_task >> sensor_task >> operator_task
 ```
   
-웹 서버 및 스케줄러를 재시작하고 새로운 작업흐름을 이용해봐라.
+웹 서버 및 스케줄러를 재시작하고 새로운 작업흐름을 이용해보자.
   
 `my_sensor_task` 태스크의 **로그 보기**를 누르면 다음과 유사한 내용이 표시된다.
 ```bash
