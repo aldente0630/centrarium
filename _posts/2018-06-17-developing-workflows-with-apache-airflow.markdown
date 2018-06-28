@@ -296,7 +296,7 @@ airflow_home
   
 그러면 연산자의 `execute` 메소드 같은 코드 내에 IPython의 `embed()` 명령을 적을 수 있다.
 ```python
-ef execute(self, context):
+def execute(self, context):
     log.info("Hello World!")
 
     from IPython import embed; embed()
