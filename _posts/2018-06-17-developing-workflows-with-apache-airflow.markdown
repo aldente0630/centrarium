@@ -230,7 +230,7 @@ class MyFirstPlugin(AirflowPlugin):
    
 이 파일에서는 `MyFirstOperator`라는 새 연산자를 정의한다. `execute` 메소드는 매우 간단하다. "Hello World!"와 매개 변수값 하나의 로그 남기는 일만 한다. 매개 변수는 `__init__` 함수에서 설정한다.
   
-또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것이 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 오퍼레이터는 `from airflow.operators import MyFirstOperator`를 써서 불러올 수 있다.
+또한 `MyFirstPlugin`이라는 Airflow 플러그인을 정의하고 있다. `airflow_home/plugins` 디렉토리에 플러그인을 정의한 파일을 저장함으로써 플러그인이 제공하는 기능과 그것을 정의한 모든 오퍼레이터를 Airflow가 가져다 쓸 수 있다. 오퍼레이터는 `from airflow.operators import MyFirstOperator`를 써서 불러올 수 있다.
   
 [Airflow 플러그인](https://airflow.apache.org/plugins.html)은 문서에서 더 자세한 정보를 얻을 수 있다.
 
