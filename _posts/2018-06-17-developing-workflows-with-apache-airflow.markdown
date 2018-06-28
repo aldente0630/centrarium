@@ -202,7 +202,7 @@ DAG를 구동시키려면 먼저 작업흐름을 켜고(화살표 1) **DAG 동�
   
 > execute 메소드는 여러 번 재시도될 수 있으므로 [멱등](https://ko.wikipedia.org/wiki/멱등법칙)이어야한다.
   
-`plugins/my_operators.py`라는 Airflow 플러그인 파일을 작성하여 첫 연산자를 만들어 볼 거다. 먼저 `airflow_home/plugins` 디렉토리를 만든 다음 `my_operators.py` 파일에 다음 내용을 적어 추가해라.
+`plugins/my_operators.py`라는 Airflow 플러그인 파일을 작성하여 첫 연산자를 만들어보자. 먼저 `airflow_home/plugins` 디렉토리를 만든 다음 `my_operators.py` 파일에 다음 내용을 적고 추가해라.
 ```python
 import logging
 
