@@ -345,7 +345,7 @@ In [2]: self.operator_param
 Out[2]: 'This is a test.'
 ```
   
-물론 [파이썬의 인터랙티브 디버거](https://docs.python.org/3/library/pdb.html)인 `pdb`(`import pdb; pdb.set_trace()`) 나 [IPython의 향상된 버전](https://pypi.org/project/ipdb/)인 `ipdb`(`import ipdb; ipdb.set_trace()`)를 사용할 수도 있다. 또는 PyCharm같은 IDE로 중단점을 설정하는 [실행 환경설정](https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html) 기반 `airflow test`을 사용해볼 수도 있다.
+물론 [파이썬의 인터랙티브 디버거](https://docs.python.org/3/library/pdb.html)인 `pdb`(`import pdb; pdb.set_trace()`) 나 [IPython의 향상된 버전](https://pypi.org/project/ipdb/)인 `ipdb`(`import ipdb; ipdb.set_trace()`)를 사용할 수도 있다. 또는 PyCharm같은 IDE로 중단점을 설정하여 [실행 환경설정](https://www.jetbrains.com/help/pycharm/creating-and-editing-run-debug-configurations.html) 기반 `airflow test`을 사용해볼 수도 있다.
 
 ![PyCharm 디버그 설정](https://aldente0630.github.io/assets/developing_workflows_with_apache_airflow4.PNG)
   
