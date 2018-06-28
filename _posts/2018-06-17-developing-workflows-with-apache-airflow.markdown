@@ -453,7 +453,7 @@ class MyFirstSensor(BaseSensorOperator):
         return True
 ```
   
-DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 인자 두 개 를 넣어서 `xcom_pull()` 함수 사용해보자.
+DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 인자 두 개를 넣어서 `xcom_pull()` 함수 사용해보자.
 ```python
 class MyFirstOperator(BaseOperator):
     ...
