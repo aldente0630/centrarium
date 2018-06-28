@@ -198,7 +198,7 @@ DAG를 구동시키려면 먼저 작업흐름을 켜고(화살표 1) **DAG 동�
 
 또한 `execute` 메서드는 `airflow.exceptions` 중 하나인 `AirflowSkipException`을 발생시킬 수 있다. 이 경우 태스크 인스턴스는 건너 뛴 상태로 전환된다.
   
-다른 형태의 예외가 발생하면 `retiries` 최대 횟수에 도달할 때까지 태스크 재시도를 한다.
+다른 형태의 예외가 발생하면 `retries` 최대 횟수에 도달할 때까지 태스크 재시도를 한다.
   
 > execute 메소드는 여러 번 재시도될 수 있으므로 [멱등](https://ko.wikipedia.org/wiki/멱등법칙)이어야한다.
   
