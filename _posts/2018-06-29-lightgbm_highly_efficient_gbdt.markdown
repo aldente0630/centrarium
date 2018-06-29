@@ -1,16 +1,15 @@
 ---
 layout: post
-title:  LightGBM: 고효율 그래디언트 부스팅 결정 트리
-date:   2018-06-29 00:00:00
+title: LightGBM: 고효율 그래디언트 부스팅 결정 트리
+date: 2018-06-29 00:00:00
 author: Microsoft Research, Peking University, Microsoft Redmond
 categories: Data-Science
 ---
   
   
-**Guolin Ke, Qi Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei Ye, Tie-Yan Liu의 [*LightGBM: A Highly Efficient Gradient Boosting
-Decision Tree*](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)을 번역했습니다.**
-    
-    
+**Guolin Ke, Qi Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei Ye, Tie-Yan Liu의 [*LightGBM: A Highly Efficient Gradient Boosting Decision Tree*](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)을 번역했습니다.**
+  
+
 - - -
     
 ## 초록
