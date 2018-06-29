@@ -6,7 +6,7 @@ author: Microsoft Research, Peking University, Microsoft Redmond
 categories: Data-Science
 ---
   
-  
+    
 **Guolin Ke, Qi Meng, Thomas Finley, Taifeng Wang, Wei Chen, Weidong Ma, Qiwei Ye, Tie-Yan Liu의 [*LightGBM: A Highly Efficient Gradient Boosting Decision Tree*](https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree.pdf)을 번역했습니다.**
   
 
