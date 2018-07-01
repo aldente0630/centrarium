@@ -35,12 +35,12 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 
 ### 2.2 연관 작업
   
-XGBoost, pGBRT, scikit-learn, R의 gbm을 포함해 GBDT 구현에는 꽤 여러 종류가 있다. Scikit-learn과 R의 gbm[^4]은 사전 정렬 알고리즘을 구현했고 pGBRT는 히스토그램 기반 알고리즘을 구현했다. XGBoost는 사전 정렬 알고리즘과 히스토그램 기반 알고리즘 모두 지원한다. 논문[^5]에서 볼 수 있듯이 XGBoost가 다른 것들을 능가한다. 그래서 본 논문 실험 시 XGBoost를 기준선으로 삼았다.
+XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 여러 종류가 있다. Scikit-learn과 R의 gbm은 사전 정렬 알고리즘을 구현했고 pGBRT는 히스토그램 기반 알고리즘을 구현했다. XGBoost는 사전 정렬 알고리즘과 히스토그램 기반 알고리즘 모두 지원한다. 논문[^5]에서 볼 수 있듯이 XGBoost가 다른 것들을 능가한다. 그래서 본 논문 실험 시 XGBoost를 기준선으로 삼았다.
 
 (번역 중)
 
 [^1]: 본 논문에서 기울기 크고 작음의 기준은 절대값이다.
 [^2]: 코드는 Github에서 구할 수 있다. [https://github.com/Microsoft/LightGBM](https://github.com/Microsoft/LightGBM)
 [^3]: 지면의 제약으로 인해 높은 수준의 의사 코드를 사용했다. 자세한 내용은 오픈 소스 코드에서 찾을 수 있다.
-[^4]: GPU 또는 병렬 교육을 통해 GBDT 교육을 가속화하는 몇 가지 다른 작업이 있습니다. 그러나이 문서의 범위를 벗어납니다.
-[^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In *Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining,* pages 785–794. ACM, 2016.
+[^4]: GPU 또는 병렬 훈련을 통해 GBDT 훈련을 가속화시키는 몇 가지 다른 작업물이 있다. 그러나 이 논문의 범위를 벗어난다.
+[^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pages 785–794. ACM, 2016.
