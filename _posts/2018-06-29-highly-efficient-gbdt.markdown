@@ -38,4 +38,4 @@ GBDT는 순차적으로 훈련시킨 결정 트리 앙상블 모형이다. 각 �
 (번역 중)
 
 [^1]: 본 논문에서 기울기 크고 작음의 기준은 절대값이다.
-[^2]: 코드는 Github에서 구할 수 있다. https://github.com/Microsoft/LightGBM
+[^2]: 코드는 Github에서 구할 수 있다. [https://github.com/Microsoft/LightGBM](https://github.com/Microsoft/LightGBM)
