@@ -43,5 +43,4 @@ XGBoost, pGBRT, scikit-learn, R의 gbm을 포함해 GBDT 구현에는 꽤 여러
 [^2]: 코드는 Github에서 구할 수 있다. [https://github.com/Microsoft/LightGBM](https://github.com/Microsoft/LightGBM)
 [^3]: 지면의 제약으로 인해 높은 수준의 의사 코드를 사용했다. 자세한 내용은 오픈 소스 코드에서 찾을 수 있다.
 [^4]: GPU 또는 병렬 교육을 통해 GBDT 교육을 가속화하는 몇 가지 다른 작업이 있습니다. 그러나이 문서의 범위를 벗어납니다.
-[^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In *Proceedings of the 22Nd ACM SIGKDD International
-Conference on Knowledge Discovery and Data Mining,* pages 785–794. ACM, 2016.
+[^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In *Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining,* pages 785–794. ACM, 2016.
