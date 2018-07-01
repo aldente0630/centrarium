@@ -35,7 +35,7 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 
 ### 2.2 연관 작업
   
-XGBoost, pGBRT, scikit-learn, R의 gbm을 포함해 GBDT 구현은 꽤 여러 종류가 있다. Scikit-learn과 R의 gbm[^4]은 사전 정렬 알고리즘을 구현했고 pGBRT는 히스토그램 기반 알고리즘을 구현했다. XGBoost는 사전 정렬 알고리즘과 히스토그램 기반 알고리즘 모두 지원한다. 논문[^5]에서 볼 수 있듯이 XGBoost가 다른 것들을 능가한다. 그래서 XGBoost를 본 논문 실험 시 기준선으로 적용했다.
+XGBoost, pGBRT, scikit-learn, R의 gbm을 포함해 GBDT 구현에는 꽤 여러 종류가 있다. Scikit-learn과 R의 gbm[^4]은 사전 정렬 알고리즘을 구현했고 pGBRT는 히스토그램 기반 알고리즘을 구현했다. XGBoost는 사전 정렬 알고리즘과 히스토그램 기반 알고리즘 모두 지원한다. 논문[^5]에서 볼 수 있듯이 XGBoost가 다른 것들을 능가한다. 그래서 본 논문 실험 시 XGBoost를 기준선으로 삼았다.
 
 (번역 중)
 
