@@ -37,7 +37,7 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
   
 XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 여러 종류가 있다. Scikit-learn과 R의 gbm은 사전 정렬 알고리즘을 구현했고 pGBRT는 히스토그램 기반 알고리즘을 구현했다. XGBoost는 사전 정렬 알고리즘과 히스토그램 기반 알고리즘 모두 지원한다. 논문[^5]에서 볼 수 있듯이 XGBoost가 다른 것들을 능가한다. 그래서 본 논문 실험 시 XGBoost를 기준선으로 삼았다.
   
-교육 데이터의 크기를 줄이기 위해 일반적인 방법은 데이터 인스턴스를 다운 샘플링하는 것입니다. 예를 들어 [5]에서 데이터 인스턴스의 가중치가 고정 된 임계 값보다 작은 경우 데이터 인스턴스가 필터링됩니다. SGB ​​[20]는 모든 반복에서 약한 학습자를 훈련시키기 위해 임의의 부분 집합을 사용한다. [6]에서, 샘플링 비율은 훈련 과정에서 동적으로 조정된다. 그러나 SGB [20]를 제외한 모든 작업은 AdaBoost [21]를 기반으로하며 GBDT의 데이터 인스턴스에 고유 가중치가 없기 때문에 GBDT에 직접 적용 할 수 없습니다. SGB는 GBDT에 적용 할 수 있지만 일반적으로 정확도가 떨어 지므로 바람직한 선택이 아닙니다.
+훈련 데이터 크기를 줄이기 위한 일반적인 방법은 데이터 개체를 다운 샘플링하는 것이다. 예를 들어 논문[^6]은 데이터 개체 가중치가 고정 임계값보다 작을 경우 해당 데이터 개체는 거른다. SGB는 각 반복마다 약한 학습기를 훈련시키기 위해 임의의 부분 집합을 사용한다. 논문[^7]은 표본 추출 비율을 훈련 과정마다 동적으로 조정한다. 단 SGB를 제외한 모든 작업은 AdaBoost를 기반으로 하는데 GBDT는 Adaboost와 달리 데이터 개체마다 고유한 가중치가 없기 때문에 직접 적용하기는 어렵다. SGB는 GBDT에 적용 할수 있지만 일반적으로 정확도가 떨어지므로 바람직한 선택이 아니다.
   
 유사하게, 피쳐 수를 줄이기 위해 약한 피쳐를 필터링하는 것이 자연 스럽다 [22, 23, 7, 24]. 이는 대개 주성분 분석 또는 투영 추적으로 수행됩니다. 그러나 이러한 접근법은 기능에 중요한 중복이 포함되어 있다는 가정에 크게 의존합니다. 실제로는 실제로는 그렇지 않을 수도 있습니다 (기능은 일반적으로 고유 한 기여로 설계되며 그 중 하나를 제거하면 어느 정도까지 교육 정확도에 영향을 미칠 수 있음).
   
@@ -53,3 +53,6 @@ XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 �
 [^3]: 지면의 제약으로 인해 높은 수준의 의사 코드를 사용했다. 자세한 내용은 오픈 소스 코드에서 찾을 수 있다.
 [^4]: GPU 또는 병렬 훈련을 통해 GBDT 훈련을 가속화시키는 몇 가지 다른 작업물이 있다. 그러나 이 논문의 범위를 벗어난다.
 [^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pages 785–794. ACM, 2016.
+[^6]: Jerome Friedman, Trevor Hastie, Robert Tibshirani, et al. Additive logistic regression: a statistical view of boosting (with discussion and a rejoinder by the authors). The annals of statistics, 28(2):337–407, 2000.
+[^7]: Charles Dubout and François Fleuret. Boosting with maximum adaptive sampling. In Advances in Neural Information Processing
+Systems, pages 1332–1340, 2011.
