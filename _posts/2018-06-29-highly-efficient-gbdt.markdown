@@ -49,16 +49,21 @@ XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 �
 - - -
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(m\\): 변수 개수  
 \\(nodeSet \leftarrow \\{ 0 \\}  \triangleright  \\) 현재 깊이에서의 트리 노드들  
-\\(rowSet \leftarrow \\{ \\{ 0, 1, 2, \ldots \\} \\}  \triangleright  \\) 트리 노드에서의 데이터 색인들  
+\\(rowSet \leftarrow \\{ \\{ 0, 1, 2, \ldots \\} \\}  \triangleright  \\) 트리 노드에서의 데이터 색인들
+  
 **for** \\(i = 1\\) **to** \\(d\\) **do**
-> **for** \\(node\\) **in** \\(nodeSet\\) **do**  
->> \\(usedRows \leftarrow rowSet \[ node \] \\)
->> **for** \\(k = 1\\) **to** \\(m\\) **do**  
+> **for** \\(node\\) **in** \\(nodeSet\\) **do**
+>> \\(usedRows \leftarrow rowSet \[ node \] \\)  
+>> **for** \\(k = 1\\) **to** \\(m\\) **do**
 >>> \\(H \leftarrow new Histogram() \\)  
->>> \\( \triangleright \\) 히스토그램 생성  
->>> **for** \\(j\\) **in** \\(usedRows\\) **do**   
+>>> \\( \triangleright \\) 히스토그램를 생성한다.  
+>>> **for** \\(j\\) **in** \\(usedRows\\) **do**
 >>>> \\(bin \leftarrow I.f\[ k \] \[ j \].bin \\)  
->>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)
+>>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)  
+>>>> \\(H \[ bin \].n \leftarrow H \[ bin \].n + 1\\)
+>>> 히스토그램 \\(H\\)의 최적 분할점을 찾는다.  
+>>> \\(\ldot \\)  
+>> 
 
 (번역 중)
 
