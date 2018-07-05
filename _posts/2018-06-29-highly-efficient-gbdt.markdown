@@ -48,7 +48,7 @@ XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 �
 **알고리즘 1:** 히스토그램 기반 알고리즘
 **입력:** *I:* 훈련 데이터, *d:* 최대 깊이, *m:* 변수 개수  
 \\(nodeSet \leftarrow \{0\} \triangleright)\\) 현재 깊이에서의 트리 노드들  
-\\(rowSet \leftarrow \{\{0, 1, 2, \ldots\}\} \triangleright)\\) 트리 노드에서의 데이터 인덱스들  
+\\(rowSet \leftarrow \{\{0, 1, 2, \ldots\}\} \triangleright)\\) 트리 노드에서의 데이터 색인들  
 **for** 
 
 
