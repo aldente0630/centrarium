@@ -60,7 +60,7 @@ XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 �
 >>> **for** \\(j\\) **in** \\(usedRows\\) **do**
 >>>> \\(bin \leftarrow I.f\[ k \] \[ j \].bin \\)  
 >>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)  
->>>> \\(H \[ bin \].n \leftarrow H \[ bin \].n + 1\\)
+>>>> \\(H \[ bin \].n \leftarrow H \[ bin \].n + 1\\)  
 >>> 히스토그램 \\(H\\)의 최적 분할점을 찾는다.  
 >>> \\(\ldot \\)  
 >> 
