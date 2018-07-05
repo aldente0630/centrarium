@@ -55,8 +55,7 @@ XGBoost, pGBRT, scikit-learn, R의 gbm[^4]을 포함해 GBDT 구현에는 꽤 �
 > **for** \\(node\\) **in** \\(nodeSet\\) **do**
 >> \\(usedRows \leftarrow rowSet \[ node \] \\)  
 >> **for** \\(k = 1\\) **to** \\(m\\) **do**
->>> \\(H \leftarrow new Histogram() \\)  
->>> \\( \triangleright \\) 히스토그램를 생성한다.  
+>>> \\(H \leftarrow new Histogram() \triangleright \\) 히스토그램 생성  
 >>> **for** \\(j\\) **in** \\(usedRows\\) **do**
 >>>> \\(bin \leftarrow I.f\[ k \] \[ j \].bin \\)  
 >>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)  
