@@ -41,11 +41,11 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
   
 **for** \\(i = 1\\) **to** \\(d\\) **do**
 > **for** \\(node\\) **in** \\(nodeSet\\) **do**
->> \\(usedRows \leftarrow rowSet \[ node \] \\)  
+>> usedRows \\(\leftarrow rowSet \[ node \] \\)  
 >> **for** \\(k = 1\\) **to** \\(m\\) **do**
 >>> \\(H \leftarrow new Histogram() \triangleright \\) 히스토그램 생성  
 >>> **for** \\(j\\) **in** \\(usedRows\\) **do**
->>>> \\(bin \leftarrow I.f\[ k \] \[ j \].bin \\)  
+>>>> bin \\(\leftarrow I.f\[ k \] \[ j \].bin \\)  
 >>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)  
 >>>> \\(H \[ bin \].n \leftarrow H \[ bin \].n + 1\\)
   
