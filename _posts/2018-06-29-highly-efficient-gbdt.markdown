@@ -84,12 +84,17 @@ GOSS는 기울기가 큰 개체 모두 유지하되 기울기가 작은 개체�
 models \\(\leftarrow \\{ \\}\\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(\leftarrow a \times\\) len(\\(I\\)), randN \\(\leftarrow b \times\\) len(\\(I\\))
   
 **for** i = 1 **to** \\(d\\) **do**
-> preds \\(\leftarrow\\) models.predict(\\(I\\))
+> preds \\(\leftarrow\\) models.predict(\\(I\\))  
 > g \\(\leftarrow loss\\)(\\(I\\), preds), w \\(\leftarrow \\{1, 1, \ldots \\} \\)  
 > sorted \\(\leftarrow\\) GetSortedIndices(abs(g))  
 > topSet \\(\leftarrow\\) sorted\[1:topN\]  
 > randSet \\(\leftarrow\\) RandomPick(sorted\[topN:len(\\(I\\))\], randN)  
-
+> usedSet \\(\leftarrow\\) topSet \\(+\\) randSet  
+> w\[randSet\] \\(\times =\\) fact \\(\triangleright\\) 기울기 작은 데이터에 가중치 fact를 부여함  
+> newModel \\(\leftarrow\\) \\(L\\)(\\(I\\)\[usedSet\], \\(-\\) g\[usedSet\], w\[usedSet\])  
+> models.append(newModel)
+  
+### 3.2 이론적 
 (번역 중)
 
 [^1]: 본 논문에서 기울기 크고 작음의 기준은 절대값이다.
