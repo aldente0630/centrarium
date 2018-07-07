@@ -94,7 +94,7 @@ models \\(\leftarrow \\{ \\}\\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(
 > newModel \\(\leftarrow\\) \\(L\\)(\\(I\\)\[usedSet\], \\(-\\) g\[usedSet\], w\[usedSet\])  
 > models.append(newModel)
   
-### 3.2 이론적  
+### 3.2 이론적 분석    
 (번역 중)
 
 [^1]: 본 논문에서 기울기 크고 작음의 기준은 절대값이다.
