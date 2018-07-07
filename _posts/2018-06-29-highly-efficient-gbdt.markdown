@@ -81,25 +81,16 @@ GOSS는 기울기가 큰 개체 모두 유지하되 기울기가 작은 개체�
 - - -
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(a\\): 기울기 큰 데이터의 표본 추출 비율  
 **입력:** \\(b\\): 기울기 작은 데이터의 표본 추출 비율, \\(loss\\): 손실 함수, \\(L\\): 약한 학습기
-\\(models \leftarrow \\{ \\} , fact \leftarrow 1 - a \over b\\)
+\\(models \leftarrow \\{ \\} , fact \leftarrow {1 - a \over b}\\)  
 \\(topN \leftarrow a \times len(I), randN \leftarrow b \times len(I)\\) 
   
 **for** \\(i = 1\\) **to** \\(d\\) **do**
-> **for** \\(node\\) **in** \\(nodeSet\\) **do**
->> \\(usedRows \leftarrow rowSet \[ node \] \\)  
->> **for** \\(k = 1\\) **to** \\(m\\) **do**
->>> \\(H \leftarrow new Histogram() \triangleright \\) 히스토그램 생성  
->>> **for** \\(j\\) **in** \\(usedRows\\) **do**
->>>> \\(bin \leftarrow I.f\[ k \] \[ j \].bin \\)  
->>>> \\(H \[ bin \].y \leftarrow H \[ bin \].y + I.y \[ j \]\\)  
->>>> \\(H \[ bin \].n \leftarrow H \[ bin \].n + 1\\)
-  
->>> 히스토그램 \\(H\\)의 최적 분할점을 찾는다.  
->>> \\(\ldots\\)
-  
->> 최적 분할점을 적용해 \\(rowSet\\)과 \\(nodeSet\\)을 업데이트한다.  
->> \\(\ldots\\) 
-  
+> \\(preds \leftarrow models.predict(I) \\)  
+> \\(g \leftarrow loss(I, preds), w \leftarrow \{1, 1, \ldots \} \\)  
+> \\(sorted \leftarrow GetSortedIndices(abs(g)) \\)  
+> \\(topSet \leftarrow sorted\[1:topN\] \\)  
+> \\(randSet \leftarrow RandomPick(sorted\[topN:len(I)\], randN) \\)  
+
 (번역 중)
 
 [^1]: 본 논문에서 기울기 크고 작음의 기준은 절대값이다.
