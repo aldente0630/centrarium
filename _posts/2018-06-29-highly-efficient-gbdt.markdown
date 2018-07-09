@@ -101,7 +101,7 @@ GBDT는 결정 트리를 사용하여 입력 공간 \\(\mathcal{X}^s\\)에서 �
   
 $$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d) } + { ( \sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d) } \right),$$
   
-*여기서* //(n_O = \sum I\[ x_i \in O \], n^j_{l|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \]//)*이고* \\(n^j_{r|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)*이다.*
+*여기서* \\(n_O = \sum I\[ x_i \in O \], n^j_{l|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \]\\)*이고* \\(n^j_{r|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)*이다.*
   
 (번역 중)
 
