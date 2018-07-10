@@ -113,7 +113,9 @@ $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b
 
 따라서 GOSS에서 분할 포인트를 결정하기 위해 모든 인스턴스에서 정확한 \\(\tilde{V}_j(d)\\) 대신 작은 인스턴스 하위 집합에 대해 추정 된 \\(V_j(d)\\)를 사용하므로 계산 비용을 크게 줄일 수 있습니다. 더 중요한 것은 다음 정리는 GOSS가 많은 훈련 정확도를 잃지 않고 무작위 표본 추출보다 우월함을 나타냅니다. 공간 제한으로 인해 우리는 보충 자료에 정리의 증거를 남깁니다.
 
-**정리 3.2** GOSS에서의 근사 오차 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 \\(\bar(g)^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l \| g_i \| \over n^j_l(d)}, \bar(g)^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r \| g_i \| \over n^j_r(d)}\\)로 정의하자.
+**정리 3.2** *GOSS에서의 근사 오차 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r \| g_i \| \over n^j_r(d)}\\)로 정의하자. 적어도 \\(1 - \delta\\)의 확률로,*
+  
+$$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left{ $$
   
 (번역 중)
 
