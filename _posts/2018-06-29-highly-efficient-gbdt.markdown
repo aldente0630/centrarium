@@ -109,7 +109,7 @@ $$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \
   
 $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
   
-여기서 \\(A_l = \{x_i \in A: x_{ij} \le d \}, A_r = \{x_i \in A: x_{ij} > d \}, B_l = \{x_i \in B: x_{ij} \le d \}, B_r = \{x_i \in B: x_{ij} > d \}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)에 걸친 기울기의 합을 \\(A^c\\)의 크기로 다시 정규화하는데 사용된다.
+여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\}, A_r = \\{x_i \in A: x_{ij} > d \\}, B_l = \\{x_i \in B: x_{ij} \le d \\}, B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)에 걸친 기울기의 합을 \\(A^c\\)의 크기로 다시 정규화하는데 사용된다.
 
 따라서 GOSS에서 분할 포인트를 결정하기 위해 모든 인스턴스에서 정확한 \\(\tilde{V}_j(d)\\) 대신 작은 인스턴스 하위 집합에 대해 추정 된 \\(V_j(d)\\)를 사용하므로 계산 비용을 크게 줄일 수 있습니다. 더 중요한 것은 다음 정리는 GOSS가 많은 훈련 정확도를 잃지 않고 무작위 표본 추출보다 우월함을 나타냅니다. 공간 제한으로 인해 우리는 보충 자료에 정리의 증거를 남깁니다.
   
