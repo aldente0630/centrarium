@@ -105,7 +105,7 @@ $$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \
   
 변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다.[^8] 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
   
-우리의 제안 된 GOSS 방법에서, 우선, 우리는 내림차순으로 그라디언트의 절대 값에 따라 트레이닝 인스턴스의 순위를 매긴다. 둘째로, 우리는 더 큰 그라디언트로 top \\(\alpha \times 100%\\) 인스턴스를 유지하고 인스턴스 하위 집합 \\(A\\)를 얻습니다. 그 다음, 더 작은 그래디언트를 갖는 \\((1 - \alpha) \times 100%\\) 인스턴스로 이루어진 나머지 세트 \\(A^c\\)에 대해, 우리는 크기 \\(b \times \| A^c \|\\)를 갖는 서브 세트 \\(B\\)를 더 무작위로 샘플링한다. 최종적으로, 부분 집합 \\(A \cup B\\)에 대한 추정 된 분산 이득 \\(\tilde{V}_j(d)\\)에 따라 인스턴스들을 분할한다. 즉,
+제안된 GOSS 방법론은 우선 기울기 절대값에 따라 훈련 개체 순위를 내림차순으로 매긴다. 두번째로 기울기가 큰 상위 \\(\alpha \times 100%\\) 개체들을 가지고 개체 부분 집합 \\(A\\)를 만든다. 그 다음, 기울기가 작은 \\((1 - \alpha) \times 100%\\) 인스턴스로 이루어진 나머지 세트 \\(A^c\\)에 대해, 우리는 크기 \\(b \times \| A^c \|\\)를 갖는 서브 세트 \\(B\\)를 더 무작위로 샘플링한다. 최종적으로, 부분 집합 \\(A \cup B\\)에 대한 추정 된 분산 이득 \\(\tilde{V}_j(d)\\)에 따라 인스턴스들을 분할한다. 즉,
   
 $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
   
@@ -113,10 +113,11 @@ $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b
 
 따라서 GOSS에서 분할 포인트를 결정하기 위해 모든 인스턴스에서 정확한 \\(\tilde{V}_j(d)\\) 대신 작은 인스턴스 하위 집합에 대해 추정 된 \\(V_j(d)\\)를 사용하므로 계산 비용을 크게 줄일 수 있습니다. 더 중요한 것은 다음 정리는 GOSS가 많은 훈련 정확도를 잃지 않고 무작위 표본 추출보다 우월함을 나타냅니다. 공간 제한으로 인해 우리는 보충 자료에 정리의 증거를 남깁니다.
 
-**정리 3.2** *GOSS에서의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로, \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 정의하자. 적어도 \\(1 - \delta\\)의 확률로*
+**정리 3.2** *GOSS의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 정의하고 \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 하자. 적어도 \\(1 - \delta\\)의 확률로*
   
 $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)}, {1 \over n^j_r(d)} \right\} + 2DC_{a, b}\sqrt{\ln 1 / \delta \over n},$$
-*이다. 여기서* \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\)*이고* \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\)*이다.*
+  
+*이다. 여기서 \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\)이고 \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\)이다.*
   
 (번역 중)
 
