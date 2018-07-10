@@ -139,7 +139,7 @@ features = FeatureUnion(transforms)
   
 ![James, Witten, Hastie와 Tibshirani가 쓴 Introduction to Statistical Learning with R에서 참조한 그림](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
   
-보험 또는 신용 심사와 같은 적용 사례는 모형이 의도적으로 특정 고객을 차별해선 안되기 때문에 모형이 해석 가능해야한다. 그러나 이미지 분류 같은 적용 사례는 해석 가능한 모형보다 성능이 뛰어난 분류기 갖는게 훨씬 더 중요하다.
+보험 또는 신용 심사와 같은 적용 사례는 모형이 의도적으로 특정 고객을 차별해선 안되기 때문에 모형이 해석 가능해야한다. 그러나 이미지 분류 같은 적용 사례는 해석 가능한 모형보다 성능이 뛰어난 분류기를 갖는게 훨씬 더 중요하다.
   
 모형 선택에 많은 시간이 소요될 수 있으므로 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 도구를 사용하여 수행 속도를 향상시키는 방법을 실험했다. 다양한 모형을 탐색하여 어떤 유형의 모형이 성능이 일반적으로 우수한지 발견했다. 예를 들어, [eXtreme gradient boosted trees(XGBoost)](https://github.com/dmlc/xgboost)가 평균 응답 모형, 능선 회귀 모형 및 단일 의사 결정 트리와 같은 벤치마크 모형보다 월등히 뛰어나다는 것을 알게되었다.
   
