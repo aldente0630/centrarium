@@ -111,7 +111,7 @@ $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b
   
 이다. 여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\}, A_r = \\{x_i \in A: x_{ij} > d \\}, B_l = \\{x_i \in B: x_{ij} \le d \\}, B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)의 기울기 합을 \\(A^c\\) 크기에 맞게 정규화하는데 사용한다.
 
-따라서 GOSS는 분할점 결정 시 모든 개체를 사용한 정확한 \\(\tilde{V}_j(d)\\) 대신 더 적은 수의 개체 부분 집합을 통해 추정한 \\(V_j(d)\\)를 이용하므로 계산 비용을 크게 줄일 수 있다. 보다 중요하게, 다음 정리는 GOSS가 훈련 정확도를 많이 잃지 않고도 무작위 표본 추출보다 우수함을 보여준다. 지면의 제약으로 보충 자료에 정리 증명을 남긴다.
+따라서 GOSS는 분할점 결정 시 모든 개체를 사용한 정확한 \\(\tilde{V}_j(d)\\) 대신 더 적은 수의 개체 부분 집합을 통해 추정한 \\(V_j(d)\\)를 이용하므로 계산 비용을 크게 줄일 수 있다. 보다 중요하게, 다음 정리는 GOSS가 훈련 정확도를 많이 잃지 않고 무작위 표본 추출보다 우수함을 보여준다. 지면의 제약으로 보충 자료에 정리의 증명을 남긴다.
 
 **정리 3.2** *GOSS의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 정의하고 \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 하자. 적어도 \\(1 - \delta\\)의 확률로*
   
@@ -128,4 +128,4 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 [^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pages 785–794. ACM, 2016.
 [^6]: Jerome Friedman, Trevor Hastie, Robert Tibshirani, et al. Additive logistic regression: a statistical view of boosting (with discussion and a rejoinder by the authors). The annals of statistics, 28(2):337–407, 2000.
 [^7]: Charles Dubout and François Fleuret. Boosting with maximum adaptive sampling. In Advances in Neural Information Processing Systems, pages 1332–1340, 2011.
-[^8]: 다음의 분석은 임의의 노드에 적용됩니다. 단순화하고 혼동하지 않기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했습니다.
+[^8]: 다음 분석은 임의의 노드에 적용된다. 단순화하고 혼동되지 않기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했다.
