@@ -145,7 +145,7 @@ features = FeatureUnion(transforms)
   
 ![RMSE 비교를 통해 모형 선택이 가능하다](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb4.png)
   
-주된 목표는 숙소 가치를 예측하는 것이었기 때문에 해석 가능성보단 유연성을 고려한 XGBoost를 최종 모형으로 사용하는 것에 이견이 없었다.
+주된 목표는 숙소 가치를 예측하는 것이었기 때문에 해석 가능성보단 유연성을 고려해서 XGBoost를 최종 모형으로 사용하는 것에 이견 없었다.
   
 ## 모형 프로토타입을 제품화시키기
 >*사용한 도구: Airbnb의 노트북 변환 프레임워크 — ML Automator*
