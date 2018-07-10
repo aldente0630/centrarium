@@ -135,7 +135,7 @@ features = FeatureUnion(transforms)
 ## 모형 선택 수행
 >*사용한 도구: 다양한 [AutoML](https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8) 프레임워크*
   
-이전 구문에서 언급했듯이 우리는 어떤 모형 후보가 제품화에 가장 적합한지 결정해야한다. 이러한 결정을 내리기 위해서는 모형 해석 가능성과 모형 복잡도 간의 절충점을 고려해야한다. 예를 들어, 희소 선형 모형은 해석하기 쉽지만 데이터를 일반화하기에는 복잡도가 충분하지않다. 트리 기반 모형은 비선형 패턴을 잡아낼만큼 충분히 유연하지만 해석하기가 어렵다. 이를 [편의 - 분산 절충](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고 한다.
+이전 구문에서 언급했듯이 우리는 어떤 모형 후보가 제품화에 가장 적합한지 결정해야한다. 이러한 결정을 내리기 위해서는 모형 해석 가능성과 모형 복잡도 간의 절충점을 고려해야한다. 예를 들어, 희소 선형 모형은 해석하기 쉽지만 데이터를 일반화하기에는 복잡도가 충분하지않다. 트리 기반 모형은 비선형 패턴을 잡아낼만큼 충분히 유연하지만 해석하기가 어렵다. 이를 [편의 - 분산 트레이드오프](http://scott.fortmann-roe.com/docs/BiasVariance.html)이라고 한다.
   
 ![James, Witten, Hastie와 Tibshirani가 쓴 Introduction to Statistical Learning with R에서 참조한 그림](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb3.png)
   
