@@ -107,7 +107,11 @@ $$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \
   
 우리의 제안 된 GOSS 방법에서, 우선, 우리는 내림차순으로 그라디언트의 절대 값에 따라 트레이닝 인스턴스의 순위를 매긴다. 둘째로, 우리는 더 큰 그라디언트로 top \\(\alpha \times 100%\\) 인스턴스를 유지하고 인스턴스 하위 집합 \\(A\\)를 얻습니다. 그 다음, 더 작은 그래디언트를 갖는 \\((1 - \alpha) \times 100%\\) 인스턴스로 이루어진 나머지 세트 \\(A^c\\)에 대해, 우리는 크기 \\(b \times \| A^c \|\\)를 갖는 서브 세트 \\(B\\)를 더 무작위로 샘플링한다. 최종적으로, 부분 집합 \\(A \cup B\\)에 대한 추정 된 분산 이득 \\(\tilde{V}_j(d)\\)에 따라 인스턴스들을 분할한다. 즉,
   
-$$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over \b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over \b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
+$$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
+  
+여기서 \\(A_l = \{x_i \in A: x_{ij} \le d \}, A_r = \{x_i \in A: x_{ij} > d \}, B_l = \{x_i \in B: x_{ij} \le d \}, B_r = \{x_i \in B: x_{ij} > d \}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)에 걸친 기울기의 합을 \\(A^c\\)의 크기로 다시 정규화하는데 사용된다.
+
+따라서 GOSS에서 분할 포인트를 결정하기 위해 모든 인스턴스에서 정확한 \\(\tilde{V}_j(d)\\) 대신 작은 인스턴스 하위 집합에 대해 추정 된 \\(V_j(d)\\)를 사용하므로 계산 비용을 크게 줄일 수 있습니다. 더 중요한 것은 다음 정리는 GOSS가 많은 훈련 정확도를 잃지 않고 무작위 표본 추출보다 우월함을 나타냅니다. 공간 제한으로 인해 우리는 보충 자료에 정리의 증거를 남깁니다.
   
 (번역 중)
 
