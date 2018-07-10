@@ -116,7 +116,7 @@ $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b
 **정리 3.2** *GOSS에서의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로, \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 정의하자. 적어도 \\(1 - \delta\\)의 확률로*
   
 $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)}, {1 \over n^j_r(d)} right\} + 2DC_{a, b}\sqrt{\ln 1 / \delta \over n},$$
-*이다. 여기서* \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\| *이고* \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d)) *이다.*
+*이다. 여기서* \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\) *이고* \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\) *이다.*
   
 (번역 중)
 
