@@ -73,7 +73,7 @@ source: {
 features: {
   city: "숙소가 위치한 도시."
   country: "숙소가 위치한 국가."
-  is_active: "날짜 파티션에 대한 숙소 활성화 여부."
+  is_active: "날짜 파티션에 관한 숙소 활성화 여부."
 }
  ```
   
