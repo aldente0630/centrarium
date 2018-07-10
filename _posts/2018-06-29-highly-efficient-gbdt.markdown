@@ -103,7 +103,7 @@ $$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \
   
 *여기서 \\(n_O = \sum I\[ x_i \in O \], n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \]\\)이고 \\(n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
   
-변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다. 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
+변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다.[^8] 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
   
 우리의 제안 된 GOSS 방법에서, 우선, 우리는 내림차순으로 그라디언트의 절대 값에 따라 트레이닝 인스턴스의 순위를 매긴다. 둘째로, 우리는 더 큰 그라디언트로 top \\(\alpha \times 100%\\) 인스턴스를 유지하고 인스턴스 하위 집합 \\(A\\)를 얻습니다. 그 다음, 더 작은 그래디언트를 갖는 \\((1 - \alpha) \times 100%\\) 인스턴스로 이루어진 나머지 세트 \\(A^c\\)에 대해, 우리는 크기 \\(b \times \| A^c \|\\)를 갖는 서브 세트 \\(B\\)를 더 무작위로 샘플링한다. 최종적으로, 부분 집합 \\(A \cup B\\)에 대한 추정 된 분산 이득 \\(\tilde{V}_j(d)\\)에 따라 인스턴스들을 분할한다. 즉,
   
@@ -122,3 +122,4 @@ $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b
 [^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pages 785–794. ACM, 2016.
 [^6]: Jerome Friedman, Trevor Hastie, Robert Tibshirani, et al. Additive logistic regression: a statistical view of boosting (with discussion and a rejoinder by the authors). The annals of statistics, 28(2):337–407, 2000.
 [^7]: Charles Dubout and François Fleuret. Boosting with maximum adaptive sampling. In Advances in Neural Information Processing Systems, pages 1332–1340, 2011.
+[^8]: 다음의 분석은 임의의 노드에 적용됩니다. 단순화하고 혼동하지 않기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했습니다.
