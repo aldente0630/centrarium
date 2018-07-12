@@ -119,7 +119,7 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
   
 *이다. 여기서 \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\)이고 \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\)이다.*
 
-정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O}\left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}}\right)\\)이다. 분할이 너무 불균형 적이 지 않으면 (즉, nl (d) ≥O (n) 및 111jnjr (d) ≥ O (√n)), 근사 오차는 Ineq의 두 번째 항이 지배하게됩니다. n → ∞ 일 때 O (√ n)에서 0으로 감소한다. 즉, 데이터 수가 많을 때, 근사값
+정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O}\left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}}\right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) re \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) re \mathcal{O}(\sqrt{n})\\)), 근사 오차는 부등식의 두 번째 항이 좌우한다. n → ∞ 일 때 O (√ n)에서 0으로 감소한다. 즉, 데이터 수가 많을 때, 근사값
 꽤 정확합니다. (2) 무작위 표본 추출은 a = 0 인 GOSS의 특수한 경우이다. 많은 경우 GOSS는 C0, β> Ca, β-a 조건 하에서 무작위 표본 추출보다 우월 할 수있다.
 αa = maxxi∈A∪Ac | gi | / maxxi∈Ac | gi |를 갖는 √β> √β-a이다.
   
