@@ -119,7 +119,7 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
   
 *이다. 여기서 \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\)이고 \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\)이다.*
 
-정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O}\left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}}\right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) \ge \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) \ge \mathcal{O}(\sqrt{n})\\)), \\(n \rightarrow \infty\\)일 때 \\(\mathcal{O}(\sqrt{n})\\) 속도로 0으로 감소하는 부등식 두 번째 항이 근사 오차를 좌우한다. 즉, 데이터 수가 많다면 근사값은 상당히 정확하다. (2) 무작위 표본 추출은 \\(a = 0\\)인 GOSS의 특수한 경우다. 많은 경우 GOSS는 \\({\alpha_a \over \sqrt{\beta}} > {1 - \alpha_a \over \sqrt{\beta - \alpha}}\\) (여기서 \\(\alpha_a = max_{x_i \in A \cup A^c} \|g_i\| / max_{x_i \in A^c} \|g_i\\))와 동등한 \\(C_{0, \beta} >  C_{\alpha, \beta - \alpha}\\) 조건 하에서 무작위 표본 추출보다 우수하다. 
+정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O}\left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}}\right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) \ge \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) \ge \mathcal{O}(\sqrt{n})\\)), \\(n \rightarrow \infty\\)일 때 \\(\mathcal{O}(\sqrt{n})\\) 속도로 0으로 감소하는 부등식 두 번째 항이 근사 오차를 좌우한다. 즉, 데이터 수가 많다면 근사값은 상당히 정확하다. (2) 무작위 표본 추출은 \\(a = 0\\)인 GOSS의 특수한 경우다. 많은 경우 GOSS는 \\({\alpha_a \over \sqrt{\beta}} > {1 - \alpha_a \over \sqrt{\beta - \alpha}}\\) (여기서 \\(\alpha_a = max_{x_i \in A \cup A^c} \|g_i\| / max_{x_i \in A^c} \|g_i\\))와 동일한 \\(C_{0, \beta} >  C_{\alpha, \beta - \alpha}\\) 조건 하에서 무작위 표본 추출보다 우수하다. 
     
 (번역 중)
 
