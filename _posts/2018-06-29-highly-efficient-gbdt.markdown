@@ -37,7 +37,7 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 - - -
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(m\\): 변수 개수  
 \\(nodeSet \leftarrow \\{0\\} \triangleright\\) 현재 깊이에서의 트리 노드들  
-\\(rowSet \leftarrow \\{ \\{ 0, 1, 2, \ldots \\} \\} \triangleright\\) 트리 노드에서의 데이터 색인들
+\\(rowSet \leftarrow \\{\\{0, 1, 2, \ldots \\}\\} \triangleright\\) 트리 노드에서의 데이터 색인들
   
 **for** i = 1 **to** \\(d\\) **do**
 > **for** node **in** \\(nodeSet\\) **do**
@@ -99,7 +99,7 @@ GBDT는 결정 트리를 사용하여 입력 공간 \\(\mathcal{X}^s\\)에서 �
   
 **정의 3.1** *\\(O\\)를 의사 결정 트리의 미리 정한 노드 안에 있는 훈련 데이터셋라고 하자. 이 노드에 대해 점 \\(d\\)에서 분할하는 변수 \\(j\\)의 분산 획득은 다음과 같이 정의된다.*
   
-$$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d)} + { ( \sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d) } \right),$$
+$$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d)} + {(\sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d)} \right),$$
   
 *여기서 \\(n_O = \sum I\[ x_i \in O \], n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \], (n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
   
@@ -109,7 +109,7 @@ $$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \ov
   
 $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
   
-이다. 여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\}, A_r = \\{x_i \in A: x_{ij} > d \\}, B_l = \\{x_i \in B: x_{ij} \le d \\}, B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)의 기울기 합을 \\(A^c\\) 크기에 맞게 정규화하는데 사용한다.
+이다. 여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\}, A_r = \\{x_i \in A: x_{ij} > d \\},\\) \\(B_l = \\{x_i \in B: x_{ij} \le d \\}, B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)의 기울기 합을 \\(A^c\\) 크기에 맞게 정규화하는데 사용한다.
 
 따라서 GOSS는 분할점 결정 시 모든 개체를 사용한 정확한 \\(\tilde{V}_j(d)\\) 대신 더 적은 수의 개체 부분 집합을 통해 추정한 \\(V_j(d)\\)를 이용하므로 계산 비용을 크게 줄일 수 있다. 보다 중요하게, 다음 정리는 GOSS가 훈련 정확도를 많이 잃지 않고 무작위 표본 추출보다 우수함을 보여준다. 지면의 제약으로 보충 자료에 정리의 증명을 남긴다.
 
