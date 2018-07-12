@@ -36,8 +36,8 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 **알고리즘 1:** 히스토그램 기반 알고리즘
 - - -
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(m\\): 변수 개수  
-\\(nodeSet \leftarrow \\{ 0 \\}  \triangleright\\) 현재 깊이에서의 트리 노드들  
-\\(rowSet \leftarrow \\{ \\{ 0, 1, 2, \ldots \\} \\}  \triangleright\\) 트리 노드에서의 데이터 색인들
+\\(nodeSet \leftarrow \\{0\\} \triangleright\\) 현재 깊이에서의 트리 노드들  
+\\(rowSet \leftarrow \\{ \\{ 0, 1, 2, \ldots \\} \\} \triangleright\\) 트리 노드에서의 데이터 색인들
   
 **for** i = 1 **to** \\(d\\) **do**
 > **for** node **in** \\(nodeSet\\) **do**
@@ -81,7 +81,7 @@ GOSS는 기울기가 큰 개체는 모두 유지하되 기울기가 작은 개�
 - - -
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(a\\): 기울기 큰 데이터의 표본 추출 비율  
 **입력:** \\(b\\): 기울기 작은 데이터의 표본 추출 비율, \\(loss\\): 손실 함수, \\(L\\): 약한 학습기  
-models \\(\leftarrow \\{ \\}\\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(\leftarrow a \times\\) len(\\(I\\)), randN \\(\leftarrow b \times\\) len(\\(I\\))
+models \\(\leftarrow \\{ \\} \\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(\leftarrow a \times\\) len(\\(I\\)), randN \\(\leftarrow b \times\\) len(\\(I\\))
   
 **for** i = 1 **to** \\(d\\) **do**
 > preds \\(\leftarrow\\) models.predict(\\(I\\))  
@@ -99,9 +99,9 @@ GBDT는 결정 트리를 사용하여 입력 공간 \\(\mathcal{X}^s\\)에서 �
   
 **정의 3.1** *\\(O\\)를 의사 결정 트리의 미리 정한 노드 안에 있는 훈련 데이터셋라고 하자. 이 노드에 대해 점 \\(d\\)에서 분할하는 변수 \\(j\\)의 분산 획득은 다음과 같이 정의된다.*
   
-$$V_{j|O}(d) = {1 \over n_O} \left( { ( \sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d) } + { ( \sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d) } \right),$$
+$$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d)} + { ( \sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d) } \right),$$
   
-*여기서 \\(n_O = \sum I\[ x_i \in O \], n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \]\\)이고 \\(n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
+*여기서 \\(n_O = \sum I\[ x_i \in O \], n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \], (n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
   
 변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다.[^8] 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
   
@@ -119,9 +119,9 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
   
 *이다. 여기서 \\(C_{a, b} = {1 - a \over \sqrt{b}} max_{x_i \in A^c} \|g_i\|\\)이고 \\(D = max(\bar{g}^j_l(d), \bar{g}^j_r(d))\\)이다.*
 
-정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O}\left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}}\right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) \ge \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) \ge \mathcal{O}(\sqrt{n})\\)), \\(n \rightarrow \infty\\)일 때 \\(\mathcal{O}(\sqrt{n})\\) 속도로 0으로 감소하는 부등식 두 번째 항이 근사 오차를 좌우한다. 즉, 데이터 수가 많다면 근사값은 상당히 정확하다. (2) 무작위 표본 추출은 \\(a = 0\\)인 GOSS의 특수한 경우다. 많은 경우 GOSS는 \\({\alpha_a \over \sqrt{\beta}} > {1 - \alpha_a \over \sqrt{\beta - \alpha}}\\) (여기서 \\(\alpha_a = max_{x_i \in A \cup A^c} \|g_i\| / max_{x_i \in A^c} \|g_i\\))와 동일한 \\(C_{0, \beta} >  C_{\alpha, \beta - \alpha}\\) 조건 하에서 무작위 표본 추출보다 우수하다. 
+정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O} \left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}} \right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) \ge \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) \ge \mathcal{O}(\sqrt{n})\\)), \\(n \rightarrow \infty\\)일 때 \\(\mathcal{O}(\sqrt{n})\\) 속도로 0으로 감소하는 부등식 두 번째 항이 근사 오차를 좌우한다. 즉, 데이터 수가 많다면 근사값은 상당히 정확하다. (2) 무작위 표본 추출은 \\(a = 0\\)인 GOSS의 특수한 경우다. 많은 경우 GOSS는 \\({\alpha_a \over \sqrt{\beta}} > {1 - \alpha_a \over \sqrt{\beta - \alpha}}\\) (여기서 \\(\alpha_a = max_{x_i \in A \cup A^c} \|g_i\| / max_{x_i \in A^c} \|g_i\\))와 동일한 \\(C_{0, \beta} >  C_{\alpha, \beta - \alpha}\\) 조건 하에서 무작위 표본 추출보다 우수하다. 
   
-다음으로 GOSS의 일반화 성능을 분석했다. GOSS의 일반화 오차 \\(\mathcal{E}^{GOSS}\_{gen}(d) = \| \tilde{V}\_j(d) - V_*(d) \|\\)는 GOSS에서 표본 추출 된 훈련 인스턴스에 의해 계산 된 분산 이득과 기본 배포. 우리는 \\(\mathcal{E}^{GOSS}_{gen}(d) \le \| \tilde{V}_j(d) - V_j(d) \| + \| V_j(d) - V_*(d) \| \triangleq \mathcal{E}_{GOSS}(d) + \mathcal{E}_{gen}(d)\\). 따라서 GOSS 근사화가 정확하다면 GOSS의 일반화 오류는 전체 데이터 인스턴스를 사용하여 계산 된 오류와 비슷할 것입니다. 반면에 표본 추출은 기본 학습자의 다양성을 증가시켜 잠재적으로 일반화 성능을 향상시키는 데 도움을 줄 것입니다.
+다음으로 GOSS의 일반화 성능을 분석했다. GOSS의 일반화 오차 \\(\mathcal{E}^{GOSS}\_{gen}(d) = \| \tilde{V}\_j(d) - V_\*(d) \|\\)는 GOSS에서 표본 추출 된 훈련 인스턴스에 의해 계산 된 분산 이득과 기본 배포. 우리는 \\(\mathcal{E}^{GOSS}_{gen}(d) \le \| \tilde{V}_j(d) - V_j(d) \| + \| V_j(d) - V_\*(d) \| \triangleq \mathcal{E}_{GOSS}(d) + \mathcal{E}_{gen}(d)\\). 따라서 GOSS 근사화가 정확하다면 GOSS의 일반화 오류는 전체 데이터 인스턴스를 사용하여 계산 된 오류와 비슷할 것입니다. 반면에 표본 추출은 기본 학습자의 다양성을 증가시켜 잠재적으로 일반화 성능을 향상시키는 데 도움을 줄 것입니다.
 
 ## 4. 배타적 변수 묶음
     
