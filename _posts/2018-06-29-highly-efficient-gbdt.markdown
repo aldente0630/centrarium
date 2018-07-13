@@ -121,7 +121,7 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 
 정리에 의거해 다음과 같이 논의해볼 수 있다. (1) GOSS의 점근적 근사 비율은 \\(\mathcal{O} \left( {1 \over n^j_l(d)} + {1 \over n^j_r(d)} + {1 \over \sqrt{n}} \right)\\)이다. 한쪽으로 치우쳐 분할되지 않았다면(즉, \\(n^j_l(d) \ge \mathcal{O}(\sqrt{n})\\)이거나 \\(n^j_r(d) \ge \mathcal{O}(\sqrt{n})\\)), \\(n \rightarrow \infty\\)일 때 \\(\mathcal{O}(\sqrt{n})\\) 속도로 0으로 감소하는 부등식 두 번째 항이 근사 오차를 좌우한다. 즉, 데이터 수가 많다면 근사값은 상당히 정확하다. (2) 무작위 표본 추출은 \\(a = 0\\)인 GOSS의 특수한 경우다. 많은 경우 GOSS는 \\({\alpha_a \over \sqrt{\beta}} > {1 - \alpha_a \over \sqrt{\beta - \alpha}}\\) (여기서 \\(\alpha_a = max_{x_i \in A \cup A^c} \|g_i\| / max_{x_i \in A^c} \|g_i\\))와 동일한 \\(C_{0, \beta} >  C_{\alpha, \beta - \alpha}\\) 조건 하에서 무작위 표본 추출보다 우수하다. 
   
-다음으로 GOSS의 일반화 성능을 분석했다. GOSS의 일반화 오차 \\(\mathcal{E}^{GOSS}\_{gen}(d) = \| \tilde{V}\_j(d) - V_\*(d) \|\\)는 GOSS에서 표본 추출 된 훈련 인스턴스에 의해 계산 된 분산 이득과 기본 배포. 우리는 \\(\mathcal{E}^{GOSS}\_{gen}(d) \le \| \tilde{V}_j(d) - V_j(d) \| + \| V_j(d) - V_\*(d) \| \triangleq \mathcal{E}_{GOSS}(d) + \mathcal{E}_{gen}(d)\\). 따라서 GOSS 근사화가 정확하다면 GOSS의 일반화 오류는 전체 데이터 인스턴스를 사용하여 계산 된 오류와 비슷할 것입니다. 반면에 표본 추출은 기본 학습자의 다양성을 증가시켜 잠재적으로 일반화 성능을 향상시키는 데 도움을 줄 것입니다.
+다음으로 GOSS의 일반화 성능을 분석했다. GOSS의 일반화 오차 \\(\mathcal{E}^{GOSS}\_{gen}(d) = \| \tilde{V}\_j(d) - V_\*(d) \|\\)는 GOSS에서 표본 추출 된 훈련 인스턴스에 의해 계산 된 분산 이득과 기본 배포. 우리는 \\(\mathcal{E}^{GOSS}\_{gen}(d) \le \| \tilde{V}\_j(d) - V_j(d) \| + \| V_j(d) - V\_\*(d) \| \triangleq \mathcal{E}_{GOSS}(d) + \mathcal{E}_{gen}(d)\\). 따라서 GOSS 근사화가 정확하다면 GOSS의 일반화 오류는 전체 데이터 인스턴스를 사용하여 계산 된 오류와 비슷할 것입니다. 반면에 표본 추출은 기본 학습자의 다양성을 증가시켜 잠재적으로 일반화 성능을 향상시키는 데 도움을 줄 것입니다.
 
 ## 4. 배타적 변수 묶음
     
