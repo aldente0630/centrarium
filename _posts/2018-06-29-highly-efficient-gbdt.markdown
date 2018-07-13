@@ -101,7 +101,7 @@ GBDT는 결정 트리를 사용하여 입력 공간 \\(\mathcal{X}^s\\)에서 �
   
 $$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d)} + {(\sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d)} \right),$$
   
-*여기서 \\(n_O = \sum I\[ x_i \in O \],\\) \\(n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \],\\) \\((n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
+*여기서 \\(n_O = \sum I\[ x_i \in O \],\\) \\(n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \],\\) \\(n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
   
 변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다.[^8] 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
   
