@@ -101,7 +101,7 @@ GBDT는 결정 트리를 사용하여 입력 공간 \\(\mathcal{X}^s\\)에서 �
   
 $$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \over n^j_{l|O}(d)} + {(\sum_{x_i \in O: x_{ij} > d} g_i )^2 \over n^j_{r|O}(d)} \right),$$
   
-*여기서 \\(n_O = \sum I\[ x_i \in O \], n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \], (n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
+*여기서 \\(n_O = \sum I\[ x_i \in O \],\\) \\(n^j_{l\|O}(d) = \sum I \[ x_i \in O: x_{ij} \le d \],\\) \\((n^j_{r\|O}(d) = \sum I \[x_i \in O: x_{ij} > d \]\\)이다.*
   
 변수 j에 대해 결정 트리 알고리즘은 \\(d^\*\_j = argmax_d V_j(d)\\)를 선택하고 최대 획득 \\(V_j(d^\*\_j)\\)를 계산한다.[^8] 그런 다음 데이터를 변수 \\(j^\*\\)의 점 \\(d_{j^\*}\\)에 따라 왼쪽과 오른쪽 하위 노드로 분할한다.
   
@@ -109,11 +109,11 @@ $$V_{j|O}(d) = {1 \over n_O} \left( {(\sum_{x_i \in O: x_{ij} \le d} g_i )^2 \ov
   
 $$\tilde{V}_j(d) = {1 \over n} \left( {( \sum_{x_i \in A_l} g_i + {1 - a \over b} \sum_{x_i \in B_l} g_i )^2 \over n^j_l(d)} + {( \sum_{x_i \in A_r} g_i + {1 - a \over b} \sum_{x_i \in B_r} g_i )^2 \over n^j_r(d)} \right),$$
   
-이다. 여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\}, A_r = \\{x_i \in A: x_{ij} > d \\},\\) \\(B_l = \\{x_i \in B: x_{ij} \le d \\}, B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)의 기울기 합을 \\(A^c\\) 크기에 맞게 정규화하는데 사용한다.
+이다. 여기서 \\(A_l = \\{x_i \in A: x_{ij} \le d \\},\\) \\(A_r = \\{x_i \in A: x_{ij} > d \\},\\) \\(B_l = \\{x_i \in B: x_{ij} \le d \\},\\) \\(B_r = \\{x_i \in B: x_{ij} > d \\}\\)이고 계수 \\({1 - a \over b}\\)는 \\(B\\)의 기울기 합을 \\(A^c\\) 크기에 맞게 정규화하는데 사용한다.
 
 따라서 GOSS는 분할점 결정 시 모든 개체를 사용한 정확한 \\(\tilde{V}_j(d)\\) 대신 더 적은 수의 개체 부분 집합을 통해 추정한 \\(V_j(d)\\)를 이용하므로 계산 비용을 크게 줄일 수 있다. 보다 중요하게, 다음 정리는 GOSS가 훈련 정확도를 많이 잃지 않고 무작위 표본 추출보다 우수함을 보여준다. 지면의 제약으로 보충 자료에 정리의 증명을 남긴다.
 
-**정리 3.2** *GOSS의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 정의하고 \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)}, \bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 하자. 적어도 \\(1 - \delta\\)의 확률로*
+**정리 3.2** *GOSS의 근사 오차를 \\(\mathcal{E}(d) = \| \tilde{V}\_j(d) - V_j(d) \|\\)로 정의하고 \\(\bar{g}^j_l(d) = { \sum_{x_i \in ( A \cup A^c )_l} \| g_i \| \over n^j_l(d)},\\) \\(\bar{g}^j_r(d) = { \sum_{x_i \in ( A \cup A^c )_r} \| g_i \| \over n^j_r(d)}\\)라고 하자. 적어도 \\(1 - \delta\\)의 확률로*
   
 $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)}, {1 \over n^j_r(d)} \right\} + 2DC_{a, b}\sqrt{\ln 1 / \delta \over n},$$
   
