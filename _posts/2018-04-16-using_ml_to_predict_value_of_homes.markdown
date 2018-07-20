@@ -152,9 +152,9 @@ features = FeatureUnion(transforms)
   
 이전에 언급했듯이 제품화 파이프라인을 구축하는건 로컬 랩탑에서 프로토타입을 만드는 것과 상당히 다르다. 예를 들어 재훈련을 어떻게 주기적으로 수행할 수 있을까? 대용량 표본을 어떻게 효율적으로 스코어링할 수 있을까? 모형 성능 추이를 모니터링하는 파이프라인은 어떻게 구축할 수 있을까?
   
-Airbnb는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8) 기계 학습 파이프라인으로 자동 변환하는 **ML Automator**라는 프레임워크를 구축했다. 이 프레임워크는 Python으로 프로토타입을 작성하는데 익숙하지만 제한된 데이터 엔지니어링 경험 기반으로 자신의 모형을 제품화시키고싶은 데이터 과학자를 위해 특별히 설계되었다. 
+Airbnb는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8) 기계 학습 파이프라인으로 자동 변환하는 **ML Automator**라는 프레임워크를 구축했다. 이 프레임워크은 Python으로 프로토타입을 작성하는데 익숙하지만 제한된 데이터 엔지니어링 경험을 갖는, 자신의 모형을 제품화시키고싶은 데이터 과학자를 위해 특별히 설계했다. 
   
-![ML Automator 프레임 워크의 단순화한 개요](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb5.png)
+![ML Automator 프레임워크의 단순화한 개요](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb5.png)
 
 * 첫째, 프레임워크를 사용하기 위해선 사용자가 노트북에 모형 환경설정을 지정해야한다. 이 모형 환경설정의 목적은 프레임워크에 훈련 테이블 위치, 훈련을 위해 할당할 계산 자원의 수 및 스코어 계산 방법을 알려주는 것이다.
 
