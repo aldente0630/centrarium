@@ -148,8 +148,11 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 searchOrder \\(\leftarrow G\\).sortByDegree()  
 bundles \\(\leftarrow \\{ \\} \\), bundlesConflict \\(\leftarrow \\{ \\} \\)
   
-**for** i = 1 **to** searchOrder **do**
-> preds \\(\leftarrow\\) models.predict(\\(I\\))  
+**for** i **in** searchOrder **do**
+> needNew \\(\leftarrow\\) True  
+> **for** j = 1 **to** len(bundles) **do**
+>> cnt \\(\leftarrow\\) ConflictCnt(bundles\[j\], \\(F\\)\[i\])  
+>> **if** cnt + bundles
 > g \\(\leftarrow loss\\)(\\(I\\), preds), w \\(\leftarrow \\{1, 1, \ldots \\} \\)  
 > sorted \\(\leftarrow\\) GetSortedIndices(abs(g))  
 > topSet \\(\leftarrow\\) sorted\[1:topN\]  
