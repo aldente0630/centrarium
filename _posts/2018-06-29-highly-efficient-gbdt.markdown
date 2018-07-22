@@ -146,21 +146,20 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 **입력:** \\(F\\): 변수, \\(K\\): 최대 충돌 횟수  
 그래프 \\(G\\) 생성  
 searchOrder \\(\leftarrow G\\).sortByDegree()  
-bundles \\(\leftarrow \\{ \\} \\), bundlesConflict \\(\leftarrow \\{ \\} \\)
+\\(bundles \leftarrow \\{ \\} \\), bundlesConflict \\(\leftarrow \\{ \\} \\)
   
 **for** i **in** searchOrder **do**
 > needNew \\(\leftarrow\\) True  
-> **for** j = 1 **to** len(bundles) **do**
->> cnt \\(\leftarrow\\) ConflictCnt(bundles\[j\], \\(F\\)\[i\])  
->> **if** cnt + bundles
-> g \\(\leftarrow loss\\)(\\(I\\), preds), w \\(\leftarrow \\{1, 1, \ldots \\} \\)  
-> sorted \\(\leftarrow\\) GetSortedIndices(abs(g))  
-> topSet \\(\leftarrow\\) sorted\[1:topN\]  
-> randSet \\(\leftarrow\\) RandomPick(sorted\[topN:len(\\(I\\))\], randN)  
-> usedSet \\(\leftarrow\\) topSet \\(+\\) randSet  
-> w\[randSet\] \\(\times =\\) fact \\(\triangleright\\) 기울기 작은 데이터에 가중치 fact를 부여함  
-> newModel \\(\leftarrow\\) \\(L\\)(\\(I\\)\[usedSet\], \\(-\\) g\[usedSet\], w\[usedSet\])  
-> models.append(newModel)
+> **for** j = 1 **to** len(\\(bundeles\\)) **do**
+>> cnt \\(\leftarrow\\) ConflictCnt(\\(bundles\\)\[j\], \\(F\\)\[i\])  
+>> **if** cnt + bundlesConflict\[i\] \\(\le K\\) **then**
+>>> bundles\[j\].add(\\(F\\)\[i\]), needNew \\(\leftarrow\\) False  
+>>> break
+  
+>> **if** needNew **then**
+>>> 새 묶음으로써 \\(F\\)\[i\]를 \\(bundeles\\)에 더함
+  
+**OUtput:** \\(bundeles\\)
     
 (번역 중)
 
