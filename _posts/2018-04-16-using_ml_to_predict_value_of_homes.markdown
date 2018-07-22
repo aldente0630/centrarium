@@ -192,11 +192,11 @@ def transform(X):
     return {'score': model['regressor'].predict(Xt)}
 ```
   
-노트북이 병합되면 ML Automator는 훈련된 모형을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 감싸고 아래와 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프라인을 만든다. 데이터 직렬화, 주기적인 재훈련 스케줄링 및 분산 스코어링 같은 데이터 엔지니어링 작업 모두가 일 배치 작업의 일부로 캡슐화된다. 결과적으로 이 프레임워크는 데이터 과학자와 함께 모형을 제품화하는 전담 데이터 엔지니어가 있는 것처럼 데이터 과학자를 위한 모형 개발 비용을 크게 절감시킨다!
+노트북이 병합되면 ML Automator는 훈련된 모형을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 감싸고 아래와 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프라인을 만든다. 데이터 직렬화, 주기적인 재훈련 스케줄링 및 분산 스코어링 같은 데이터 엔지니어링 작업 모두가 일 배치 작업의 일부로 캡슐화된다. 결과적으로 이 프레임워크는 데이터 과학자와 함께 모형을 제품화시키는 전담 데이터 엔지니어가 있는 것처럼 데이터 과학자를 위한 모형 개발 비용을 크게 절감시킨다!
   
 ![A graph view of our LTV Airflow DAG, running in production](https://aldente0630.github.io/assets/using_machine_learning_to_predict_value_of_homes_on_airbnb6.png)
   
-**참고**: 제품화를 넘어서 모형 성능 추이를 추적하거나 모델링을 위해 탄력적인 계산 환경 활용하기 같은 다른 주제가 있지만 이 게시물에서 다루지 않을 것이다. 안심해라, 이것들은 모두 활발하게 개발 중인 영역이다.
+**참고**: 제품화를 넘어서 모형 성능 추이를 추적하거나 모델링 위해 계산 환경을 탄력적으로 활용하기 같은 다른 주제가 있지만 이 게시물에서 다루진 않을 것이다. 모두 활발하게 개발 중인 분야라는건 믿어도 좋다.
 
 ## 배운 교훈과 전망
 
