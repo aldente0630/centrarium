@@ -186,7 +186,7 @@ def fit(X_train, y_train):
     model['regressor'] = XGBRegressor().fit(Xt, y_train)
         
 def transform(X):
-    # return dictionary
+    # 딕셔너리 반환하기
     global model
     Xt = model['transformations'].transform(X)
     return {'score': model['regressor'].predict(Xt)}
