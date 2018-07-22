@@ -179,10 +179,10 @@ def fit(X_train, y_train):
                 ('densify', DenseMatrixConverter()),
             ]).fit(X_subset)
     
-    # apply transforms in parallel
+    # 병렬로 변환 적용하기
     Xt = model['transformations'].transform_parallel(X_train)
     
-    # fit the model in parallel
+    # 병렬로 모형 적합시키기
     model['regressor'] = XGBRegressor().fit(Xt, y_train)
         
 def transform(X):
