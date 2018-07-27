@@ -173,7 +173,7 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 > totalBin \\(\+=\\) f.numBin  
 > \\(binRanges\\).append(totalBin)  
   
-\\(newBin \leftarrow\\) new Bin(\\(numData\\))
+\\(newBin \leftarrow\\) new Bin(\\(numData\\))  
 **for** i \\(= 1\\) **to** \\(numData\\) **do**  
 > \\(newBin\\)\[i\] \\(\leftarrow 0\\)
 >> **for** j \\(= 1\\) **to** len(\\(F\\)) **do**
