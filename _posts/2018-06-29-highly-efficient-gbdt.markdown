@@ -170,19 +170,17 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 binRanges \\(\leftarrow \\{0 \\} \\), totalBin \\(\leftarrow 0 \\)
   
 **for** f **in** \\(F\\) **do**
-> totalBin \\(\+=\\) f.numBin 
-> binRanges.append(totalBin)
+> totalBin \\(\+=\\) f.numBin  
+> binRanges.append(totalBin)  
   
 newBin \\(\leftarrow\\) new Bin(\\(numData\\))
->> cnt \\(\leftarrow\\) ConflictCnt(\\(bundles\\)\[j\], \\(F\\)\[i\])  
->> **if** cnt + bundlesConflict\[i\] \\(\le K\\) **then**
->>> bundles\[j\].add(\\(F\\)\[i\]), needNew \\(\leftarrow\\) False  
->>> break
-  
->> **if** needNew **then**
->>> 새 묶음으로써 \\(F\\)\[i\]를 \\(bundles\\)에 추가함
-  
-**OUtput:** \\(bundles\\)
+**for** i \\(= 1\\) **to** \\(numData\\) **do**  
+> newBin\[i\] \\(\leftarrow 0\\)
+>> **for** j \\(= 1\\) **to** len(\\(F\\)) **do**
+>>> **if** \\(F\\)\[j\].bin\[i\] **then**
+>>>> newBin\[i\] \\(\leftarrow\\) F\[j\].bin\[i\] \\(+ binRanges\\)\[j\]
+
+**OUtput:** \\(newBin, binRanges\\)
   
 EFB 알고리즘은 훨씬 적은 밀도의 특징에 많은 독점적 인 특징을 묶어 줄 수 있기 때문에 0 개의 특징 값에 대한 불필요한 계산을 효과적으로 피할 수 있습니다. 사실, 우리는 또한 각 기능에 대한 테이블을 사용하여 0이 아닌 값으로 데이터를 기록함으로써 제로 피쳐 값을 무시하도록 기본 히스토그램 기반 알고리즘을 최적화 할 수 있습니다. 이 표의 데이터를 스캔하면 기능의 히스토그램 작성 비용이 \\(O(\\#data)\\)에서 \\(O(\\#non\_zero\_data)\\)로 변경됩니다. 그러나이 방법은 전체 트리 성장 프로세스에서 이러한 기능별 테이블을 유지 관리하기 위해 추가 메모리 및 계산 비용이 필요합니다. 우리는 LightGBM에서이 최적화를 기본 기능으로 구현합니다. 이 최적화는 번들이 희박한 경우에도 사용할 수 있으므로 EFB와 충돌하지 않습니다.
     
