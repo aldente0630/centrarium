@@ -167,18 +167,18 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 **알고리즘 4:** 배타적 변수 병합
 - - -
 **입력:** \\(numData\\): 데이터 개수, \\(F\\): 배타적 변수의 한 묶음  
-binRanges \\(\leftarrow \\{0 \\} \\), totalBin \\(\leftarrow 0 \\)
+\\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\)
   
 **for** f **in** \\(F\\) **do**
 > totalBin \\(\+=\\) f.numBin  
-> binRanges.append(totalBin)  
+> \\(binRanges\\).append(totalBin)  
   
-newBin \\(\leftarrow\\) new Bin(\\(numData\\))
+\\(newBin \leftarrow\\) new Bin(\\(numData\\))
 **for** i \\(= 1\\) **to** \\(numData\\) **do**  
-> newBin\[i\] \\(\leftarrow 0\\)
+> \\(newBin\\)\[i\] \\(\leftarrow 0\\)
 >> **for** j \\(= 1\\) **to** len(\\(F\\)) **do**
->>> **if** \\(F\\)\[j\].bin\[i\] **then**
->>>> newBin\[i\] \\(\leftarrow\\) F\[j\].bin\[i\] \\(+ binRanges\\)\[j\]
+>>> **if** \\(F\\)\[j\].bin\[i\] \\(\ne 0\\) **then**
+>>>> \\(newBin\\)\[i\] \\(\leftarrow\\) F\[j\].bin\[i\] \\(+ binRanges\\)\[j\]
 
 **OUtput:** \\(newBin, binRanges\\)
   
