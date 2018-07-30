@@ -199,4 +199,4 @@ EFB 알고리즘은 많은 배타적 변수를 훨씬 적은 밀집 변수로 �
 [^5]: Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. In Proceedings of the 22Nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, pages 785–794. ACM, 2016.
 [^6]: Jerome Friedman, Trevor Hastie, Robert Tibshirani, et al. Additive logistic regression: a statistical view of boosting (with discussion and a rejoinder by the authors). The annals of statistics, 28(2):337–407, 2000.
 [^7]: Charles Dubout and François Fleuret. Boosting with maximum adaptive sampling. In Advances in Neural Information Processing Systems, pages 1332–1340, 2011.
-[^8]: 다음 분석은 임의의 노드에 적용된다. 단순화하고 혼동되지 않기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했다.
+[^8]: 다음 분석은 임의의 노드에 적용된다. 단순화시키고 혼동을 피하기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했다.
