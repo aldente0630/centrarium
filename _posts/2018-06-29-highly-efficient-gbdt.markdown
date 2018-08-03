@@ -178,7 +178,7 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 > \\(newBin\\)\[i\] \\(\leftarrow 0\\)
 >> **for** j \\(= 1\\) **to** len(\\(F\\)) **do**
 >>> **if** \\(F\\)\[j\].bin\[i\] \\(\ne 0\\) **then**
->>>> \\(newBin\\)\[i\] \\(\leftarrow\\) F\[j\].bin\[i\] \\(+ binRanges\\)\[j\]
+>>>> \\(newBin\\)\[i\] \\(\leftarrow\\) \\(F\\)\[j\].bin\[i\] \\( + binRanges\\)\[j\]
 
 **출력:** \\(newBin, binRanges\\)
   
