@@ -192,7 +192,7 @@ E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 Linux 서버가 실험 �
 
 ### 5.1 전반적인 비교
 
-이 절은 전반적인 비교를 제시한다. GOSS와 EFB를 적용 안한 XGBoost와 LightGBM(lgb_baselline)을 기준선으로 사용했다. XGBoost는 xgb_exa(사전 정렬 알고리즘)와 xgb_his(히스토그램 기반 알고리즘) 두 가지 버전 모두 사용했다. xgb_his, lgb_baseline과 LightGBM의 경우 리프 별 트리 성장 전략을 사용했다. xgb_exa의 경우 층별 성장 전략만 지원하므로 xgb_exa의 매개 변수를 조정하여 다른 방법과 유사하게 트리를 성장시켰다.
+이 절은 전반적인 비교를 제시한다. GOSS와 EFB를 적용 안한 XGBoost 및 LightGBM(lgb_baselline)을 기준선으로 이용했다. XGBoost는 xgb_exa(사전 정렬 알고리즘)와 xgb_his(히스토그램 기반 알고리즘) 두 가지 버전 모두 사용했다. xgb_his, lgb_baseline과 LightGBM의 경우 리프 별 트리 성장 전략을 사용했다. xgb_exa의 경우 층별 성장 전략만 지원하므로 xgb_exa의 매개 변수를 조정하여 다른 방법과 유사하게 트리를 성장시켰다.
   
 (번역 중)
 
