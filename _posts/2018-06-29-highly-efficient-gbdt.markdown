@@ -186,13 +186,13 @@ EFB 알고리즘은 많은 배타적 변수를 훨씬 적은 밀집 변수로 �
 
 ## 5. 실험
   
-이 장에서는 제안한 LightGBM 알고리즘에 대해 실험한 결과를 보고하겠다. 공개되어 이용 가능한 데이터셋 5가지를 사용했다. 그 중 Microsoft Learning to Rank(LETOR) 데이터셋은 웹 검색 질의 30,000개를 포함하고있다. 이 데이터셋에 사용된 변수 대부분은 수치형 밀집 변수이다. [Allstate Insurance Claim](https://www.kaggle.com/c/ClaimPredictionChallenge)과 [Flight Delay](https://github.com/szilard/benchm-ml#data) 데이터셋은 원-핫 코딩된 변수를 많이 포함하고있다. 마지막 두 데이터셋은 KDD CUP 2010과 KDD CUP 2012에서 가져온 것이다. NTU가 우승 해법에서 사용한 변수(밀집 및 희소 변수 모두 포함한)를 직접 사용할 것이다. 이 두 데이터셋은 매우 크다. 이러한 데이터셋은 크기가 크고 밀집 및 희소 변수 모두 포함하며 실제 업무를 다룬다. 따라서 알고리즘을 철저히 시험해보기 위해 그것들을 이용할 수 있다.
+이 장에서는 제안한 LightGBM 알고리즘에 대해 실험한 결과를 보고하겠다. 공개되어 이용 가능한 데이터셋 5가지를 사용했다. 그 중 Microsoft Learning to Rank(LETOR) 데이터셋은 웹 검색 질의 30,000개를 포함하고있다. 이 데이터셋에 사용된 변수 대부분은 수치형 밀집 변수이다. [Allstate Insurance Claim](https://www.kaggle.com/c/ClaimPredictionChallenge)과 [Flight Delay](https://github.com/szilard/benchm-ml#data) 데이터셋은 원-핫 코딩된 변수를 많이 포함하고있다. 마지막 두 데이터셋은 KDD CUP 2010과 KDD CUP 2012에서 가져온 것이다. NTU가 우승 해법에서 사용한 변수(밀집 및 희소 변수 모두 포함한)를 직접 사용할 것이다. 이 두 데이터셋은 매우 크다. 이러한 데이터셋은 크기가 크고 밀집 및 희소 변수 모두 포함하므로 실제 분석 과제를 대신할 수 있다. 따라서 알고리즘을 철저히 시험해보기 위해 그것들을 이용할 수 있다.
   
 E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 Linux 서버가 실험 환경이다. 모든 실험은 멀티스레딩으로 진행했고 스레드 수는 16개로 고정했다.
 
 ### 5.1 전반적인 비교
 
-이 절은 전반적인 비교를 제시한다. GOSS와 EFB를 적용 안한 XGBoost와 LightGBM(lgb_baselline)을 기준선으로 사용했다. XGBoost는 xgb_exa(사전 정렬 알고리즘)와 xgb_his(히스토그램 기반 알고리즘) 두 가지 버전 모두 사용했다. xgb_his, lgb_baseline과 LightGBM의 경우 리프 별 트리 성장 전략을 사용했다. xgb_exa의 경우 층별 성장 전략만 지원하므로 xgb_exa 매개 변수를 조정하여 다른 방법과 유사하게 트리를 성장시켰다.
+이 절은 전반적인 비교를 제시한다. GOSS와 EFB를 적용 안한 XGBoost와 LightGBM(lgb_baselline)을 기준선으로 사용했다. XGBoost는 xgb_exa(사전 정렬 알고리즘)와 xgb_his(히스토그램 기반 알고리즘) 두 가지 버전 모두 사용했다. xgb_his, lgb_baseline과 LightGBM의 경우 리프 별 트리 성장 전략을 사용했다. xgb_exa의 경우 층별 성장 전략만 지원하므로 xgb_exa의 매개 변수를 조정하여 다른 방법과 유사하게 트리를 성장시켰다.
   
 (번역 중)
 
