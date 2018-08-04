@@ -193,6 +193,8 @@ E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 Linux 서버가 실험 �
 ### 5.1 전반적인 비교
 
 이 절은 전반적인 비교를 제시한다. GOSS와 EFB를 적용 안한 XGBoost 및 LightGBM(lgb_baselline)을 기준선으로 이용했다. XGBoost는 xgb_exa(사전 정렬 알고리즘)와 xgb_his(히스토그램 기반 알고리즘) 두 가지 버전 모두 사용했다. xgb_his, lgb_baseline과 LightGBM의 경우 리프 별 트리 성장 전략을 사용했다. xgb_exa의 경우 층별 성장 전략만 지원하므로 xgb_exa의 매개 변수를 조정하여 다른 방법과 유사하게 트리를 성장시켰다.
+
+또한 모든 데이터 세트의 매개 변수를 조정하여 속도와 정확성 간의 균형을 개선했습니다. Allstate, KDD10과 KDD12에 대해 \\(a = 0.05, b = 0.05\\)로 설정했고 Flight Delay와 LETOR는 \\(a = 0.1, b = 0.1\\)로 설정했다. EFB는 \\(γ = 0\\)으로 설정했다. 모든 알고리즘을 정해둔 반복 횟수만큼 실행했고 반복 상의 최고 점수를 정확도 결과로 얻었다.[^9]
   
 (번역 중)
 
@@ -204,3 +206,4 @@ E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 Linux 서버가 실험 �
 [^6]: Jerome Friedman, Trevor Hastie, Robert Tibshirani, et al. Additive logistic regression: a statistical view of boosting (with discussion and a rejoinder by the authors). The annals of statistics, 28(2):337–407, 2000.
 [^7]: Charles Dubout and François Fleuret. Boosting with maximum adaptive sampling. In Advances in Neural Information Processing Systems, pages 1332–1340, 2011.
 [^8]: 다음 분석은 임의의 노드에 적용된다. 단순화시키고 혼동을 피하기 위해 모든 표기법에서 하위 색인 \\(O\\)를 생략했다.
+[^9]: 지면의 제약으로 인해 매개 변수 설정 세부 사항을 보충 자료에 남겨두었다.
