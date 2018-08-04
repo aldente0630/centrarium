@@ -202,7 +202,7 @@ E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 리눅스 서버가 실�
 훈련 시간과 시험 정확도를 표2와 표3에 각각 요약해두었다. 결과를 통해 LightGBM이 기준선의 정확도를 거의 동일하게 가져가면서 속도는 가장 빠름을 알 수 있다. xgb_exa는 사전 정렬 알고리즘 기반이며 히스토그램 기반 알고리즘과 비교했을 때 매우 느리다. lgb_baseline와 비교했을 때 LightGBM은 Allstate, Flight Delay, LETOR, KDD10, KDD12 데이터셋에 대해 속도를 각각 21배, 6배, 1.6배, 14배, 13배 향상시켰다. xgb_his는 메모리를 많이 사용하기 때문에 KDD10와 KDD12 데이터셋의 경우 메모리 부족으로 실행이 실패했다. 나머지 데이터셋 모두 LightGBM이 가장 빠르며 Allstate 데이터 셋에서는 속도를 최대 9배  향상시켰다. 모든 알고리즘이 비슷한 반복 횟수을 거친 후 수렴하므로 반복 당 훈련 시간 기준으로 속도 증가를 계산했다. 전반적인 훈련 과정을 설명하기 위해 Flight Delay과 LETOR의 실제 시간 기준 훈련 곡선을 그림 1과 그림 2에 각각 그려넣었다. 나머지 데이터셋의 훈련 곡선은 지면을 절약하기 위해 보충 자료에 넣었다.
   
 ![표2](https://aldente0630.github.io/assets/highly-efficient-gbdt2.PNG)
-표 2: 전체 훈련 시간 비용 비교. LightGBM은 GOSS와 EFB을 적용한 lgb_baseline이다. EFB_only는 EFB만 적용한 lgb_baseline이다. 표의 값은 반복 학습1회에 소요되는 평균 시간 비용(초)이다.
+표 2: 전체 훈련 시간 비용 비교. LightGBM은 GOSS와 EFB을 적용한 lgb_baseline이다. EFB_only는 EFB만 적용한 lgb_baseline이다. 표의 값은 반복 학습 1회에 소요되는 평균 시간 비용(초)이다.
   
 ![표3](https://aldente0630.github.io/assets/highly-efficient-gbdt3.PNG)
 표 3: 시험 데이터셋에 대한 전반적인 정확도 비교. 분류 작업에는 AUC를 사용했고 순위 작업에는 NDCG@10을 사용했다. SGB는 확률적 그래디언트 부스팅을 적용한 lgb_baseline이며 표본 추출 비율은 LightGBM과 동일하다.
@@ -213,7 +213,7 @@ E5-2670 v3 CPU 2개(총 24코어)와 256GB 메모리의 리눅스 서버가 실�
 ![그림2](https://aldente0630.github.io/assets/highly-efficient-gbdt5.PNG)
 그림 2: LETOR에서의 시간-NDCG 곡선
   
-모든 데이터셋에서 LightGBM은 기준선의 시험 정확도를 거의 동일하게 달성해냈다. 이는 GOSS와 EFB가 정확도를 저하시키지 않으면서 속도를 상당히 향상시켰음을 의미한다. 즉, 3.2절과 4장의 이론적 분석 내용과 일치한다.
+모든 데이터셋에서 LightGBM은 기준선의 시험 정확도를 거의 동일하게 달성해냈다. 이는 GOSS와 EFB가 정확도를 저하시키지 않으면서 속도만 상당히 향상시켰음을 의미한다. 즉, 3.2절과 4장의 이론적 분석 내용과 일치한다.
   
 LightGBM은 이런 데이터셋에서 아주 다른 속도 향상 비율을 달성합니다. 전반적인 속도 향상은 GOSS와 EFB 결합에서 비롯한다. 우리는 다음 장에서 GOSS와 EFB의 효과를 개별적으로 논의하고 기여도를 분석 할 것이다.
   
