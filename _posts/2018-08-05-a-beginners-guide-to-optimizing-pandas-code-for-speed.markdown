@@ -23,4 +23,21 @@ categories: Data-Science
 4 . 판다스 시리즈를 사용한 벡터화  
 5 . NumPy 배열을 사용한 벡터화  
   
+예제 함수로 [Haversine](https://en.wikipedia.org/wiki/Haversine_formula)(또는 Great Circle) 거리 수식을 사용하겠다. 이 함수는 두 점의 위도와 경도를 취하여 지구 곡률을 조정하고 그 사이의 직선 거리를 계산한다. 함수는 다음과 같다.
+  
+```python
+import numpy as np
+
+# Define a basic Haversine distance formula
+def haversine(lat1, lon1, lat2, lon2):
+    MILES = 3959
+    lat1, lon1, lat2, lon2 = map(np.deg2rad, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1 
+    dlon = lon2 - lon1 
+    a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+    c = 2 * np.arcsin(np.sqrt(a)) 
+    total_miles = MILES * c
+    return total_miles
+```
+  
 (번역 중)
