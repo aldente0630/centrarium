@@ -23,7 +23,7 @@ categories: Data-Science
 4 . 판다스 시리즈를 사용한 벡터화  
 5 . NumPy 배열을 사용한 벡터화  
   
-예제 함수로 [Haversine](https://en.wikipedia.org/wiki/Haversine_formula)(또는 Great Circle) 거리 수식을 사용하겠다. 이 함수는 두 점의 위도와 경도를 취하여 지구 곡률을 조정하고 그 사이의 직선 거리를 계산한다. 함수는 다음과 같다.
+예제 함수로 [Haversine](https://en.wikipedia.org/wiki/Haversine_formula)(또는 Great Circle) 거리 수식을 사용했다. 이 함수는 두 점의 위도와 경도를 취하여 지구 곡률을 조정하고 그 사이의 직선 거리를 계산한다. 함수는 다음과 같다.
   
 ```python
 import numpy as np
@@ -40,4 +40,9 @@ def haversine(lat1, lon1, lat2, lon2):
     return total_miles
 ```
   
+실제 데이터 상에서 함수를 시험해보기 위해 [Expedia 개발자 사이트](https://developer.ean.com)에서 제공한 뉴욕 주 내 모든 호텔 좌표가 포함된 데이터셋을 사용했다. 각 호텔과 표본 좌표(NYC의 [Brooklyn Superhero Supply Store](https://www.superherosupplies.com)라는 환상적인 소상점) 사이 거리를 계산했다.
+  
+이 블로그에서 사용한 함수를 포함해 데이터셋 및 주피터 노트북을 [여기서](https://github.com/s-heisler/pycon2017-optimizing-pandas) 다운로드 받을 수 있다.
+  
+이 게시물은 [여기서](https://www.youtube.com/watch?v=HN5d490_KKk) 볼 수있는 PyCon 토크를 기반으로 한다.
 (번역 중)
