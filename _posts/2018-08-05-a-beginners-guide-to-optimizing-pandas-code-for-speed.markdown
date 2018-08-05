@@ -40,9 +40,9 @@ def haversine(lat1, lon1, lat2, lon2):
     return total_miles
 ```
   
-실제 데이터 상에서 함수를 시험해보기 위해 [Expedia 개발자 사이트](https://developer.ean.com)에서 제공한 뉴욕 주 내 모든 호텔 좌표가 포함된 데이터셋을 사용했다. 각 호텔과 표본 좌표(NYC의 [Brooklyn Superhero Supply Store](https://www.superherosupplies.com)라는 환상적인 소상점) 사이 거리를 계산했다.
+실제 데이터 상에서 함수를 시험해보기 위해 [익스피디아 개발자 사이트](https://developer.ean.com)에서 제공한 뉴욕 주 내 모든 호텔 좌표가 포함된 데이터셋을 사용했다. 각 호텔과 표본 좌표(NYC의 [Brooklyn Superhero Supply Store](https://www.superherosupplies.com)라는 환상적인 소상점) 사이 거리를 계산했다.
   
 이 블로그에서 사용한 함수를 포함해 데이터셋 및 주피터 노트북을 [여기서](https://github.com/s-heisler/pycon2017-optimizing-pandas) 다운로드 받을 수 있다.
   
-이 게시물은 [여기서](https://www.youtube.com/watch?v=HN5d490_KKk) 볼 수있는 PyCon 토크를 기반으로 한다.
+이 게시물은 [여기서](https://www.youtube.com/watch?v=HN5d490_KKk) 볼 수 있는 파이콘 토크를 기반으로 한다.
 (번역 중)
