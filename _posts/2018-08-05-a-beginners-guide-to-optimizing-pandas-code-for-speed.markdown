@@ -28,7 +28,7 @@ categories: Data-Science
 ```python
 import numpy as np
 
-# Define a basic Haversine distance formula
+# Haversine 기본 거리 공식을 정의함
 def haversine(lat1, lon1, lat2, lon2):
     MILES = 3959
     lat1, lon1, lat2, lon2 = map(np.deg2rad, [lat1, lon1, lat2, lon2])
