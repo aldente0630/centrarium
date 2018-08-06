@@ -57,7 +57,7 @@ def haversine(lat1, lon1, lat2, lon2):
 예를 들어 다음과 같이 작성할 수 있다.
   
 ```python
-# 모든 행을 수동으로 반복하며 거리의 시리즈를 반환하는 함수를 정의함
+# 모든 행을 수동으로 반복하며 일련의 거리를 반환하는 함수를 정의함
 def haversine_looping(df):
     distance_list = []
     for i in range(0, len(df)):
