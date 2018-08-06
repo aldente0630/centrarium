@@ -77,7 +77,7 @@ df['distance'] = haversine_looping(df)
   
 그러면 다음과 같은 결과를 반환한다.
   
-```
+```bash
 645 ms ± 31 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 ```
   
