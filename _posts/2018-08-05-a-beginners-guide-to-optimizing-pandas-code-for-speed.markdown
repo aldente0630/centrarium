@@ -54,4 +54,16 @@ def haversine(lat1, lon1, lat2, lon2):
   
 나와 함께 일했던 판다스 초보자 거의 대부분은 데이터프레임 행을 하나씩 반복하며 사용자 지정 함수를 적용하려고 했다. 이 접근법의 장점은 다른 반복 가능한 파이썬 객체와 상호 작용하는 방식, 예컨대 리스트나 튜플에 대해 반복하는 방식과 동일하다는 점이다. 반대로 단점은 판다스의 단순 반복이 아무 짝에 쓸모 없는 가장 느린 방법이라는 점이다. 아래에서 논의할 접근법과 달리 판다스의 단순 반복은 내장된 최적화를 이용하지 않기 때문에 극히 비효율적(그리고 종종 읽기도 쉽지 않다)이다.
   
+예를 들어 다음과 같이 작성할 수 있다.
+  
+```python
+# 모든 행을 수동으로 반복하며 거리의 시리즈를 반환하는 함수를 정의함
+def haversine_looping(df):
+    distance_list = []
+    for i in range(0, len(df)):
+        d = haversine(40.671, -73.985, df.iloc[i]['latitude'], df.iloc[i]['longitude'])
+        distance_list.append(d)
+    return distance_list
+ ```
+    
 (번역 중)
