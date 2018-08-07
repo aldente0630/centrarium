@@ -88,4 +88,21 @@ df['distance'] = haversine_looping(df)
 ## iterrows()를 사용한 반복
   
 반복해야하는 경우 행을 반복하는 더 좋은 방법은 iterrows () 메소드를 사용하는 것입니다. iterrows ()는 데이터 프레임의 행을 반복하고 행 자체가 포함 된 객체 이외에 각 행의 색인을 반환하는 생성기입니다. iterrows ()는 Pandas 데이터 프레임과 함께 작동하도록 최적화되어 있으며 대부분의 표준 함수를 실행하는 데 가장 효율적인 방법은 아니지만 (나중에 자세히 설명) 조잡한 루핑보다 중요한 개선 사항입니다. 우리의 경우 iterrows ()는 행을 수동으로 반복하는 것보다 거의 동일한 문제를 거의 4 배 빠르게 해결합니다.
+  
+```python
+%%timeit
+
+# Haversine applied on rows via iteration
+haversine_series = []
+for index, row in df.iterrows():
+    haversine_series.append(haversine(40.671, -73.985, row['latitude'], row['longitude']))
+df['distance'] = haversine_series
+```
+  
+```bash
+166 ms ± 2.42 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+```
+  
+* * *
+  
 (번역 중)
