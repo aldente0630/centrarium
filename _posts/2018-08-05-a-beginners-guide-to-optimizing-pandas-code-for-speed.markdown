@@ -114,7 +114,7 @@ df['distance'] = haversine_series
 ```python
 %%timeit
 
-# Timing apply on the Haversine function
+# Haversine 함수에 apply하는 타이밍
 df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
   
