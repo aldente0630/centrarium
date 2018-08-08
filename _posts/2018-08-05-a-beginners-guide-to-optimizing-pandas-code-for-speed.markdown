@@ -111,4 +111,15 @@ df['distance'] = haversine_series
   
 익명의 람다 함수를 사용하여 Haversine 함수를 각 행에 적용하면 각 행의 특정 셀을 함수 입력값으로 지정할 수 있다. 람다 함수는 판다스가 행(축 = 1)과 열(축 = 0) 중 어디로 함수를 적용할지 정할 수 있게끔 마지막에 축 매개 변수를 포함한다.
   
+```python
+%%timeit
+
+# Timing apply on the Haversine function
+df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
+```
+  
+```bash
+90.6 ms ± 7.55 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+```
+  
 (번역 중)
