@@ -109,4 +109,6 @@ df['distance'] = haversine_series
   
 `iterrows()`보다 더 좋은 옵션은 데이터프레임의 특정 축(행 또는 열을 의미)을 따라 함수를 적용하는 [`apply()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html) 방법을 사용하는 것이다. `apply()`는 본질적으로 행을 반복하지만 `iterrows()`보다 훨씬 효율적이다. 예를 들어 Cython에서 반복자를 사용하는 것과 같이 내부 최적화를 다양하게 활용하면 훨씬 효율적이다.  
   
+익명의 람다 함수를 사용하여 Haversine 함수를 각 행에 적용하면 각 행의 특정 셀을 함수 입력값으로 지정할 수 있다. 람다 함수는 판다스가 행(축 = 1)과 열(축 = 0) 중 어디로 함수를 적용할지 정할 수 있게끔 마지막에 축 매개 변수를 포함한다.
+  
 (번역 중)
