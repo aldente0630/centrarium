@@ -107,6 +107,6 @@ df['distance'] = haversine_series
   
 ## apply 방법을 사용한 더 나은 반복
   
-`iterrows()`보다 더 좋은 옵션은 DataFrame의 특정 축 (행 또는 열을 의미)을 따라 함수를 적용하는 [`apply()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html) 메서드를 사용하는 것입니다. `apply()`는 본질적으로 행을 반복하지만 `iterrows()`보다 훨씬 효율적입니다. 예를 들어 Cython에서 반복자를 사용하는 것과 같은 다양한 내부 최적화를 활용하면 훨씬 효율적입니다.  
+`iterrows()`보다 더 좋은 옵션은 데이터프레임의 특정 축(행 또는 열을 의미)을 따라 함수를 적용하는 [`apply()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html) 방법을 사용하는 것이다. `apply()`는 본질적으로 행을 반복하지만 `iterrows()`보다 훨씬 효율적이다. 예를 들어 Cython에서 반복자를 사용하는 것과 같이 내부 최적화를 다양하게 활용하면 훨씬 효율적이다.  
   
 (번역 중)
