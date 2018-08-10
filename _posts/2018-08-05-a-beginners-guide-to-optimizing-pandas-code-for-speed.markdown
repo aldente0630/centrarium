@@ -132,6 +132,8 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
 ```
   
 다음 결과를 보여준다.
+  
+![그림1](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed1.)
 
   
 (번역 중)
