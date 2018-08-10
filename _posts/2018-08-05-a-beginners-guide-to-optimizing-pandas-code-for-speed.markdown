@@ -87,7 +87,7 @@ df['distance'] = haversine_looping(df)
   
 ## iterrows()를 사용한 반복
   
-반복문을 돌려야할 때 iterrows()을 사용하는 건 행을 반복하기 위한 더 좋은 방법이다. iterrows()는 데이터프레임의 행을 반복하며 행 자체를 포함하는 객체에 덧붙여 각 행의 색인을 반환하는 생성자이다. iterrows()는 판다스 데이터프레임과 함께 작동하게끔 최적화되어 있으며 표준 함수 대부분을 실행하는 데 가장 효율적인 방법은 아니지만(나중에 자세히 설명) 단순 반복보다는 상당히 개선되었다. 예제의 경우 iterrows()는 행을 수동으로 반복하는 것보다 거의 똑같은 문제를 약 4배 빠르게 해결한다.
+반복문을 돌려야할 때 iterrows() 메소드를 사용하는 건 행을 반복하기 위한 더 좋은 방법이다. iterrows()는 데이터프레임의 행을 반복하며 행 자체를 포함하는 객체에 덧붙여 각 행의 색인을 반환하는 제너레이터다. iterrows()는 판다스 데이터프레임과 함께 작동하게끔 최적화되어 있으며 표준 함수 대부분을 실행하는 데 가장 효율적인 방법은 아니지만(나중에 자세히 설명) 단순 반복보다는 상당히 개선되었다. 예제의 경우 iterrows()는 행을 수동으로 반복하는 것보다 거의 똑같은 문제를 약 4배 빠르게 해결한다.
   
 ```python
 %%timeit
@@ -105,21 +105,30 @@ df['distance'] = haversine_series
   
 * * *
   
-## apply 방법을 사용한 더 나은 반복
+## apply 메소드를 사용한 더 나은 반복
   
-`iterrows()`보다 더 좋은 옵션은 데이터프레임의 특정 축(행 또는 열을 의미)을 따라 함수를 적용하는 [`apply()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html) 방법을 사용하는 것이다. `apply()`는 본질적으로 행을 반복하지만 `iterrows()`보다 훨씬 효율적이다. 예를 들어 Cython에서 반복자를 사용하는 것과 같이 내부 최적화를 다양하게 활용하면 훨씬 효율적이다.  
+`iterrows()`보다 더 좋은 옵션은 데이터프레임의 특정 축(행 또는 열을 의미)을 따라 함수를 적용하는 [`apply()`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.apply.html) 메소드를 사용하는 것이다. `apply()`는 본질적으로 행을 반복하지만 `iterrows()`보다 훨씬 효율적이다. 예를 들어 Cython에서 이터레이터를 사용하는 것과 같이 내부 최적화를 다양하게 활용하면 훨씬 효율적이다.  
   
 익명의 람다 함수를 사용하여 Haversine 함수를 각 행에 적용하면 각 행의 특정 셀을 함수 입력값으로 지정할 수 있다. 람다 함수는 판다스가 행(축 = 1)과 열(축 = 0) 중 어디로 함수를 적용할지 정할 수 있게끔 마지막에 축 매개 변수를 포함한다.
   
 ```python
 %%timeit
 
-# Haversine 함수에 시간 재며 어플라이
+# Haversine 함수를 시간 재며 어플라이함
 df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
   
 ```bash
 90.6 ms ± 7.55 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+```
+  
+`iterrows()`를 `apply()`로 바꾸면 함수 실행 시간이 반으로 줄어든다!  
+  
+우리 함수 내에서 실제로 런타임을 차지하는 것에 대한 더 많은 통찰력을 얻기 위해, 라인 프로파일 러 도구 (Jupyter에서 % lprun magic 명령)를 실행할 수 있습니다.  
+
+```python
+# Haversine applied on rows with line profiler
+%lprun -f haversine df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
   
 (번역 중)
