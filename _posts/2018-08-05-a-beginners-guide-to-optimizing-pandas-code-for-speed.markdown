@@ -133,7 +133,7 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
   
 다음 결과를 보여준다.
   
-![그림1](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed1.)
+![그림1](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed1.png)
   
 우리는이 정보로부터 많은 유용한 통찰력을 수집 할 수 있습니다. 예를 들어, 삼각 함수 계산을 수행하는 함수의 부분은 전체 런타임의 거의 절반을 차지합니다. 따라서 함수의 개별 구성 요소를 최적화하려는 경우 해당 함수를 시작하는 것이 좋습니다. 지금 당장은 각 행이 1,631 번 이상 치게된다는 것을 알아 두는 것이 중요합니다. 각 행에 대해 apply ()를 반복 한 결과입니다. 반복되는 작업량을 줄일 수 있다면 전반적인 런타임을 줄일 수 있습니다. 이것이 바로 벡터 라이 제이션이 훨씬 더 효율적인 대안을 제공하는 곳입니다.  
   
