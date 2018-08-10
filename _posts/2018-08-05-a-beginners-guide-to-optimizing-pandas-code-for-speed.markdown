@@ -75,7 +75,7 @@ def haversine_looping(df):
 df['distance'] = haversine_looping(df)
 ```
   
-그러면 다음과 같은 결과를 반환한다.
+그러면 다음 결과를 보여준다.
   
 ```bash
 645 ms ± 31 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
@@ -130,5 +130,8 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
 # 라인 프로파일러와 함께 행에 어플라이한 Haversine
 %lprun -f haversine df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
+  
+다음 결과를 보여준다.
+
   
 (번역 중)
