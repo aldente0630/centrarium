@@ -124,10 +124,10 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
   
 `iterrows()`를 `apply()`로 바꾸면 함수 실행 시간이 반으로 줄어든다!  
   
-우리 함수 내에서 실제로 런타임을 차지하는 것에 대한 더 많은 통찰력을 얻기 위해, 라인 프로파일 러 도구 (Jupyter에서 % lprun magic 명령)를 실행할 수 있습니다.  
+실제로 함수 내 어떤 부분이 실행 시간이 얼마만큼 걸리는지 알기 위해 [라인 프로파일러](https://github.com/rkern/line_profiler) 도구(주피터에서 `% lprun magic` 명령)를 실행할 수 있다.  
 
 ```python
-# Haversine applied on rows with line profiler
+# 라인 프로파일러와 함께 행에 어플라이한 Haversine
 %lprun -f haversine df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
   
