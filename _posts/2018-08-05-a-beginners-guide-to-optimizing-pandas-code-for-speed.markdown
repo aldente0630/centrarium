@@ -159,5 +159,13 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'], df['longitude'])
 ```
   
 `apply()` 메소드보다 50 배 이상 개선되었으며, 함수를 벡터 라이 제이션하여 `iterrows()`보다 100 배 이상 개선되었습니다. 입력 유형을 변경하는 것 외에는 아무 것도 할 필요가 없습니다!
+  
+후드 아래에서 엿보고 함수가 무엇을하는지 봅시다.
+  
+![그림2](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed2.png)
+  
+`apply()`가 1,631 번 함수를 관리하는 반면 벡터화 된 버전은 함수가 정확히 한 번만 적용된다는 점에 주목하십시오.이 함수는 전체 배열에 동시에 적용되기 때문입니다. 그것이 심각한 시간 절약의 원인입니다.
+  
+* * *
     
 (번역 중)
