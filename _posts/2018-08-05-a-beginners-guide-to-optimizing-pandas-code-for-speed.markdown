@@ -150,7 +150,7 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
 ```python
 %%timeit 
 
-# Vectorized implementation of Haversine applied on Pandas series
+# 판다스 시리즈에 적용한 Haversine 벡터화 구현
 df['distance'] = haversine(40.671, -73.985, df['latitude'], df['longitude'])
 ```
   
@@ -164,7 +164,7 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'], df['longitude'])
   
 ![그림2](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed2.png)
   
-`apply()`가 1,631번 함수를 관리하는 반면 벡터화 버전은 함수가 정확히 한 번만 적용된다는 점을 주목해라. 이 함수가 전체 배열에 동시에 적용되기 때문이다. 그게 막대한 시간 절약 요인이다.
+`apply()`가 함수를 1,631번 이용하는 동안 벡터화 버전은 함수를 딱 한 번만 적용했다는 점에 주목해라. 함수를 전체 배열에 대해 동시 적용하기 때문이다. 그 점이 시간을 크게 단축시킨 요소다.
   
 * * *
     
