@@ -170,7 +170,7 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 \\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\)
   
 **for** f **in** \\(F\\) **do**
-> \\(totalBin \+=\\) f.numBin  
+> \\(totalBin\\) \\(\+=\\) f.numBin  
 > \\(binRanges\\).append(\\(totalBin\\))  
   
 \\(newBin \leftarrow\\) new Bin(\\(numData\\))  
