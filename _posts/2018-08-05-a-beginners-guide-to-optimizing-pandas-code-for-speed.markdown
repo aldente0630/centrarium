@@ -195,7 +195,7 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'].values, df['longitude
     
 ## 요약
   
-아래 점수판이 결과 요약이다. 넘파이 배열을 사용해 벡터화했을 때 실행 시간이 가장 빨랐지만 가장 빠른 반복 버전보다 무려 56배를 향상시킨 판다스 시리즈 벡터화의 한계 개선 효과가  효과가 에 비해 상당히 개선 된 점이있어서 .
+아래 점수판이 결과 요약이다. 넘파이 배열을 사용해 벡터화했을 때 실행 시간이 가장 빨랐다. 그러나 가장 빠른 버전의 반복 방법 대비 무려 56배 향상시킨, 판다스 시리즈를 사용한 벡터화가 가장 큰 한계 개선폭을 보였다.
 
 ![그림3](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed3.png)
   
