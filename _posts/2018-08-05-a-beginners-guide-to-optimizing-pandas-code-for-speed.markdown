@@ -205,8 +205,8 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'].values, df['longitude
 3 . 보통은 벡터화가 스칼라 연산보다 낫다. 대부분의 판다스 작업은 벡터화시킬 수 있다.  
 4 . 넘파이 배열에서의 벡터 연산은 판다스 시리즈에서 수행하는 것보다 효율적이다.  
   
-물론 상기한 목록이 판다스 최적화에 대해 가능한 모든 내용을 담고 있지는 않다. 예를 들어 [Cython](http://cython.readthedocs.io/en/latest/src/quickstart/overview.html)에서 함수를 재작성하거나 함수 개별 구성 요소마다 최적화시키려고 시도하는 등 더 진취적인 사용자가 있을 수 있다. 그러나 해당 주제는 본 게시물 범위를 벗어난다.
+물론 상기한 목록이 판다스 최적화에 대해 가능한 모든 내용을 담고 있지는 않다. 예를 들어 [Cython](http://cython.readthedocs.io/en/latest/src/quickstart/overview.html)에서 함수를 재작성하거나 함수 개별 구성 요소마다 최적화시키려고 시도하는 등 보다 모험을 좋아하는 사용자가 있을 수 있다. 그러나 해당 주제는 본 게시물 범위를 벗어난다.
   
-결정적으로, 거대한 최적화 모험에 착수하기 전에 최적화시키는 함수가 실제 장기적으로 사용하고자 하는 함수인지 확인해라. xkcd의 명언을 인용하자면 ["서툰 최적화는 모든 악의 근원이다."](https://xkcd.com/1691)
+최적화의 모험, 그 대단원의 막을 올리기 전에 최적화시키려는 함수가 실제 장기적으로 사용하는 함수인지 확인하는게 중요하다. xkcd의 명언을 인용하자면 ["너무 이른 최적화는 모든 악의 근원이다."](https://xkcd.com/1691)
   
-편집: 인용했던 "서툰 최적화"의 원저자가 xkcd가 아니라 [Donald Knuth](https://shreevatsa.wordpress.com/2008/05/16/premature-optimization-is-the-root-of-all-evil)임을 지적받았다. 의도치않게 누락시킨 점 사과드리며 독자분들의 너른 양해 부탁드린다. :)
+편집: 인용했던 "너무 이른 최적화"의 원저자가 xkcd가 아니라 [Donald Knuth](https://shreevatsa.wordpress.com/2008/05/16/premature-optimization-is-the-root-of-all-evil)임을 지적받았다. 의도치않게 누락시킨 점 사과드리며 독자분들의 너른 양해 부탁드린다. :)
