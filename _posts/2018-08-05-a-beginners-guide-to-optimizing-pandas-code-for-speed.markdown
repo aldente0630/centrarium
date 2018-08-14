@@ -195,8 +195,9 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'].values, df['longitude
     
 ## 요약
   
-아래 스코어 보드는 결과를 요약합니다. NumPy 배열을 사용한 벡터화가 가장 빠른 런타임을 얻었지만 Pandas 시리즈의 벡터화 효과에 비해 상당히 개선 된 점이있어서 가장 빠른 루핑 버전보다 무려 56 배 향상되었습니다.
+아래 점수판은 결과 요약이다. 넘파이 배열을 사용한 벡터화가 실행 시간이 가장 빨랐지만 가장 빠른 반복 버전보다 무려 56배를 향상시킨 판다스 시리즈 벡터화 효과가 에 비해 상당히 개선 된 점이있어서 .
 
+![그림3](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed3.png)
 
 이것은 판다 스 코드 최적화에 관한 몇 가지 기본적인 결론을 이끌어 낸다.
 1. 루프를 피하십시오; 그들은 느리고 대부분의 일반적인 사용 사례에서 불필요합니다.
@@ -209,9 +210,3 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'].values, df['longitude
 결정적으로, 거대한 최적화 모험에 착수하기 전에 최적화하고있는 기능이 실제로 장기적으로 사용하고자하는 기능인지 확인하십시오. xkcd의 불멸의 말을 인용하자면 : ["조숙 한 최적화는 모든 악의 뿌리입니다."](https://xkcd.com/1691)
   
 편집 : "조기 최적화"견적의 원래 작성자가 xkcd가 아니라 [Donald Knuth](https://shreevatsa.wordpress.com/2008/05/16/premature-optimization-is-the-root-of-all-evil)라는 사실이 나에게 지적되었습니다. 이 불행한 누락에 대해 사과 드리며 독자가 나를 용서할 수 있기를 바랍니다.)
-  
-* * *
-  
-소피아와 팬더에 대해 이야기하고 싶습니까? 우리의 개방 된 엔지니어링 위치를 확인하고 오늘 Upside의 Sofia와 작업을 시작하십시오 : http://upsd.io/2vavhrI
-  
-(번역 중)
