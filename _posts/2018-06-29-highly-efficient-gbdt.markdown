@@ -253,4 +253,4 @@ lgb_baseline가 희소 변수에 최적화되어 있음에도 EFB는 여전히 �
   
   
   
-$ Income per Capita \approx ($
+$ Income per Capita \approx (CLV - CAC) ($
