@@ -164,7 +164,7 @@ df['distance'] = haversine(40.671, -73.985, df['latitude'], df['longitude'])
   
 ![그림2](https://aldente0630.github.io/assets/a-beginners-guide-to-optimizing-pandas-code-for-speed2.png)
   
-`apply()`가 함수를 1,631번 이용하는 동안 벡터화 버전은 함수를 딱 한 번 적용했다는 점에 주목해라. 함수를 전체 배열에 대해 동시 적용하기 때문이다. 그게 시간을 크게 단축시킨 요소다.
+`apply()`가 함수를 1,631번 이용하는 동안 벡터화 버전은 함수를 딱 한 번 적용했다는 점에 주목해라. 함수를 전체 배열에 대해 동시 적용하기 때문이다. 그게 시간을 크게 단축시킨 요인이다.
   
 * * *
   
