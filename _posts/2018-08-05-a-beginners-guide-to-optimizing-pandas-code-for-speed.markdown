@@ -127,7 +127,7 @@ df['distance'] = df.apply(lambda row: haversine(40.671, -73.985, row['latitude']
 실제로 함수 내 어느 부분이 얼마만큼 실행 시간 걸리는지 알기 위해 [라인 프로파일러](https://github.com/rkern/line_profiler) 도구(주피터에서 `%lprun magic` 명령)를 실행할 수 있다.  
 
 ```python
-# 라인 프로파일러와 함께 행에 어플라이한 Haversine
+# 라인 프로파일러와 함께 Haversine을 행에 대해 어플라이함
 %lprun -f haversine df.apply(lambda row: haversine(40.671, -73.985, row['latitude'], row['longitude']), axis=1)
 ```
   
