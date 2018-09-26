@@ -37,9 +37,9 @@ categories: Data-Science
 이러한 모형에 사용한 변수는 다음과 같이 분류할 수 있다.
   
 스폰서 검색에서의 질의 또는 내용 일치 시의 게시자 페이지 같은 *맥락 변수*  
-텍스트 광고의 경우 논문[^1]에서, 디스플레이 광고의 경우 논문[^2]에서 논의된 *내용 변수*  
+텍스트 광고의 경우 논문[^1]에서, 디스플레이 광고의 경우 논문[^2]에서 논의한 *내용 변수*  
 논문[^3]에서 소개한 *사용자 변수*  
-이력 데이터를 집계하여 생성했고 논문[^4]에 서술된 *피드백 변수* .
+이력 데이터를 집계하여 생성했고 논문[^4]에 서술한 *피드백 변수* .
   
 (번역 중)
 
@@ -47,7 +47,18 @@ categories: Data-Science
 search. In Proceedings of the 17th international conference on World Wide Web. 227–236.  
 HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad
 relevance in sponsored search. In Proceedings of the third ACM international conference on Web search
+and data mining. 361–370.  
+[^2]: CHENG, H., ZWOL, R. V., AZIMI, J., MANAVOGLU, E., ZHANG, R., ZHOU, Y., AND NAVALPAKKAM, V. 2012.
+Multimedia features for click prediction of new ads in display advertising. In Proceedings of the 18th
+ACM SIGKDD international conference on Knowledge discovery and data mining.  
+LIU, Y., PANDEY, S., AGARWAL, D., AND JOSIFOVSKI, V. 2012. Finding the right consumer: optimizing for
+conversion in display advertising campaigns. In Proceedings of the fifth ACM international conference
+on Web search and data mining.  
+[^3]: CHENG, H. AND CANTU´ -PAZ, E. 2010. Personalized click prediction in sponsored search. In Proceedings of
+the third ACM international conference on Web search and data mining.  
+[^4]: CHAKRABARTI, D., AGARWAL, D., AND JOSIFOVSKI, V. 2008. Contextual advertising by combining relevance
+with click feedback. In Proceedings of the 17th international conference on World Wide Web.
+417–426.  
+HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad
+relevance in sponsored search. In Proceedings of the third ACM international conference on Web search
 and data mining. 361–370.
-[^2]: Cheng et al. 2012; Liu et al. 2012
-[^3]: Cheng and Cantu-Paz 2010
-[^4]: [Chakrabarti et al. 2008; Hillard et al. 2010]
