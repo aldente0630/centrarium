@@ -44,21 +44,9 @@ categories: Data-Science
 (번역 중)
 
 [^1]: CIARAMITA, M., MURDOCK, V., AND PLACHOURAS, V. 2008. Online learning from click data for sponsored
-search. In Proceedings of the 17th international conference on World Wide Web. 227–236.  
-HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad
-relevance in sponsored search. In Proceedings of the third ACM international conference on Web search
-and data mining. 361–370.  
-[^2]: CHENG, H., ZWOL, R. V., AZIMI, J., MANAVOGLU, E., ZHANG, R., ZHOU, Y., AND NAVALPAKKAM, V. 2012.
-Multimedia features for click prediction of new ads in display advertising. In Proceedings of the 18th
-ACM SIGKDD international conference on Knowledge discovery and data mining.  
-LIU, Y., PANDEY, S., AGARWAL, D., AND JOSIFOVSKI, V. 2012. Finding the right consumer: optimizing for
-conversion in display advertising campaigns. In Proceedings of the fifth ACM international conference
-on Web search and data mining.  
-[^3]: CHENG, H. AND CANTU´ -PAZ, E. 2010. Personalized click prediction in sponsored search. In Proceedings of
-the third ACM international conference on Web search and data mining.  
-[^4]: CHAKRABARTI, D., AGARWAL, D., AND JOSIFOVSKI, V. 2008. Contextual advertising by combining relevance
-with click feedback. In Proceedings of the 17th international conference on World Wide Web.
-417–426.  
-HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad
-relevance in sponsored search. In Proceedings of the third ACM international conference on Web search
+search. In Proceedings of the 17th international conference on World Wide Web. 227–236. HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad relevance in sponsored search. In Proceedings of the third ACM international conference on Web search and data mining. 361–370.  
+[^2]: CHENG, H., ZWOL, R. V., AZIMI, J., MANAVOGLU, E., ZHANG, R., ZHOU, Y., AND NAVALPAKKAM, V. 2012. Multimedia features for click prediction of new ads in display advertising. In Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining. LIU, Y., PANDEY, S., AGARWAL, D., AND JOSIFOVSKI, V. 2012. Finding the right consumer: optimizing for
+conversion in display advertising campaigns. In Proceedings of the fifth ACM international conference on Web search and data mining.  
+[^3]: CHENG, H. AND CANTU´ -PAZ, E. 2010. Personalized click prediction in sponsored search. In Proceedings of the third ACM international conference on Web search and data mining.  
+[^4]: CHAKRABARTI, D., AGARWAL, D., AND JOSIFOVSKI, V. 2008. Contextual advertising by combining relevance with click feedback. In Proceedings of the 17th international conference on World Wide Web. 417–426. HILLARD, D., SCHROEDL, S., MANAVOGLU, E., RAGHAVAN, H., AND LEGGETTER, C. 2010. Improving ad relevance in sponsored search. In Proceedings of the third ACM international conference on Web search
 and data mining. 361–370.
