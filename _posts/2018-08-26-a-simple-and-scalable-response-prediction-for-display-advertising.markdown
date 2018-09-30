@@ -51,7 +51,7 @@ categories: Data-Science
   
 ## 3. 데이터와 변수
 
-이 장은 본 논문에서 사용한 디스플레이 광고 데이터에 관한 배경 지식을 제공한다. 자세한 내용은 논문들에서 찾을 수 있다.
+이 장은 본 논문에서 사용한 디스플레이 광고 데이터에 관한 배경 지식을 제공한다. 자세한 내용은 논문[^7]에서 찾을 수 있다.
 
 ### 3.1 데이터와 Yahoo! Real Media Exchange
 
@@ -63,3 +63,4 @@ categories: Data-Science
 [^4]: Chakrabarti, D., Agarwal, D., and Josifovski, V. 2008. Contextual advertising by combining relevance with click feedback. In Proceedings of the 17th international conference on World Wide Web. 417–426. Hillard, D., Schroedl, S., Manavoglu, E., Raghavan, H., and Leggetter, C. 2010. Improving ad relevance in sponsored search. In Proceedings of the third ACM international conference on Web search and data mining. 361–370.
 [^5]: Weinberger, K., Dasgupta, A., Langford, J., Smola, A., and Attenberg, J. 2009. Feature hashing for large scale multitask learning. In Proceedings of the 26th Annual International Conference on Machine Learning. 1113–1120.
 [^6]: Menon, A. K., Chitrapura, K.-P., Garg, S., Agarwal, D., and Kota, N. 2011. Response prediction using collaborative filtering with hierarchies and side-information. In Proceedings of the 17th ACM SIGKDD international conference on Knowledge discovery and data mining.
+[^7]: Agarwal, D., Agarwal, R., Khanna, R., and Kota, N. 2010. Estimating rates of rare events with multiple hierarchies through scalable log-linear models. In Proceedings of the 16th ACM SIGKDD international conference on Knowledge discovery and data mining. 213–222. Rosales, R., Cheng, H., and Manavoglu, E. 2012. Post-click conversion modeling and analysis for nonguaranteed delivery display advertising. In Proceedings of the fifth ACM international conference on Web search and data mining. ACM, 293–302.
