@@ -19,3 +19,5 @@ categories: Data-Science
 ## 고전적인 전역 변수 중요도 측정
   
 첫 번째 확실한 선택은 파이썬 XGBoost 인터페이스에서 plot_importance () 메소드를 사용해 보는 것이다. 데이터셋 각 변수의 중요도를 나타내는 매력적이고 단순한 막대 차트를 제공한다(본문을 재현하는 코드는 [주피터 노트북](https://slundberg.github.io/shap/notebooks/Census+income+classification+with+XGBoost.html)에 있음)
+
+![그림1](https://aldente0630.github.io/assets/interpretable_ml_with_xgb1.png)
