@@ -21,4 +21,6 @@ categories: Data-Science
 첫 번째 확실한 선택은 파이썬 XGBoost 인터페이스에서 plot_importance () 메소드를 사용해 보는 것이다. 이것은 데이터셋 각 변수의 중요도를 나타내는 매력적이고 단순한 막대 차트를 제공한다(본문을 재현하는 코드는 [주피터 노트북](https://slundberg.github.io/shap/notebooks/Census+income+classification+with+XGBoost.html)에 있음)
 
 ![그림1](https://aldente0630.github.io/assets/interpretable_ml_with_xgb1.png)
-고전적인 '성인' 인구 조사 데이터셋에서 50만 달러가 넘는 수입을 사람들이 보고할지 예측하기 위해 훈련 된 모델에 대해 로지스틱 손실을 사용하여 xgboost.plot_importance (모델)를 실행한 결과.
+고전적인 '성인' 인구 조사 데이터셋에서 각 사람의 수입이 50만 달러 이상일지 예측하기 위해 (로지스틱 손실을 적용하여) 훈련시킨 모형에   xgboost.plot_importance(모형)을 실행한 결과.
+  
+XGBoost가 반환 한 피쳐 수입을 살펴보면 다른 피처를 지배하는 연령을 알 수 있으며 수입의 가장 중요한 예측 인자로 꼽을 수 있습니다. 우리는 여기서 멈추어 관리자에게 주당 시간과 교육 수준에 따라 나이가 가장 중요한 특징이라는 직관적 인 대답을 할 수 있습니다. 그러나 좋은 데이터 과학자로서 우리는 문서를보고 XGBoost에서 기능 중요성을 측정하는 세 가지 옵션이 있음을 확인합니다.
