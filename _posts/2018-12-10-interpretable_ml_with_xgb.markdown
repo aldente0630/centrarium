@@ -32,6 +32,8 @@ XGBoost가 출력한 변수 중요도를 통해 다른 변수를 뛰어넘는 �
 이는 트리 기반 모델링 패키지에서 찾을 수 있는 중요도의 대표적인 척도이다. 가중치가 기본 옵션이었기 때문에 다른 두 가지 접근법과 차이가 있는지 살펴보았다.
   
 ![그림2](https://aldente0630.github.io/assets/interpretable_ml_with_xgb2.png)
-importance_type = "cover"와 importance_type = "gain"을 모두 사용하여 xgboost.plot_importance를 실행한 결과.
+importance_type = "cover"와 importance_type = "gain" 모두 사용하여 xgboost.plot_importance를 실행한 결과.
   
 **XGBoost에서 제공하는 세 가지 옵션 각각에 대해 변수 중요도 순서가 매우 다르다는 사실을 알게되었다!** 적용 범위 방법를 보면 *자본 이익* 변수가 소득에 대해 가장 중요한 예측 변수처럼 보이지만 이득 방법을 보면 *관계 상태* 변수가 다른 모든 변수를 압도한다. 어떤 방법이 가장 적합한지 알지 못한 채 변수 중요도 보고가 이러한 척도에 달려있다는 점이 마음을 매우 불편하게 만든다.
+  
+(번역 중)
