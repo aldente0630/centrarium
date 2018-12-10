@@ -18,4 +18,4 @@ categories: Data-Science
   
 ## 고전적인 전역 변수 중요도 측정
   
-첫 번째 확실한 선택은 Python XGBoost 인터페이스에서 plot_importance () 메소드를 사용하는 것입니다. 데이터 세트에서 각 기능의 중요성을 나타내는 매력적인 간단한 막대 차트를 제공합니다 (이 기사를 재현하는 코드는 Jupyter 노트북에 있음)
+첫 번째 확실한 선택은 파이썬 XGBoost 인터페이스에서 plot_importance () 메소드를 사용해 보는 것이다. 데이터셋에서 각 변수의 중요도를 나타내는 매력적이고 단순한 막대 차트를 제공한다(본문을 재현하는 코드는 [주피터 노트북](https://slundberg.github.io/shap/notebooks/Census+income+classification+with+XGBoost.html)에 있음)
