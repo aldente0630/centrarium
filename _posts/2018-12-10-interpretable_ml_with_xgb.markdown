@@ -90,7 +90,7 @@ importance_type = “cover”와 importance_type = “gain” 모두 사용하�
 ![그림6](https://aldente0630.github.io/assets/interpretable_ml_with_xgb6.png)
 소득 예측 모형에 사용한 전역 평균(\|트리 SHAP\|) 방법. x축은 본질적으로 모형에서 변수가 "숨겨질" 때 모형 출력값 변화하는 크기의 평균이다.(이 모형의 경우 출력값은 로그 오즈 단위를 갖는다.) 자세한 내용은 [논문](https://github.com/slundberg/shap)을 참조하라. "숨김"은 모형에서 해당 변수를 적분하여 소거하는걸 의미한다. 변수를 숨겼을 때 영향력은 숨겨진 다른 변수에 따라 달라지므로 일관성과 정확성 유지를 위해 Shapley 값이 사용된다.
   
-실제로 *관계* 변수가 가장 중요함을 알 수 있으며 연령 변수가 그 뒤를 잇는다. SHAP 값은 일관성을 보장하므로 이득과 분할 횟수 계산 방법을 적용하기 전에 살펴보았던 상반된 결과에 대해 걱정할 필요가 없다. 이제 모든 사람마다 개별화된 설명이 가능하므로 대형 막대 도표 그리는 일 이상의 것을 할 수 있다. 데이터셋의 각 고객마다 변수 중요도를 그려볼 수 있다. [shap 파이썬 패키지](https://github.com/slundberg/shap)는 이 일을 쉽게 만든다. 먼저 shap.TreeExplainer(model).shap_values(X)를 호출하여 모든 예측값을 설명하고 shap.summary_plot(shap_values, X)를 호출하여 해당 설명 내용을 그려본다.
+실제로 *관계* 변수가 가장 중요함을 알 수 있으며 *연령* 변수가 그 뒤를 잇는다. SHAP 값은 일관성을 보장하므로 이득과 분할 횟수 계산 방법을 적용할 때 살펴보았던 상반된 결과에 대해 걱정할 필요가 없다. 이제 모든 사람마다 개별화된 설명이 가능하므로 대형 막대 도표 그리는 일 이상의 것을 할 수 있다. 데이터셋의 각 고객마다 변수 중요도를 그려볼 수 있다. [shap 파이썬 패키지](https://github.com/slundberg/shap)는 이 일을 쉽게 만든다. 먼저 shap.TreeExplainer(model).shap_values(X)를 호출하여 모든 예측값을 설명하고 shap.summary_plot(shap_values, X)를 호출하여 해당 설명 내용을 그려본다.
 
 ![그림7](https://aldente0630.github.io/assets/interpretable_ml_with_xgb7.png)
 모든 고객은 각 행마다 점 하나로 표현된다. 점의 x축 위치는 모형의 고객 예측에 해당 변수가 미치는 영향력이며 점의 색은 고객의 해당 변수값을 나타낸다. 밀도가 드러나게끔 점들이 행 위로 삐뚤빼뚤 쌓여있다.(이 예에 고객 32,561명이 있음) XGBoost 모형은 로지스틱 손실을 사용하므로 x축은 로그 오즈 단위를 갖는다.(트리 SHAP는 모형 마진 출력값의 변화를 설명한다).
