@@ -4,6 +4,7 @@ title: 해석가능한 XGBoost 기계학습
 date: 2018-12-10 00:00:00
 author: Scott Lundberg
 categories: Data-Science
+cover: /assets/interpretable_ml_with_xgb11.jpeg
 ---  
   
   
