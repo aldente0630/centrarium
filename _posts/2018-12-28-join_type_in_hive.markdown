@@ -7,7 +7,7 @@ categories: Data-Engineering
 ---  
   
   
-**Weidong Zhou의 [*Join Type in Hive*](https://weidongzhou.wordpress.com/2017/06/06/join-type-in-hive-common-join)를 번역했습니다.**
+**Weidong Zhou의 [*Join Type in Hive: Common Join 외 3편*](https://weidongzhou.wordpress.com/2017/06/06/join-type-in-hive-common-join)을 번역했습니다.**
   
   
 - - -
