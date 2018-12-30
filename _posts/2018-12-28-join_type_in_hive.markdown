@@ -32,5 +32,6 @@ categories: Data-Engineering
   
 # 2. 맵 조인
 
-(
+(번역 중)
+  
 
