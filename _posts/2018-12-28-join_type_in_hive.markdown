@@ -40,7 +40,7 @@ categories: Data-Engineering
 
 **매개 변수**
 
-Map Join의 가장 중요한 매개 변수는 hive.auto.convert.join입니다. true로 설정해야합니다.
+* **Map Join**의 가장 중요한 매개 변수는 **hive.auto.convert.join**입니다. **true**로 설정해야합니다.
 조인 할 때, 작은 테이블의 결정은 매개 변수 hive.mapjoin.smalltable.filesize에 의해 제어됩니다. 기본적으로 25MB입니다.
 세 개 이상의 테이블이 조인에 포함되면 Hive는 모든 테이블의 크기가 더 작은 것으로 가정 한 3 개 이상의지도 쪽 조인을 생성합니다. 조인 속도를 더 높이려면 n-1 테이블의 크기가 기본값 인 10MB보다 작은 경우 세 개 이상의지도 측 조인을 단일 맵 측 조인으로 결합 할 수 있습니다. 이를 위해서는 hive.auto.convert.join.noconditionaltask 매개 변수를 true로 설정하고 매개 변수 hive.auto.convert.join.noconditionaltask.size를 지정해야합니다.
 
