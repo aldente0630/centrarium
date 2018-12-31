@@ -38,6 +38,12 @@ categories: Data-Engineering
   
 **맵 결합**의 첫 번째 단계는 원래 맵 축소 작업 전에 맵 축소 태스크를 작성하는 것입니다. 이 map / reduce 작업은 작은 테이블의 데이터를 HDFS에서 읽어 와서 메모리 내 해시 테이블에 저장 한 다음 해시 테이블 파일에 저장합니다. 그런 다음 원본 조인 맵 축소 작업이 시작되면 해시 테이블 파일을 [Hadoop 분산 캐시](https://hadoop.apache.org/docs/r1.2.1/api/org/apache/hadoop/filecache/DistributedCache.html)로 이동합니다. 그러면 Hadoop 분산 캐시가 각 매퍼의 로컬 디스크에 파일을 채 웁니다. 따라서 모든 매퍼는이 해시 테이블 파일을 메모리에로드 한 다음 맵 스테이지에서 조인을 수행 할 수 있습니다. 예를 들어 큰 테이블 A와 작은 테이블 B가있는 조인의 경우 테이블 A의 모든 매퍼에 대해 테이블 B가 완전히 읽혀집니다. 더 작은 테이블이 메모리에로드 된 후 MapReduce 작업의 맵 구문에서 조인이 수행되면 축소 기가 필요하지 않고 축소 단계가 건너 뜁니다. 지도 조인은 일반 기본 조인보다 빠르게 수행됩니다.
 
+**매개 변수**
+
+Map Join의 가장 중요한 매개 변수는 hive.auto.convert.join입니다. true로 설정해야합니다.
+조인 할 때, 작은 테이블의 결정은 매개 변수 hive.mapjoin.smalltable.filesize에 의해 제어됩니다. 기본적으로 25MB입니다.
+세 개 이상의 테이블이 조인에 포함되면 Hive는 모든 테이블의 크기가 더 작은 것으로 가정 한 3 개 이상의지도 쪽 조인을 생성합니다. 조인 속도를 더 높이려면 n-1 테이블의 크기가 기본값 인 10MB보다 작은 경우 세 개 이상의지도 측 조인을 단일 맵 측 조인으로 결합 할 수 있습니다. 이를 위해서는 hive.auto.convert.join.noconditionaltask 매개 변수를 true로 설정하고 매개 변수 hive.auto.convert.join.noconditionaltask.size를 지정해야합니다.
+
 (번역 중)
   
 
