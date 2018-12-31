@@ -57,6 +57,20 @@ categories: Data-Engineering
 **다른**  
   
 힌트를 사용하여 맵 결합을 사용하여 쿼리를 지정할 수 있습니다. 아래 예제는 힌트에 넣은 테이블이 더 작고 테이블 B를 수동으로 캐시하도록합니다.
+  
+```sql
+Select /*+ MAPJOIN(b) */ a.key, a.value from a join b on a.key = b.key
+```
+  
+**예제**  
+  
+```sql
+hive> set hive.auto.convert.join=true;
+hive> set hive.auto.convert.join.noconditionaltask=true;
+hive> set hive.auto.convert.join.noconditionaltask.size=20971520
+hive> set hive.auto.convert.join.use.nonstaged=true;
+hive> set hive.mapjoin.smalltable.filesize = 30000000; 
+```
 
 (번역 중)
   
