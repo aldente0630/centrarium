@@ -52,7 +52,7 @@ categories: Data-Engineering
 **조인을 식별하는 방법**
 **EXPLAIN** 명령을 사용할 때 **Map Operator Tree** 바로 아래에 **Join Join Operator**가 표시됩니다.
 
-**다른**
+**다른**  
 힌트를 사용하여 맵 결합을 사용하여 쿼리를 지정할 수 있습니다. 아래 예제는 힌트에 넣은 테이블이 더 작고 테이블 B를 수동으로 캐시하도록합니다.
 
 (번역 중)
