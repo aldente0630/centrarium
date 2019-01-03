@@ -44,7 +44,7 @@ categories: Data-Engineering
 
 * **맵 조인**의 가장 중요한 매개 변수는 **hive.auto.convert.join**이다. **true**로 설정해야한다.
 * 조인할 때 작은 테이블인지 판단하는 기준은 매개 변수 **hive.mapjoin.smalltable.filesize**에 의해 조절 가능하다. 기본적으로 25MB이다.
-* 세 개 이상의 테이블을 조인하려면 하이브는 모든 테이블의 크기가 더 작은 것으로 가정하고 3 개 이상의 맵 사이드 조인을 생성합니다. 조인 속도를 더 높이려면 n-1 테이블의 크기가 기본값 인 10MB보다 작은 경우 세 개 이상의 맵 사이드 조인을 단일 맵 사이드 조인으로 결합 할 수 있습니다. 이를 위해서는 **hive.auto.convert.join.noconditionaltask** 매개 변수를 **true**로 설정하고 매개 변수 **hive.auto.convert.join.noconditionaltask.size**를 지정해야한다.
+* 세 개 이상의 테이블을 조인하면 하이브는 모든 테이블의 크기를 더 작은 것으로 가정하고 3 개 이상의 맵 사이드 조인을 생성한다. n-1개 테이블 크기가 기본값인 10MB보다 작은 경우 조인 속도를 더 높이기 위해 세 개 이상의 맵 사이드 조인을 단일 맵 사이드 조인으로 결합할 수 있다. 이를 위해서는 **hive.auto.convert.join.noconditionaltask** 매개 변수를 **true**로 설정하고 매개 변수 **hive.auto.convert.join.noconditionaltask.size**를 지정해야한다.
 
 **제약**
 
@@ -71,7 +71,36 @@ hive> set hive.auto.convert.join.noconditionaltask.size=20971520
 hive> set hive.auto.convert.join.use.nonstaged=true;
 hive> set hive.mapjoin.smalltable.filesize = 30000000; 
 ```
-
+  
+# 3. 비대칭 조인
+  
+마지막 블로그에서 Common Join 및 Map Join에 대해 설명했습니다. 이 블로그에서는 **Skewed Join**에 대해 논의 할 것입니다. Common Join의 블로그를 기억하십시오. **Common Join**의 주요 문제점 중 하나는 데이터가 **왜곡되었을 때** 조인이 제대로 수행되지 않는다는 것입니다. 대부분의 감속기가 조인 작업을 완료하는 동안 쿼리는 비뚤어진 키에서 가장 긴 실행 감속기를 기다리고 있습니다.
+  
+**비뚤어진 조인**은이 문제를 정확하게 타겟팅합니다. 런타임에 데이터를 스캔하고 **hive.skewjoin.key** 매개 변수로 제어되는 커다란 왜곡이있는 키를 감지합니다. 이러한 키를 처리하는 대신 HDFS 디렉토리에 임시로 저장합니다. 그런 다음 맵 축소 작업에서 이러한 왜곡 된 키를 처리하십시오. 동일한 키가 모든 테이블에 대해 비뚤어 질 필요가 없으므로 맵 조인이 될 수 있기 때문에 후속 map-reduce 작업 (기울어 진 키의 경우)이 훨씬 빠릅니다.
+  
+![그림3](https://aldente0630.github.io/assets/join_type_in_hive3.jpg)
+  
+예를 들어 표 A와 B와 조인이 있다고합시다. 표 A와 B 모두 조인 C 럼에서 "mytest"데이터를 왜곡했습니다. 표 B에 표 A에서 왜곡 된 데이터가있는 행 수가 적다면 첫 번째 단계는 B를 스캔하고 "mytest"키가있는 모든 행을 메모리 내 해시 테이블에 저장하는 것입니다. 그런 다음 매퍼 세트를 실행하여 표 A를 읽고 다음을 수행하십시오.
+  
+* 키 "mytest"가 비뚤어진 경우 조인에 B의 해시 된 버전이 사용됩니다.
+* 다른 모든 키의 경우 조인을 수행하는 감속기에 행을 보냅니다. 동일한 축소 기가 표 B를 검색하는 매퍼에서 행을 가져옵니다.
+  
+**비뚤어진 결합** 중에 표 B가 두 번 스캔됨을 알 수 있습니다. 표 A의 비뚤어진 키는 매퍼가 읽고 처리하며지도 측 결합을 수행합니다. 표 A의 키가 기울어 진 행이 감속기로 전송 된 적이 없습니다. 표 A의 나머지 키들에 대해서는 일반 공통 조인 방식을 사용합니다.
+  
+**비뚤어진 조인**을 사용하려면 데이터와 쿼리를 이해해야합니다. 매개 변수 **hive.optimize.skewjoin**을 **true**로 설정하십시오. 매개 변수 **hive.skewjoin.key**는 선택 사항이며 기본적으로 100000입니다.
+  
+**조인을 식별하는 방법**
+**EXPLAIN** 명령을 사용할 때 **Join Operator** 및 **Reduce Operator Tree** 아래에서 **handleSkewJoin : true**가 표시됩니다.
+  
+**예제**  
+  
+```sql
+set hive.optimize.skewjoin = true;
+set hive.skewjoin.key=500000;
+set hive.skewjoin.mapjoin.map.tasks=10000;
+set hive.skewjoin.mapjoin.min.split=33554432;
+```
+  
 (번역 중)
   
 
