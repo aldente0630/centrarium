@@ -90,7 +90,7 @@ hive> set hive.mapjoin.smalltable.filesize = 30000000;
 **편중된 조인**을 사용하려면 데이터와 쿼리를 이해해야한다. 매개 변수 **hive.optimize.skewjoin**을 **true**로 설정하라. 매개 변수 **hive.skewjoin.key**는 선택 사항이고 기본적으로 100000이다.
   
 **조인 유형을 식별하는 방법**
-**EXPLAIN** 명령을 사용하면 **조인 오퍼레이터**와 **리듀스 오퍼레이터 트리** 바로 아래에 **handleSkewJoin : true**가 표시된다.
+**EXPLAIN** 명령을 사용하면 **조인 오퍼레이터**와 **리듀스 오퍼레이터 트리** 바로 아래에 **handleSkewJoin: true**가 표시된다.
   
 **예제**  
   
@@ -110,7 +110,28 @@ set hive.skewjoin.mapjoin.min.split=33554432;
 **버킷 조인**은 **공동 조인**이라고도합니다. 모든 조인 테이블이 크고 테이블 데이터가 조인 키로 분배 된 경우에 사용됩니다. 이 경우 데이터 복사가 필요하지 않습니다. 맵 사이드 조인이고 조인은 로컬 노드에서 발생할 수 있습니다. **Bucket Join**의 또 다른 조건은 한 테이블의 버킷 수가 다른 테이블의 버킷 수와 동일하거나 배수 여야한다는 것입니다.
   
 따라서 테이블을 생성 할 때 조인 열을 사용하여 버킷을 만들고 테이블에 데이터를 삽입하기 **전에** 버킷이 만들어 졌는지 확인하십시오. 또한 데이터를 삽입하기 전에 매개 변수 **hive.optimize.bucketmapjoin**과 **hive.enforce.bucketing**을 모두 **true**로 설정하십시오. 버킷 테이블을 만드는 한 가지 예가 아래에 나와 있습니다.
+   
+```sql
+CREATE TABLE mytable (  
+name string,     
+city string,    
+employee_id int )   
+PARTITIONED BY (year STRING, month STRING, day STRING)  
+CLUSTERED BY (employee_id) INTO 256 BUCKETS 
+;
+```
+  
+위의 조인은 **버킷 맵 조인**이라고도합니다. 조인 테이블의 버켓 수가 같고 데이터가 조인 열을 사용하여 정렬되는 경우 **정렬 병합 맵 조인**이 사용됩니다.
+  
+**조인을 식별하는 방법**
+**EXPLAIN** 명령을 사용하면 **Map Operator Tree** 아래에 **Sorted Merge Bucket Map Join Operator**가 표시됩니다.
+  
+**예제**  
+  
+```sql
+set hive.optimize.bucketmapjoin = true;
+set hive.optimize.bucketmapjoin.sortedmerge = true;
+set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
+```
   
 (번역 중)
-  
-
