@@ -107,9 +107,9 @@ set hive.skewjoin.mapjoin.min.split=33554432;
   
 ![그림4](https://aldente0630.github.io/assets/join_type_in_hive4.jpg)
   
-**버킷 조인**은 **공동 배열 조인**이라고도 한다. 조인할 모든 테이블 크기가 크고 테이블 데이터가 조인 키에 대해 고르게 분포한 경우 사용된다. 이 경우 데이터 복사가 필요하지 않습니다. 맵 사이드 조인이고 조인은 로컬 노드에서 발생할 수 있습니다. **Bucket Join**의 또 다른 조건은 한 테이블의 버킷 수가 다른 테이블의 버킷 수와 동일하거나 배수 여야한다는 것입니다.
+**버킷 조인**은 **공동 배열 조인**이라고도 한다. 조인할 모든 테이블 크기가 크고 테이블 데이터가 조인 키에 대해 고르게 분포한 경우 사용된다. 이 경우 데이터 복사가 필요하지않다. 맵 사이드 조인이며 조인은 로컬 노드에서 이뤄질 수 있다. **버킷 조인**의 또 다른 조건은 한 테이블의 버킷 수가 다른 테이블의 버킷 수와 동일하거나 배수 여야한다는 것이다.
   
-따라서 테이블을 생성 할 때 조인 열을 사용하여 버킷을 만들고 테이블에 데이터를 삽입하기 **전에** 버킷이 만들어 졌는지 확인하십시오. 또한 데이터를 삽입하기 전에 매개 변수 **hive.optimize.bucketmapjoin**과 **hive.enforce.bucketing**을 모두 **true**로 설정하십시오. 버킷 테이블을 만드는 한 가지 예가 아래에 나와 있습니다.
+테이블을 생성할 때 조인 컬럼을 이용하여 버킷을 만들고 테이블에 데이터를 삽입하기 **전에** 버킷이 만들어졌는지 확인하자. 또 데이터를 삽입하기 전에 매개 변수 **hive.optimize.bucketmapjoin**과 **hive.enforce.bucketing**을 모두 **true**로 설정하자. 버킷 테이블을 생성하는 예시가 아래에 나와 있다.
    
 ```sql
 CREATE TABLE mytable (  
@@ -133,5 +133,3 @@ set hive.optimize.bucketmapjoin = true;
 set hive.optimize.bucketmapjoin.sortedmerge = true;
 set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
 ```
-  
-(번역 중)
