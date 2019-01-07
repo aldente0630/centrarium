@@ -44,7 +44,7 @@ categories: Data-Engineering
 
 * **맵 조인**의 가장 중요한 매개 변수는 **hive.auto.convert.join**이다. **true**로 설정해야한다.
 * 조인할 때 작은 테이블인지 판단하는 기준은 매개 변수 **hive.mapjoin.smalltable.filesize**에 의해 조절 가능하다. 기본적으로 25MB이다.
-* 3개 이상의 테이블을 조인하면 하이브는 모든 테이블의 크기를 더 작은 것으로 가정하고 3개 이상의 맵 사이드 조인을 생성한다. n-1개 테이블 크기가 기본값인 10MB보다 작은 경우 조인 속도를 더 높이기 위해 세 개 이상의 맵 사이드 조인을 단일 맵 사이드 조인으로 결합할 수 있다. 이를 위해서는 **hive.auto.convert.join.noconditionaltask** 매개 변수를 **true**로 설정하고 매개 변수 **hive.auto.convert.join.noconditionaltask.size**를 지정해야한다.
+* 3개 이상의 테이블을 조인하면 하이브는 모든 테이블의 크기를 작은 것으로 가정하고 3개 이상의 맵 사이드 조인을 생성한다. n-1개 테이블 크기가 기본값인 10MB보다 작은 경우 조인 속도를 더 높이기 위해 세 개 이상의 맵 사이드 조인을 단일 맵 사이드 조인으로 결합할 수 있다. 이를 위해서는 **hive.auto.convert.join.noconditionaltask** 매개 변수를 **true**로 설정하고 매개 변수 **hive.auto.convert.join.noconditionaltask.size**를 지정해야한다.
 
 **제약**
 
