@@ -18,6 +18,6 @@ categories: Data-Science
   
 [명시적 피드백 행렬 분해](https://www.ethanrosenthal.com/2016/01/09/explicit-matrix-factorization-sgd-als)에 대한 과거 게시물을 떠올려보면 다음과 같은 손실 함수(편향 없는)가 있었다.
   
-$$L_{exp} = \sum_{u, i \in S}(r_{ui} - \mathrm{x}^T_u \dot \mathrm{y}_i)^2 $$
+$$L_{exp} = \sum_{u, i \in S}(r_{ui} - \mathbf{x}^T_u \cdot \mathbf{y}_i)^2 $$
 
 (번역 중)
