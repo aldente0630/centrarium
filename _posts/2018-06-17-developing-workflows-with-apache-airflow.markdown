@@ -39,13 +39,9 @@ Airflow는 각 태스크에서 오류가 발생할 때마다 여러 번 재실�
 * `AIRFLOW_HOME`은 DAG 정의 파일과 Airflow 플러그인을 저장하는 디렉터리이다.
 
 | 언제? | DAG | 태스크 | 다른 태스크 관련 정보 |
-
 |:---------|:---------|:---------|:---------|
-
 | 정의했을 때 | DAG | 태스크 | [get_flat_relatives](https://airflow.apache.org/_modules/airflow/models.html#BaseOperator.get_flat_relatives)|
-
 | 실행했을 때 | DAG 런 | 태스크 인스턴스 | [xcom_pull](https://airflow.incubator.apache.org/concepts.html#xcoms)|
-
 | 기본 클래스 | DAG | BaseOperator | |
 
 Airflow 문서는 여러 [개념들](https://airflow.apache.org/concepts.html)에 대해 상세한 정보를 제공한다.
