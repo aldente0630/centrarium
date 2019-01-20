@@ -111,15 +111,18 @@ features: {
 
 ```python
 transforms = []
+  
 transforms.append(
     ('select_binary', ColumnSelector(features=binary))
-)
+)  
+
 transforms.append(
     ('numeric', ExtendedPipeline([
         ('select', ColumnSelector(features=numeric)),
         ('impute', Imputer(missing_values='NaN', strategy='mean', axis=0)),
     ]))
 )
+  
 for field in categorical:
     transforms.append(
         (field, ExtendedPipeline([
@@ -128,6 +131,7 @@ for field in categorical:
             ])
         )
     )    
+      
 features = FeatureUnion(transforms)
 ```  
 
@@ -174,8 +178,10 @@ def fit(X_train, y_train):
     import multiprocessing
     from ml_helpers.sklearn_extensions import DenseMatrixConverter
     from ml_helpers.data import split_records
-    from xgboost import XGBRegressor
+    from xgboost import XGBRegressor      
+    
     global model    
+      
     model = {}
     n_subset = N_EXAMPLES
     X_subset = {k: v[:n_subset] for k, v in X_train.iteritems()}
@@ -183,10 +189,13 @@ def fit(X_train, y_train):
                 ('features', features),
                 ('densify', DenseMatrixConverter()),
             ]).fit(X_subset)    
+              
     # 병렬로 변환 적용하기
     Xt = model['transformations'].transform_parallel(X_train)    
+      
     # 병렬로 모형 적합시키기
     model['regressor'] = XGBRegressor().fit(Xt, y_train)        
+      
 def transform(X):
     # 딕셔너리 반환하기
     global model
