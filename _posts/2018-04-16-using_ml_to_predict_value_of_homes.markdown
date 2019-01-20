@@ -56,53 +56,29 @@ Airbnb에서 피쳐 엔지니어링은 종종 Hive 쿼리를 작성하여 처음
 이 사내 도구의 크라우드 소스적 특징으로 인해 데이터 과학자는 다른 사람들이 과거 프로젝트에서 준비했던 고품질의 검증된 변수를 다양하게 사용할 수 있다. 원하는 변수를 사용할 수 없는 경우 사용자는 다음과 같은 변수 구성 파일을 이용하여 자신만의 변수를 만들 수 있다.  
 
  ```
-
 source: {
-
   type: hive
-
   query:"""
-
     SELECT
-
         id_listing as listing
-
       , dim_city as city
-
       , dim_country as country
-
       , dim_is_active as is_active
-
       , CONCAT(ds, ' 23:59:59.999') as ts
-
     FROM
-
       core_data.dim_listings
-
     WHERE
-
       ds BETWEEN '{{ start_date }}' AND '{{ end_date }}'
-
   """
-
   dependencies: [core_data.dim_listings]
-
   is_snapshot: true
-
   start_date: 2010-01-01
-
 }
-
 features: {
-
   city: "숙소가 위치한 도시."
-
   country: "숙소가 위치한 국가."
-
   is_active: "날짜 파티션에 관한 숙소 활성화 여부."
-
 }
-
  ```  
 
 훈련 데이터 구성에 다수의 변수가 필요한 경우 Zipline은 지능적 키 조인을 자동으로 수행하고 뒤편으로 훈련 데이터를 채워 넣는다. 숙소 LTV 모형을 위해 기존 Zipline 변수를 사용했고 나만의 변수를 일부 추가했다. 결론적으로 모형에 아래 변수를 포함해 150개 이상의 변수가 사용되었다.  
@@ -134,45 +110,25 @@ features: {
 이 단계에서는 사용할 변수 조합 중 무엇이 가장 적합한지 모르기 때문에 신속한 반복을 가능케 하는 코드를 작성하는 것이 중요하다. [Scikit-Learn](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html)과 [Spark](https://spark.apache.org/docs/latest/ml-pipeline.html) 같은 오픈 소스 도구에서 일반적으로 사용할 수 있는 파이프라인 구조는 프로토타이핑을 위한 매우 편리한 도구이다. 파이프라인을 사용하여 데이터 과학자는 변수 변환 방법과 훈련시킬 모형을 기술하는 높은 수준의 청사진을 정할 수 있다. 좀 더 구체화하기 위해 LTV 모형 파이프라인 코드 스니펫을 아래 제시한다.  
 
 ```python
-
 transforms = []
-
 transforms.append(
-
     ('select_binary', ColumnSelector(features=binary))
-
 )
-
 transforms.append(
-
     ('numeric', ExtendedPipeline([
-
         ('select', ColumnSelector(features=numeric)),
-
         ('impute', Imputer(missing_values='NaN', strategy='mean', axis=0)),
-
     ]))
-
 )
-
 for field in categorical:
-
     transforms.append(
-
         (field, ExtendedPipeline([
-
             ('select', ColumnSelector(features=[field])),
-
             ('encode', OrdinalEncoder(min_support=10))
-
             ])
-
         )
-
     )    
-
 features = FeatureUnion(transforms)
-
 ```  
 
 높은 수준에서 파이프라인을 사용하여 다양한 유형의 변수에 대해 유형이 불리언, 범주형 또는 수치형인지에 따라 데이터 변환을 지정한다. [FeatureUnion](http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html)은 변수를 칼럼 단위로 결합하여 최종 훈련 데이터셋을 생성한다.  
@@ -214,51 +170,28 @@ Airbnb는 Jupyter 노트북을 [Airflow](https://medium.com/airbnb-engineering/a
 다음은 LTV 모형에서 적합 함수 및 변환 함수 정의한 방법을 보여주는 코드 스니펫이다. 적합 함수는 프레임워크에 XGBoost 모형으로 훈련되고 이전에 정의한 파이프라인에 따라 데이터 변환이 수행됨을 알려준다.  
 
 ```python
-
 def fit(X_train, y_train):
-
     import multiprocessing
-
     from ml_helpers.sklearn_extensions import DenseMatrixConverter
-
     from ml_helpers.data import split_records
-
     from xgboost import XGBRegressor
-
     global model    
-
     model = {}
-
     n_subset = N_EXAMPLES
-
     X_subset = {k: v[:n_subset] for k, v in X_train.iteritems()}
-
     model['transformations'] = ExtendedPipeline([
-
                 ('features', features),
-
                 ('densify', DenseMatrixConverter()),
-
             ]).fit(X_subset)    
-
     # 병렬로 변환 적용하기
-
     Xt = model['transformations'].transform_parallel(X_train)    
-
     # 병렬로 모형 적합시키기
-
     model['regressor'] = XGBRegressor().fit(Xt, y_train)        
-
 def transform(X):
-
     # 딕셔너리 반환하기
-
     global model
-
     Xt = model['transformations'].transform(X)
-
     return {'score': model['regressor'].predict(Xt)}
-
 ```  
 
 노트북이 병합되면 ML Automator는 훈련된 모형을 [Python UDF](https://www.florianwilhelm.info/2016/10/python_udf_in_hive/)로 감싸고 아래와 같은 [Airflow](https://airflow.incubator.apache.org/) 파이프라인을 만든다. 데이터 직렬화, 주기적인 재훈련 스케줄링 및 분산 스코어링 같은 데이터 엔지니어링 작업 모두가 일 배치 작업의 일부로 캡슐화된다. 결과적으로 이 프레임워크는 데이터 과학자와 함께 모형을 제품화시키는 전담 데이터 엔지니어가 있는 것처럼 데이터 과학자를 위한 모형 개발 비용을 크게 절감시킨다!  
