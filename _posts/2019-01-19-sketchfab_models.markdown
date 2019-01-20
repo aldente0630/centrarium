@@ -35,8 +35,7 @@ $$c_{ui} = 1 + \alpha d_{ui}$$
   
 다시 돌아가면 WRMF는 어떤 품목과 상호 작용한 적 없는 사용자가 해당 품목을 *좋아하지* 않는다고 가정하진 않는다. WRMF는 해당 사용자가 해당 품목에 대해 부정적인 선호도를 가지고 있다고 가정하지만 신뢰도라는 하이퍼 파라미터를 통해 그 가정을 얼마나 신뢰할지 선택할 수 있다.
   
-
-이제, 이전의 명시적인 MF 게시물에서이 알고리즘을 최적화하는 방법에 대한 유쾌한 라텍스의 전체 파생을 통해 갈 수 있었지만 다른 사람들은 이미 여러 번이 작업을 끝냈습니다. 다음은 위대한 StackOverflow 답변입니다. Dirac 표기법에서 파생 된 내용이 마음에 들면 Sudeep Das의 게시물을 확인하십시오.
+자, 이제 예전 명시적 행렬 분해 게시물처럼 이 알고리즘을 최적화하는 방법에 관한 전체적인 전개를 Latex 떡칠로 적어볼 수 있지만 다른 이들이 이미 여러 번 끝내놨다. 다음은 위대한 StackOverflow의 [답변](https://math.stackexchange.com/questions/1072451/analytic-solution-for-matrix-factorization-using-alternating-least-squares/1073170#1073170)이다. Dirac 표기법으로 전개하는 내용이 마음에 든다면 Sudeep Das [게시물](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering)을 확인해라.
 
 # WRMF 라이브러리
 
