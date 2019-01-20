@@ -94,8 +94,8 @@ social:
 
   - name: LinkedIn
     icon: linkedin
-    username:
-    url: 
+    username: # "Youngmin Kim"
+    url: # https://www.linkedin.com/in/youngmin-kim-18850b126/
     desc: Connect with me on LinkedIn
     share: true
 
@@ -185,8 +185,8 @@ social:
     
   - name: Medium
     icon: medium
-    username: aldente0630
-    url: https://medium.com/@aldente0630
+    username: # aldente0630
+    url: # https://medium.com/@aldente0630
     desc: Follow me on Medium
     share: false
 
