@@ -41,7 +41,6 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 **알고리즘 1:** 히스토그램 기반 알고리즘
 
 - - -
-
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(m\\): 변수 차원  
 \\(nodeSet \leftarrow \\{0\\} \triangleright\\) 현재 깊이에서의 트리 노드들  
 \\(rowSet \leftarrow \\{\\{0, 1, 2, \ldots \\}\\} \triangleright\\) 트리 노드에서의 데이터 색인들  
@@ -86,7 +85,6 @@ GOSS는 기울기가 큰 개체는 모두 유지하되 기울기가 작은 개�
 **알고리즘 2:** 기울기 기반 단측 표본 추출
 
 - - -
-
 **입력:** \\(I\\): 훈련 데이터, \\(d\\): 최대 깊이, \\(a\\): 기울기 큰 데이터의 표본 추출 비율  
 **입력:** \\(b\\): 기울기 작은 데이터의 표본 추출 비율, \\(loss\\): 손실 함수, \\(L\\): 약한 학습기  
 models \\(\leftarrow \\{ \\} \\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(\leftarrow a \times\\) len(\\(I\\)), randN \\(\leftarrow b \times\\) len(\\(I\\))  
@@ -154,7 +152,6 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 **알고리즘 3:** 탐욕적 묶음
 
 - - -
-
 **입력:** \\(F\\): 변수, \\(K\\): 최대 충돌 횟수  
 그래프 \\(G\\) 생성  
 searchOrder \\(\leftarrow G\\).sortByDegree()  
@@ -177,7 +174,6 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 **알고리즘 4:** 배타적 변수 병합
 
 - - -
-
 **입력:** \\(numData\\): 데이터 개수, \\(F\\): 배타적 변수의 한 묶음  
 \\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\) 
 **for** f **in** \\(F\\) **do**
