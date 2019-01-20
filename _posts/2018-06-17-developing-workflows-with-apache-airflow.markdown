@@ -442,11 +442,9 @@ dummy_task = DummyOperator(task_id='dummy_task', dag=dag)
 sensor_task = MyFirstSensor(task_id='my_sensor_task', poke_interval=30, dag=dag)
 
 operator_task = MyFirstOperator(my_operator_param='This is a test.',
-
                                 task_id='my_first_operator_task', dag=dag)
 
 dummy_task >> sensor_task >> operator_task
-
 ```  
 
 웹 서버 및 스케줄러를 재시작하고 새로운 작업흐름을 이용해보자.  
@@ -454,29 +452,17 @@ dummy_task >> sensor_task >> operator_task
 `my_sensor_task` 태스크의 **로그 보기**를 누르면 다음과 유사한 내용이 표시된다.
 
 ```bash
-
 [2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
-
 [2017-03-19 14:13:28,719] {base_task_runner.py:95} INFO - Subtask: Starting attempt 1 of 1
-
 [2017-03-19 14:13:28,720] {base_task_runner.py:95} INFO - Subtask: --------------------------------------------------------------------------------
-
 [2017-03-19 14:13:28,720] {base_task_runner.py:95} INFO - Subtask: 
-
 [2017-03-19 14:13:28,728] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:28,728] {models.py:1342} INFO - Executing <Task(MyFirstSensor): my_sensor_task> on 2017-03-19 14:13:05.651721
-
 [2017-03-19 14:13:28,743] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:28,743] {my_operators.py:34} INFO - Current minute (13) not is divisible by 3, sensor will retry.
-
 [2017-03-19 14:13:58,747] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:13:58,747] {my_operators.py:34} INFO - Current minute (13) not is divisible by 3, sensor will retry.
-
 [2017-03-19 14:14:28,750] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:14:28,750] {my_operators.py:34} INFO - Current minute (14) not is divisible by 3, sensor will retry.
-
 [2017-03-19 14:14:58,752] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:14:58,752] {my_operators.py:34} INFO - Current minute (14) not is divisible by 3, sensor will retry.
-
 [2017-03-19 14:15:28,756] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:15:28,756] {my_operators.py:37} INFO - Current minute (15) is divisible by 3, sensor finishing.
-
 [2017-03-19 14:15:28,757] {base_task_runner.py:95} INFO - Subtask: [2017-03-19 14:15:28,756] {sensors.py:83} INFO - Success criteria met. Exiting.
-
 ```  
 
 이 단계의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/cb9b6b90e578d514439255a425ee42f181d33ccb/airflow_home)을 통해 받을 수 있다.
@@ -490,45 +476,27 @@ dummy_task >> sensor_task >> operator_task
 센서를 발전시켜 Xcom에 값을 저장해보자. `xcom_push()` 함수를 사용하자. 이 함수는 값이 저장될 키와 값 자체를 인자로 취한다.
 
 ```python
-
 class MyFirstSensor(BaseSensorOperator):
-
     ...
-
     def poke(self, context):
-
         ...
-
         log.info("Current minute (%s) is divisible by 3, sensor finishing.", current_minute)
-
         task_instance = context['task_instance']
-
         task_instance.xcom_push('sensors_minute', current_minute)
-
         return True
-
 ```  
 
 DAG 센서에 후행하는 오퍼레이터는 Xcom을 검색해서 해당 값을 이용할 수 있다. 값을 저장한 태스크 인스턴스의 태스크 ID와 값을 저장한 `key` 인자 두 개를 넣어서 `xcom_pull()` 함수 사용해보자.
 
 ```python
-
 class MyFirstOperator(BaseOperator):
-
     ...
-
     def execute(self, context):
-
         log.info("Hello World!")
-
         log.info('operator_param: %s', self.operator_param)
-
         task_instance = context['task_instance']
-
         sensors_minute = task_instance.xcom_pull('my_sensor_task', key='sensors_minute')
-
         log.info('Valid minute as determined by sensor: %s', sensors_minute)
-
 ```
 
 최종 버전의 코드는 GitHub의 [해당 커밋](https://github.com/postrational/airflow_tutorial/tree/15bd74b0d513485673b410fd2b7d989a987cc20b/airflow_home)을 통해 받을 수 있다.  
