@@ -39,7 +39,7 @@ $$c_{ui} = 1 + \alpha d_{ui}$$
 
 # WRMF 라이브러리
   
-WRMF를 구현 한 오픈 소스 코드를 찾을 수있는 곳이 많이있다. 손실 함수를 최적화하는 가장 보편적 인 방법은 교대 최소 자승법 (Alternating Least Squares)입니다. 이것은 확률 적 인 그래디언트 강하보다 조정하기가 덜 까다로운 경향이 있으며 모델은 [당황스럽게 병렬 적](https://en.wikipedia.org/wiki/Embarrassingly_parallel)입니다.
+WRMF를 구현한 오픈 소스 코드는 많은 곳에서 찾을 수 있다. 교차 최소 자승법은 손실 함수를 최적화하는 가장 보편적인 방법이다. 이 방법은 확률적 경사 하강법보다 조정하기가 덜 까다롭고 모형은 [처치 곤란 병렬적](https://en.wikipedia.org/wiki/Embarrassingly_parallel)이다.
   
 이 알고리즘에서 본 첫 번째 코드는 Chris Johnson의 [repo](https://github.com/MrChrisJohnson/implicit-mf)에서 가져온 것입니다. 이 코드는 파이썬에 있고, 희박한 행렬을 멋지게 사용하며 일반적으로 작업을 완료합니다. Thierry Bertin-Mahieux는이 코드를 가져 와서 파이썬 다중 처리 라이브러리를 사용하여 [병렬 처리](https://github.com/tbertinmahieux/implicit-mf)했습니다. 이는 정확성의 손실없이 상당한 속도 향상을 제공합니다.
   
