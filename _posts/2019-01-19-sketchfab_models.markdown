@@ -38,5 +38,15 @@ $$c_{ui} = 1 + \alpha d_{ui}$$
 자, 이제 예전 명시적 행렬 분해 게시물처럼 이 알고리즘을 최적화하는 방법에 관한 전체적인 전개를 Latex 떡칠로 적어볼 수 있지만 다른 이들이 이미 여러 번 끝내놨다. 다음은 위대한 StackOverflow의 [답변](https://math.stackexchange.com/questions/1072451/analytic-solution-for-matrix-factorization-using-alternating-least-squares/1073170#1073170)이다. Dirac 표기법으로 전개하는 내용이 마음에 든다면 Sudeep Das [게시물](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering)을 확인해라.
 
 # WRMF 라이브러리
+  
+WRMF를 구현 한 오픈 소스 코드를 찾을 수있는 곳이 많이있다. 손실 함수를 최적화하는 가장 보편적 인 방법은 교대 최소 자승법 (Alternating Least Squares)입니다. 이것은 확률 적 인 그래디언트 강하보다 조정하기가 덜 까다로운 경향이 있으며 모델은 [당황스럽게 병렬 적](https://en.wikipedia.org/wiki/Embarrassingly_parallel)입니다.
+  
+이 알고리즘에서 본 첫 번째 코드는 Chris Johnson의 [repo](https://github.com/MrChrisJohnson/implicit-mf)에서 가져온 것입니다. 이 코드는 파이썬에 있고, 희박한 행렬을 멋지게 사용하며 일반적으로 작업을 완료합니다. Thierry Bertin-Mahieux는이 코드를 가져 와서 파이썬 다중 처리 라이브러리를 사용하여 [병렬 처리](https://github.com/tbertinmahieux/implicit-mf)했습니다. 이는 정확성의 손실없이 상당한 속도 향상을 제공합니다.
+  
+Quora의 사람들은 [qmf](https://github.com/quora/qmf) 라 불리는 라이브러리를 가지고 나왔습니다. qmf는 parellize되고 C ++로 작성되었습니다. 필자는 사용하지 않았지만 아마 멀티 프로세싱 파이썬 버전보다 빠를 것이다. 마지막으로 Ben Frederickson은 순수 Cython에서 병렬 코드를 [이곳에](https://github.com/benfred/implicit) 작성하여 작성했습니다. 이것은 성능 측면에서 다른 파이썬 버전을 물 밖으로 불며 qmf보다 다소 [빠릅니다](https://github.com/benfred/implicit/tree/master/benchmarks) (이상하게 보입니다).
+  
+아무도, 나는이 게시물에 대한 Ben의 라이브러리를 사용하여 결국 (1) 나는 파이썬에 머물 수 있고, (2) 그것은 매우 빠릅니다. 라이브러리를 포크하고 그리드 검색을 실행하고 학습 곡선을 계산하기 쉽게 알고리즘을 랩핑하기 위해 작은 클래스를 작성했습니다. 내 자신의 위험에 사용 그래서 어떤 테스트를 작성하지 않았지만, [여기에](https://github.com/EthanRosenthal/implicit) 내 포크를 체크 아웃 주시기 바랍니다 :)
+  
+# 데이터 주무르기
 
 (번역 중)
