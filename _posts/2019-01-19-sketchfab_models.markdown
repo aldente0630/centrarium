@@ -43,7 +43,7 @@ WRMF를 구현한 오픈 소스 코드는 많은 곳에서 찾을 수 있다. �
   
 가장 처음 봤던 해당 알고리즘의 코드는 Chris Johnson [저장소](https://github.com/MrChrisJohnson/implicit-mf)의 것이다. 이 코드는 파이썬으로 작성되었고 희소 행렬을 멋지게 사용하여 일반적인 작업을 완료한다. Thierry Bertin-Mahieux는 이 코드를 가져 와서 파이썬 멀티 프로세싱 라이브러리를 사용하여 [병렬 처리](https://github.com/tbertinmahieux/implicit-mf)했다. 이는 정확도의 손실없이 상당한 속도 향상을 가져왔다.
   
-Quora의 사람들은 [qmf](https://github.com/quora/qmf)라고 불리는 라이브러리를 가지고 나왔다. 병렬 처리된 qmf는 C ++로 짜여있다. 난 사용해보지 않았지만 아마 파이썬 멀티 프로세싱 버전보다 빠를 것이다. 마지막으로 Ben Frederickson은 순수 Cython으로 병렬 코드를 작성해 [이곳에](https://github.com/benfred/implicit) 올려놓았다. 이건 성능 측면에서 다른 파이썬 버전들을 납작하게 눌러버렸고 심지어 qmf보다 다소 [빠르다](https://github.com/benfred/implicit/tree/master/benchmarks)(좀 이상하지만).
+Quora의 사람들은 [qmf](https://github.com/quora/qmf)라고 불리는 라이브러리를 가지고 나왔다. 병렬 처리된 qmf는 C ++로 짜여있다. 난 사용해보지 않았지만 아마 파이썬 멀티 프로세싱 버전보다 빠를 것이다. 마지막으로 Ben Frederickson은 순수 Cython으로 병렬 코드를 작성해 [이곳에](https://github.com/benfred/implicit) 올려놓았다. 이건 성능적인 측면에서 다른 파이썬 버전들을 납작하게 눌러버렸고 심지어 qmf보다 다소 [빠르다](https://github.com/benfred/implicit/tree/master/benchmarks)(좀 이상하지만).
   
 아무도, 나는이 게시물에 대한 Ben의 라이브러리를 사용하여 결국 (1) 나는 파이썬에 머물 수 있고, (2) 그것은 매우 빠릅니다. 라이브러리를 포크하고 그리드 검색을 실행하고 학습 곡선을 계산하기 쉽게 알고리즘을 랩핑하기 위해 작은 클래스를 작성했습니다. 내 자신의 위험에 사용 그래서 어떤 테스트를 작성하지 않았지만, [여기에](https://github.com/EthanRosenthal/implicit) 내 포크를 체크 아웃 주시기 바랍니다 :)
   
