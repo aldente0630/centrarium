@@ -45,9 +45,7 @@ categories: Data-Engineering
 **매개 변수**
 
 * **맵 조인**의 가장 중요한 매개 변수는 **hive.auto.convert.join**이다. **true**로 설정해야 한다.
-
 * 조인할 때 작은 테이블인지 판단하는 기준은 매개 변수 **hive.mapjoin.smalltable.filesize**에 의해 조절 가능하다. 기본적으로 25MB이다.
-
 * 3개 이상의 테이블을 조인하면 하이브는 모든 테이블의 크기를 작은 것으로 가정하고 3개 이상의 맵 사이드 조인을 생성한다. n-1개 테이블 크기가 기본값인 10MB보다 작은 경우 조인 속도를 더 높이기 위해 세 개 이상의 맵 사이드 조인을 단일 맵 사이드 조인으로 결합할 수 있다. 이를 위해서는 **hive.auto.convert.join.noconditionaltask** 매개 변수를 **true**로 설정하고 매개 변수 **hive.auto.convert.join.noconditionaltask.size**를 지정해야 한다.
 
 **제약**
@@ -63,25 +61,17 @@ categories: Data-Engineering
 맵 조인을 사용하는 쿼리로 지정하기 위해 힌트를 이용할 수 있다. 아래 예제에서 더 작은 테이블을 힌트에 썼고 그 결과 테이블 B를 직접 캐시 하도록 했다.  
 
 ```sql
-
 Select /*+ MAPJOIN(b) */ a.key, a.value from a join b on a.key = b.key
-
 ```  
 
 **예제**    
 
 ```sql
-
 hive> set hive.auto.convert.join=true;
-
 hive> set hive.auto.convert.join.noconditionaltask=true;
-
 hive> set hive.auto.convert.join.noconditionaltask.size=20971520
-
 hive> set hive.auto.convert.join.use.nonstaged=true;
-
 hive> set hive.mapjoin.smalltable.filesize = 30000000; 
-
 ```  
 
 # 3. 스큐 조인  
@@ -109,15 +99,10 @@ hive> set hive.mapjoin.smalltable.filesize = 30000000;
 **예제**    
 
 ```sql
-
 set hive.optimize.skewjoin = true;
-
 set hive.skewjoin.key=500000;
-
 set hive.skewjoin.mapjoin.map.tasks=10000;
-
 set hive.skewjoin.mapjoin.min.split=33554432;
-
 ```  
 
 # 4. 버킷 조인  
@@ -131,21 +116,13 @@ set hive.skewjoin.mapjoin.min.split=33554432;
 테이블을 생성할 때 조인 칼럼을 이용하여 버킷을 만들고 테이블에 데이터를 삽입하기 **전에** 버킷이 만들어졌는지 확인하자. 또 데이터를 삽입하기 전에 매개 변수 **hive.optimize.bucketmapjoin**과 **hive.enforce.bucketing**을 모두 **true**로 설정하자. 버킷 테이블을 생성하는 예시는 아래에 나와 있다.   
 
 ```sql
-
 CREATE TABLE mytable (  
-
 name string,     
-
 city string,    
-
 employee_id int )   
-
 PARTITIONED BY (year STRING, month STRING, day STRING)  
-
 CLUSTERED BY (employee_id) INTO 256 BUCKETS 
-
 ;
-
 ```  
 
 위의 조인을 **버킷 맵 조인**이라고도 한다. 조인 테이블의 버킷 수가 같고 데이터를 조인 칼럼으로 정렬한 경우 **정렬 병합 맵 조인**을 사용한다.  
@@ -157,11 +134,7 @@ CLUSTERED BY (employee_id) INTO 256 BUCKETS
 **예제**    
 
 ```sql
-
 set hive.optimize.bucketmapjoin = true;
-
 set hive.optimize.bucketmapjoin.sortedmerge = true;
-
 set hive.input.format=org.apache.hadoop.hive.ql.io.BucketizedHiveInputFormat;
-
 ```
