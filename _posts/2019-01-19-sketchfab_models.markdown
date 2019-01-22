@@ -112,13 +112,49 @@ n_items = df.mid.unique().shape[0]
 
 print('사용자 수: {}'.format(n_users))
 print('모델 개수: {}'.format(n_items))
-print('희소성: {:4.3f}%'.format(float(df.shape[0]) / float(n_users*n_items) * 100))
+print('희소 정도: {:4.3f}%'.format(float(df.shape[0]) / float(n_users*n_items) * 100))
 ```
   
 ```bash
 사용자 수: 62583
 모델 개수: 28806
-희소성: 0.035%
+희소 정도: 0.035%
+```
+  
+암시적인 권장 사항은 데이터가 희소 한 곳에서 탁월한 반면, 상호 작용 매트릭스를 좀 더 밀도있게 만드는 것이 도움이 될 수 있습니다. 우리는 데이터 수집을 적어도 5 개의 좋아하는 모델로 제한했습니다. 그러나 모든 사용자가 적어도 5 개의 모델을 좋아하지는 않았을 수 있습니다. 5 개 미만의 모델을 좋아하는 사용자를 노크 해 봅시다. 이것은 아마도 이러한 사용자가 기절 한 후에 일부 모델이 5 개 미만의 좋아하는 것으로 끝날 수 있으므로, 상황이 안정 될 때까지 사용자와 모델을 노크하는 것을 앞뒤로 반복해야합니다.
+  
+```python
+def threshold_likes(df, uid_min, mid_min):
+    n_users = df.uid.unique().shape[0]
+    n_items = df.mid.unique().shape[0]
+    sparsity = float(df.shape[0]) / float(n_users*n_items) * 100
+    print('Starting likes info')
+    print('사용자 수: {}'.format(n_users))
+    print('모델 개수: {}'.format(n_items))
+    print('희소 정도: {:4.3f}%'.format(sparsity))
+    
+    done = False
+    while not done:
+        starting_shape = df.shape[0]
+        mid_counts = df.groupby('uid').mid.count()
+        df = df[~df.uid.isin(mid_counts[mid_counts < mid_min].index.tolist())]
+        uid_counts = df.groupby('mid').uid.count()
+        df = df[~df.mid.isin(uid_counts[uid_counts < uid_min].index.tolist())]
+        ending_shape = df.shape[0]
+        if starting_shape == ending_shape:
+            done = True
+    
+    assert(df.groupby('uid').mid.count().min() >= mid_min)
+    assert(df.groupby('mid').uid.count().min() >= uid_min)
+    
+    n_users = df.uid.unique().shape[0]
+    n_items = df.mid.unique().shape[0]
+    sparsity = float(df.shape[0]) / float(n_users*n_items) * 100
+    print('Ending likes info')
+    print('사용자 수: {}'.format(n_users))
+    print('모델 개수: {}'.format(n_items))
+    print('희소 정도: {:4.3f}%'.format(sparsity))
+    return df
 ```
   
 (번역 중)
