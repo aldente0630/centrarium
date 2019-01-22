@@ -75,7 +75,7 @@ df.head()
 ```
   
 | | **modelname** | **mid** | **uid** |
-|:--|:---------|:-------------------------------|:-------------------------------|
+|:--|:-----------------------------------|:---------------------------------|:---------------------------------|
 | 0 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 7ac1b40648fff523d7220a5d07b04d9b |
 | 1 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 2b4ad286afe3369d39f1bb7aa2528bc7 |
 | 2 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1bf0993ebab175a896ac8003bed91b4b |
@@ -96,6 +96,29 @@ df.drop_duplicates(inplace=True)
 ```python
 df = df[['uid', 'mid']]
 df.head()
+```
+
+| | **uid** | **mid** |
+|:--|:---------------------------------|:---------------------------------|
+| 0 | 7ac1b40648fff523d7220a5d07b04d9b | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 |
+| 1 | 2b4ad286afe3369d39f1bb7aa2528bc7 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 |
+| 2 | 1bf0993ebab175a896ac8003bed91b4b | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 |
+| 3 | 6484211de8b9a023a7d9ab1641d22e7c | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 |
+| 4 | 1109ee298494fbd192e27878432c718a | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 |
+  
+```python
+n_users = df.uid.unique().shape[0]
+n_items = df.mid.unique().shape[0]
+
+print('사용자 수: {}'.format(n_users))
+print('모델 개수: {}'.format(n_items))
+print('희소성: {:4.3f}%'.format(float(df.shape[0]) / float(n_users*n_items) * 100))
+```
+  
+```bash
+사용자 수: 62583
+모델 개수: 28806
+희소성: 0.035%
 ```
   
 (번역 중)
