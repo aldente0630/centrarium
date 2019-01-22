@@ -157,4 +157,19 @@ def threshold_likes(df, uid_min, mid_min):
     return df
 ```
   
+```python
+df_lim = threshold_likes(df, 5, 5)
+```
+  
+```bash
+Starting likes info
+Number of users: 62583
+Number of models: 28806
+Sparsity: 0.035%
+Ending likes info
+Number of users: 15274
+Number of models: 25655
+Sparsity: 0.140%
+```
+  
 (번역 중)
