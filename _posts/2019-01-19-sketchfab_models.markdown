@@ -51,6 +51,27 @@ Quora의 사람들은 [qmf](https://github.com/quora/qmf)라고 불리는 라이
   
 여기까지 하고 WRMF 모형을 훈련시켜서 Sketchfab 모델을 추천해보자!
   
-첫 번째 단계는 데이터를 불러와서 "사용자 수" 곱하기 "항목 수" 크기의 상호 작용 행렬로 변환하는 것이다. 데이터의 각 행은 사용자가 Sketchfab 웹사이트에서 "좋아하는" 모델을 나타내며 현재 csv 형태로 저장되었다. 첫 번째 열은 모델 이름이고 두 번째 열은 고유한 모델 ID(mid)이며 세 번째 열은 익명화된 사용자 ID (uid)이다.
+첫 번째 단계는 데이터를 불러와서 "사용자 수" 곱하기 "항목 수" 크기의 상호 작용 행렬로 변환하는 것이다. 데이터의 각 행은 사용자가 Sketchfab 웹사이트에서 "좋아하는" 모델을 나타내며 현재 csv 형태로 저장되었다. 첫 번째 열은 모델 이름이고 두 번째 열은 고유한 모델 ID(`mid`)이며 세 번째 열은 익명화된 사용자 ID(`uid`)이다.
+  
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import scipy.sparse as sparse
+import pickle
+import csv
+import implicit
+import itertools
+import copy
+plt.style.use('ggplot')
+```
+  
+```python
+df = pd.read_csv('../data/model_likes_anon.psv',
+                 sep='|', quoting=csv.QUOTE_MINIMAL,
+                 quotechar='\\')
+df.head()
+```
 
 (번역 중)
