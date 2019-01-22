@@ -75,7 +75,7 @@ df.head()
 ```
   
 | | **modelname** | **mid** | **uid** |
-|:---------|:---------|:---------|:---------|
+|:--|:---------|:-------------------------------|:-------------------------------|
 | 0 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 7ac1b40648fff523d7220a5d07b04d9b |
 | 1 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 2b4ad286afe3369d39f1bb7aa2528bc7 |
 | 2 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1bf0993ebab175a896ac8003bed91b4b |
@@ -88,7 +88,7 @@ print('이상하네 - 그냥 버리자')
 df.drop_duplicates(inplace=True)
 ```
 
-```python
+```bash
 중복 행 수 155
 이상하네 - 그냥 버리자
 ```
