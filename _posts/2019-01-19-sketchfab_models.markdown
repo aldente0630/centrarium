@@ -83,14 +83,14 @@ df.head()
 | 4 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1109ee298494fbd192e27878432c718a |
   
 ```python
-print('Duplicated rows: ' + str(df.duplicated().sum()))
-print('That\'s weird - let\'s just drop them')
+print('중복 행 수: ' + str(df.duplicated().sum()))
+print('이상하네 - 그냥 버리자')
 df.drop_duplicates(inplace=True)
 ```
 
 ```python
-Duplicated rows 155
-That's weird - let's just drop them
+중복 행 수 155
+이상하네 - 그냥 버리자
 ```
   
 ```python
