@@ -73,5 +73,29 @@ df = pd.read_csv('../data/model_likes_anon.psv',
                  quotechar='\\')
 df.head()
 ```
+  
+| | **modelname** | **mid** | **uid** |
+|:---------|:---------|:---------|:---------|
+| 0 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 7ac1b40648fff523d7220a5d07b04d9b |
+| 1 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 2b4ad286afe3369d39f1bb7aa2528bc7 |
+| 2 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1bf0993ebab175a896ac8003bed91b4b |
+| 3 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 6484211de8b9a023a7d9ab1641d22e7c |
+| 4 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1109ee298494fbd192e27878432c718a |
+  
+```python
+print('Duplicated rows: ' + str(df.duplicated().sum()))
+print('That\'s weird - let\'s just drop them')
+df.drop_duplicates(inplace=True)
+```
 
+```python
+Duplicated rows 155
+That's weird - let's just drop them
+```
+  
+```python
+df = df[['uid', 'mid']]
+df.head()
+```
+  
 (번역 중)
