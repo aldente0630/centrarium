@@ -121,14 +121,14 @@ print('희소 정도: {:4.3f}%'.format(float(df.shape[0]) / float(n_users*n_item
 희소 정도: 0.035%
 ```
   
-암시적인 권장 사항은 데이터가 희소 한 곳에서 탁월한 반면, 상호 작용 매트릭스를 좀 더 밀도있게 만드는 것이 도움이 될 수 있습니다. 우리는 데이터 수집을 적어도 5 개의 좋아하는 모델로 제한했습니다. 그러나 모든 사용자가 적어도 5 개의 모델을 좋아하지는 않았을 수 있습니다. 5 개 미만의 모델을 좋아하는 사용자를 노크 해 봅시다. 이것은 아마도 이러한 사용자가 기절 한 후에 일부 모델이 5 개 미만의 좋아하는 것으로 끝날 수 있으므로, 상황이 안정 될 때까지 사용자와 모델을 노크하는 것을 앞뒤로 반복해야합니다.
+암시적 추천은 데이터가 희소 한 곳에서 탁월한 반면, 상호 작용 매트릭스를 좀 더 밀도있게 만드는 것이 도움이 될 수 있습니다. 우리는 데이터 수집을 적어도 5 개의 좋아하는 모델로 제한했습니다. 그러나 모든 사용자가 적어도 5 개의 모델을 좋아하지는 않았을 수 있습니다. 5 개 미만의 모델을 좋아하는 사용자를 노크 해 봅시다. 이것은 아마도 이러한 사용자가 기절 한 후에 일부 모델이 5 개 미만의 좋아하는 것으로 끝날 수 있으므로, 상황이 안정 될 때까지 사용자와 모델을 노크하는 것을 앞뒤로 반복해야합니다.
   
 ```python
 def threshold_likes(df, uid_min, mid_min):
     n_users = df.uid.unique().shape[0]
     n_items = df.mid.unique().shape[0]
     sparsity = float(df.shape[0]) / float(n_users*n_items) * 100
-    print('Starting likes info')
+    print('최초 좋아요 정보')
     print('사용자 수: {}'.format(n_users))
     print('모델 개수: {}'.format(n_items))
     print('희소 정도: {:4.3f}%'.format(sparsity))
@@ -150,7 +150,7 @@ def threshold_likes(df, uid_min, mid_min):
     n_users = df.uid.unique().shape[0]
     n_items = df.mid.unique().shape[0]
     sparsity = float(df.shape[0]) / float(n_users*n_items) * 100
-    print('Ending likes info')
+    print('최종 좋아요 정보')
     print('사용자 수: {}'.format(n_users))
     print('모델 개수: {}'.format(n_items))
     print('희소 정도: {:4.3f}%'.format(sparsity))
@@ -162,14 +162,14 @@ df_lim = threshold_likes(df, 5, 5)
 ```
   
 ```bash
-Starting likes info
-Number of users: 62583
-Number of models: 28806
-Sparsity: 0.035%
-Ending likes info
-Number of users: 15274
-Number of models: 25655
-Sparsity: 0.140%
+최초 좋아요 정보
+사용자 수: 62583
+모델 개수: 28806
+희소 정도: 0.035%
+최종 좋아요 정보
+사용자 수: 15274
+모델 개수: 25655
+희소 정도: 0.140%
 ```
   
 (번역 중)
