@@ -172,4 +172,62 @@ df_lim = threshold_likes(df, 5, 5)
 희소 정도: 0.140%
 ```
   
+좋은, 우리는 괜찮은 추천을 만들기에 적합해야 0.1 % 이상입니다. 이제 우리는 상호 작용 또는 "좋아하는"행렬에 대해 각각의 uid와 mid를 각각 행과 열로 매핑해야합니다. 이것은 파이썬 사전으로 간단하게 할 수 있습니다.
+  
+```python
+# 맵핑 만들기
+mid_to_idx = {}
+idx_to_mid = {}
+for (idx, mid) in enumerate(df_lim.mid.unique().tolist()):
+    mid_to_idx[mid] = idx
+    idx_to_mid[idx] = mid
+    
+uid_to_idx = {}
+idx_to_uid = {}
+for (idx, uid) in enumerate(df_lim.uid.unique().tolist()):
+    uid_to_idx[uid] = idx
+    idx_to_uid[idx] = uid
+```
+  
+마지막 단계는 실제로 행렬을 만드는 것입니다. 너무 많은 메모리를 차지하지 않도록 스파 스 행렬을 사용합니다. 스파 스 매트릭스는 여러 형태로 제공되기 때문에 까다 롭습니다. 그리고 이들 사이에는 거대한 성능상의 상충 관계가 있습니다. 아래는 좋아요 매트릭스를 구축하는 아주 느린 방법입니다. 나는 %% timeit을 실행하려했지만 끝내기를 기다리는 지루함을 느꼈다.
+  
+```python
+# # 이건 실행하지마!
+# num_users = df_lim.uid.unique().shape[0]
+# num_items = df_lim.mid.unique().shape[0]
+# likes = sparse.csr_matrix((num_users, num_items), dtype=np.float64)
+# for row in df_lim.itertuples():
+#     likes[uid_to_idx[uid], mid_to_idx[row.mid]] = 1.0
+```
+  
+양자 택일로, 아래는 우리가 50 만 명의 행렬을 만들고 있다고 생각하면 꽤 빠르다.
+  
+```python
+def map_ids(row, mapper):
+    return mapper[row]
+```
+  
+```python
+%%timeit
+I = df_lim.uid.apply(map_ids, args=[uid_to_idx]).as_matrix()
+J = df_lim.mid.apply(map_ids, args=[mid_to_idx]).as_matrix()
+V = np.ones(I.shape[0])
+likes = sparse.coo_matrix((V, (I, J)), dtype=np.float64)
+likes = likes.tocsr()
+```
+  
+```bash
+1 loop, best of 3: 876 ms per loop
+```
+  
+```bash
+I = df_lim.uid.apply(map_ids, args=[uid_to_idx]).as_matrix()
+J = df_lim.mid.apply(map_ids, args=[mid_to_idx]).as_matrix()
+V = np.ones(I.shape[0])
+likes = sparse.coo_matrix((V, (I, J)), dtype=np.float64)
+likes = likes.tocsr()
+```
+  
+# 교차 검증: 
+  
 (번역 중)
