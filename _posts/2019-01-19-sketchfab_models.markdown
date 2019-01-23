@@ -175,7 +175,7 @@ df_lim = threshold_likes(df, 5, 5)
 좋은, 우리는 괜찮은 추천을 만들기에 적합해야 0.1 % 이상입니다. 이제 우리는 상호 작용 또는 "좋아하는"행렬에 대해 각각의 `uid`와 `mid`를 각각 행과 열로 매핑해야합니다. 이것은 파이썬 사전으로 간단하게 할 수 있습니다.
   
 ```python
-# 맵핑 만들기
+# 매핑 만들기
 mid_to_idx = {}
 idx_to_mid = {}
 for (idx, mid) in enumerate(df_lim.mid.unique().tolist()):
