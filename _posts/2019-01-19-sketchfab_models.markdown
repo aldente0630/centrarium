@@ -192,7 +192,7 @@ for (idx, uid) in enumerate(df_lim.uid.unique().tolist()):
 마지막 단계는 실제로 행렬을 만드는 것입니다. 너무 많은 메모리를 차지하지 않도록 스파 스 행렬을 사용합니다. 스파 스 매트릭스는 여러 형태로 제공되기 때문에 까다 롭습니다. 그리고 이들 사이에는 거대한 성능상의 상충 관계가 있습니다. 아래는 좋아요 매트릭스를 구축하는 아주 느린 방법입니다. 나는 %% timeit을 실행하려했지만 끝내기를 기다리는 지루함을 느꼈다.
   
 ```python
-# # 이건 실행하지마!
+# # 이건 실행하지말자!
 # num_users = df_lim.uid.unique().shape[0]
 # num_items = df_lim.mid.unique().shape[0]
 # likes = sparse.csr_matrix((num_users, num_items), dtype=np.float64)
