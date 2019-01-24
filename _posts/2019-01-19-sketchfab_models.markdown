@@ -220,7 +220,7 @@ likes = likes.tocsr()
 1 loop, best of 3: 876 ms per loop
 ```
   
-```bash
+```python
 I = df_lim.uid.apply(map_ids, args=[uid_to_idx]).as_matrix()
 J = df_lim.mid.apply(map_ids, args=[mid_to_idx]).as_matrix()
 V = np.ones(I.shape[0])
@@ -228,8 +228,73 @@ likes = sparse.coo_matrix((V, (I, J)), dtype=np.float64)
 likes = likes.tocsr()
 ```
   
-# 교차 검증: 스프리츠빌
+# 교차 검증: 데이터 분할
   
 좋아요, 우리는 좋아요 매트릭스가 있고 그것을 훈련과 테스트 매트릭스로 나눌 필요가 있습니다. 나는 조금 어리석게 이것을한다 (어쩌면 한 마디 일까?). 나중에 최적화 메트릭으로 precision @ k를 추적하고 싶습니다. 5의 k는 좋을 것입니다. 그러나 일부 사용자의 경우 훈련에서 테스트로 5 개 항목을 이동하면 교육 세트에 데이터가 남아 있지 않을 수 있습니다 (최소 5 개의 좋아하는 것을 기억하십시오). 따라서 train_test_split은 데이터의 일부를 테스트 세트로 이동하기 전에 적어도 2 * k (이 경우 10 개)가있는 사람들을 찾습니다. 이는 분명 좋아하는 사용자를 대상으로 교차 검증을 실시합니다. 그래서 그것은 간다.
+  
+```python
+def train_test_split(ratings, split_count, fraction=None):
+    """
+    Split recommendation data into train and test sets
+    
+    Params
+    ------
+    ratings : scipy.sparse matrix
+        Interactions between users and items.
+    split_count : int
+        Number of user-item-interactions per user to move
+        from training to test set.
+    fractions : float
+        Fraction of users to split off some of their
+        interactions into test set. If None, then all 
+        users are considered.
+    """
+    # Note: likely not the fastest way to do things below.
+    train = ratings.copy().tocoo()
+    test = sparse.lil_matrix(train.shape)
+    
+    if fraction:
+        try:
+            user_index = np.random.choice(
+                np.where(np.bincount(train.row) >= split_count * 2)[0], 
+                replace=False,
+                size=np.int32(np.floor(fraction * train.shape[0]))
+            ).tolist()
+        except:
+            print(('Not enough users with > {} '
+                  'interactions for fraction of {}')\
+                  .format(2*k, fraction))
+            raise
+    else:
+        user_index = range(train.shape[0])
+        
+    train = train.tolil()
+
+    for user in user_index:
+        test_ratings = np.random.choice(ratings.getrow(user).indices, 
+                                        size=split_count, 
+                                        replace=False)
+        train[user, test_ratings] = 0.
+        # These are just 1.0 right now
+        test[user, test_ratings] = ratings[user, test_ratings]
+   
+    
+    # Test and training are truly disjoint
+    assert(train.multiply(test).nnz == 0)
+    return train.tocsr(), test.tocsr(), user_index
+```
+   
+```python
+train, test, user_index = train_test_split(likes, 5, fraction=0.2)
+```
+  
+# 교차 검증: 격자 탐색
+  
+이제 데이터가 학습 및 테스트 행렬로 분할되었으므로 거대한 그리드 검색을 실행하여 하이퍼 매개 변수를 최적화하십시오. 최적화 할 4 가지 매개 변수가 있습니다.
+  
+1.`num_factors`: 잠정적 인 요소의 수 또는 우리 모델의 차원의 정도.
+2.`regularization`: 사용자 및 항목 요인에 대한 정규화의 척도.
+3. `alpha`: 우리의 신뢰 스케일링 용어.
+4.`iterations`: Alternating Least Squares optimization을 수행하기위한 반복 횟수.
   
 (번역 중)
