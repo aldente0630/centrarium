@@ -292,9 +292,11 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
   
 이제 데이터가 학습 및 테스트 행렬로 분할되었으므로 거대한 그리드 검색을 실행하여 하이퍼 매개 변수를 최적화하십시오. 최적화 할 4 가지 매개 변수가 있습니다.
   
-1.`num_factors`: 잠정적 인 요소의 수 또는 우리 모델의 차원의 정도.
-2.`regularization`: 사용자 및 항목 요인에 대한 정규화의 척도.
-3. `alpha`: 우리의 신뢰 스케일링 용어.
-4.`iterations`: Alternating Least Squares optimization을 수행하기위한 반복 횟수.
+1.`num_factors`: 잠정적 인 요소의 수 또는 우리 모델의 차원의 정도.  
+2.`regularization`: 사용자 및 항목 요인에 대한 정규화의 척도.  
+3. `alpha`: 우리의 신뢰 스케일링 용어.  
+4.`iterations`: Alternating Least Squares optimization을 수행하기위한 반복 횟수.  
+  
+나는 평균 제곱 오차 (MSE)와 정밀도를 k (p @ k)에서 추적 할 것이지만, 나는 주로 나중에주의를 기울인다. 메트릭 계산을 돕고 트레이닝 로그 출력물을 멋지게 보이도록하기 위해 아래에 몇 가지 함수를 작성했습니다. 여러 개의 다른 하이퍼 매개 변수 조합에 대해 일련의 학습 곡선 (즉, 교육 프로세스의 다양한 단계에서 성능 메트릭을 평가)을 계산할 것입니다. 소품을 오픈 소스로 배우고 기본적으로 그들의 GridSearchCV 코드를 보자.
   
 (번역 중)
