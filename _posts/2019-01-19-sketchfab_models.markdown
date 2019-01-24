@@ -258,8 +258,8 @@ def train_test_split(ratings, split_count, fraction=None):
                 size=np.int32(np.floor(fraction * train.shape[0]))
             ).tolist()
         except:
-            print(('Not enough users with > {} '
-                  'interactions for fraction of {}')\
+            print(('상호작용 개수가 {} 넘는 사용자로'
+                  '{} 비율 채우기 어려움')\
                   .format(2*k, fraction))
             raise
     else:
@@ -272,11 +272,11 @@ def train_test_split(ratings, split_count, fraction=None):
                                         size=split_count, 
                                         replace=False)
         train[user, test_ratings] = 0.
-        # These are just 1.0 right now
+        # 점수의 경우 지금은 단지 1.0이다.
         test[user, test_ratings] = ratings[user, test_ratings]
    
     
-    # Test and training are truly disjoint
+    # 실험과 훈련셋은 절대 겹치지 말아야한다.
     assert(train.multiply(test).nnz == 0)
     return train.tocsr(), test.tocsr(), user_index
 ```
@@ -291,9 +291,66 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
   
 1.`num_factors`: 잠정적 인 요소의 수 또는 우리 모델의 차원의 정도.  
 2.`regularization`: 사용자 및 항목 요인에 대한 정규화의 척도.  
-3. `alpha`: 우리의 신뢰 스케일링 용어.  
+3.`alpha`: 우리의 신뢰 스케일링 용어.  
 4.`iterations`: Alternating Least Squares optimization을 수행하기위한 반복 횟수.  
   
 나는 평균 제곱 오차 (MSE)와 정밀도를 k (p @ k)에서 추적 할 것이지만, 나는 주로 나중에주의를 기울인다. 메트릭 계산을 돕고 트레이닝 로그 출력물을 멋지게 보이도록하기 위해 아래에 몇 가지 함수를 작성했습니다. 여러 개의 다른 하이퍼 매개 변수 조합에 대해 일련의 학습 곡선 (즉, 교육 프로세스의 다양한 단계에서 성능 메트릭을 평가)을 계산할 것입니다. 소품을 오픈 소스로 배우고 기본적으로 그들의 GridSearchCV 코드를 보자.
+  
+```python
+from sklearn.metrics import mean_squared_error
+def calculate_mse(model, ratings, user_index=None):
+    preds = model.predict_for_customers()
+    if user_index:
+        return mean_squared_error(ratings[user_index, :].toarray().ravel(),
+                                  preds[user_index, :].ravel())
+    
+    return mean_squared_error(ratings.toarray().ravel(),
+                              preds.ravel())
+```
+  
+```python
+def precision_at_k(model, ratings, k=5, user_index=None):
+    if not user_index:
+        user_index = range(ratings.shape[0])
+    ratings = ratings.tocsr()
+    precisions = []
+    # Note: line below may become infeasible for large datasets.
+    predictions = model.predict_for_customers()
+    for user in user_index:
+        # In case of large dataset, compute predictions row-by-row like below
+        # predictions = np.array([model.predict(row, i) for i in xrange(ratings.shape[1])])
+        top_k = np.argsort(-predictions[user, :])[:k]
+        labels = ratings.getrow(user).indices
+        precision = float(len(set(top_k) & set(labels))) / float(k)
+        precisions.append(precision)
+    return np.mean(precisions)        
+```
+  
+```python
+def print_log(row, header=False, spacing=12):
+    top = ''
+    middle = ''
+    bottom = ''
+    for r in row:
+        top += '+{}'.format('-'*spacing)
+        if isinstance(r, str):
+            middle += '| {0:^{1}} '.format(r, spacing-2)
+        elif isinstance(r, int):
+            middle += '| {0:^{1}} '.format(r, spacing-2)
+        elif isinstance(r, float):
+            middle += '| {0:^{1}.5f} '.format(r, spacing-2)
+        bottom += '+{}'.format('='*spacing)
+    top += '+'
+    middle += '|'
+    bottom += '+'
+    if header:
+        print(top)
+        print(middle)
+        print(bottom)
+    else:
+        print(middle)
+        print(top)    
+```
+  
   
 (번역 중)
