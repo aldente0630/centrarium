@@ -235,21 +235,18 @@ likes = likes.tocsr()
 ```python
 def train_test_split(ratings, split_count, fraction=None):
     """
-    Split recommendation data into train and test sets
+    추천 데이터를 훈련과 실험셋으로 분할하기
     
-    Params
+    파라미터
     ------
-    ratings : scipy.sparse matrix
-        Interactions between users and items.
-    split_count : int
-        Number of user-item-interactions per user to move
-        from training to test set.
-    fractions : float
-        Fraction of users to split off some of their
-        interactions into test set. If None, then all 
-        users are considered.
+    ratings : scipy.sparse 행렬
+        고객과 품목 간의 상호작용.
+    split_count : 정수
+        훈련셋에서 실험셋으로 이동시킬 고객 당 고객-품목-상호작용 갯수.
+    fractions : 부동소숫점
+        상호작용 일부를 실험셋으로 분리시킬 사용자의 비율. 만약 None이면 사용자 전체를 고려한다.
     """
-    # Note: likely not the fastest way to do things below.
+    # 참고: 아래 작업을 하기 위한 가장 빠른 방법은 아닐 것이다.
     train = ratings.copy().tocoo()
     test = sparse.lil_matrix(train.shape)
     
