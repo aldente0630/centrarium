@@ -517,5 +517,32 @@ plt.title('Best learning curve', fontsize=30);
 ```
 
 ![그림1](https://aldente0630.github.io/assets/sketchfab_models1.png)  
+  
+커브가 약간 들쭉날쭉하지만, 22의 최고 신기원을 지나칠수록 커브가 너무 크게 줄어들지 않습니다. 즉, 조기 정지를 조심스럽게 실행하지 않아도됩니다. (p @ k를 사용하면 우리는 걱정한다).
+  
+우리는 모든 학습 곡선을 그릴 수 있으며 하이퍼 매개 변수의 차이가 성능에 *확실히* 차이가 있음을 알 수 있습니다.
+  
+```python
+all_test_patks = [x['patk']['test'] for x in best_curves]
+```
+  
+```python
+fig, ax = plt.subplots(figsize=(8, 10));
+sns.despine(fig);
+epochs = range(2, 40, 2)
+totes = len(all_test_patks)
+for i, test_patk in enumerate(all_test_patks):
+    ax.plot(epochs, test_patk,
+             alpha=1/(.1*i+1),
+             c=sns.color_palette()[0]);
+    
+plt.xlabel('Epochs', fontsize=24);
+plt.ylabel('Test p@k', fontsize=24);
+plt.xticks(fontsize=18);
+plt.yticks(fontsize=18);
+plt.title('Grid-search p@k traces', fontsize=30);
+```
+  
+![그림2](https://aldente0630.github.io/assets/sketchfab_models2.png)  
 
 (번역 중)
