@@ -546,5 +546,123 @@ plt.title('Grid-search p@k traces', fontsize=30);
 ![그림2](https://aldente0630.github.io/assets/sketchfab_models2.png)  
 
 # 스케치 추천하기
+  
+결국, 우리는 마침내 최적의 하이퍼 파라미터를 갖게됩니다. 우리는 이제 더 정밀한 그리드 검색을 수행하거나 사용자와 아이템 정규화 효과 결과 간의 비율을 어떻게 변화시킬 수 있는지 살펴볼 수 있습니다. 그러나 다른 2 일을 기다리는 것처럼 느껴지지 않습니다 ...
+  
+최적의 하이퍼 매개 변수를 사용하여 모든 데이터에서 WRMF 모델을 학습하고 항목 별 권장 사항을 시각화합니다. 사용자 간 권장 사항은 시각화하기가 다소 어려우며 정확도에 대한 느낌을 얻습니다.
+  
+```python
+params = best_curves[0]['params']
+params['iterations'] = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
+bestALS = implicit.ALS(**params)
+```
+
+```python
+bestALS.fit(likes)
+```
+  
+항목 간 권장 사항을 얻으려면 `ALS` 클래스에서 `predict_for_items`라는 작은 메소드를 만들었습니다. 이것은 본질적으로 항목 벡터의 모든 조합 사이의 점 제품입니다. `norm = True` (기본값)로하면이 내적은 각 항목 벡터의 표준으로 정규화되어 코사인 유사성을 갖습니다. 이는 유사한 두 항목이 포함 된 또는 잠복 된 공간에 얼마나 유사한지를 알려줍니다.
+  
+```python
+def predict_for_items(self, norm=True):
+  """모든 품목에 대한 품목 추천"""
+  pred = self.item_vectors.dot(self.item_vectors.T)
+  if norm:
+      norms = np.array([np.sqrt(np.diagonal(pred))])
+      pred = pred / norms / norms.T
+  return pred
+```
+  
+```python
+item_similarities = bestALS.predict_for_items()
+```
+  
+이제 모델과 관련 권장 사항 중 일부를 시각화하여 추천자가 얼마나 효과적인지 느껴 보도록하겠습니다. 모델의 미리보기 이미지를 가져 오기 위해 sketchfab API를 쿼리하면됩니다. 아래는 항목 유사점, 색인 및 색인 - `mid` 매퍼를 사용하여 권장 사항의 축소판 URL 목록을 반환하는 도우미 함수입니다. 첫 번째 권장 사항은 코사인 유사성이 1 인 자체이므로 항상 모델 자체임을 유의하십시오.
+  
+```python
+import requests
+def get_thumbnails(sim, idx, idx_to_mid, N=10):
+    row = sim[idx, :]
+    thumbs = []
+    for x in np.argsort(-row)[:N]:
+        response = requests.get('https://sketchfab.com/i/models/{}'.format(idx_to_mid[x])).json()
+        thumb = [x['url'] for x in response['thumbnails']['images'] if x['width'] == 200 and x['height']==200]
+        if not thumb:
+            print('no thumbnail')
+        else:
+            thumb = thumb[0]
+        thumbs.append(thumb)
+    return thumbs
+```
+  
+```python
+thumbs = get_thumbnails(item_similarities, 0, idx_to_mid)
+```
+  
+```python
+print(thumbs[0])
+```
+
+```bash
+https://dg5bepmjyhz9h.cloudfront.net/urls/5dcebcfaedbd4e7b8a27bd1ae55f1ac3/dist/thumbnails/a59f9de0148e4986a181483f47826fe0/200x200.jpeg
+```
+    
+이제 HTML 및 핵심 IPython 기능을 사용하여 이미지를 표시 할 수 있습니다.
+
+```python
+from IPython.display import display, HTML
+
+def display_thumbs(thumbs, N=5):
+    thumb_html = "<img style='width: 160px; margin: 0px; \
+                  border: 1px solid black;' src='{}' />"
+    images = ''
+    display(HTML('<font size=5>'+'Input Model'+'</font>'))
+    display(HTML(thumb_html.format(thumbs[0])))
+    display(HTML('<font size=5>'+'Similar Models'+'</font>'))
+
+    for url in thumbs[1:N+1]:
+        images += thumb_html.format(url)
+    display(HTML(images))
+```
+  
+```python
+# 색인 임의로 고르기
+rand_model = np.random.randint(0, len(idx_to_mid))
+display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
+```
+  
+입력 모델
+
+![그림3](https://aldente0630.github.io/assets/sketchfab_models3.jpg)  
+  
+유사 모델
+
+![그림4](https://aldente0630.github.io/assets/sketchfab_models4.jpg)  
+
+```python
+# 또 다른 색인 임의로 고르기
+rand_model = np.random.randint(0, len(idx_to_mid))
+display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
+```
+  
+입력 모델
+
+![그림5](https://aldente0630.github.io/assets/sketchfab_models5.jpg)  
+  
+유사 모델
+
+![그림6](https://aldente0630.github.io/assets/sketchfab_models6.jpg)  
+
+```python
+# 행운을 위해 하나 더
+rand_model = np.random.randint(0, len(idx_to_mid))
+display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
+```
+입력 모델
+  
+유사 모델
+
+![그림8](https://aldente0630.github.io/assets/sketchfab_models8.jpg)  
+
 
 (번역 중)
