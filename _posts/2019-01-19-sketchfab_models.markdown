@@ -516,4 +516,6 @@ plt.yticks(fontsize=18);
 plt.title('Best learning curve', fontsize=30);
 ```
 
+![그림1](https://aldente0630.github.io/assets/sketchfab_models1.png)  
+
 (번역 중)
