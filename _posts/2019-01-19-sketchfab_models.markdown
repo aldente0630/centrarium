@@ -294,7 +294,7 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
 3.`alpha`: 신뢰도 척도 항목.  
 4.`iterations`: 교대 최소 자승법를 통한 최적화 수행 시 반복 횟수.  
   
-평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 절차의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. scikit-learn에 감사한다. 오픈소스이기에 GridSearchCV 코드를 기본적으로 베껴서 만들었다.
+평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 과정의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. scikit-learn에 감사한다. 오픈소스이기에 GridSearchCV 코드를 기본적으로 베껴서 만들었다.
   
 ```python
 from sklearn.metrics import mean_squared_error
@@ -409,7 +409,7 @@ def grid_search_learning_curve(base_model, train, test, param_grid,
     return curves  
 ```
   
-아래의 매개 변수 표는 엄청 거칠고 6 년 된 4 코어 i5를 실행하는 데 2 ​​일이 걸렸습니다. 성능 메트릭 기능은 실제로 교육 프로세스보다 조금 느린 것으로 나타났습니다. 이 기능들은 간단히 평행 화 될 수 있습니다.
+아래 파라미터 격자가 엄청 거대하기 때문에 6년 된 4-코어 i5로 돌리는데 2일이나 걸렸다. 성능 측정 함수는 실제 훈련 과정보다 조금 더 느린 것으로 나타났다. 이 함수들은 간단히 병렬화될 수 있으며 나중에 작업해 볼 생각이다.
 
 ```python
 param_grid = {'num_factors': [10, 20, 40, 80, 120],
@@ -428,7 +428,7 @@ curves = grid_search_learning_curve(base_model, train, test,
                                     patk=5)
 ```
   
-훈련 로그는 기이하게 길지만 [여기](https://www.ethanrosenthal.com/%7Bfilename%7D/assets/logs/wrmf_gridsearch.log)를 클릭하여 확인하십시오. 그렇지 않은 경우 다음은 최상의 실행 결과입니다.
+훈련 로그는 말도 안되게 길긴 한데 [여기](https://www.ethanrosenthal.com/%7Bfilename%7D/assets/logs/wrmf_gridsearch.log)를 클릭해서 확인할 수 있다. 다음은 최고 결과를 수행한 출력이다.
   
 ```bash
 alpha: 50 | num_factors: 40 | regularization: 0.1
@@ -475,7 +475,7 @@ alpha: 50 | num_factors: 40 | regularization: 0.1
 +------------+------------+------------+------------+------------+
 ```
   
-학습 곡선이 최상의 실행을 위해 어떻게 생겼는지 보도록하겠습니다.
+최고 결과 수행 시 학습 곡선이 어떻게 생겼는지 살펴보도록 하자.
   
 ```python
 best_curves = sorted(curves, key=lambda x: max(x['patk']['test']), reverse=True)
@@ -518,9 +518,9 @@ plt.title('Best learning curve', fontsize=30);
 
 ![그림1](https://aldente0630.github.io/assets/sketchfab_models1.png)  
   
-커브가 약간 들쭉날쭉하지만, 22의 최고 신기원을 지나칠수록 커브가 너무 크게 줄어들지 않습니다. 즉, 조기 정지를 조심스럽게 실행하지 않아도됩니다. (p @ k를 사용하면 우리는 걱정한다).
+곡선이 약간 들쭉날쭉하지만 최고 이폭인 22를 지나면 곡선이 유의하게 감소하지는 않는다. 즉, 조기 종료 사용에 너무 조심스럽지 않아도 된다.(p@k가 신경써야할 유일한 측정 단위라면).
   
-우리는 모든 학습 곡선을 그릴 수 있으며 하이퍼 매개 변수의 차이가 성능에 *확실히* 차이가 있음을 알 수 있습니다.
+모든 학습 곡선을 그려볼 수 있으며 하이퍼 파라미터 차이가 *확연한* 성능 차이를 가져옴을 알 수 있다.
   
 ```python
 all_test_patks = [x['patk']['test'] for x in best_curves]
@@ -544,5 +544,7 @@ plt.title('Grid-search p@k traces', fontsize=30);
 ```
   
 ![그림2](https://aldente0630.github.io/assets/sketchfab_models2.png)  
+
+# 스케치 추천하기
 
 (번역 중)
