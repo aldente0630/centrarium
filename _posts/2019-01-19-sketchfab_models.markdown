@@ -428,7 +428,7 @@ curves = grid_search_learning_curve(base_model, train, test,
                                     patk=5)
 ```
   
-훈련 로그는 기이하게 길지만 여기를 클릭하여 확인하십시오. 그렇지 않은 경우 다음은 최상의 실행 결과입니다.
+훈련 로그는 기이하게 길지만 [여기](https://www.ethanrosenthal.com/%7Bfilename%7D/assets/logs/wrmf_gridsearch.log)를 클릭하여 확인하십시오. 그렇지 않은 경우 다음은 최상의 실행 결과입니다.
   
 ```python
 alpha: 50 | num_factors: 40 | regularization: 0.1
@@ -476,5 +476,25 @@ alpha: 50 | num_factors: 40 | regularization: 0.1
 ```
   
 학습 곡선이 최상의 실행을 위해 어떻게 생겼는지 보도록하겠습니다.
+  
+```python
+best_curves = sorted(curves, key=lambda x: max(x['patk']['test']), reverse=True)
+```
+  
+```python
+print(best_curves[0]['params'])
+max_score = max(best_curves[0]['patk']['test'])
+print(max_score)
+iterations = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
+print('Epoch: {}'.format(iterations))
+```
+
+```python
+print(best_curves[0]['params'])
+max_score = max(best_curves[0]['patk']['test'])
+print(max_score)
+iterations = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
+print('Epoch: {}'.format(iterations))
+```
 
 (번역 중)
