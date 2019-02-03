@@ -488,7 +488,7 @@ print(max_score)
 iterations = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
 print('Epoch: {}'.format(iterations))
 ```
-
+  
 ```python
 print(best_curves[0]['params'])
 max_score = max(best_curves[0]['patk']['test'])
@@ -515,7 +515,7 @@ plt.xticks(fontsize=18);
 plt.yticks(fontsize=18);
 plt.title('Best learning curve', fontsize=30);
 ```
-
+  
 ![그림1](https://aldente0630.github.io/assets/sketchfab_models1.png)  
   
 곡선이 약간 들쭉날쭉하지만 최고 이폭인 22를 지나면 곡선이 유의하게 감소하지는 않는다. 즉, 조기 종료 사용에 너무 조심스럽지 않아도 된다(p@k가 신경써야할 유일한 측정 단위라면).
@@ -544,7 +544,7 @@ plt.title('Grid-search p@k traces', fontsize=30);
 ```
   
 ![그림2](https://aldente0630.github.io/assets/sketchfab_models2.png)  
-
+  
 # 스케치 추천하기
   
 결국, 우리는 마침내 최적의 하이퍼 파라미터를 갖게됩니다. 우리는 이제 더 정밀한 그리드 검색을 수행하거나 사용자와 아이템 정규화 효과 결과 간의 비율을 어떻게 변화시킬 수 있는지 살펴볼 수 있습니다. 그러나 다른 2 일을 기다리는 것처럼 느껴지지 않습니다 ...
@@ -556,7 +556,7 @@ params = best_curves[0]['params']
 params['iterations'] = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
 bestALS = implicit.ALS(**params)
 ```
-
+  
 ```python
 bestALS.fit(likes)
 ```
@@ -602,13 +602,13 @@ thumbs = get_thumbnails(item_similarities, 0, idx_to_mid)
 ```python
 print(thumbs[0])
 ```
-
+  
 ```bash
 https://dg5bepmjyhz9h.cloudfront.net/urls/5dcebcfaedbd4e7b8a27bd1ae55f1ac3/dist/thumbnails/a59f9de0148e4986a181483f47826fe0/200x200.jpeg
 ```
     
 이제 HTML 및 핵심 IPython 기능을 사용하여 이미지를 표시 할 수 있습니다.
-
+  
 ```python
 from IPython.display import display, HTML
 
@@ -632,13 +632,13 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
 ```
   
 입력 모델
-
-![그림3](https://aldente0630.github.io/assets/sketchfab_models3.jpg)  
+  
+![그림3](https://aldente0630.github.io/assets/sketchfab_models3.png)  
   
 유사 모델
-
-![그림4](https://aldente0630.github.io/assets/sketchfab_models4.jpg)  
-
+  
+![그림4](https://aldente0630.github.io/assets/sketchfab_models4.png)  
+  
 ```python
 # 또 다른 색인 임의로 고르기
 rand_model = np.random.randint(0, len(idx_to_mid))
@@ -646,13 +646,13 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
 ```
   
 입력 모델
-
-![그림5](https://aldente0630.github.io/assets/sketchfab_models5.jpg)  
   
+![그림5](https://aldente0630.github.io/assets/sketchfab_models5.png)  
+   
 유사 모델
-
-![그림6](https://aldente0630.github.io/assets/sketchfab_models6.jpg)  
-
+  
+![그림6](https://aldente0630.github.io/assets/sketchfab_models6.png)  
+  
 ```python
 # 행운을 위해 하나 더
 rand_model = np.random.randint(0, len(idx_to_mid))
@@ -661,19 +661,19 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
 입력 모델
   
 유사 모델
-
-![그림8](https://aldente0630.github.io/assets/sketchfab_models8.jpg)  
+  
+![그림8](https://aldente0630.github.io/assets/sketchfab_models8.png)  
   
 권장 사항이 완벽하지는 않지만 (경찰차 + 위의 녹색 괴물 참조) 권장 모델이 유사점을 배웠음은 분명합니다.
   
 한 걸음 물러서서 잠시 생각해보십시오.
   
 우리의 알고리즘은이 모델들이 어떤 모습인지, 어떤 태그가 그들에 있을지, 또는 예술가들에 관해서는 아무것도 모릅니다. 이 알고리즘은 어떤 사용자가 어떤 모델을 좋아했는지 쉽게 알 수 있습니다. 꽤 오싹 해, 응?
-
+  
 # 그 다음은?
   
 오늘 암묵적인 MF의 고전적 암석 인 Weighted Regularized Matrix Factorization을 배웠습니다. 다음 번에는 Learning to Rank라는 암시 적 피드백 모델을 최적화하는 또 다른 방법에 대해 알아 보겠습니다. Ranking to Rank 모델을 사용하면 모델과 사용자에 대한 추가 정보 (예 : 모델에 할당 된 카테고리 및 태그)를 포함 할 수 있습니다. 그 후에 이미지와 사전 학습 된 신경망을 사용하는 감독되지 않은 권장 사항이 이러한 방법과 어떻게 비교되는지 살펴보고 최종적으로 최종 권장 사항을 제공 할 플라스크 앱을 제작할 것입니다.
   
 계속 지켜봐!
-
+  
 (번역 중)
