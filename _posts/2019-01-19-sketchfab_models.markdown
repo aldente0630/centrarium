@@ -387,7 +387,7 @@ def learning_curve(model, train, test, epochs, k=5, user_index=None):
 def grid_search_learning_curve(base_model, train, test, param_grid,
                                user_index=None, patk=5, epochs=range(2, 40, 2)):
     """
-    sklearn 격자탐색을 보고 "영감을 얻었음"(훔쳤음)
+    sklearn 격자 탐색을 보고 "영감을 얻었음"(훔쳤음)
     https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/model_selection/_search.py
     """
     curves = []
@@ -430,7 +430,7 @@ curves = grid_search_learning_curve(base_model, train, test,
   
 훈련 로그는 기이하게 길지만 [여기](https://www.ethanrosenthal.com/%7Bfilename%7D/assets/logs/wrmf_gridsearch.log)를 클릭하여 확인하십시오. 그렇지 않은 경우 다음은 최상의 실행 결과입니다.
   
-```python
+```bash
 alpha: 50 | num_factors: 40 | regularization: 0.1
 +------------+------------+------------+------------+------------+
 |   epochs   | p@k train  |  p@k test  | mse train  |  mse test  |
@@ -495,6 +495,25 @@ max_score = max(best_curves[0]['patk']['test'])
 print(max_score)
 iterations = range(2, 40, 2)[best_curves[0]['patk']['test'].index(max_score)]
 print('Epoch: {}'.format(iterations))
+```
+  
+```bash
+{'alpha': 50, 'num_factors': 40, 'regularization': 0.1}
+0.0476096922069
+Epoch: 22
+```
+  
+```python
+import seaborn as sns
+sns.set_style('white')
+fig, ax = plt.subplots()
+sns.despine(fig);
+plt.plot(epochs, best_curves[0]['patk']['test']);
+plt.xlabel('Epochs', fontsize=24);
+plt.ylabel('Test p@k', fontsize=24);
+plt.xticks(fontsize=18);
+plt.yticks(fontsize=18);
+plt.title('Best learning curve', fontsize=30);
 ```
 
 (번역 중)
