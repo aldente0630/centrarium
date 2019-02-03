@@ -561,7 +561,7 @@ bestALS = implicit.ALS(**params)
 bestALS.fit(likes)
 ```
   
-품목 대 품목 추천을 얻기 위해 `ALS` 클래스에 `predict_for_items`라는 작은 메서드를 만들었다. 이건 본질적으로 품목 벡터 모든 조합 간의 내적이다. `norm = True`(기본값)로 하면 이 내적은 각 항목 벡터의 표준으로 정규화되어 코사인 유사성을 갖습니다. 이는 유사한 두 항목이 포함 된 또는 잠복 된 공간에 얼마나 유사한지를 알려줍니다.
+품목 대 품목 추천을 얻기 위해 `ALS` 클래스에 `predict_for_items`라는 작은 메서드를 만들었다. 이건 본질적으로 품목 벡터 모든 조합 간의 내적이다. `norm = True`(기본값)로 하면 이 내적은 각 품목 벡터의 길이로 정규화되어 코사인 유사도와 같게 된다. 이는 유사한 두 품목이 내재된 또는 잠재 공간에서 얼마나 유사한지 알려준다.
   
 ```python
 def predict_for_items(self, norm=True):
@@ -607,7 +607,7 @@ print(thumbs[0])
 https://dg5bepmjyhz9h.cloudfront.net/urls/5dcebcfaedbd4e7b8a27bd1ae55f1ac3/dist/thumbnails/a59f9de0148e4986a181483f47826fe0/200x200.jpeg
 ```
     
-이제 HTML 및 핵심 IPython 기능을 사용하여 이미지를 표시 할 수 있습니다.
+이제 HTML 및 핵심 IPython 기능을 사용하여 이미지를 표시할 수 있다.
   
 ```python
 from IPython.display import display, HTML
@@ -664,11 +664,11 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
   
 ![그림8](https://aldente0630.github.io/assets/sketchfab_models8.png)  
   
-권장 사항이 완벽하지는 않지만 (경찰차 + 위의 녹색 괴물 참조) 권장 모델이 유사점을 배웠음은 분명합니다.
+추천이 완벽하진 않지만(위의 경찰차 + 녹색 괴물 참조) 추천 모형이 유사도를 학습한 건 분명해 보인다.
   
-한 걸음 물러서서 잠시 생각해보십시오.
+한 걸음 물러서서 잠시 생각해보자.
   
-우리의 알고리즘은이 모델들이 어떤 모습인지, 어떤 태그가 그들에 있을지, 또는 예술가들에 관해서는 아무것도 모릅니다. 이 알고리즘은 어떤 사용자가 어떤 모델을 좋아했는지 쉽게 알 수 있습니다. 꽤 오싹 해, 응?
+알고리즘은 이 모델들이 어떤 모습인지, 어떤 태그가 붙어있을지, 또는 예술가들에 관해서는 아무것도 모릅니다. 이 알고리즘은 어떤 사용자가 어떤 모델을 좋아했는지 쉽게 알 수 있습니다. 꽤 오싹 해, 응?
   
 # 그 다음은?
   
