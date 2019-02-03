@@ -294,7 +294,7 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
 3.`alpha`: 신뢰도 척도 항목.  
 4.`iterations`: 교대 최소 자승법를 통한 최적화 수행 시 반복 횟수.  
   
-평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 절차의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. Scikit-learn 소품을 오픈 소스로 배우고 기본적으로 그들의 GridSearchCV 코드를 베끼자.
+평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 절차의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. scikit-learn에 감사한다. 오픈소스이기에 GridSearchCV 코드를 기본적으로 베껴서 만들었다.
   
 ```python
 from sklearn.metrics import mean_squared_error
@@ -314,10 +314,10 @@ def precision_at_k(model, ratings, k=5, user_index=None):
         user_index = range(ratings.shape[0])
     ratings = ratings.tocsr()
     precisions = []
-    # Note: line below may become infeasible for large datasets.
+    # 참고 : 아래 코드는 대량의 데이터셋인 경우 실행이 불가능할 수 있다.
     predictions = model.predict_for_customers()
     for user in user_index:
-        # In case of large dataset, compute predictions row-by-row like below
+        # 대량의 데이터 셋인 경우 아래와 같이 예측을 행 단위로 계산해라.
         # predictions = np.array([model.predict(row, i) for i in xrange(ratings.shape[1])])
         top_k = np.argsort(-predictions[user, :])[:k]
         labels = ratings.getrow(user).indices
@@ -352,5 +352,129 @@ def print_log(row, header=False, spacing=12):
         print(top)    
 ```
   
+```python
+def learning_curve(model, train, test, epochs, k=5, user_index=None):
+    if not user_index:
+        user_index = range(train.shape[0])
+    prev_epoch = 0
+    train_precision = []
+    train_mse = []
+    test_precision = []
+    test_mse = []
+    
+    headers = ['epochs', 'p@k train', 'p@k test',
+               'mse train', 'mse test']
+    print_log(headers, header=True)
+    
+    for epoch in epochs:
+        model.iterations = epoch - prev_epoch
+        if not hasattr(model, 'user_vectors'):
+            model.fit(train)
+        else:
+            model.fit_partial(train)
+        train_mse.append(calculate_mse(model, train, user_index))
+        train_precision.append(precision_at_k(model, train, k, user_index))
+        test_mse.append(calculate_mse(model, test, user_index))
+        test_precision.append(precision_at_k(model, test, k, user_index))
+        row = [epoch, train_precision[-1], test_precision[-1],
+               train_mse[-1], test_mse[-1]]
+        print_log(row)
+        prev_epoch = epoch
+    return model, train_precision, train_mse, test_precision, test_mse
+```
   
+```python
+def grid_search_learning_curve(base_model, train, test, param_grid,
+                               user_index=None, patk=5, epochs=range(2, 40, 2)):
+    """
+    sklearn 격자탐색을 보고 "영감을 얻었음"(훔쳤음)
+    https://github.com/scikit-learn/scikit-learn/blob/master/sklearn/model_selection/_search.py
+    """
+    curves = []
+    keys, values = zip(*param_grid.items())
+    for v in itertools.product(*values):
+        params = dict(zip(keys, v))
+        this_model = copy.deepcopy(base_model)
+        print_line = []
+        for k, v in params.items():
+            setattr(this_model, k, v)
+            print_line.append((k, v))
+
+        print(' | '.join('{}: {}'.format(k, v) for (k, v) in print_line))
+        _, train_patk, train_mse, test_patk, test_mse = learning_curve(this_model, train, test,
+                                                                epochs, k=patk, user_index=user_index)
+        curves.append({'params': params,
+                       'patk': {'train': train_patk, 'test': test_patk},
+                       'mse': {'train': train_mse, 'test': test_mse}})
+    return curves  
+```
+  
+아래의 매개 변수 표는 엄청 거칠고 6 년 된 4 코어 i5를 실행하는 데 2 ​​일이 걸렸습니다. 성능 메트릭 기능은 실제로 교육 프로세스보다 조금 느린 것으로 나타났습니다. 이 기능들은 간단히 평행 화 될 수 있습니다.
+
+```python
+param_grid = {'num_factors': [10, 20, 40, 80, 120],
+              'regularization': [0.0, 1e-5, 1e-3, 1e-1, 1e1, 1e2],
+              'alpha': [1, 10, 50, 100, 500, 1000]}
+```
+  
+```python
+base_model = implicit.ALS()
+```
+  
+```python
+curves = grid_search_learning_curve(base_model, train, test,
+                                    param_grid,
+                                    user_index=user_index,
+                                    patk=5)
+```
+  
+훈련 로그는 기이하게 길지만 여기를 클릭하여 확인하십시오. 그렇지 않은 경우 다음은 최상의 실행 결과입니다.
+  
+```python
+alpha: 50 | num_factors: 40 | regularization: 0.1
++------------+------------+------------+------------+------------+
+|   epochs   | p@k train  |  p@k test  | mse train  |  mse test  |
++============+============+============+============+============+
+|     2      |  0.33988   |  0.02541   |  0.01333   |  0.01403   |
++------------+------------+------------+------------+------------+
+|     4      |  0.31395   |  0.03916   |  0.01296   |  0.01377   |
++------------+------------+------------+------------+------------+
+|     6      |  0.30085   |  0.04231   |  0.01288   |  0.01372   |
++------------+------------+------------+------------+------------+
+|     8      |  0.29175   |  0.04231   |  0.01285   |  0.01370   |
++------------+------------+------------+------------+------------+
+|     10     |  0.28638   |  0.04407   |  0.01284   |  0.01370   |
++------------+------------+------------+------------+------------+
+|     12     |  0.28684   |  0.04492   |  0.01284   |  0.01371   |
++------------+------------+------------+------------+------------+
+|     14     |  0.28533   |  0.04571   |  0.01285   |  0.01371   |
++------------+------------+------------+------------+------------+
+|     16     |  0.28389   |  0.04689   |  0.01285   |  0.01372   |
++------------+------------+------------+------------+------------+
+|     18     |  0.28454   |  0.04695   |  0.01286   |  0.01373   |
++------------+------------+------------+------------+------------+
+|     20     |  0.28454   |  0.04728   |  0.01287   |  0.01374   |
++------------+------------+------------+------------+------------+
+|     22     |  0.28409   |  0.04761   |  0.01288   |  0.01376   |
++------------+------------+------------+------------+------------+
+|     24     |  0.28251   |  0.04689   |  0.01289   |  0.01377   |
++------------+------------+------------+------------+------------+
+|     26     |  0.28186   |  0.04656   |  0.01290   |  0.01378   |
++------------+------------+------------+------------+------------+
+|     28     |  0.28199   |  0.04676   |  0.01291   |  0.01379   |
++------------+------------+------------+------------+------------+
+|     30     |  0.28127   |  0.04669   |  0.01292   |  0.01380   |
++------------+------------+------------+------------+------------+
+|     32     |  0.28173   |  0.04650   |  0.01292   |  0.01381   |
++------------+------------+------------+------------+------------+
+|     34     |  0.28153   |  0.04650   |  0.01293   |  0.01382   |
++------------+------------+------------+------------+------------+
+|     36     |  0.28166   |  0.04604   |  0.01294   |  0.01382   |
++------------+------------+------------+------------+------------+
+|     38     |  0.28153   |  0.04637   |  0.01295   |  0.01383   |
++------------+------------+------------+------------+------------+
+```
+  
+학습 곡선이 최상의 실행을 위해 어떻게 생겼는지 보도록하겠습니다.
+
 (번역 중)
