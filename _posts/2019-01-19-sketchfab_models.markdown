@@ -666,7 +666,7 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
   
 ![그림8](https://aldente0630.github.io/assets/sketchfab_models8.png)  
   
-추천이 완벽하진 않지만(위의 경찰차 + 녹색 괴물 참조) 추천 모형이 유사도를 학습한 건 분명해 보인다.
+추천이 완벽하진 않지만(위의 경찰차+녹색 괴물 참조) 추천 모형이 유사도를 학습한 건 분명해 보인다.
   
 한 걸음 물러서서 잠시 생각해보자.
   
