@@ -11,6 +11,8 @@ categories: Data-Science
   
   
 - - -
+
+# 암시적 행렬 분해: Sketchfab 모델에 적용한 고전적인 ALS 방법
   
 지난 글에서 웹사이트 [Sketchfab](https://sketchfab.com)로부터 암시적 피드백 데이터를 수집하는 방법에 대해 설명했다. 그리고 이 데이터를 사용해 추천 시스템을 실제 구현해보겠다고 이야기했다. 자, 이제 만들어보자!
   
@@ -37,7 +39,7 @@ $$c_{ui} = 1 + \alpha d_{ui}$$
   
 자, 이제 예전 명시적 행렬 분해 게시물처럼 이 알고리즘을 최적화하는 방법에 관한 전체적인 전개를 Latex 떡칠로 적어볼 수 있지만 다른 이들이 이미 여러 번 끝내놨다. 다음은 위대한 StackOverflow의 [답변](https://math.stackexchange.com/questions/1072451/analytic-solution-for-matrix-factorization-using-alternating-least-squares/1073170#1073170)이다. Dirac 표기법으로 전개하는 내용이 마음에 든다면 Sudeep Das [게시물](http://datamusing.info/blog/2015/01/07/implicit-feedback-and-collaborative-filtering)을 확인해라.
 
-# WRMF 라이브러리
+## WRMF 라이브러리
   
 WRMF를 구현한 오픈 소스 코드는 많은 곳에서 찾을 수 있다. 교차 최소 자승법은 손실 함수를 최적화하는 가장 보편적인 방법이다. 이 방법은 확률적 경사 하강법보다 조정하기가 덜 까다롭고 모형은 [처치 곤란 병렬](https://en.wikipedia.org/wiki/Embarrassingly_parallel)로 돌릴 수 있다.
   
@@ -47,7 +49,7 @@ Quora의 사람들은 [qmf](https://github.com/quora/qmf)라고 불리는 라이
   
 나는 이 게시물을 위해 Ben의 라이브러리를 사용하기로 했다. 왜냐면 (1) 파이썬으로 계속 개발할 수 있고 (2) 매우 빠르기 때문이다. 라이브러리를 포크한 뒤 격자 탐색과 학습 곡선 계산을 손쉽게 수행하기 위해 알고리즘을 감싸는 조그만 클래스를 작성했다. 어떤 테스트도 해보지 않아 사용자가 위험을 직접 감수해야겠지만 [여기](https://github.com/EthanRosenthal/implicit) 내 포크를 자유롭게 체크 아웃해서 써도 된다. :)
   
-# 데이터 주무르기
+## 데이터 주무르기
   
 여기까지 하고 WRMF 모형을 훈련시켜서 Sketchfab 모델을 추천해보자!
   
@@ -228,7 +230,7 @@ likes = sparse.coo_matrix((V, (I, J)), dtype=np.float64)
 likes = likes.tocsr()
 ```
   
-# 교차 검증: 데이터 분할
+## 교차 검증: 데이터 분할
   
 자, 좋아요 행렬을 훈련과 시험 행렬로 분할할 필요가 있다. 이를 다소 교묘하게(이렇게 한 단어로 끝낼 문제일까?) 진행했다. 최적화 측정 단위로 precision@k를 이용할 생각이다. k는 5 정도가 좋을 것 같다. 그러나 일부 사용자의 경우 훈련 쪽에서 시험 쪽으로 5개 품목을 이동시키면 훈련셋에 데이터가 남아 있지 않을 수 있다(사람마다 좋아요가 최소 5개임을 기억하자). 따라서 train_test_split은 데이터 일부를 시험셋으로 이동시키기 전에 좋아요가 적어도 2\*k(이 경우 10개) 이상인 사람들을 찾는다. 교차 검증은 좋아요가 많은 사용자 쪽으로 편향될 것이 분명하다. 그래도 가보자.
   
@@ -285,7 +287,7 @@ def train_test_split(ratings, split_count, fraction=None):
 train, test, user_index = train_test_split(likes, 5, fraction=0.2)
 ```
   
-# 교차 검증: 격자 탐색
+## 교차 검증: 격자 탐색
   
 이제 데이터가 훈련 및 시험 행렬로 분할되었으므로 거대한 격자 탐색을 실행하여 하이퍼 매개 변수를 최적화하자. 최적화시킬 매개 변수는 4개 있다.
   
@@ -545,7 +547,7 @@ plt.title('Grid-search p@k traces', fontsize=30);
   
 ![그림2](https://aldente0630.github.io/assets/sketchfab_models2.png)  
   
-# 스케치 추천하기
+## 스케치 추천하기
   
 모든 과정 끝에 최적 하이퍼 파라미터를 마침내 얻었다. 이제 더욱 세밀한 격자 탐색을 수행하거나 사용자와 품목 정규화 효과의 비율을 변화시키는 정도에 따라 바뀌는 결과를 살펴볼 수 있다. 그러나 2일을 또 기다리고 싶지는 않았다...
   
@@ -670,10 +672,14 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
   
 알고리즘은 이 모델들이 어떤 모습인지, 어떤 태그가 붙어있을지, 또는 아티스트가 누구인지 아무것도 모른다. 이 알고리즘은 단지 어떤 사용자가 어떤 모델을 좋아했는지 알 뿐이다. 이런 점을 생각하면 꽤 놀랍다.
   
-# 그 다음은?
+## 그 다음은?
   
 오늘은 암시적 MF계의 클래식 락인 가중치가 부여된 제약적 행렬 분해를 배웠다. 다음 번에는 순위 학습이라고 암시적 피드백 모형을 최적화하는 또 다른 방법에 대해 알아볼 것이다. 순위 학습 모형을 사용하면 모델과 사용자에 대한 추가 정보(예: 모델에 할당한 카테고리 및 태그)를 포함시킬 수 있다. 그 후에 이미지와 사전 학습된 신경망을 사용하는 비지도 추천이 이러한 방법과 어떻게 비교될 수 있는지 살펴보고 마지막으로 이 추천들을 최종 사용자에게 제공할 플라스크 앱을 제작할 것이다.
   
 계속 지켜봐주길!
+  
+# LightFM을 이용한 Sketchfab 모델 순위 학습
+  
+이 글에서는 암묵적인 행렬 인수 분해를 소개하는 마지막 글을 따라 가면서 멋진 것들을 다룰 것입니다. 암묵적 행렬 인수 분해를위한 다른 방법 인 Ranking to Learning을 살펴본 다음 라이브러리 [LightFM](http://lyst.github.io/lightfm/docs/home.html)을 사용하여 부차적 정보를 추천인에게 통합 할 것입니다. 다음으로 우리는 [scikit-optimize](https://scikit-optimize.github.io)를 사용하여 상호 유효성 검사 하이퍼 매개 변수에 대한 그리드 검색보다 더 똑똑해집니다. 마지막으로, 사용자 및 항목과 동일한 공간에 정보가 포함되어 간단한 사용자 대 항목 및 항목 대 항목 권장 사항을 넘어 설 수 있음을 알 수 있습니다. 가자!
   
 (번역 중)
