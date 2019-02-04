@@ -12,7 +12,7 @@ categories: Data-Science
   
 - - -
 
-# 암시적 행렬 분해: Sketchfab 모델에 적용한 고전적인 ALS 방법
+# 암시적 행렬 분해 소개: Sketchfab 모델에 적용한 고전적인 ALS 방법
   
 지난 글에서 웹사이트 [Sketchfab](https://sketchfab.com)로부터 암시적 피드백 데이터를 수집하는 방법에 대해 설명했다. 그리고 이 데이터를 사용해 추천 시스템을 실제 구현해보겠다고 이야기했다. 자, 이제 만들어보자!
   
