@@ -239,11 +239,11 @@ def train_test_split(ratings, split_count, fraction=None):
     
     파라미터
     ------
-    ratings : scipy.sparse 행렬
+    ratings: scipy.sparse 행렬
         고객과 품목 간의 상호작용.
-    split_count : 정수
+    split_count: 정수
         훈련셋에서 시험셋으로 이동시킬 고객 당 고객-품목-상호작용 갯수.
-    fractions : 부동소숫점
+    fractions: 부동소숫점
         상호작용 일부를 시험셋으로 분할시킬 사용자 비율. 만약 None이면 사용자 전체를 고려한다.
     """
     # 참고: 아래 작업을 하기 위한 가장 빠른 방법은 아닐 것이다.
@@ -294,7 +294,7 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
 3.`alpha`: 신뢰도 척도 항목.  
 4.`iterations`: 교대 최소 자승법를 통한 최적화 수행 시 반복 횟수.  
   
-평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 과정의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. scikit-learn에 감사한다. 오픈소스이기에 GridSearchCV 코드를 기본적으로 베껴서 만들었다.
+평균 제곱 오차(MSE)와 k까지의 정밀도(p@k)를 따라가며 확인할 생각이지만 둘 중 후자에 주로 신경을 쓸 것이다. 측정 단위 계산을 돕고 훈련 로그를 멋지게 출력하기 위해 몇 가지 함수를 아래에 작성했다. 여러 다른 하이퍼 파라미터 조합에 대해 일련의 학습 곡선(즉, 훈련 과정의 각 단계마다 성능 측정 단위로 평가)을 계산할 것이다. scikit-learn에 감사한다. 오픈소스이기에 기본적으로 GridSearchCV 코드를 베껴서 만들었다.
   
 ```python
 from sklearn.metrics import mean_squared_error
@@ -314,7 +314,7 @@ def precision_at_k(model, ratings, k=5, user_index=None):
         user_index = range(ratings.shape[0])
     ratings = ratings.tocsr()
     precisions = []
-    # 참고 : 아래 코드는 대량의 데이터셋인 경우 실행이 불가능할 수 있다.
+    # 참고: 아래 코드는 대량의 데이터셋인 경우 실행이 불가능할 수 있다.
     predictions = model.predict_for_customers()
     for user in user_index:
         # 대량의 데이터 셋인 경우 아래와 같이 예측을 행 단위로 계산해라.
