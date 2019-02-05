@@ -706,9 +706,9 @@ $$\mathbf{x}_u + \sum_{a \in N(u)} \mathbf{s}_a$$
   
 ## 순위 학습 - BPR
   
-마지막 게시물의 목적 함수에 대한 ALS 나 SGD (Stochastic Gradient descent)가 아닌 암시 적 피드백 행렬 인수 분해 문제를 최적화하는 또 다른 방법이 있음이 밝혀졌습니다. 이 최적화 방법은 일반적으로 [Learning to Rank](https://en.wikipedia.org/wiki/Learning_to_rank)라는 이름으로 시작되며 정보 검색 이론에서 시작되었습니다.
+마지막 게시물의 목적 함수에 대해 ALS나 관습적인 확률적 경사하강법(SGD)이 아닌, 암시적 피드백 행렬 분해 문제를 최적화하는 또 다른 해법이 있다. 이 최적화 방법은 일반적으로 [순위 학습](https://en.wikipedia.org/wiki/Learning_to_rank)이라는 이름으로 알려졌고 정보 검색 이론에서 시작되었다.
   
-묵시적인 피드백으로 순위를 매기기 위해 Learning을 사용하는 고전적인 방법은 종이 BPR에 포함되었습니다. Steffen Rendle이 처음 쓴 Implicit Feedback에서 [Bayesian Personalized Ranking](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf)(pdf 링크)은 암시적이고 인수 분해 된 모든 점에서 나쁜 점이었습니다. 이 아이디어는 양수와 음수를 샘플링하고 쌍 비교를 실행하는 것에 중점을 둡니다. 이 예에서 데이터 세트는 사용자가 웹 사이트에서 다양한 항목을 클릭 한 횟수로 구성됩니다. BPR은 다음과 같이 진행됩니다 (단순화 된 형태로).
+암시적 피드백으로 순위 학습하기 위한 고전적 방법은 논문 BPR에 포함되었습니다. Steffen Rendle이 처음 쓴 Implicit Feedback에서 [BPR: 베이지안 개인화 순위 매기기Bayesian Personalized Ranking](https://arxiv.org/ftp/arxiv/papers/1205/1205.2618.pdf)(pdf 링크)은 암시적이고 인수 분해 된 모든 점에서 나쁜 점이었습니다. 이 아이디어는 양수와 음수를 샘플링하고 쌍 비교를 실행하는 것에 중점을 둡니다. 이 예에서 데이터 세트는 사용자가 웹 사이트에서 다양한 항목을 클릭 한 횟수로 구성됩니다. BPR은 다음과 같이 진행됩니다 (단순화 된 형태로).
   
 1.무작위로 사용자 \\(u\\)를 선택한 다음 사용자가 클릭 한 임의 항목 \\(i\\)를 선택하십시오. 이것은 우리의 *긍정적인* 항목입니다.  
 2.사용자가 항목 \\(i\\)보다 *적은* 시간에 클릭 한 항목 \\(j\\)를 임의로 선택합니다 (여기에는 클릭 한 적이없는 항목이 포함됨). 이것은 우리의 *부정적인* 항목입니다.  
