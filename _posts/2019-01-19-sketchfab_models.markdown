@@ -723,7 +723,7 @@ $$\mathbf{x}_u + \sum_{a \in N(u)} \mathbf{s}_a$$
   
 ## 순위 학습 - WARP
   
-BPR의 가까운 친척은 [WSABIE](http://www.thespermwhale.com/jaseweston/papers/wsabie-ijcai.pdf)에서 처음 소개 된 Weighted Approximate-Rank Pairwise loss (WARP 손실)입니다 : Weston 외의 대규모 어휘 이미지 주석 확장. al. WARP는 BPR과 매우 유사합니다. 사용자에 대해 긍정적이고 부정적인 항목을 샘플링하고, 둘 다 예측하고 차이를 가져옵니다. BPR에서는이 차이를 가중치로 사용하여 SGD 업데이트를 수행합니다. WARP에서 잘못된 예측을 한 경우에만 SGD 업데이트를 실행합니다. 즉, 제외 항목이 양수 항목보다 높은 점수를 예측합니다. 잘못 예측하지 않으면 잘못된 예측을하거나 잘못된 값을 얻을 때까지 부정적인 항목을 계속 그립니다.
+BPR의 가까운 친족을 꼽자면 근사-순위 쌍 가중 손실[WSABIE](http://www.thespermwhale.com/jaseweston/papers/wsabie-ijcai.pdf)에서 처음 소개 된 Weighted Approximate-Rank Pairwise loss (WARP 손실)입니다 : Weston 외의 대규모 어휘 이미지 주석 확장. al. WARP는 BPR과 매우 유사합니다. 사용자에 대해 긍정적이고 부정적인 항목을 샘플링하고, 둘 다 예측하고 차이를 가져옵니다. BPR에서는이 차이를 가중치로 사용하여 SGD 업데이트를 수행합니다. WARP에서 잘못된 예측을 한 경우에만 SGD 업데이트를 실행합니다. 즉, 제외 항목이 양수 항목보다 높은 점수를 예측합니다. 잘못 예측하지 않으면 잘못된 예측을하거나 잘못된 값을 얻을 때까지 부정적인 항목을 계속 그립니다.
   
 WARP 논문의 저자는이 프로세스가 BPR의 AUC 최적화에서 정밀도 최적화로 이동한다고 주장합니다. 이 옵션은 대부분의 추천 시스템과 관련이있을 것으로 보이며 일반적으로 BPR 손실보다 WARP 손실을 최적화하는 것이 좋습니다. WARP는 두 개의 하이퍼 매개 변수를 도입합니다. 하나는 SGD 업데이트를 구현하는 예측이 얼마나 틀린지를 결정하는 마진입니다. 이 문서에서 마진은 1이므로 SGD 업데이트를 구현하기 위해 \\(p_{uj} > p_{ui} + 1\\)을 추측해야합니다. 다른 하이퍼 매개 변수는 포기하고 다음 사용자로 이동하기 전에 부정확 한 샘플을 그리려는 의도가있는 횟수를 결정하는 컷오프입니다.
   
