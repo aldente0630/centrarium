@@ -244,7 +244,7 @@ def train_test_split(ratings, split_count, fraction=None):
     ratings: scipy.sparse 행렬
         고객과 품목 간의 상호작용.
     split_count: 정수
-        훈련셋에서 시험셋으로 이동시킬 고객 당 고객-품목-상호작용 갯수.
+        훈련셋에서 시험셋으로 이동시킬 고객 당 고객-품목-상호작용 개수.
     fractions: 부동소숫점
         상호작용 일부를 시험셋으로 분할시킬 사용자 비율. 만약 None이면 사용자 전체를 고려한다.
     """
