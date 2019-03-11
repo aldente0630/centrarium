@@ -237,7 +237,7 @@ likes = likes.tocsr()
 ```python
 def train_test_split(ratings, split_count, fraction=None):
     """
-    추천 데이터를 훈련과 시험셋으로 분할하기
+    추천 데이터를 훈련셋과 시험셋으로 분할하기
     
     파라미터
     ------
