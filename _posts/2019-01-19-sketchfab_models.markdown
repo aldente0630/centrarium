@@ -239,7 +239,7 @@ def train_test_split(ratings, split_count, fraction=None):
     """
     추천 데이터를 훈련셋과 시험셋으로 분할하기
     
-    파라미터
+    매개변수
     ------
     ratings: scipy.sparse 행렬
         고객과 품목 간의 상호작용.
