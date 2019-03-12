@@ -292,7 +292,7 @@ train, test, user_index = train_test_split(likes, 5, fraction=0.2)
 이제 데이터가 훈련과 시험 행렬로 분할되었으므로 거대한 격자 탐색을 실행하여 하이퍼 파라미터를 최적화하자. 최적화시킬 파라미터는 4개 있다.
   
 1.`num_factors`: 잠재적 요인의 개수 또는 모형이 갖는 차원의 정도.  
-2.`regularization`: 사용자 및 품목 요인에 대한 정규화 척도.  
+2.`regularization`: 사용자와 품목 요인에 대한 정규화 척도.  
 3.`alpha`: 신뢰도 척도 항목.  
 4.`iterations`: 교대 최소 자승법를 통한 최적화 수행 시 반복 횟수.  
   
