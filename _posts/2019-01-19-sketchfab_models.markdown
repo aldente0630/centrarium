@@ -430,7 +430,7 @@ curves = grid_search_learning_curve(base_model, train, test,
                                     patk=5)
 ```
   
-훈련 로그는 말도 안되게 길긴 한데 여기를 클릭해서 확인할 수 있다. 다음은 최고 결과를 수행한 출력이다.
+훈련 로그는 말도 안되게 길긴 한데 [여기](https://www.ethanrosenthal.com/%7Bfilename%7D/assets/logs/wrmf_gridsearch.log)를 클릭해서 확인할 수 있다. 다음은 최고 결과를 수행한 출력이다.
   
 ```bash
 alpha: 50 | num_factors: 40 | regularization: 0.1
