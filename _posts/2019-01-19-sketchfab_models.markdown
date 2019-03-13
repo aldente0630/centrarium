@@ -739,7 +739,7 @@ LightFM을 설치하고 Sketchfab "좋아요" 데이터와 모델 태그를 함�
 
 ## 설치
   
-LightFM이 pypi에 있으므로 pip와 함께 가장 간단하게 설치할 수 있습니다.
+LightFM은 pypi에 있으므로 pip로 가장 간단하게 설치할 수 있습니다.
   
 ```bash
 pip install lightfm
@@ -761,8 +761,6 @@ git clone git@github.com:lyst/lightfm.git
   
 모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다.
   
-## 데이터 
-모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다.전ㅊ
-모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다
+## 데이터 전처리
 
 (번역 중)
