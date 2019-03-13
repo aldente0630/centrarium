@@ -740,5 +740,29 @@ LightFM을 설치하고 Sketchfab "좋아요" 데이터와 모델 태그를 함�
 ## 설치
   
 LightFM이 pypi에 있으므로 pip와 함께 가장 간단하게 설치할 수 있습니다.
+  
+```bash
+pip install lightfm
+```
+  
+Mac 사용자는 불행히도 코드를 병렬로 실행할 수 없습니다. 병렬 처리를 사용하려면 `brew`와 함께 설치할 수있는 gcc가 있어야합니다.
+  
+```bash
+brew install gcc --without-multilib
+```
+  
+조심해, 30 분 정도 걸릴거야. LightFM을 구축 한 가장 간단한 방법은 그것을 속이는 것입니다. 저장소를 먼저 복제하십시오.
+  
+```bash
+git clone git@github.com:lyst/lightfm.git
+```
+
+그런 다음, `setup.py`를 열면 `use_openmp`라는 변수가 정의 된 곳으로 이동하고 `True`로 설정합니다. 그런 다음 `cd lightfm && pip install -e`를 입력하십시오.
+  
+모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다.
+  
+## 데이터 
+모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다.전ㅊ
+모든 작업을 마치면 일부 모델을 교육하기위한 코드를 작성해 보겠습니다
 
 (번역 중)
