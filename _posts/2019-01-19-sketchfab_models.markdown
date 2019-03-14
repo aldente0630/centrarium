@@ -763,7 +763,7 @@ git clone git@github.com:lyst/lightfm.git
   
 ## 데이터 전처리
   
-저는 Sketchfab 데이터를 행렬에 배열하기 위해 지난 번에 사용 된 많은 함수를 사용하여 스케치북 rec-a-sketch 저장소에있는 `helpers.py` 파일에이 모든 것을 배치했습니다.
+Sketchfab 데이터를 행렬로 배열하기 위해 지난 번에 사용했던 많은 함수들을 가져와 rec-a-sketch 저장소 내 `helpers.py` 파일에 전부 다 집어넣었다.
   
 ```python
 %matplotlib inline
@@ -800,7 +800,7 @@ df.head()
 | 4 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1109ee298494fbd192e27878432c718a |
   
 ```python
-# 최소 5 개의 좋아요를 가진 사용자 및 모델 만 포함하는 임계 값 데이터.
+# 좋아요 최소 5개 이상인 사용자와 모델만 포함하게 임계 처리한 데이터.
 df = helpers.threshold_interactions_df(df, 'uid', 'mid', 5, 5)
 ```
   
@@ -816,8 +816,8 @@ df = helpers.threshold_interactions_df(df, 'uid', 'mid', 5, 5)
 ```
 
 ```python
-# 데이터 프레임에서 좋아요 행렬로 이동
-# 또한 색인과 ID 매퍼를 만듬.
+# 데이터 프레임에서 좋아요 행렬로 변환
+# 색인과 ID 매퍼도 만듬.
 likes, uid_to_idx, idx_to_uid,\
 mid_to_idx, idx_to_mid = helpers.df_to_matrix(df, 'uid', 'mid')
 
@@ -833,7 +833,7 @@ likes
 train, test, user_index = helpers.train_test_split(likes, 5, fraction=0.2)
 ```
 
-지난 번과 다른 하나의 이상한 점은 테스트 데이터에있는 데이터가있는 사용자 만 포함하도록 교육 데이터를 복사하는 것입니다. 이는 LightFM의 built-in precision_at_k 함수를 사용하기 때문에 발생합니다.
+지난 번과 다른, 특이한 점 하나는 시험 데이터 속 데이터가 있는 사용자만 포함하도록 훈련 데이터를 만드는 것이다. 이는 LightFM의 내장 `precision_at_k` 함수를 사용하기 때문에 생기는 일이다.
   
 ```python
 eval_train = train.copy()
@@ -845,7 +845,7 @@ for u in non_eval_users:
 eval_train = eval_train.tocsr()
 ```
   
-이제 우리는 Sketchfab 모델에 대해 가지고있는 모든 부수적 인 정보를 원 핫 코드로 인코딩하려고합니다. 이 정보에는 각 모델과 관련된 카테고리 및 태그가 포함되어 있음을 상기하십시오. 이 정보를 인코딩하는 가장 간단한 방법은 scikit-learn의 [DictVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) 클래스를 사용하는 것입니다. `DictVectorizer`는 사전에 기능 이름이 키와 가중치로 포함 된 사전 목록을 값으로 사용합니다. 여기서는 각 가중치가 1이라고 가정하고 태그 유형과 값의 조합으로 키를 가져옵니다.
+이제 Sketchfab 모델에 관련된 모든 부가 정보를 원-핫-인코딩하려고한다. 이 정보에는 각 모델과 관련한 카테고리 및 태그가 포함되어 있다. 이 정보를 인코딩하는 가장 간단한 방법은 scikit-learn의 [DictVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) 클래스를 사용하는 것이다. `DictVectorizer`는 딕셔너리에 변수 이름이 키와 가중치로 포함 된 사전 목록을 값으로 사용합니다. 여기서는 각 가중치가 1이라고 가정하고 태그 유형과 값의 조합으로 키를 가져옵니다.
   
 ```python
 sideinfo = pd.read_csv('../data/model_feats.psv',
@@ -914,6 +914,5 @@ item_features
 우리는 이제 `item_features` 행렬을 남겨 두었습니다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 항목이고 각 열은 고유 한 태그입니다. 20352 개의 고유 태그가있는 것 같습니다.
   
 ## 훈련
-우리는 이제 `item_features` 행렬을 남겨 두었습니다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 항목이고 각 열은 고유 한 태그입니다. 20352 개의 고유 태그가있는 것 같습니다.
 
 (번역 중)
