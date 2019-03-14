@@ -911,7 +911,7 @@ item_features
     with 161510 stored elements in Compressed Sparse Row format>
 ```
   
-이제 `item_features` 행렬을 갖게 되었다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유한 품목이고 각 열은 고유한 태그이다. 20352개의 고유 태그가 있는 것 같다.
+이제 `item_features` 행렬을 갖게 되었다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 품목이고 각 열은 고유 태그이다. 20352개의 고유 태그가 있는 것 같다.
   
 ## 훈련
 
