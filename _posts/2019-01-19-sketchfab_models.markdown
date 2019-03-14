@@ -762,5 +762,97 @@ git clone git@github.com:lyst/lightfm.git
 모든 작업이 끝났다면 몇몇 모형을 훈련하기위해 코드를 작성하겠다.
   
 ## 데이터 전처리
+  
+저는 Sketchfab 데이터를 행렬에 배열하기 위해 지난 번에 사용 된 많은 함수를 사용하여 스케치북 rec-a-sketch 저장소에있는 `helpers.py` 파일에이 모든 것을 배치했습니다.
+  
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy.sparse as sp
+from scipy.special import expit
+import pickle
+import csv
+import copy
+import itertools
+from lightfm import LightFM
+import lightfm.evaluation
+import sys
+sys.path.append('../')
+import helpers
+```
+  
+```python
+df = pd.read_csv('../data/model_likes_anon.psv',
+                 sep='|', quoting=csv.QUOTE_MINIMAL,
+                 quotechar='\\')
+df.drop_duplicates(inplace=True)
+df.head()
+```
+  
+| | **modelname** | **mid** | **uid** |
+|:--|:-----------------------------------|:---------------------------------|:---------------------------------|
+| 0 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 7ac1b40648fff523d7220a5d07b04d9b |
+| 1 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 2b4ad286afe3369d39f1bb7aa2528bc7 |
+| 2 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1bf0993ebab175a896ac8003bed91b4b |
+| 3 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 6484211de8b9a023a7d9ab1641d22e7c |
+| 4 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1109ee298494fbd192e27878432c718a |
+  
+```python
+# 
+최소 5 개의 좋아요를 가진 사용자 및 모델 만 포함하는 임계 값 데이터.
+df = helpers.threshold_interactions_df(df, 'uid', 'mid', 5, 5)
+```
+  
+```bash
+최초 좋아요 정보
+사용자 수: 62583
+모델 개수: 28806
+희소 정도: 0.035%
+최종 좋아요 정보
+사용자 수: 15274
+모델 개수: 25655
+희소 정도: 0.140%
+```
+
+```python
+# 데이터 프레임에서 좋아요 행렬로 이동
+# 또한 색인과 ID 매퍼를 만듬.
+likes, uid_to_idx, idx_to_uid,\
+mid_to_idx, idx_to_mid = helpers.df_to_matrix(df, 'uid', 'mid')
+
+likes
+```
+  
+```bash
+<15274x25655 sparse matrix of type '<class 'numpy.float64'>'
+    with 547477 stored elements in Compressed Sparse Row format>
+```
+  
+```python
+train, test, user_index = helpers.train_test_split(likes, 5, fraction=0.2)
+```
+
+지난 번과 다른 하나의 이상한 점은 테스트 데이터에있는 데이터가있는 사용자 만 포함하도록 교육 데이터를 복사하는 것입니다. 이는 LightFM의 built-in precision_at_k 함수를 사용하기 때문에 발생합니다.
+  
+```python
+eval_train = train.copy()
+non_eval_users = list(set(range(train.shape[0])) - set(user_index))
+
+eval_train = eval_train.tolil()
+for u in non_eval_users:
+    eval_train[u, :] = 0.0
+eval_train = eval_train.tocsr()
+```
+  
+이제 우리는 Sketchfab 모델에 대해 가지고있는 모든 부수적 인 정보를 원 핫 코드로 인코딩하려고합니다. 이 정보에는 각 모델과 관련된 카테고리 및 태그가 포함되어 있음을 상기하십시오. 이 정보를 인코딩하는 가장 간단한 방법은 scikit-learn의 [DictVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) 클래스를 사용하는 것입니다. `DictVectorizer`는 사전에 기능 이름이 키와 가중치로 포함 된 사전 목록을 값으로 사용합니다. 여기서는 각 가중치가 1이라고 가정하고 태그 유형과 값의 조합으로 키를 가져옵니다.
+  
+```python
+sideinfo = pd.read_csv('../data/model_feats.psv',
+                       sep='|', quoting=csv.QUOTE_MINIMAL,
+                       quotechar='\\')
+sideinfo.head()
+```
 
 (번역 중)
