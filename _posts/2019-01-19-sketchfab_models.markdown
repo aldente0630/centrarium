@@ -845,7 +845,7 @@ for u in non_eval_users:
 eval_train = eval_train.tocsr()
 ```
   
-이제 Sketchfab 모델에 관련된 모든 부가 정보를 원-핫-인코딩하려고한다. 이 정보에는 각 모델과 관련한 카테고리 및 태그가 포함되어 있다. 이 정보를 인코딩하는 가장 간단한 방법은 scikit-learn의 [DictVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) 클래스를 사용하는 것이다. `DictVectorizer`는 딕셔너리에 변수 이름이 키와 가중치로 포함 된 사전 목록을 값으로 사용합니다. 여기서는 각 가중치가 1이라고 가정하고 태그 유형과 값의 조합으로 키를 가져옵니다.
+이제 Sketchfab 모델에 관련된 모든 부가 정보를 원-핫-인코딩하려고한다. 이 정보에는 각 모델과 관련한 카테고리 및 태그가 포함되어 있다. 이 정보를 인코딩하는 가장 간단한 방법은 scikit-learn의 [DictVectorizer](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.DictVectorizer.html) 클래스를 사용하는 것이다. `DictVectorizer`는 변수 이름을 키로, 가중치를 값으로 담고 있는 딕셔너리들, 그 딕셔너리들의 리스트를 사용한다. 여기서 각 가중치는 1이라고 가정하고 태그 유형과 값의 조합을 키로 취한다.
   
 ```python
 sideinfo = pd.read_csv('../data/model_feats.psv',
@@ -863,11 +863,11 @@ sideinfo.head()
 | 4 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | tag | loli |
   
 ```python
-# 아마 환상적인 판다스 groupby가 해야 할 일이있을거야
-# 하지만 이건 알아 내지 못했어요 :(
+# 판다스 groupby로 아마 깔끔하게 처리할 수 있을거다
+# 그러나 그렇게 처리하지 못했다 :(
 
-# 기능이 포함 된 사전 목록 작성
-# idx_to_mid와 같은 순서로 가중치를 지정합니다.
+# 변수가 포함된 딕셔너리 리스트 만듬
+# idx_to_mid와 동일한 순서로 가중치를 부여한다.
 feat_dlist = [{} for _ in idx_to_mid]
 for idx, row in sideinfo.iterrows():
     feat_key = '{}_{}'.format(row.type, str(row.value).lower())
@@ -911,7 +911,7 @@ item_features
     with 161510 stored elements in Compressed Sparse Row format>
 ```
   
-우리는 이제 `item_features` 행렬을 남겨 두었습니다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 항목이고 각 열은 고유 한 태그입니다. 20352 개의 고유 태그가있는 것 같습니다.
+이제 `item_features` 행렬을 갖게 되었다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유한 품목이고 각 열은 고유한 태그이다. 20352개의 고유 태그가 있는 것 같다.
   
 ## 훈련
 
