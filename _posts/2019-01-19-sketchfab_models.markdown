@@ -800,8 +800,7 @@ df.head()
 | 4 | 3D fanart Noel From Sora no Method | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | 1109ee298494fbd192e27878432c718a |
   
 ```python
-# 
-최소 5 개의 좋아요를 가진 사용자 및 모델 만 포함하는 임계 값 데이터.
+# 최소 5 개의 좋아요를 가진 사용자 및 모델 만 포함하는 임계 값 데이터.
 df = helpers.threshold_interactions_df(df, 'uid', 'mid', 5, 5)
 ```
   
@@ -854,5 +853,67 @@ sideinfo = pd.read_csv('../data/model_feats.psv',
                        quotechar='\\')
 sideinfo.head()
 ```
+  
+| | **mid** | **type** | **value** |
+|:--|:-----------------------------------|:---------------------------------|:---------------------------------|
+| 0 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | category | Characters |
+| 1 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | category | Gaming |
+| 2 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | tag | 3dsmax |
+| 3 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | tag | noel |
+| 4 | 5dcebcfaedbd4e7b8a27bd1ae55f1ac3 | tag | loli |
+  
+```python
+# 아마 환상적인 판다스 groupby가 해야 할 일이있을거야
+# 하지만 이건 알아 내지 못했어요 :(
+
+# 기능이 포함 된 사전 목록 작성
+# idx_to_mid와 같은 순서로 가중치를 지정합니다.
+feat_dlist = [{} for _ in idx_to_mid]
+for idx, row in sideinfo.iterrows():
+    feat_key = '{}_{}'.format(row.type, str(row.value).lower())
+    idx = mid_to_idx.get(row.mid)
+    if idx is not None:
+        feat_dlist[idx][feat_key] = 1
+```
+  
+```python
+feat_dlist[0]
+```
+  
+```python
+{'category_characters': 1,
+ 'category_gaming': 1,
+ 'tag_3d': 1,
+ 'tag_3dcellshade': 1,
+ 'tag_3dsmax': 1,
+ 'tag_anime': 1,
+ 'tag_girl': 1,
+ 'tag_loli': 1,
+ 'tag_noel': 1,
+ 'tag_soranomethod': 1}
+```
+ 
+```python
+from sklearn.feature_extraction import DictVectorizer
+```
+ 
+```python
+dv = DictVectorizer()
+item_features = dv.fit_transform(feat_dlist)
+```
+  
+```python
+item_features
+```
+
+```bash
+<25655x20352 sparse matrix of type '<class 'numpy.float64'>'
+    with 161510 stored elements in Compressed Sparse Row format>
+```
+  
+우리는 이제 `item_features` 행렬을 남겨 두었습니다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 항목이고 각 열은 고유 한 태그입니다. 20352 개의 고유 태그가있는 것 같습니다.
+  
+## 훈련
+우리는 이제 `item_features` 행렬을 남겨 두었습니다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 항목이고 각 열은 고유 한 태그입니다. 20352 개의 고유 태그가있는 것 같습니다.
 
 (번역 중)
