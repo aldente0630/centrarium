@@ -1300,7 +1300,7 @@ Sketchfab이 사람들에게 더 많은 태그를 사용하도록 권장한다�
 idx = 900
 mid = idx_to_mid[idx]
 def display_single(mid):
-    """Display thumbnail for a single model"""
+    """모델 1개의 썸네일 보여주기"""
     response = requests.get('https://sketchfab.com/i/models/{}'\
                             .format(mid)).json()
     thumb = [x['url'] for x in response['thumbnails']['images']
@@ -1314,7 +1314,7 @@ def display_single(mid):
 
 display_single(mid)
 
-# Make mapper to map from from feature index to feature name
+# 변수 색인에서 변수 이름으로 연결하는 매퍼 만들기
 idx_to_feat = {v: k for (k, v) in dv.vocabulary_.items()}
 print('Tags:')
 for i in item_features.getrow(idx).indices:
