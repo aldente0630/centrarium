@@ -1052,7 +1052,7 @@ from skopt import forest_minimize
   
 ```python
 def objective(params):
-    # unpack
+    # 언패킹하기
     epochs, learning_rate,\
     no_components, alpha = params
     
@@ -1071,9 +1071,9 @@ def objective(params):
                                               train_interactions=None,
                                               k=5, num_threads=4)
     mapatk = np.mean(patks)
-    # Make negative because we want to _minimize_ objective
+    # 목적 함수를 최소화하기 원하므로 음수로 만든다
     out = -mapatk
-    # Handle some weird numerical shit going on
+    # 진행 중 발생할 수 있는 이상 수치값 처리하기
     if np.abs(out + 1) < 0.01 or out < -1.0:
         return 0.0
     else:
@@ -1095,16 +1095,16 @@ res_fm = forest_minimize(objective, space, n_calls=250,
 ```
   
 ```python
-print('Maximimum p@k found: {:6.5f}'.format(-res_fm.fun))
-print('Optimal parameters:')
+print('찾아낸 p@k 최대값: {:6.5f}'.format(-res_fm.fun))
+print('최적 파라미터:')
 params = ['epochs', 'learning_rate', 'no_components', 'alpha']
 for (p, x_) in zip(params, res_fm.x):
     print('{}: {}'.format(p, x_))
 ```
   
 ```bash
-Maximimum p@k found: 0.04781
-Optimal parameters:
+찾아낸 p@k 최대값: 0.04781
+최적 파라미터:
 epochs: 168
 learning_rate: 0.09126423099690231
 no_components: 104
