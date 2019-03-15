@@ -1071,7 +1071,7 @@ def objective(params):
                                               train_interactions=None,
                                               k=5, num_threads=4)
     mapatk = np.mean(patks)
-    # 목적 함수를 최소화하기 원하므로 음수로 만든다
+    # 목적 함수 최소화하기 원하므로 음수로 만들기
     out = -mapatk
     # 진행 중 발생할 수 있는 이상 수치값 처리하기
     if np.abs(out + 1) < 0.01 or out < -1.0:
@@ -1115,15 +1115,65 @@ alpha: 0.00023540795300720628
   
 ## 순위 학습 + 부가 정보
   
-LightFM은 부가 정보를 전달하거나 전달하지 않을 때 미묘한 가정을합니다. user_features 또는 item_features가 명시 적으로 포함되어 있지 않으면 LightFM은 두 특징 행렬이 실제로 사용자 및 항목 기능 행렬에 대한 크기 (num_users X num_users) 또는 (num_items X num_items)의 항등 행렬이라고 가정합니다. 이 작업이 효과적으로 수행하는 것은 각 사용자 및 항목 ID를 단일 기능 벡터로 일회용으로 인코딩하는 것입니다. item_features 행렬을 전달하는 경우 LightFM은 one-hot-encoding을 수행하지 않습니다. 따라서 명시 적으로 정의하지 않는 한 각 사용자 및 항목 ID는 자체 벡터를 갖지 않습니다. 이를 수행하는 가장 쉬운 방법은 고유 한 행렬을 만들어 이미 작성한 item_features 행렬의 측면에 스택을 쌓는 것입니다. 이 방법으로 각 항목은 고유 ID에 대한 단일 벡터로 설명 된 다음 각 태그에 대한 벡터 집합으로 설명됩니다.
+`LightFM`은 부가 정보를 전달하거나 전달하지 않을 때 미묘한 가정을합니다. `user_features` 또는 `item_features`가 명시 적으로 포함되어 있지 않으면 `LightFM`은 두 특징 행렬이 실제로 사용자 및 항목 기능 행렬에 대한 크기 (`num_users` X `num_users`) 또는 (`num_items` X `num_items`)의 항등 행렬이라고 가정합니다. 이 작업이 효과적으로 수행하는 것은 각 사용자 및 항목 ID를 단일 기능 벡터로 일회용으로 인코딩하는 것입니다. `item_features` 행렬을 전달하는 경우 `LightFM`은 원-핫-인코딩을 수행하지 않습니다. 따라서 명시 적으로 정의하지 않는 한 각 사용자 및 항목 ID는 자체 벡터를 갖지 않습니다. 이를 수행하는 가장 쉬운 방법은 고유 한 행렬을 만들어 이미 작성한 `item_features` 행렬의 측면에 스택을 쌓는 것입니다. 이 방법으로 각 항목은 고유 ID에 대한 단일 벡터로 설명 된 다음 각 태그에 대한 벡터 집합으로 설명됩니다.
 
 ```python
-# Need to hstack item_features
+# item_features를 수평으로 쌓는 작업이 필요
 eye = sp.eye(item_features.shape[0], item_features.shape[0]).tocsr()
 item_features_concat = sp.hstack((eye, item_features))
 item_features_concat = item_features_concat.tocsr().astype(np.float32)
 ```
   
-이제 item_features를 통합 한 새로운 목적 함수를 정의해야합니다.
+이제 `item_features`를 통합 한 새로운 목적 함수를 정의해야합니다.
+  
+```python
+def objective_wsideinfo(params):
+    # 언패킹하기
+    epochs, learning_rate,\
+    no_components, item_alpha,\
+    scale = params
+    
+    user_alpha = item_alpha * scale
+    model = LightFM(loss='warp',
+                    random_state=2016,
+                    learning_rate=learning_rate,
+                    no_components=no_components,
+                    user_alpha=user_alpha,
+                    item_alpha=item_alpha)
+    model.fit(train, epochs=epochs,
+              item_features=item_features_concat,
+              num_threads=4, verbose=True)
+    
+    patks = lightfm.evaluation.precision_at_k(model, test,
+                                              item_features=item_features_concat,
+                                              train_interactions=None,
+                                              k=5, num_threads=3)
+    mapatk = np.mean(patks)
+    # 목적 함수 최소화하기 원하므로 음수로 만들기
+    out = -mapatk
+    # 진행 중 발생할 수 있는 이상 수치값 처리하기
+    if np.abs(out + 1) < 0.01 or out < -1.0:
+        return 0.0
+    else:
+        return out
+```
+   
+정의 된대로 이제는 새로운 하이퍼 매개 변수 검색을 실행 해 봅시다. 사용자와 항목 항목 정규화 (알파) 용어 사이의 비율을 제어하는 ​​추가 스케일링 매개 변수를 추가하겠습니다. 모든 추가 항목 기능 때문에 우리는 사물을 다른 방식으로 정규화하고자 할 수 있습니다. 또한 forest_minimization에 x0 용어를 입력하여 보조 정보가없는 이전 실행의 최적 매개 변수에서 하이퍼 매개 변수 검색을 시작할 수 있습니다.
+
+```python
+space = [(1, 260), # epochs
+         (10**-3, 1.0, 'log-uniform'), # learning_rate
+         (20, 200), # no_components
+         (10**-5, 10**-3, 'log-uniform'), # item_alpha
+         (0.001, 1., 'log-uniform') # user_scaling
+        ]
+x0 = res_fm.x.append(1.)
+# This typecast is required
+item_features = item_features.astype(np.float32)
+res_fm_itemfeat = forest_minimize(objective_wsideinfo, space, n_calls=50,
+                                  x0=x0,
+                                  random_state=0,
+                                  verbose=True)
+``` 
 
 (번역 중)
