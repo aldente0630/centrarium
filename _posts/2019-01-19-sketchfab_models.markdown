@@ -1112,5 +1112,18 @@ alpha: 0.00023540795300720628
 ```
   
 너무 초라한! 기본 하이퍼 파라미터를 사용하여 ~ 0.034의 p @ k로 시작한 다음 더 나은 값을 찾음으로써 0.0478로 증가 시켰습니다. 우리의 항목 기능을 부수 정보로 행렬 인수 분해 모델에 추가하면 어떤 일이 발생하는지 봅시다.
+  
+## 순위 학습 + 부가 정보
+  
+LightFM은 부가 정보를 전달하거나 전달하지 않을 때 미묘한 가정을합니다. user_features 또는 item_features가 명시 적으로 포함되어 있지 않으면 LightFM은 두 특징 행렬이 실제로 사용자 및 항목 기능 행렬에 대한 크기 (num_users X num_users) 또는 (num_items X num_items)의 항등 행렬이라고 가정합니다. 이 작업이 효과적으로 수행하는 것은 각 사용자 및 항목 ID를 단일 기능 벡터로 일회용으로 인코딩하는 것입니다. item_features 행렬을 전달하는 경우 LightFM은 one-hot-encoding을 수행하지 않습니다. 따라서 명시 적으로 정의하지 않는 한 각 사용자 및 항목 ID는 자체 벡터를 갖지 않습니다. 이를 수행하는 가장 쉬운 방법은 고유 한 행렬을 만들어 이미 작성한 item_features 행렬의 측면에 스택을 쌓는 것입니다. 이 방법으로 각 항목은 고유 ID에 대한 단일 벡터로 설명 된 다음 각 태그에 대한 벡터 집합으로 설명됩니다.
+
+```python
+# Need to hstack item_features
+eye = sp.eye(item_features.shape[0], item_features.shape[0]).tocsr()
+item_features_concat = sp.hstack((eye, item_features))
+item_features_concat = item_features_concat.tocsr().astype(np.float32)
+```
+  
+이제 item_features를 통합 한 새로운 목적 함수를 정의해야합니다.
 
 (번역 중)
