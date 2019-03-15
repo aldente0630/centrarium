@@ -1168,7 +1168,7 @@ space = [(1, 260), # epochs
          (0.001, 1., 'log-uniform') # user_scaling
         ]
 x0 = res_fm.x.append(1.)
-# This typecast is required
+# 형변환이 필요하다
 item_features = item_features.astype(np.float32)
 res_fm_itemfeat = forest_minimize(objective_wsideinfo, space, n_calls=50,
                                   x0=x0,
