@@ -1200,4 +1200,85 @@ scaling: 0.6960826359109953
   
 ## 재미로 변수 임베딩하기
   
+이 모든 것에 관계없이 항목 기능을 통합 할 때 여전히 이점이 있습니다. 사용자 및 항목과 동일한 공간에 벡터가 포함되어 있기 때문에 다양한 유형의 권장 사항을 사용할 수 있습니다. 먼저 최적의 매개 변수를 사용하여 전체 데이터 세트에서 모델을 다시 학습합니다.
+  
+```python
+epochs, learning_rate,\
+no_components, item_alpha,\
+scale = res_fm_itemfeat.x
+
+user_alpha = item_alpha * scale
+model = LightFM(loss='warp',
+                random_state=2016,
+                learning_rate=learning_rate,
+                no_components=no_components,
+                user_alpha=user_alpha,
+                item_alpha=item_alpha)
+model.fit(likes, epochs=epochs,
+          item_features=item_features_concat,
+          num_threads=4)
+```
+  
+Sketchfab을 사용 중이며 Google의 [기울기 브러쉬](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 해당하는 태그 [기울임 꼴](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정 해 보겠습니다. Sketchfab은 결과를 어떻게 반환해야합니까? 현재 모델의 "틸트 브러시 성"과 관련이없는 항목의 인기도를 기반으로 결과를 반환합니다. 팩터 화 된 태그를 사용하면 해당 유사성별로 정렬 된 틸트 브러시 태그와 가장 *유사한* 제품 목록을 반환 할 수 있습니다. 이를 위해 틸트 브러시 벡터를 찾아 모든 제품에 대한 코사인 유사성을 측정해야합니다.
+
+item_features 행렬의 왼쪽에 ID 행렬을 추가했음을 기억하십시오. 이것은 `item_features` 행렬의 열 인덱스에 항목 기능을 매핑 한 `DictVectorizer`가 항목 수만큼 인 인덱스를 갖게됨을 의미합니다.
+  
+```python
+idx = dv.vocabulary_['tag_tiltbrush'] + item_features.shape[0]
+```
+  
+다음으로 틸 브러시 벡터와 모든 아이템 표현의 코사인 유사도를 계산할 필요가 있습니다. 여기서 각 아이템의 표현은 특징 벡터의 합입니다. 이러한 특징 벡터는 LightFM 모델에서 `item_embeddings`로 저장됩니다. (*참고 : LightFM 모델에는 기술적으로 바이어스 조건이 있으며 지금은 무시하고 있습니다.*)
+  
+```python
+def cosine_similarity(vec, mat):
+    sim = vec.dot(mat.T)
+    matnorm = np.linalg.norm(mat, axis=1)
+    vecnorm = np.linalg.norm(vec)
+    return np.squeeze(sim / matnorm / vecnorm)
+
+tilt_vec = model.item_embeddings[[idx], :]
+item_representations = item_features_concat.dot(model.item_embeddings)
+sims = cosine_similarity(tilt_vec, item_representations)
+```
+  
+마지막으로 틸트 브러시 벡터와 가장 유사한 상위 5 개의 Sketchfab 모델 축소판을 시각화하기 위해 마지막 블로그 게시물의 일부 코드를 다시 사용할 수 있습니다.
+  
+```python
+import requests
+def get_thumbnails(row, idx_to_mid, N=10):
+    thumbs = []
+    mids = []
+    for x in np.argsort(-row)[:N]:
+        response = requests.get('https://sketchfab.com/i/models/{}'\
+                                .format(idx_to_mid[x])).json()
+        thumb = [x['url'] for x in response['thumbnails']['images']
+                 if x['width'] == 200 and x['height']==200]
+        if not thumb:
+            print('no thumbnail')
+        else:
+            thumb = thumb[0]
+        thumbs.append(thumb)
+        mids.append(idx_to_mid[x])
+    return thumbs, mids
+```
+  
+```python
+from IPython.display import display, HTML
+
+def display_thumbs(thumbs, mids, N=5):
+    thumb_html = "<a href='{}' target='_blank'>\
+                  <img style='width: 160px; margin: 0px; \
+                  border: 1px solid black;' \
+                  src='{}' /></a>"
+    images = ''
+    for url, mid in zip(thumbs[0:N], mids[0:N]):
+        link = 'http://sketchfab.com/models/{}'.format(mid)
+        images += thumb_html.format(link, url)
+    display(HTML(images))
+```
+  
+```python
+display_thumbs(*get_thumbnails(sims, idx_to_mid))
+```
+  
 (번역 중)
