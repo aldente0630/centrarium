@@ -1039,5 +1039,9 @@ plt.tight_layout();
 ![그림9](https://aldente0630.github.io/assets/sketchfab_models9.png)  
   
 ## `scikit-optimize`로 하이퍼 파라미터 최적화하기
+  
+이제 기준선을 얻었으므로 최적의 하이퍼 매개 변수를 찾아 pk를 최대화하고 싶습니다. 부수적으로, k에서의 정밀도가 모든 상호 작용이 바이너리 일 때 여기에서 사용하는 가장 좋은 척도인지는 모르겠지만 지금은 무시해 봅시다.  
+  
+마지막 게시물은 많은 하이퍼 매개 변수를 통해 그리드 검색을 실행했으며 영원히 걸렸습니다. 무작위 검색은 명시 적 그리드 검색보다 낫지 만 더 잘할 수 있습니다. [scikit-optimize](https://scikit-optimize.github.io) (`skopt`) 라이브러리를 사용하여 우리는 p3을 극대화하기 위해 블랙 박스 최적화 알고리즘을 사용하는 동안 탐색 할 수있는 자유 매개 변수로 hyperpameters를 처리 할 수 있습니다. 선택할 수있는 최적화 알고리즘이 많이 있지만, 오늘은 `forest_minimize`를 고수 할 것입니다.
 
 (번역 중)
