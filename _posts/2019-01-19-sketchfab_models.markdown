@@ -914,5 +914,126 @@ item_features
 이제 `item_features` 행렬을 갖게 되었다. 각 행은 (`likes` 행렬의 열과 같은 순서로) 고유 품목이고 각 열은 고유 태그이다. 20352개의 고유 태그가 있는 것 같다.
   
 ## 훈련
+  
+LightFM에서 기본 설정을 사용하고 시작하려는 항목 기능을 무시하고 간단한 WARP를 실행 해 봅시다. 저는 BPR에 대해 많은 행운을 가져 본 적이 없기 때문에 오늘 WARP에만 집중할 것입니다. 나는 학습 곡선을 계산할 작은 함수를 만들 것이다.
+  
+```python
+def print_log(row, header=False, spacing=12):
+    top = ''
+    middle = ''
+    bottom = ''
+    for r in row:
+        top += '+{}'.format('-'*spacing)
+        if isinstance(r, str):
+            middle += '| {0:^{1}} '.format(r, spacing-2)
+        elif isinstance(r, int):
+            middle += '| {0:^{1}} '.format(r, spacing-2)
+        elif (isinstance(r, float)
+              or isinstance(r, np.float32)
+              or isinstance(r, np.float64)):
+            middle += '| {0:^{1}.5f} '.format(r, spacing-2)
+        bottom += '+{}'.format('='*spacing)
+    top += '+'
+    middle += '|'
+    bottom += '+'
+    if header:
+        print(top)
+        print(middle)
+        print(bottom)
+    else:
+        print(middle)
+        print(top)
+
+def patk_learning_curve(model, train, test, eval_train,
+                        iterarray, user_features=None,
+                        item_features=None, k=5,
+                        **fit_params):
+    old_epoch = 0
+    train_patk = []
+    test_patk = []
+    headers = ['Epoch', 'train p@5', 'test p@5']
+    print_log(headers, header=True)
+    for epoch in iterarray:
+        more = epoch - old_epoch
+        model.fit_partial(train, user_features=user_features,
+                          item_features=item_features,
+                          epochs=more, **fit_params)
+        this_test = lightfm.evaluation.precision_at_k(model, test, train_interactions=None, k=k)
+        this_train = lightfm.evaluation.precision_at_k(model, eval_train, train_interactions=None, k=k)
+
+        train_patk.append(np.mean(this_train))
+        test_patk.append(np.mean(this_test))
+        row = [epoch, train_patk[-1], test_patk[-1]]
+        print_log(row)
+    return model, train_patk, test_patk
+```
+
+```python
+model = LightFM(loss='warp', random_state=2016)
+# 모형 초기화.
+model.fit(train, epochs=0);
+
+iterarray = range(10, 110, 10)
+
+model, train_patk, test_patk = patk_learning_curve(
+    model, train, test, eval_train, iterarray, k=5, **{'num_threads': 4}
+)
+```
+
+```bash
++------------+------------+------------+
+|   Epoch    | train p@5  |  test p@5  |
++============+============+============+
+|     10     |  0.14303   |  0.02541   |
++------------+------------+------------+
+|     20     |  0.16267   |  0.02947   |
++------------+------------+------------+
+|     30     |  0.16876   |  0.03183   |
++------------+------------+------------+
+|     40     |  0.17282   |  0.03294   |
++------------+------------+------------+
+|     50     |  0.17701   |  0.03333   |
++------------+------------+------------+
+|     60     |  0.17872   |  0.03287   |
++------------+------------+------------+
+|     70     |  0.17583   |  0.03333   |
++------------+------------+------------+
+|     80     |  0.17793   |  0.03386   |
++------------+------------+------------+
+|     90     |  0.17479   |  0.03392   |
++------------+------------+------------+
+|    100     |  0.17656   |  0.03301   |
++------------+------------+------------+
+```
+  
+```python
+import seaborn as sns
+sns.set_style('white')
+
+def plot_patk(iterarray, patk,
+              title, k=5):
+    plt.plot(iterarray, patk);
+    plt.title(title, fontsize=20);
+    plt.xlabel('Epochs', fontsize=24);
+    plt.ylabel('p@{}'.format(k), fontsize=24);
+    plt.xticks(fontsize=14);
+    plt.yticks(fontsize=14);
+
+# 훈련셋을 왼쪽에 그린다
+ax = plt.subplot(1, 2, 1)
+fig = ax.get_figure();
+sns.despine(fig);
+plot_patk(iterarray, train_patk,
+         'Train', k=5)
+
+# 시험셋을 오른쪽에 그린다
+ax = plt.subplot(1, 2, 2)
+fig = ax.get_figure();
+sns.despine(fig);
+plot_patk(iterarray, test_patk,
+         'Test', k=5)
+
+plt.tight_layout();
+```
 
 (번역 중)
