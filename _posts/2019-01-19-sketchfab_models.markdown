@@ -1316,9 +1316,64 @@ display_single(mid)
 
 # 변수 색인에서 변수 이름으로 연결하는 매퍼 만들기
 idx_to_feat = {v: k for (k, v) in dv.vocabulary_.items()}
-print('Tags:')
+print('태그:')
 for i in item_features.getrow(idx).indices:
     print('- {}'.format(idx_to_feat[i]))
 ```
+  
+![그림15](https://aldente0630.github.io/assets/sketchfab_models15.jpg)
+  
+```bash
+태그:
+- category_architecture
+- category_characters
+- category_cultural heritage
+- category_products & technology
+- category_science, nature & education
+- tag_rock
+- tag_sculpture
+- tag_woman
+```
+  
+```python
+# 모든 태그 벡터의 색인
+tag_indices = set(v for (k, v) in dv.vocabulary_.items()
+                  if k.startswith('tag_'))
+# 이미 있는 태그
+filter_tags = set(i for i in item_features.getrow(idx).indices)
+
+item_representation = item_features_concat[idx, :].dot(model.item_embeddings)
+sims = cosine_similarity(item_representation, model.item_embeddings)
+
+suggested_tags = []
+i = 0
+recs = np.argsort(-sims)
+n_items = item_features.shape[0]
+while len(suggested_tags) < 10:
+    offset_idx = recs[i] - n_items
+    if offset_idx in tag_indices\
+       and offset_idx not in filter_tags:
+        suggested_tags.append(idx_to_feat[offset_idx])
+    i += 1
+print('제안하는 태그:')
+for t in suggested_tags:
+    print('- {}'.format(t))
+```
+  
+```bash
+제안하는 태그:
+- tag_greek
+- tag_castel
+- tag_santangelo
+- tag_eros
+- tag_humanti
+- tag_galleria
+- tag_batholith
+- tag_rome
+- tag_substanced880
+- tag_roman
+```
+  
+## 빠른 
   
 (번역 중)
