@@ -1045,5 +1045,72 @@ plt.tight_layout();
 마지막 게시물은 많은 하이퍼 매개 변수를 통해 그리드 검색을 실행했으며 영원히 걸렸습니다. 무작위 검색은 명시 적 그리드 검색보다 낫지 만 더 잘할 수 있습니다. [scikit-optimize](https://scikit-optimize.github.io) (`skopt`) 라이브러리를 사용하여 우리는 p3을 극대화하기 위해 블랙 박스 최적화 알고리즘을 사용하는 동안 탐색 할 수있는 자유 매개 변수로 hyperpameters를 처리 할 수 있습니다. 선택할 수있는 최적화 알고리즘이 많이 있지만, 오늘은 `forest_minimize`를 고수 할 것입니다.
 
 설정은 매우 간단합니다. 먼저 최소화하려는 목표 함수를 정의해야합니다. 목표는 해결하려는 매개 변수를 인수로 받아 해당 매개 변수에서 목표 값을 반환합니다. 따라서 우리의 경우에 하이퍼 매개 변수를 전달하고 `LightFM` 모델을 이러한 매개 변수로 교육 한 다음 교육 후에 평가 된 pk를 반환합니다. 중요한 것은, 목적을 *최소화*해야하므로 pk의 음수를 반환해야하므로 pk를 최대화하는 것이 pk의 음수를 최소화하는 것과 동일하다는 것입니다. 마지막으로 유의할 점은 목적 함수에 하이퍼 매개 변수를 전달할 수 있기 때문에 전역 변수를 자유롭게 사용해야한다는 것입니다.
+  
+```python
+from skopt import forest_minimize
+```
+  
+```python
+def objective(params):
+    # unpack
+    epochs, learning_rate,\
+    no_components, alpha = params
+    
+    user_alpha = alpha
+    item_alpha = alpha
+    model = LightFM(loss='warp',
+                    random_state=2016,
+                    learning_rate=learning_rate,
+                    no_components=no_components,
+                    user_alpha=user_alpha,
+                    item_alpha=item_alpha)
+    model.fit(train, epochs=epochs,
+              num_threads=4, verbose=True)
+    
+    patks = lightfm.evaluation.precision_at_k(model, test,
+                                              train_interactions=None,
+                                              k=5, num_threads=4)
+    mapatk = np.mean(patks)
+    # Make negative because we want to _minimize_ objective
+    out = -mapatk
+    # Handle some weird numerical shit going on
+    if np.abs(out + 1) < 0.01 or out < -1.0:
+        return 0.0
+    else:
+        return out
+```
+  
+목적 함수가 정의되면 하이퍼 매개 변수의 범위를 정의 할 수 있습니다. 이것들은 단순한 최대 값과 최소값 중 하나 일 수 있습니다. 또는 우리는 아래와 같은 분포를 가정 할 수 있습니다. 정의 된 범위를 사용하여 간단하게 `forest_minimize`를 호출하고 꽤 오랜 시간을 기다립니다.
+  
+```python
+space = [(1, 260), # epochs
+         (10**-4, 1.0, 'log-uniform'), # learning_rate
+         (20, 200), # no_components
+         (10**-6, 10**-1, 'log-uniform'), # alpha
+        ]
+
+res_fm = forest_minimize(objective, space, n_calls=250,
+                     random_state=0,
+                     verbose=True)
+```
+  
+```python
+print('Maximimum p@k found: {:6.5f}'.format(-res_fm.fun))
+print('Optimal parameters:')
+params = ['epochs', 'learning_rate', 'no_components', 'alpha']
+for (p, x_) in zip(params, res_fm.x):
+    print('{}: {}'.format(p, x_))
+```
+  
+```bash
+Maximimum p@k found: 0.04781
+Optimal parameters:
+epochs: 168
+learning_rate: 0.09126423099690231
+no_components: 104
+alpha: 0.00023540795300720628
+```
+  
+너무 초라한! 기본 하이퍼 파라미터를 사용하여 ~ 0.034의 p @ k로 시작한 다음 더 나은 값을 찾음으로써 0.0478로 증가 시켰습니다. 우리의 항목 기능을 부수 정보로 행렬 인수 분해 모델에 추가하면 어떤 일이 발생하는지 봅시다.
 
 (번역 중)
