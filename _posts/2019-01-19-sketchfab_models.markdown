@@ -1035,5 +1035,9 @@ plot_patk(iterarray, test_patk,
 
 plt.tight_layout();
 ```
+  
+![그림9](https://aldente0630.github.io/assets/sketchfab_models9.png)  
+  
+## `scikit-optimize`로 하이퍼 파라미터 최적화하기
 
 (번역 중)
