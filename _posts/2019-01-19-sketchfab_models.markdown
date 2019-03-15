@@ -1281,4 +1281,44 @@ def display_thumbs(thumbs, mids, N=5):
 display_thumbs(*get_thumbnails(sims, idx_to_mid))
 ```
   
+![그림10](https://aldente0630.github.io/assets/sketchfab_models10.jpg)
+![그림11](https://aldente0630.github.io/assets/sketchfab_models11.jpg)
+![그림12](https://aldente0630.github.io/assets/sketchfab_models12.jpg)
+![그림13](https://aldente0630.github.io/assets/sketchfab_models13.jpg)
+![그림14](https://aldente0630.github.io/assets/sketchfab_models14.jpg)
+  
+
+정말 멋진! 이들 각각이 Tiltbrush로 만들어진 것처럼 보입니다. 위 이미지를 클릭하여 Sketchfab 웹 사이트에서 각 모델을 확인하십시오.
+
+우리는 그 밖에 무엇을 할 수 있습니까?
+  
+## 태그 제안
+  
+Sketchfab이 사람들에게 더 많은 태그를 사용하도록 권장한다고 가정 해 봅시다. 이는 사용자에게 매력적인 동안 구조화 된 데이터를 무료로 만들 수 있기 때문에 회사에 유리합니다. Sketchfab은 이미지와 함께 태그를 제안함으로써 이러한 행동을 조장 할 수 있습니다. 우리가 할 수있는 한 가지 방법은 모델을 가져 와서 현재 존재하지 않는 태그를 제안하는 것입니다. 여기에는 모델과 가장 유사한 태그 벡터를 찾은 다음 이미 존재하는 태그를 필터링하는 작업이 포함됩니다.
+  
+```python
+idx = 900
+mid = idx_to_mid[idx]
+def display_single(mid):
+    """Display thumbnail for a single model"""
+    response = requests.get('https://sketchfab.com/i/models/{}'\
+                            .format(mid)).json()
+    thumb = [x['url'] for x in response['thumbnails']['images']
+             if x['width'] == 200 and x['height']==200][0]
+    thumb_html = "<a href='{}' target='_blank'>\
+                  <img style='width: 200px; margin: 0px; \
+                  border: 1px solid black;' \
+                  src='{}' /></a>"
+    link = 'http://sketchfab.com/models/{}'.format(mid)
+    display(HTML(thumb_html.format(link, thumb)))
+
+display_single(mid)
+
+# Make mapper to map from from feature index to feature name
+idx_to_feat = {v: k for (k, v) in dv.vocabulary_.items()}
+print('Tags:')
+for i in item_features.getrow(idx).indices:
+    print('- {}'.format(idx_to_feat[i]))
+```
+  
 (번역 중)
