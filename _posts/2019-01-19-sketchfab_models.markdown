@@ -1115,7 +1115,7 @@ alpha: 0.00023540795300720628
   
 ## 순위 학습 + 부가 정보
   
-`LightFM`은 부가 정보를 전달하든, 하지않든 작은 가정 하나를 세운다. `user_features` 또는 `item_features`를 명시적으로 포함하지 않으면 `LightFM`은 두 변수 행렬이 사용자 및 품목 변수 행렬의 크기 (`num_users` X `num_users`)와 (`num_items` X `num_items`)인 항등 행렬이라고 가정한다. 이 작업을 효과적으로 수행하는 방법은 사용자와 품목 ID를 각각 하나의 변수 벡터로 원-핫-인코딩하는 것이다. `item_features` 행렬을 전달하는 경우 `LightFM`은 원-핫-인코딩을 수행하지 않는다. 따라서 명시적으로 정의하지 않으면 사용자와 품목 ID는 자체의 고유 벡터를 갖지 않는다. 이를 수행하는 가장 쉬운 방법은 고유한 행렬을 만들어 이미 만든 `item_features` 행렬 측면에 쌓아 나가는 것이다. 이 방법은 각 품목은 고유 ID에 대한 단일 벡터로 설명 된 다음 각 태그에 대한 벡터 집합으로 설명된다.
+`LightFM`은 부가 정보를 전달하든, 하지않든 작은 가정 하나를 세운다. `user_features` 또는 `item_features`를 명시적으로 포함하지 않으면 `LightFM`은 두 변수 행렬이 사용자 및 품목 변수 행렬의 크기 (`num_users` X `num_users`)와 (`num_items` X `num_items`)인 항등 행렬이라고 가정한다. 이 작업이 효과적으로 수행되는 방법은 사용자와 품목 ID를 각각 하나의 변수 벡터로 원-핫-인코딩하는 것이다. `item_features` 행렬을 전달하는 경우 `LightFM`은 원-핫-인코딩을 수행하지 않는다. 따라서 명시적으로 정의하지 않으면 사용자와 품목 ID는 자체의 고유 벡터를 갖지 않는다. 이를 해결하는 가장 쉬운 방법은 항등 행렬을 생성한 다음 미리 만든 `item_features` 행렬 옆으로 붙이는 것이다. 이 방법으로 각 품목은 고유 ID에 대한 단일 벡터와 태그들에 대한 벡터 집합으로 표현이 된다.
 
 ```python
 # item_features를 수평으로 쌓는 작업이 필요
@@ -1124,7 +1124,7 @@ item_features_concat = sp.hstack((eye, item_features))
 item_features_concat = item_features_concat.tocsr().astype(np.float32)
 ```
   
-이제 `item_features`를 통합 한 새로운 목적 함수를 정의해야합니다.
+이제 `item_features`를 통합한 새로운 목적 함수를 정의해야한다.
   
 ```python
 def objective_wsideinfo(params):
@@ -1158,7 +1158,7 @@ def objective_wsideinfo(params):
         return out
 ```
    
-정의 된대로 이제는 새로운 하이퍼 매개 변수 검색을 실행 해 봅시다. 사용자와 항목 항목 정규화 (알파) 용어 사이의 비율을 제어하는 추가 스케일링 매개 변수를 추가하겠습니다. 모든 추가 항목 기능 때문에 우리는 사물을 다른 방식으로 정규화하고자 할 수 있습니다. 또한 `forest_minimization`에 `x0` 용어를 입력하여 보조 정보가없는 이전 실행의 최적 매개 변수에서 하이퍼 매개 변수 검색을 시작할 수 있습니다.
+위에서 정의한대로 하이퍼 파라미터 탐색을 이제 새로 실행해보자. 사용자와 품목 정규화(alpha) 항 간의 비율을 제어하는 별도의 크기 조정 파라미터를 추가하겠다. 별도로 추가한 품목 변수들에 대해 각기 다른 수준의 규제를 적용할 수 있다. 또한 `forest_minimization`에 `x0` 항을 입력하여 부가 정보가 없었던 이전 실행 때의 최적 파라미터에서 하이퍼 파라미터 탐색을 시작할 수 있다.
 
 ```python
 space = [(1, 260), # epochs
