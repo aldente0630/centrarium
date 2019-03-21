@@ -1221,7 +1221,7 @@ model.fit(likes, epochs=epochs,
 
 ## 변수 정렬하기
   
-Sketchfab을 사용하고 있고 Google의 [틸트 브러시](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 상응하는 태그 [틸트브러시](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정해보자. Sketchfab은 어떤 결과를 보여줄까? 현재 모델의 "틸트 브러시스러움"과는 아마 상관없이 품목 인기도를 기반으로 결과를 보여줄거다. 요인화한 태그를 이용하여 해당 유사도를 정렬하는 방식으로 틸트 브러시 태그와 가장 *비슷한* 모델 목록을 보여줄 수 있다. 이를 위해 틸트브러시 벡터를 찾아 모든 모델에 대한 코사인 유사도를 계산하자.
+Sketchfab을 사용하고 있고 Google의 [틸트 브러시](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 상응하는 태그 [틸트브러시](https://sketchfab.com/tags/tiltbrush)를 클릭했다고 가정해보자. Sketchfab은 어떤 결과를 보여줄까? 현재 모델의 "틸트브러시스러움"과는 아마 상관없이 품목 인기도를 기반으로 결과를 보여줄거다. 요인화한 태그를 이용하여 해당 유사도를 정렬하는 방식으로 틸트 브러시 태그와 가장 *비슷한* 모델 목록을 보여줄 수 있다. 이를 위해 틸트브러시 벡터를 찾아 모든 모델에 대한 코사인 유사도를 계산하자.
 
 item_features 행렬 왼쪽에 ID 행렬을 추가했음을 기억해라. 이는 `item_features` 행렬 열 색인에 품목 변수를 매핑한 `DictVectorizer`에 품목 수만큼 색인이 빠져있음을 의미한다.
   
