@@ -1019,14 +1019,14 @@ def plot_patk(iterarray, patk,
     plt.xticks(fontsize=14);
     plt.yticks(fontsize=14);
 
-# 훈련셋을 왼쪽에 그린다
+# 훈련 셋을 왼쪽에 그린다
 ax = plt.subplot(1, 2, 1)
 fig = ax.get_figure();
 sns.despine(fig);
 plot_patk(iterarray, train_patk,
          'Train', k=5)
 
-# 시험셋을 오른쪽에 그린다
+# 시험 셋을 오른쪽에 그린다
 ax = plt.subplot(1, 2, 2)
 fig = ax.get_figure();
 sns.despine(fig);
@@ -1221,9 +1221,9 @@ model.fit(likes, epochs=epochs,
 
 ## 변수 정렬하기
   
-Sketchfab을 사용 중이며 Google의 [기울기 브러쉬](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 해당하는 태그 [기울임 꼴](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정 해 보겠습니다. Sketchfab은 결과를 어떻게 반환해야합니까? 현재 모델의 "틸트 브러시 성"과 관련이없는 항목의 인기도를 기반으로 결과를 반환합니다. 팩터 화 된 태그를 사용하면 해당 유사성별로 정렬 된 틸트 브러시 태그와 가장 *유사한* 제품 목록을 반환 할 수 있습니다. 이를 위해 틸트 브러시 벡터를 찾아 모든 제품에 대한 코사인 유사성을 측정해야합니다.
+Sketchfab을 사용하고 있고 Google의 [틸트 브러쉬](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 상응하는 태그 [tiltbrush](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정해보자. Sketchfab은 어떤 결과를 보여줄까? 현재 모델의 "틸트 브러시스러움"과 아마 관계 없이 품목 인기도를 기반으로 결과를 보여줄거다. 요인화한 태그를 사용하여 해당 유사도로 정렬하는 방식으로 틸트 브러시 태그와 가장 *비슷한* 모델 목록을 보여줄 수 있다. 이를 위해 틸트 브러시 벡터를 찾아 모든 모델에 대한 코사인 유사도를 계산하자.
 
-item_features 행렬의 왼쪽에 ID 행렬을 추가했음을 기억하십시오. 이것은 `item_features` 행렬의 열 인덱스에 항목 기능을 매핑 한 `DictVectorizer`가 항목 수만큼 인 인덱스를 갖게됨을 의미합니다.
+item_features 행렬 왼쪽에 ID 행렬을 추가했음을 기억해라. `item_features` 행렬 열 색인에 품목 변수를 매핑한 `DictVectorizer`가 품목 수만큼 색인을 갖음을 의미한다.
   
 ```python
 idx = dv.vocabulary_['tag_tiltbrush'] + item_features.shape[0]
