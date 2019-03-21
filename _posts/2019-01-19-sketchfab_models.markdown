@@ -1221,15 +1221,15 @@ model.fit(likes, epochs=epochs,
 
 ## 변수 정렬하기
   
-Sketchfab을 사용하고 있고 Google의 [틸트 브러쉬](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 상응하는 태그 [tiltbrush](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정해보자. Sketchfab은 어떤 결과를 보여줄까? 현재 모델의 "틸트 브러시스러움"과 아마 관계 없이 품목 인기도를 기반으로 결과를 보여줄거다. 요인화한 태그를 사용하여 해당 유사도로 정렬하는 방식으로 틸트 브러시 태그와 가장 *비슷한* 모델 목록을 보여줄 수 있다. 이를 위해 틸트 브러시 벡터를 찾아 모든 모델에 대한 코사인 유사도를 계산하자.
+Sketchfab을 사용하고 있고 Google의 [틸트 브러시](https://www.tiltbrush.com) VR 응용 프로그램으로 만든 모델에 상응하는 태그 [틸트브러시](https://sketchfab.com/tags/tiltbrush)을 클릭했다고 가정해보자. Sketchfab은 어떤 결과를 보여줄까? 현재 모델의 "틸트 브러시스러움"과는 아마 상관없이 품목 인기도를 기반으로 결과를 보여줄거다. 요인화한 태그를 이용하여 해당 유사도를 정렬하는 방식으로 틸트 브러시 태그와 가장 *비슷한* 모델 목록을 보여줄 수 있다. 이를 위해 틸트브러시 벡터를 찾아 모든 모델에 대한 코사인 유사도를 계산하자.
 
-item_features 행렬 왼쪽에 ID 행렬을 추가했음을 기억해라. `item_features` 행렬 열 색인에 품목 변수를 매핑한 `DictVectorizer`가 품목 수만큼 색인을 갖음을 의미한다.
+item_features 행렬 왼쪽에 ID 행렬을 추가했음을 기억해라. 이는 `item_features` 행렬 열 색인에 품목 변수를 매핑한 `DictVectorizer`에 품목 수만큼 색인이 빠져있음을 의미한다.
   
 ```python
 idx = dv.vocabulary_['tag_tiltbrush'] + item_features.shape[0]
 ```
   
-다음으로 틸 브러시 벡터와 모든 아이템 표현의 코사인 유사도를 계산할 필요가 있습니다. 여기서 각 아이템의 표현은 특징 벡터의 합입니다. 이러한 특징 벡터는 LightFM 모델에서 `item_embeddings`로 저장됩니다. (*참고 : LightFM 모델에는 기술적으로 바이어스 조건이 있으며 지금은 무시하고 있습니다.*)
+다음으로 틸트브러시 벡터와 모든 품목 *표현*간의 코사인 유사도를 계산할 필요가 있다. 여기서 각 품목 표현은 변수 벡터의 총합이다. 이 변수 벡터들은 LightFM 모형에서 `item_embeddings`로 저장된다. (*참고: 세부적으로 LightFM 모형에 편향 항이 존재하나 지금은 일단 무시하고 있다.*)
   
 ```python
 def cosine_similarity(vec, mat):
@@ -1243,7 +1243,7 @@ item_representations = item_features_concat.dot(model.item_embeddings)
 sims = cosine_similarity(tilt_vec, item_representations)
 ```
   
-마지막으로 틸트 브러시 벡터와 가장 유사한 상위 5 개의 Sketchfab 모델 축소판을 시각화하기 위해 마지막 블로그 게시물의 일부 코드를 다시 사용할 수 있습니다.
+마지막으로 틸트브러시 벡터와 가장 유사한 상위 5개의 Sketchfab 모델 섬네일을 시각화하기 위해 이전 블로그 게시물의 일부 코드를 재사용했다.
   
 ```python
 import requests
@@ -1290,9 +1290,9 @@ display_thumbs(*get_thumbnails(sims, idx_to_mid))
 ![그림14](https://aldente0630.github.io/assets/sketchfab_models14.jpg)
   
 
-정말 멋진! 이들 각각이 Tiltbrush로 만들어진 것처럼 보입니다. 위 이미지를 클릭하여 Sketchfab 웹 사이트에서 각 모델을 확인하십시오.
+제법 멋지다! 이들 각각은 틸트브러시로 만들어진 것처럼 보인다. 위 이미지를 클릭하여 Sketchfab 웹 사이트의 모델을 직접 확인해봐라.
 
-우리는 그 밖에 무엇을 할 수 있습니까?
+그 밖에 무얼 또 해볼 수 있을까?
   
 ## 태그 제안
   
@@ -1302,7 +1302,7 @@ Sketchfab이 사람들에게 더 많은 태그를 사용하도록 권장한다�
 idx = 900
 mid = idx_to_mid[idx]
 def display_single(mid):
-    """모델 1개의 썸네일 보여주기"""
+    """모델 1개의 섬네일 보여주기"""
     response = requests.get('https://sketchfab.com/i/models/{}'\
                             .format(mid)).json()
     thumb = [x['url'] for x in response['thumbnails']['images']
