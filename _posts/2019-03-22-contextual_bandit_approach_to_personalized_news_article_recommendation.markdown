@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 개인화 뉴스 추천을 위한 컨텍스츄얼 밴딧 접근법
+title: 뉴스 기사 개인화 추천을 위한 컨텍스츄얼 밴딧 접근법
 date: 2019-03-22 00:00:00
 author: Yahoo! Labs, Princeton University
 categories: Data-Science
