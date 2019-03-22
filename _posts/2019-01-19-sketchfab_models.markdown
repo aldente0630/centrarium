@@ -680,7 +680,7 @@ display_thumbs(get_thumbnails(item_similarities, rand_model, idx_to_mid))
   
 # LightFM을 이용한 Sketchfab 모델 순위 학습
   
-암시적 행렬 분해를 소개하는 마지막 글이며 재미있는 것들을 다룰 것이다. 암시적 행렬 분해를 위한 또 다른 방법, 순위 학습을 살펴본 다음 라이브러리 [LightFM](http://lyst.github.io/lightfm/docs/home.html)을 사용하여 부가 정보를 추천 모형에 통합시킬 것이다. 다음으로 하이퍼 파라미터 교차 검증에 대해 [scikit-optimize](https://scikit-optimize.github.io)를 이용하여 격자 탐색보다 더 똑똑하게 해낼 것이다. 마지막으로 사용자 및 품목과 동일한 공간에 부가 정보를 내재화시켜 사용자 대 품목 그리고 품목 대 품목의 단순 추천을 넘어설 것이다. 가자!
+암시적 행렬 분해를 소개하는 마지막 글이며 재미있는 것들을 다룰 것이다. 암시적 행렬 분해를 위한 또 다른 방법, 순위 학습을 살펴본 다음 라이브러리 [LightFM](http://lyst.github.io/lightfm/docs/home.html)을 사용하여 부가 정보를 추천 모형에 녹일 것이다. 다음으로 하이퍼 파라미터 교차 검증을 [scikit-optimize](https://scikit-optimize.github.io)를 이용하여 격자 탐색보다 더 똑똑하게 해낼 것이다. 마지막으로 사용자 및 품목과 동일한 공간에 부가 정보를 임베드시켜 사용자 대 품목 그리고 품목 대 품목의 단순 추천을 넘어설 것이다. 가자!
 
 ## 과거로부터의 교훈
   
