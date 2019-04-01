@@ -745,13 +745,13 @@ LightFM은 pypi에 있으므로 pip로 매우 간단하게 설치할 수 있다.
 pip install lightfm
 ```
   
-Mac 사용자는 불행히 코드를 병렬로 실행시킬 수 없다. 병렬 처리를 사용하려면 `brew`로 설치 가능한 gcc가 먼저 있어야한다.
+Mac 사용자는 불행히도 코드를 병렬로 실행시킬 수 없다. 병렬 처리를 사용하려면 `brew`로 설치 가능한 gcc가 먼저 있어야한다.
   
 ```bash
 brew install gcc --without-multilib
 ```
   
-유의해라, 30 분 정도 걸린다. LightFM을 설치하는 가장 단순한 방법은 속임수를 좀 쓰는 것이다. 저장소를 먼저 복제해라.
+유의해라, 30 분 정도 걸린다. 꼼수를 좀 쓰면 LightFM을 매우 간단하게 설치할 수 있다. 저장소를 먼저 복제하자.
   
 ```bash
 git clone git@github.com:lyst/lightfm.git
