@@ -751,15 +751,15 @@ Mac 사용자는 불행히도 코드를 병렬로 실행시킬 수 없다. 병�
 brew install gcc --without-multilib
 ```
   
-유의해라, 30 분 정도 걸린다. 꼼수를 좀 쓰면 LightFM을 매우 간단하게 설치할 수 있다. 저장소를 먼저 복제하자.
+유의해라, 30분 정도 걸린다. 꼼수를 좀 쓰면 LightFM을 매우 간단하게 설치할 수 있다. 저장소를 먼저 복제하자.
   
 ```bash
 git clone git@github.com:lyst/lightfm.git
 ```
 
-그런 다음 `setup.py`를 열어서 `use_openmp`라는 변수가 정의된 곳으로 이동하고 `True`로 설정해라. 그리고 나서 `cd lightfm && pip install -e`를 입력해라.
+그런 다음 `setup.py`를 열어서 `use_openmp`라는 변수가 정의된 곳으로 이동한 뒤 `True`로 설정해라. 그리고 나서 `cd lightfm && pip install -e`를 입력해라.
   
-모든 작업이 끝났다면 몇몇 모형을 훈련하기위해 코드를 작성하겠다.
+모든 작업이 끝났다면 몇몇 모형을 훈련하기위해 코드를 작성해보겠다.
   
 ## 데이터 전처리
   
