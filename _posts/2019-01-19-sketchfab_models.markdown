@@ -763,7 +763,7 @@ git clone git@github.com:lyst/lightfm.git
   
 ## 데이터 전처리
   
-Sketchfab 데이터를 행렬로 배열하기 위해 지난 번에 사용했던 많은 함수들을 가져와 rec-a-sketch 저장소 내 `helpers.py` 파일에 전부 다 집어넣었다.
+Sketchfab 데이터를 행렬 형태로 만들기 위해 지난 번 사용했던 다수의 함수를 가져와서 rec-a-sketch 저장소 내 `helpers.py` 파일에 전부 다 집어넣었다.
   
 ```python
 %matplotlib inline
