@@ -833,7 +833,7 @@ likes
 train, test, user_index = helpers.train_test_split(likes, 5, fraction=0.2)
 ```
 
-지난 번과 다른, 특이한 점 하나는 시험 데이터 속 데이터가 있는 사용자만 포함하도록 훈련 데이터를 만드는 것이다. 이는 LightFM의 내장 `precision_at_k` 함수를 사용하기 때문에 생기는 일이다.
+지난 번과 다른, 특이한 점 하나는 시험 데이터 안에 데이터가 있는 사용자만 포함하도록 훈련 데이터를 만드는 것이다. 이는 LightFM의 내장 `precision_at_k` 함수를 사용하기 때문에 생기는 일이다.
   
 ```python
 eval_train = train.copy()
@@ -866,7 +866,7 @@ sideinfo.head()
 # 판다스 groupby로 아마 깔끔하게 처리할 수 있을거다
 # 그러나 그렇게 처리하지 못했다 :(
 
-# 변수가 포함된 딕셔너리 리스트 만듬
+# 변수들을 포함한 딕셔너리 리스트 만듬
 # idx_to_mid와 동일한 순서로 가중치를 부여한다.
 feat_dlist = [{} for _ in idx_to_mid]
 for idx, row in sideinfo.iterrows():
