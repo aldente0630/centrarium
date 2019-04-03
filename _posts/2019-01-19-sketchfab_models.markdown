@@ -915,7 +915,7 @@ item_features
   
 ## 훈련
   
-품목 변수는 일단 무시하고 기본 설정을 이용하여 LightFM을 WARP로 간단하게 실행해보자. BPR을 돌려서 크게 성공했던 적이 없기에 WARP에만 집중할 것이다. 학습 곡선을 계산할 조그만 함수를 만들 생각이다.
+품목 변수는 일단 무시하고 기본 설정만 이용하여 LightFM을 WARP로 간단히 실행해보자. BPR을 돌려서 크게 성공했던 적이 없기에 WARP에만 집중할 것이다. 학습 곡선을 계산할 조그만 함수를 만들어보자.
   
 ```python
 def print_log(row, header=False, spacing=12):
