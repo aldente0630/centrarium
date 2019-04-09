@@ -1316,7 +1316,7 @@ def display_single(mid):
 
 display_single(mid)
 
-# 변수 색인에서 변수 이름으로 연결하는 매퍼 만들기
+# 변수 색인과 변수 이름을 연결하는 매퍼 만들기
 idx_to_feat = {v: k for (k, v) in dv.vocabulary_.items()}
 print('태그:')
 for i in item_features.getrow(idx).indices:
