@@ -80,7 +80,9 @@ $$R_{\mathsf{A}}(T) \overset{\underset{\mathrm{def}}{}}{=} \mathbf{E}[\sum_{t = 
   
 ## 3.1 배타 선형 모형을 이용한 LinUCB
   
-2.1절의 표기법을 그대로 사용하겠다. 모든 \\(t\\)에 대하여 슬롯 손잡이 \\(a\\)의 손익 기대값은 \\(d\\)-차원 변수 \\(mathbf{x}_t\\)에 선형이며 미지의 계수 벡터 \\(\theta^*_a\\)를 갖는다고 가정한다.
+2.1절의 표기법을 그대로 사용하겠다. 모든 \\(t\\)에 대하여 슬롯 손잡이 \\(a\\)의 손익 기대값은 \\(d\\)-차원 변수 \\(mathbf{x}_t\\)에 선형이며 미지의 계수 벡터 \\(\boldsymbol{\theta}^*_a\\)를 갖는다고 가정한다.
+  
+$$R_{\mathsf{A}}(T) \overset{\underset{\mathrm{def}}{}}{=} \mathbf{E}[\sum_{t = 1}^T r_{t, a_t^*}] - \mathbf{E}[\sum_{t = 1}^T r_{t, a_t}] \qquad (1)$$
   
 (번역 중)
 
