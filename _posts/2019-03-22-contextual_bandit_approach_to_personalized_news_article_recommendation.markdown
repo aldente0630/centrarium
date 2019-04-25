@@ -82,7 +82,7 @@ $$R_{\mathsf{A}}(T) \overset{\underset{\mathrm{def}}{}}{=} \mathbf{E}[\sum_{t = 
   
 2.1절의 표기법을 그대로 사용하겠다. 모든 \\(t\\)에 대하여 슬롯 손잡이 \\(a\\)의 손익 기대값은 \\(d\\)-차원 변수 \\(\mathbf{x}_t\\)에 선형이며 미지의 계수 벡터 \\(\boldsymbol{\theta}^*_a\\)를 갖는다고 가정한다.
   
-$$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a \qquad (2)$$
+$$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a. \qquad (2)$$
   
 파라미터를 다른 슬롯 손잡이와 공유하지 않기 때문에 본 모형은 *배타적*이다. \\(\mathbf{D}_a\\)를 \\(t\\)번째 시도에서의 \\(m \times d\\) 차원인 설계 행렬이라고 정의하자. 행은 \\(m\\) 개의 훈련 입력값(예: 기사 \\(a\\)에 대해 이전 관찰한 맥락 정보)에 해당하며 \\(\mathbf{b}_a \in \mathbb{R}^m\\)를 그에 상응하는 응답 벡터(예: 상응하는 \\(m\\) 개의 클릭 여부 사용자 피드백)라고 하자. 훈련 데이터 \\(\(\mathbf{D}_a, \mathbf{c}_a\)\\)에 릿지 회귀 분석을 적용하면 계수 추정값을 얻을 수 있다.
   
