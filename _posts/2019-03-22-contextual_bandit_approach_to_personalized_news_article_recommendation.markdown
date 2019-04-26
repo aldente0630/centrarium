@@ -94,7 +94,7 @@ $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, 
   
 이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말해서 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄격한 UCB를 합리적으로 제공하며 이로부터 UCB 유형의 슬롯 손잡이 선택 전략이 파생될 수 있다. 각 \\(t\\)번째 시도에서 
   
-$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}} \qquad (5)$$
+$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
   
 (번역 중)
 
