@@ -96,7 +96,7 @@ $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, 
   
 $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
   
-을 고른다. 여기서 \\(\mathbf{A}\overset{\underset{\mathrm{def}}{}}{=}\\)
+을 고른다. 여기서 \\(\mathbf{A_a}\overset{\underset{\mathrm{def}}{}}{=}\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d\\)이다.
   
 (번역 중)
 
