@@ -88,7 +88,9 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsy
   
 $$\hat{\boldsymbol{\theta}}_a = (\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{D}^{\mathsf{T}}_a\mathbf{c}_a,\qquad (3)$$
 
-여기서 \\(\mathbf{I}_d\\)는 \\(d \times d\\) 차원인 항등 행렬이다.
+여기서 \\(\mathbf{I}_d\\)는 \\(d \times d\\) 차원인 항등 행렬이다. \\(\mathbf{c}_a\\)의 성분들이 \\(\mathbf{D}_a\\)의 상응하는 행에 대해 조건부 독립일 때, 적어도 \\(1 - \delta\\)의 확률로,
+
+$$|\mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*| \qquad (4)$$
   
 (번역 중)
 
