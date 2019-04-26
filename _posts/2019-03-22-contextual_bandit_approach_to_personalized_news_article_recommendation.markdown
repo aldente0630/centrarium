@@ -96,6 +96,8 @@ $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, 
   
 $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
   
+을 고른다. 여기서 \\(\mathbf{A}\overset{\underset{\mathrm{def}}{}}{=}\\)
+  
 (번역 중)
 
 [^1]: 문헌에 따라 때론 컨텍스츄얼 밴딧은 공변량을 갖는, 부가적 정보가 있는, 또는 연관성 있는 다중 슬롯머신 실험 아니면 연관성 있는 강화 학습이라고 불리운다.
