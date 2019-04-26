@@ -92,7 +92,7 @@ $$\hat{\boldsymbol{\theta}}_a = (\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf
 
 $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}]| \le \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}(\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{x}_{t, a}}\qquad (4)$$
   
-이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{2/\delta}}/2\\)은 상수이다.
+이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말하면 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄격한 UCB를 합리적으로 제공하며 이 UCB 유형 팔 선택 전략은 파생 될 수 있습니다.
   
 (번역 중)
 
