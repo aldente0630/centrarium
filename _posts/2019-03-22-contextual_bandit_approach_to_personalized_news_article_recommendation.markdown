@@ -88,11 +88,11 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsy
   
 $$\hat{\boldsymbol{\theta}}_a = (\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{D}^{\mathsf{T}}_a\mathbf{c}_a,\qquad (3)$$
 
-여기서 \\(\mathbf{I}_d\\)는 \\(d \times d\\) 차원인 항등 행렬이다. \\(\mathbf{c}_a\\)의 성분들이 \\(\mathbf{D}_a\\)의 상응하는 행에 대해 조건부 독립일 때, 임의의 \\(\delta > 0\\)와 \\(\mathbf{x}_{t, a} \in \mathbb{R}^d\\)에 대해 적어도 \\(1 - \delta\\)의 확률로
+여기서 \\(\mathbf{I}_d\\)는 \\(d \times d\\) 차원인 항등 행렬이다. \\(\mathbf{c}_a\\)의 성분들이 \\(\mathbf{D}_a\\)의 상응하는 행에 대해 조건부 독립일 때, 임의의 \\(\delta > 0\\)와 \\(\mathbf{x}\_{t, a} \in \mathbb{R}^d\\)에 대해 적어도 \\(1 - \delta\\)의 확률로
 
 $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}]| \le \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}(\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{x}_{t, a}}\qquad (4)$$
   
-이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말하면 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄격한 UCB를 합리적으로 제공하며 이 UCB 유형 팔 선택 전략은 파생 될 수 있습니다.
+이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말하면 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄격한 UCB를 합리적으로 제공하며 이로부터 UCB 유형의 슬롯 손잡이 선택 전략은 파생될 수 있다.
   
 (번역 중)
 
