@@ -96,7 +96,7 @@ $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, 
   
 $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
   
-을 고른다. 식 (4)에서의 신뢰구간은 다른 원리를 적용해 계산해낼 수 있다. 예를 들자면 릿지 회귀는 베이즈 식의 점 추정으로 해석할 수 있는데 여기서 계수 벡터의 사후 분포 즉, \\(p(\boldsymbol{\theta}\_a)\\)는 평균 \\(\boldsymbol{\theta}_a\\)와 공분산 \\(\mathbf{A}^{-1}_a\\)를 갖는 정규분포이다. 현재 모형이 주어졌때 손익 기대값 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\theta}}\_a\)의 예측 분산은 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)로 평가되며 는 표준 편차가된다. 또한 정보 이론 [19]에서 p (θa)의 미분 엔트로피는 -1 2 ln ((2π) d det Aa)로 정의된다. 새로운 점 xt의 포함에 의해 갱신 될 때 p (θa)의 엔트로피는 다음과 같이된다 -12 ln ((2π) d det (Aa + xt, axt, a)). 모델 후부의 엔트로피 감소는 1 2 ln (1 + xt, aA-1 a xt, a)이다. 이 양은 종종 xt, a에서 제공된 모델 개선을 평가하는 데 사용됩니다. 따라서 식 (1)에서 암 선택을위한 기준은 다음과 같다. 식 (5)는 보수 추정과 모델 불확실성 감소 사이의 추가적인 트레이드 오프로 간주 될 수있다.
+을 고른다. 식 (4)에서의 신뢰구간은 다른 원리를 적용해 계산해낼 수 있다. 예를 들자면 릿지 회귀는 베이즈 식의 점 추정으로 해석할 수 있는데 여기서 계수 벡터의 사후 분포 즉, \\(p(\boldsymbol{\theta}\_a)\\)는 평균 \\(\boldsymbol{\theta}_a\\)와 공분산 \\(\mathbf{A}^{-1}_a\\)를 갖는 정규분포이다. 현재 모형이 주어졌때 손익 기대값 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\theta}}\_a\\)의 예측 분산은 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)로 평가되며 는 표준 편차가된다. 또한 정보 이론 [19]에서 p (θa)의 미분 엔트로피는 -1 2 ln ((2π) d det Aa)로 정의된다. 새로운 점 xt의 포함에 의해 갱신 될 때 p (θa)의 엔트로피는 다음과 같이된다 -12 ln ((2π) d det (Aa + xt, axt, a)). 모델 후부의 엔트로피 감소는 1 2 ln (1 + xt, aA-1 a xt, a)이다. 이 양은 종종 xt, a에서 제공된 모델 개선을 평가하는 데 사용됩니다. 따라서 식 (1)에서 암 선택을위한 기준은 다음과 같다. 식 (5)는 보수 추정과 모델 불확실성 감소 사이의 추가적인 트레이드 오프로 간주 될 수있다.
   
 (번역 중)
 
