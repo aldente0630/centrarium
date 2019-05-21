@@ -116,7 +116,7 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 >> \\(\hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
 >> \\(p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^T_a\mathbf{x}\_{t, a} + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
 > **end for**  
->  슬롯 손잡이 \\(a_t = \arg\max_{a \in \mathcal{A}\_t} p_{t, a}\\)를 선택하되 동점인 경우 무작위로 택하고 실수값 손익 \\(r_t\\)를 관측한다
+>  슬롯 손잡이 \\(a_t = \arg\max_{a \in \mathcal{A}\_t} p_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측한다  
 > \\(\mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^T\_{t, a_t}\\)
 > \\(\mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
 **end for**
