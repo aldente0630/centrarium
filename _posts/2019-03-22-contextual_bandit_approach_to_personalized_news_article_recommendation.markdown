@@ -110,8 +110,8 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 > 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측함  
 **for all** \\(a \in \mathcal{A}_t\\) **do**  
 >> **if** \\(a\\)가 신규라면 **then**  
->>> \mathbf{A}_a \leftarrow Id (\\(d\\) 차원의 항등 행렬)  
-ba ← 0d×1 (\\(d\\) 차원의 영 벡터)
+>>> \\(\mathbf{A}_a \leftarrow \mathbf{I}_d\\) (\\(d\\) 차원의 항등 행렬)  
+\\(\mathbf{b}_a \leftarrow \mathbf{0}_{d \dot 1}\\) (\\(d\\) 차원의 영 벡터)
   
 마지막으로 입력 변수 \\(\mathbf{x}_{t, a}\\)를 정규분포에서 i.i.d.로 추출한다는 가정 하에서(식 (2)의 모형화 가정에 덧붙여) Pavlidis 등은 UCB를 계산하기 위해 릿지 회귀의 해(식 (3)의 \\(\hat{\boldsymbol{\theta}}_a\\)) 대신 최소 자승 해 \\(\tilde{\boldsymbol{\theta}}_a\\)를 이용한 유사 알고리즘을 제안했다. 그러나 본 접근법(그리고 이론적 분석)이 보다 일반적이며 입력 변수가 정상(stationary) 상태가 아닐 경우에도 유효하다. 보다 중요하게 기본 알고리즘 1을 Pavlidis 등이 다루지 않은, 훨씬 더 흥미로운 경우로 확장하는 방식에 관해 다음 절에서 논할 것이다.
   
