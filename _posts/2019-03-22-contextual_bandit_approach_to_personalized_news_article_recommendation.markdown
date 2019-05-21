@@ -94,7 +94,7 @@ $$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, 
   
 이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말해서 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄격한 UCB를 합리적으로 제공하며 이로부터 UCB 유형의 슬롯 손잡이 선택 전략이 파생될 수 있다. 각 \\(t\\)번째 시도에서 
   
-$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
+$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alphav \right) \qquad (5)$$
   
 을 고른다. 식 (4)에서의 신뢰구간은 다른 원리를 적용해 계산해낼 수 있다. 예를 들자면 릿지 회귀는 베이즈 식의 점 추정으로 해석할 수 있는데 여기서 계수 벡터의 사후 분포 즉, \\(p(\boldsymbol{\theta}\_a)\\)는 평균 \\(\hat{\boldsymbol{\theta}}_a\\)와 공분산 \\(\mathbf{A}^{-1}_a\\)를 갖는 정규분포이다. 모형이 주어졌을때 손익 기대값 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\boldsymbol{\theta}^*\_a\\)의 예측 분산은 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)으로, 표준편차는 \\(\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}}\\)로 계산된다. 또한 정보 이론에서 \\(p(\boldsymbol{\theta}\_a)\\)의 미분 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det \mathbf{A}_a)\\)로 정의된다. 점 \\(\mathbf{x}\_{t, a}\\)이 새로 포함되어 갱신이 발생할 경우 \\(p(\boldsymbol{\theta}\_a)\\)의 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det (\mathbf{A}_a + \mathbf{x}\_{t, a}\mathbf{x}^{\mathsf{T}}\_{t, a}))\\)가 된다. 사후분포 모형의 엔트로피 감소분은 \\(-{1 \over 2}\ln(1 + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a})\\)이다. \\(\mathbf{x}\_{t, a}\\)이 모형을 개선하는데 기여한 정도를 계산할 때 이 양을 종종 사용한다. 따라서 식 (5)에서 슬롯 손잡이 선택 기준은 손익 추정과 모형 분산 감소 사이의 추가분에 관한 트레이드 오프로 생각할 수있다.
   
@@ -108,12 +108,13 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 입력: \\(\alpha \in \Bbb{R}_+\\)  
 **for** \\(t = 1, 2, 3, \ldots , T\\) **do**  
 > 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측함  
-**for all** \\(a \in \mathcal{A}_t\\) **do**  
+> **for all** \\(a \in \mathcal{A}_t\\) **do**  
 >> **if** \\(a\\)가 신규라면 **then**  
 >>> \\(\mathbf{A}\_a \leftarrow \mathbf{I}_d\\) (\\(d\\) 차원의 항등 행렬)  
-\\(\mathbf{b}\_a \leftarrow \mathbf{0}\_{d \dot 1}\\) (\\(d\\) 차원의 영 벡터)  
-**end if**
-\\(\hat{\boldsymbol{\theta}}_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\) 
+>>> \\(\mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
+>> **end if**
+>> \\(\hat{\boldsymbol{\theta}}_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\) 
+>> \\(p_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^T_a + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}}
   
 마지막으로 입력 변수 \\(\mathbf{x}_{t, a}\\)를 정규분포에서 i.i.d.로 추출한다는 가정 하에서(식 (2)의 모형화 가정에 덧붙여) Pavlidis 등은 UCB를 계산하기 위해 릿지 회귀의 해(식 (3)의 \\(\hat{\boldsymbol{\theta}}_a\\)) 대신 최소 자승 해 \\(\tilde{\boldsymbol{\theta}}_a\\)를 이용한 유사 알고리즘을 제안했다. 그러나 본 접근법(그리고 이론적 분석)이 보다 일반적이며 입력 변수가 정상(stationary) 상태가 아닐 경우에도 유효하다. 보다 중요하게 기본 알고리즘 1을 Pavlidis 등이 다루지 않은, 훨씬 더 흥미로운 경우로 확장하는 방식에 관해 다음 절에서 논할 것이다.
   
