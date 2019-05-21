@@ -107,16 +107,16 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 - - -
 입력: \\(\alpha \in \Bbb{R}_+\\)  
 **for** \\(t = 1, 2, 3, \ldots , T\\) **do**  
-> 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측한다
+> 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측한다  
 > **for all** \\(a \in \mathcal{A}_t\\) **do**  
 >> **if** \\(a\\)가 신규라면 **then**   
 >>> \\(\mathbf{A}\_a \leftarrow \mathbf{I}\_d\\) (\\(d\\) 차원의 항등 행렬)  
 >>> \\(\mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 >> **end if**   
 >> \\(\hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
->> \\(p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^T_a + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
+>> \\(p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^T_a\mathbf{x}\_{t, a} + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
 > **end for**  
->  슬롯 손잡이 \\(a_t = argmax_{a \in \mathcal{A}\_t} p_{t, a}\\)를 선택하되 동점인 경우 무작위로 택하고 실수값 손익 \\(r_t\\)를 관측한다
+>  슬롯 손잡이 \\(a_t = \arg\max_{a \in \mathcal{A}\_t} p_{t, a}\\)를 선택하되 동점인 경우 무작위로 택하고 실수값 손익 \\(r_t\\)를 관측한다
 > \\(\mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^T\_{t, a_t}\\)
 > \\(\mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
 **end for**
