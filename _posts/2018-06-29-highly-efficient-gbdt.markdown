@@ -45,18 +45,18 @@ GBDT는 결정 트리를 순차적으로 훈련시키는 앙상블 모형이다.
 \\(nodeSet \leftarrow \\{0\\} \triangleright\\) 현재 깊이에서의 트리 노드들  
 \\(rowSet \leftarrow \\{\\{0, 1, 2, \ldots \\}\\} \triangleright\\) 트리 노드에서의 데이터 색인들  
 **for** i \\(= 1\\) **to** \\(d\\) **do**  
-> **for** node **in** \\(nodeSet\\) **do**  
->> usedRows \\(\leftarrow rowSet\\)\[node\]  
->> **for** k \\(= 1\\) **to** \\(m\\) **do**  
->>> \\(H \leftarrow\\) new Histogram() \\(\triangleright\\) 히스토그램 생성  
->>> **for** j **in** usedRows **do**  
->>>> bin \\(\leftarrow I\\).f\[k\]\[j\].bin  
->>>> \\(H\\)\[bin\].y \\(\leftarrow H\\)\[bin\].y \\(+ I\\).y\[j\]  
->>>> \\(H\\)\[bin\].n \\(\leftarrow H\\)\[bin\].n \\(+ 1\\)  
->>> 히스토그램 \\(H\\)의 최적 분할점을 찾는다.  
->>> \\(\ldots\\)  
->> 최적 분할점을 적용해 \\(rowSet\\)과 \\(nodeSet\\)을 업데이트한다.  
->> \\(\ldots\\)   
+\\(\qquad\\) **for** node **in** \\(nodeSet\\) **do**  
+\\(\qquad\qquad\\) usedRows \\(\leftarrow rowSet\\)\[node\]  
+\\(\qquad\qquad\\) **for** k \\(= 1\\) **to** \\(m\\) **do**  
+\\(\qquad\qquad\qquad\\) \\(H \leftarrow\\) new Histogram() \\(\triangleright\\) 히스토그램 생성  
+\\(\qquad\qquad\qquad\\) **for** j **in** usedRows **do**  
+\\(\qquad\qquad\qquad\qquad\\) bin \\(\leftarrow I\\).f\[k\]\[j\].bin  
+\\(\qquad\qquad\qquad\qquad\\) \\(H\\)\[bin\].y \\(\leftarrow H\\)\[bin\].y \\(+ I\\).y\[j\]  
+\\(\qquad\qquad\qquad\qquad\\) \\(H\\)\[bin\].n \\(\leftarrow H\\)\[bin\].n \\(+ 1\\)  
+\\(\qquad\qquad\qquad\\) 히스토그램 \\(H\\)의 최적 분할점을 찾는다.  
+\\(\qquad\qquad\qquad\\) \\(\ldots\\)  
+\\(\qquad\qquad\\) 최적 분할점을 적용해 \\(rowSet\\)과 \\(nodeSet\\)을 업데이트한다.  
+\\(\qquad\qquad\\) \\(\ldots\\)   
 
 ### 2.2 연관 작업  
 
@@ -89,15 +89,15 @@ GOSS는 기울기가 큰 개체는 모두 유지하되 기울기가 작은 개�
 **입력:** \\(b\\): 기울기 작은 데이터의 표본 추출 비율, \\(loss\\): 손실 함수, \\(L\\): 약한 학습기  
 models \\(\leftarrow \\{ \\} \\), fact \\(\leftarrow {1 - a \over b}\\), topN \\(\leftarrow a \times\\) len(\\(I\\)), randN \\(\leftarrow b \times\\) len(\\(I\\))  
 **for** i \\(= 1\\) **to** \\(d\\) **do**  
-> preds \\(\leftarrow\\) models.predict(\\(I\\))  
-> g \\(\leftarrow loss\\)(\\(I\\), preds), w \\(\leftarrow \\{1, 1, \ldots \\} \\)  
-> sorted \\(\leftarrow\\) GetSortedIndices(abs(g))  
-> topSet \\(\leftarrow\\) sorted\[1:topN\]  
-> randSet \\(\leftarrow\\) RandomPick(sorted\[topN:len(\\(I\\))\], randN)  
-> usedSet \\(\leftarrow\\) topSet \\(+\\) randSet  
-> w\[randSet\] \\(\times =\\) fact \\(\triangleright\\) 기울기 작은 데이터에 가중치 fact를 부여함  
-> newModel \\(\leftarrow\\) \\(L\\)(\\(I\\)\[usedSet\], \\(-\\) g\[usedSet\], w\[usedSet\])  
-> models.append(newModel)  
+\\(\qquad\\) preds \\(\leftarrow\\) models.predict(\\(I\\))  
+\\(\qquad\\) g \\(\leftarrow loss\\)(\\(I\\), preds), w \\(\leftarrow \\{1, 1, \ldots \\} \\)  
+\\(\qquad\\) sorted \\(\leftarrow\\) GetSortedIndices(abs(g))  
+\\(\qquad\\) topSet \\(\leftarrow\\) sorted\[1:topN\]  
+\\(\qquad\\) randSet \\(\leftarrow\\) RandomPick(sorted\[topN:len(\\(I\\))\], randN)  
+\\(\qquad\\) usedSet \\(\leftarrow\\) topSet \\(+\\) randSet  
+\\(\qquad\\) w\[randSet\] \\(\times =\\) fact \\(\triangleright\\) 기울기 작은 데이터에 가중치 fact를 부여함  
+\\(\qquad\\) newModel \\(\leftarrow\\) \\(L\\)(\\(I\\)\[usedSet\], \\(-\\) g\[usedSet\], w\[usedSet\])  
+\\(\qquad\\) models.append(newModel)  
 
 ### 3.2 이론적 분석    
 
@@ -157,14 +157,14 @@ $$\mathcal{E}(d) \le C^2_{a, b} \ln 1/\delta \cdot max \left\{ {1 \over n^j_l(d)
 searchOrder \\(\leftarrow G\\).sortByDegree()  
 \\(bundles \leftarrow \\{ \\} \\), bundlesConflict \\(\leftarrow \\{ \\} \\)  
 **for** i **in** searchOrder **do**  
-> needNew \\(\leftarrow\\) True  
-> **for** j \\(= 1\\) **to** len(\\(bundles\\)) **do**  
->> cnt \\(\leftarrow\\) ConflictCnt(\\(bundles\\)\[j\], \\(F\\)\[i\])  
->> **if** cnt \\(+\\) bundlesConflict\[i\] \\(\le K\\) **then**  
->>> bundles\[j\].add(\\(F\\)\[i\]), needNew \\(\leftarrow\\) False  
->>> break  
->> **if** needNew **then**  
->>> 새 묶음으로써 \\(F\\)\[i\]를 \\(bundles\\)에 추가함  
+\\(\qquad\\) needNew \\(\leftarrow\\) True  
+\\(\qquad\\) **for** j \\(= 1\\) **to** len(\\(bundles\\)) **do**  
+\\(\qquad\qquad\\) cnt \\(\leftarrow\\) ConflictCnt(\\(bundles\\)\[j\], \\(F\\)\[i\])  
+\\(\qquad\qquad\\) **if** cnt \\(+\\) bundlesConflict\[i\] \\(\le K\\) **then**  
+\\(\qquad\qquad\qquad\\) bundles\[j\].add(\\(F\\)\[i\]), needNew \\(\leftarrow\\) False  
+\\(\qquad\qquad\qquad\\) break  
+\\(\qquad\qquad\\) **if** needNew **then**  
+\\(\qquad\qquad\qquad\\) 새 묶음으로써 \\(F\\)\[i\]를 \\(bundles\\)에 추가함  
 **출력:** \\(bundles\\)  
 
 두 번째 문제로 해당 묶음의 훈련 복잡도를 줄이기 위해 같이 묶인 변수를 병합하는 적당한 방법이 필요하다. 원래의 변수 값이 변수 묶음에서 식별 가능한지 확인하는 게 관건이다. 히스토그램 기반 알고리즘은 변수의 연속적인 값 대신 개별 구간을 저장하기 때문에 배타적 변수를 각기 다른 구간에 두어 변수 묶음을 구성할 수 있다. 이는 변수의 원래 값에 오프셋을 더하여 수행할 수 있다. 예를 들어 변수 묶음에 변수 두 개가 속한다고 가정하자. 원래의 변수 A는 \[0, 10\] 값을 취하고 변수 B는 \[0, 20\] 값을 취한다. 그렇다면 변수 B 값에 오프셋 10을 더하여 가공한 변수가 \[10, 30\]에서 값을 취하게 한다. 그다음, 변수 A와 B를 병합하고 \[0, 30\] 범위의 변수 묶음을 사용하여 원래의 변수 A와 B를 대체하는 것이 안전하다. 상세한 알고리즘은 알고리즘 4에 표시했다. 
@@ -177,14 +177,14 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 **입력:** \\(numData\\): 데이터 개수, \\(F\\): 배타적 변수의 한 묶음  
 \\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\)  
 **for** f **in** \\(F\\) **do**   
-> \\(totalBin\\) \\(\+=\\) f.numBin  
-> \\(binRanges\\).append(\\(totalBin\\))    
+\\(\qquad\\) \\(totalBin\\) \\(\+=\\) f.numBin  
+\\(\qquad\\) \\(binRanges\\).append(\\(totalBin\\))    
 \\(newBin \leftarrow\\) new Bin(\\(numData\\))  
 **for** i \\(= 1\\) **to** \\(numData\\) **do**  
-> \\(newBin\\)\[i\] \\(\leftarrow 0\\)  
->> **for** j \\(= 1\\) **to** len(\\(F\\)) **do**  
->>> **if** \\(F\\)\[j\].bin\[i\] \\(\ne 0\\) **then**  
->>>> \\(newBin\\)\[i\] \\(\leftarrow\\) \\(F\\)\[j\].bin\[i\] \\( + binRanges\\)\[j\]  
+\\(\qquad\\) \\(newBin\\)\[i\] \\(\leftarrow 0\\)  
+\\(\qquad\qquad\\) **for** j \\(= 1\\) **to** len(\\(F\\)) **do**  
+\\(\qquad\qquad\qquad\\) **if** \\(F\\)\[j\].bin\[i\] \\(\ne 0\\) **then**  
+\\(\qquad\qquad\qquad\qquad\\) \\(newBin\\)\[i\] \\(\leftarrow\\) \\(F\\)\[j\].bin\[i\] \\( + binRanges\\)\[j\]  
 **출력:** \\(newBin, binRanges\\)  
 
 EFB 알고리즘은 많은 배타적 변수를 훨씬 적은 밀집 변수로 묶어 줄 수 있기 때문에 변수의 0 값에 대한 불필요한 계산을 효과적으로 피할 수 있다. 사실 각 변수에 대한 테이블을 사용하여 0이 아닌 값의 데이터를 기록함으로써 변수 0 값을 무시하게 기본 히스토그램 기반 알고리즘을 최적화시킬 수 있다. 해당 테이블의 데이터를 훑는 경우 변수 히스토그램 생성 비용은 \\(O(\\#data)\\)에서 \\(O(\\#non\\_zero\\_data)\\)로 바뀐다. 그러나 트리를 전반적으로 성장시키는 와중에 변수 별 테이블을 이런 식으로 유지, 관리하기 위해서는 메모리와 계산 비용이 추가로 필요하다. LightGBM은 해당 최적화 방법을 기본 기능으로 구현했다. 본 최적화는 묶음이 희소한 경우에도 사용할 수 있으므로 EFB와 충돌하지 않는다.
