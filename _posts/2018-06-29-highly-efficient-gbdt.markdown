@@ -175,8 +175,8 @@ searchOrder \\(\leftarrow G\\).sortByDegree()
 
 - - -
 **입력:** \\(numData\\): 데이터 개수, \\(F\\): 배타적 변수의 한 묶음  
-\\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\) 
-**for** f **in** \\(F\\) **do**  
+\\(binRanges \leftarrow \\{0 \\} \\), \\(totalBin \leftarrow 0 \\)  
+**for** f **in** \\(F\\) **do**   
 > \\(totalBin\\) \\(\+=\\) f.numBin  
 > \\(binRanges\\).append(\\(totalBin\\))    
 \\(newBin \leftarrow\\) new Bin(\\(numData\\))  
