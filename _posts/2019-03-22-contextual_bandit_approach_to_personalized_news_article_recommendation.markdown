@@ -114,10 +114,10 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 \\(\qquad \qquad \\) **end if**   
 \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
-\\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^T_a\mathbf{x}\_{t, a} + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
+\\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
 \\(\qquad\\) **end for**  
 \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
-\\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^T\_{t, a_t}\\)  
+\\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
 \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
 **end for**
   
@@ -125,9 +125,13 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
   
 ## 3.2 혼합 선형 모형을 이용한 LinUCB
   
-알고리즘 1(또는 해당 논문[^3]과 유사한 알고리즘)은 행렬 \\(\mathbf{D}^T_a\mathbf{D}_a + \mathbf{I}_d\\)(또는 \\(\mathbf{D}^T_a\mathbf{D}_a\\))의 역행렬을 계산한다. 여기서 \\(\mathbf{D}_a\\)는 학습 데이터 변수에 해당하는 행을 갖는 설계 행렬이다. 슬롯 손잡이의 모든 행렬은 고정된 차원 \\(d \times d\\)를 가지며 업데이트를 점진적, 효율적으로 수행할 수 있다. 또한 알고리즘 1의 파라미터는 *상호 배타적*이기 때문에 역행렬을 쉽게 계산할 수 있다. 식 (3) 중 \\(\hat{\boldsymbol{\theta}}\_a\\)는 다른 슬롯 손잡이에 대한 훈련 데이터의 영향을 받지 않으므로 별도 계산할 수 있다. 이제 *혼합* 모형이라는 더 재밌는 사례를 살펴보자. 
+알고리즘 1(또는 해당 논문[^3]과 유사한 알고리즘)은 행렬 \\(\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d\\)(또는 \\(\mathbf{D}^mathsf{T}_a\mathbf{D}_a\\))의 역행렬을 계산한다. 여기서 \\(\mathbf{D}_a\\)는 학습 데이터 변수에 해당하는 행을 갖는 설계 행렬이다. 슬롯 손잡이의 모든 행렬은 고정된 차원 \\(d \times d\\)를 가지며 업데이트를 점진적, 효율적으로 수행할 수 있다. 또한 알고리즘 1의 파라미터는 *상호 배타적*이기 때문에 역행렬을 쉽게 계산할 수 있다. 식 (3) 중 \\(\hat{\boldsymbol{\theta}}\_a\\)는 다른 슬롯 손잡이에 대한 훈련 데이터의 영향을 받지 않으므로 별도 계산할 수 있다. 이제 *혼합* 모형이라는 더 재밌는 사례를 살펴보자. 
   
-응용 프로그램 다수는 특정 슬롯 손잡이 변수에 더하여 모든 슬롯 손잡이가 공유하는 변수를 사용하는 편을 선호한다. 예를 들어 어떤 사용자는 정치 기사만 선호할 수 있고 뉴스 기사 추천은 이에 대한 메커니즘을 제공할 수 있다. 따라서 공유 또는 비공유 구성 요소가 함께 있는 변수를 갖는 편이 좋다. 공식적으로 식 (2) 우항에 다른 선형 항을 추가하여 다음의 하이브리드 모델을 채택한다. (6) 여기서 zt, a ∈ Rk는 현재 사용자 / 기사 조합의 특징이고, β *는 다음과 같다. 모든 팔에 공통된 알려지지 않은 계수 벡터. 이 모델은 계수 β * 중 일부는 모든 팔에 의해 공유되는 반면 θ * a는 그렇지 않다는 점에서 *하이브리드*입니다.
+응용 프로그램 다수의 경우 특정 슬롯 손잡이 변수에 더하여 모든 슬롯 손잡이가 공유하는 변수를 사용하는 편이 선호된다. 예를 들자면 어떤 사용자는 정치 기사만 선호할 수 있고 뉴스 기사 추천은 이에 대한 메커니즘을 제공할 수 있다. 따라서 공유 또는 비공유 구성 요소가 함께 있는 변수를 갖는 편이 좋다. 식 (2) 우항에 다른 선형 항을 추가하여 다음의 혼합 모형을 택하겠다. 
+  
+$$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsymbol{\beta}^* + \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a, \qquad (6)$$
+  
+여기서 zt, a ∈ Rk는 현재 사용자 / 기사 조합의 특징이고, β *는 다음과 같다. 모든 팔에 공통된 알려지지 않은 계수 벡터. 이 모델은 계수 β * 중 일부는 모든 팔에 의해 공유되는 반면 θ * a는 그렇지 않다는 점에서 *하이브리드*입니다.
   
 (번역 중)
 
