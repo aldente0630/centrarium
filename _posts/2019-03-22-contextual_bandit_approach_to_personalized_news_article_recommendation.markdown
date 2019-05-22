@@ -131,7 +131,7 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
   
 $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsymbol{\beta}^* + \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a, \qquad (6)$$
   
-여기서 \\(\mathbf{z}_{t, a} \in \Bbb{R}^k\\)는 특정 사용자 / 기사 조합의 변수이고 \\(\boldsymbol{\beta}^*\\)는 모든 슬롯 손잡이 공통의 알려지지 않은 계수 벡터이다. 계수 \\(\boldsymbol{\beta}^*\\) 중 일부는 모든 슬롯 손잡이에 의해 공유되는 반면 \\(\boldsymbol{\theta}^*_a\\)는 그렇지 않다는 점에서 본 모형은 *혼합*이다.
+여기서 \\(\mathbf{z}_{t, a} \in \Bbb{R}^k\\)는 특정 사용자 / 기사 조합의 변수이고 \\(\boldsymbol{\beta}^*\\)는 모든 슬롯 손잡이 공통의 알려지지 않은 계수 벡터이다. 계수 \\(\boldsymbol{\beta}^*\\) 중 일부는 모든 슬롯 손잡이에 의해 공유되는 반면 \\(\boldsymbol{\theta}^*_a\\)는 그렇지 않다는 점에서 본 모형은 혼합이다.
   
 (번역 중)
 
