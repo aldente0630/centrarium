@@ -105,20 +105,20 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 - - -
 **알고리즘 1** 배타 선형 모형을 이용한 LinUCB
 - - -
-입력: \\(\alpha \in \Bbb{R}\_+\\)  
-**for** \\(t = 1, 2, 3, \ldots , T\\) **do**  
-\\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측함  
-\\(\qquad\\) **for all** \\(a \in \mathcal{A}_t\\) **do**  
-\\(\qquad \qquad\\) **if** \\(a\\)가 신규라면 **then**   
-\\(\qquad \qquad \qquad \mathbf{A}\_a \leftarrow \mathbf{I}\_d\\) (\\(d\\) 차원의 항등 행렬)  
-\\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
-\\(\qquad \qquad \\) **end if**   
-\\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
-\\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
-\\(\qquad\\) **end for**  
-\\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
-\\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
-\\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
+0: 입력: \\(\alpha \in \Bbb{R}\_+\\)  
+1: **for** \\(t = 1, 2, 3, \ldots , T\\) **do**  
+2: \\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측함  
+3: \\(\qquad\\) **for all** \\(a \in \mathcal{A}_t\\) **do**  
+4: \\(\qquad \qquad\\) **if** \\(a\\)가 신규라면 **then**   
+5: \\(\qquad \qquad \qquad \mathbf{A}\_a \leftarrow \mathbf{I}\_d\\) (\\(d\\) 차원의 항등 행렬)  
+6: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
+7: \\(\qquad \qquad \\) **end if**   
+8: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
+9: \\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} +  \alpha\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
+10: \\(\qquad\\) **end for**  
+11: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
+12: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
+13: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
 **end for**
   
 마지막으로 입력 변수 \\(\mathbf{x}_{t, a}\\)를 정규분포에서 i.i.d.로 추출한다는 가정 하에서(식 (2)의 모형화 가정에 덧붙여) Palidis 등은 UCB를 계산하기 위해 릿지 회귀의 해(식 (3)의 \\(\hat{\boldsymbol{\theta}}_a\\)) 대신 최소 자승 해 \\(\tilde{\boldsymbol{\theta}}_a\\)를 이용한 유사 알고리즘을 제안했다. 그러나 본 접근법(그리고 이론적 분석)이 보다 일반적이며 입력 변수가 정상(stationary) 상태가 아닐 경우에도 유효하다. 보다 중요하게 기본 알고리즘 1을 Pavlidis 등이 다루지 않은, 훨씬 더 흥미로운 경우로 확장하는 방식에 관해 다음 절에서 논할 것이다.
@@ -133,7 +133,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
   
 여기서 \\(\mathbf{z}_{t, a} \in \Bbb{R}^k\\)는 특정 사용자 / 기사 조합의 변수이고 \\(\boldsymbol{\beta}^\*\\)는 모든 슬롯 손잡이 공통의 알려지지 않은 계수 벡터이다. 계수 \\(\boldsymbol{\beta}^\*\\) 중 일부는 모든 슬롯 손잡이에 의해 공유되는 반면 \\(\boldsymbol{\theta}^*_a\\)는 그렇지 않다는 점에서 본 모형은 혼합이다.
   
-혼합 모형의 경우 슬롯 손잡이 다수의 신뢰 구간이 공유 변수로 인해 독립적이지 않으므로 더 이상 알고리즘 1을 사용할 수 없습니다. 다행히도 이전 섹션에서와 같은 추론 라인을 따라 UCB를 계산하는 효율적인 방법이 있습니다. 유도는 블록 행렬 반전 기술에 크게 의존합니다. 공간 제한으로 인해 알고리즘 2에서 의사 코드를 제공합니다 (5와 12 행은 계수의 능선 - 회귀 해를 계산하고 13 행은 신뢰 구간을 계산 함). 전체 논문에 대한 자세한 파생어는 남겨 둡니다. 알고리즘의 빌딩 블록 (A0, b0, Aa, Ba 및 ba)은 모두 고정 된 차원을 가지며 점진적으로 업데이트 될 수 있으므로 알고리즘이 계산 상 효율적이라는 중요한 사실 만 지적합니다. 또한 At에없는 팔과 관련된 수량이 더 이상 계산에 관여하지 않습니다. 마지막으로 각 시험 끝에 대신에 역 (A-1 0 및 A-1 a)을 계산하고 캐시하여 시험 당 계산상의 복잡성을 O (d2 + k2)로 줄일 수 있습니다.
+혼합 모형의 경우 슬롯 손잡이 다수의 신뢰 구간이 공유 변수로 인해 비독립이므로 더 이상 알고리즘 1을 사용할 수 없다. 다행히도 이전 절에서와 같은 추론 경로를 따라 UCB를 계산하는 효율적인 방법이 있다. 전개는 블록 행렬의 역을 구하는 기법에 크게 의존한다. 공간 제한으로 인해 알고리즘 2에서 의사 코드를 제공한다 (5와 12행은 계수의 릿지 회귀 해를 계산하고 13 행은 신뢰 구간을 계산함). 전체 논문에 대한 자세한 파생어는 남겨 둡니다. 알고리즘의 빌딩 블록 (\\(\mathbf{A}_0, \mathbf{b}_0, \mathbf{A}_a, \mathbf{B}_a\\) 및 \\(mathbf{b}_a\\))은 모두 고정 된 차원을 가지며 점진적으로 업데이트 될 수 있으므로 알고리즘이 계산 상 효율적이라는 중요한 사실 만 지적합니다. 또한 At에없는 팔과 관련된 수량이 더 이상 계산에 관여하지 않습니다. 마지막으로 각 시험 끝에 대신에 역 (\\(\mathbf{A}^{-1}_0\\) 및 \\(\mathbf{A}^{-1}_a)\\)을 계산하고 캐시하여 시험 당 계산상의 복잡성을 \\(O(d^2 + k^2)\\)로 줄일 수 있습니다.
   
 # 4. 평가 방법론
   
