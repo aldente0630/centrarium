@@ -135,6 +135,25 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
   
 혼합 모형의 경우 슬롯 손잡이 다수의 신뢰 구간이 공유 변수로 인해 독립이 아니므로 알고리즘 1을 더 이상 사용할 수 없다. 다행히 이전 절의 추론을 동일하게 따라가며 UCB를 계산하는 효율적 방법이 있다. 식의 전개는 블록 행렬의 역을 구하는 기법에 크게 의존한다. 지면 상 제약으로 알고리즘 2에서는 의사 코드만 제시하겠다(5와 12행은 계수의 릿지 회귀 해를 계산하고 13행은 신뢰 구간을 계산함). 상세한 전개식은 정식 논문에 적어둔다. 알고리즘을 구성하는 블록들(\\(\mathbf{A}_0, \mathbf{b}_0, \mathbf{A}_a, \mathbf{B}_a\\)와 \\(\mathbf{b}_a\\))의 차원은 모두 고정된 크기이며 점진적 업데이트 수행 또한 가능하므로 본 알고리즘은 계산 효율적이다. 그리고 \\(\mathcal{A}_t\\)에서 제거된 슬롯 손잡이와 관련된 수치는 더 이상 계산에 사용되지 않는다. 마지막으로 모든 시행 대신 역행렬들(\\(\mathbf{A}^{-1}_0\\)와 \\(\mathbf{A}^{-1}_a)\\)을 주기적으로 계산하고 캐시하면 시행 당 계산 복잡도를 \\(O(d^2 + k^2)\\)로 줄일 수 있다.
   
+- - -
+**알고리즘 2** 혼합 선형 모형을 이용한 LinUCB
+- - -
+0: 입력: \\(\alpha \in \Bbb{R}\_+\\)  
+1: \\(\mathbf{A}_0 \leftarrow \mathbf{I}\_k\\) (\\(k\\)차원의 항등 행렬)
+2: \\(\mathbf{b}_0 \leftarrow \mathbf{0}\_k\\) (\\(k\\)차원의 영 벡터)
+3: **for** \\(t = 1, 2, 3, \ldots , T\\) **do**   
+4: \\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 (\\(\mathbf{z}\_{t, a}, \mathbf{x}\_{t, a} \in \Bbb{R}^{k + d}\\))를 관측함   
+5: \\(\qquad \qquad \qquad \mathbf{A}\_a \leftarrow \mathbf{I}\_d\\) (\\(d\\) 차원의 항등 행렬)  
+6: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
+7: \\(\qquad \qquad \\) **end if**   
+8: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
+9: \\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} +  \alpha\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
+10: \\(\qquad\\) **end for**  
+11: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
+12: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
+13: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
+14: **end for**
+  
 # 4. 평가 방법론
   
 (번역 중)
