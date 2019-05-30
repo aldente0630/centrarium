@@ -160,9 +160,9 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 19: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
 20: \\(\qquad \mathbf{B}\_{a_t} \leftarrow \mathbf{B}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{z}^{\mathsf{T}}\_{t, a_t}\\)  
 21: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
-22: \\(\qquad \mathbf{A}\_0 \leftarrow \mathbf{A}\_0 + \\)
-23: \\(\qquad \mathbf{b}\_0 \leftarrow \mathbf{b}\_0 + \\)
-24: **end for**
+22: \\(\qquad \mathbf{A}\_0 \leftarrow \mathbf{A}\_0 + \mathbf{z}\_{t, a_t}\mathbf{z}^{\mathsf{T}}\_{t, a_t} - \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}\_{a_t}\mathbf{B}\_{a_t} \\)  
+23: \\(\qquad \mathbf{b}\_0 \leftarrow \mathbf{b}\_0 + r_t\mathbf{z}\_{t, a_t} - \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}\_{a_t}\mathbf{b}\_{a_t}\\)  
+24: **end for**  
   
 # 4. 평가 방법론
   
