@@ -150,7 +150,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 9: \\(\qquad \qquad \qquad \mathbf{B}\_a \leftarrow \mathbf{I}\_{d \times k}\\) (\\(d \times k\\) 차원의 영 행렬)  
 10: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 11: \\(\qquad \qquad \\) **end if**   
-12: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a(\mathbf{b}\_a - \mathbf{B}\_a\hat{\boldsymbol{\beta})\\)  
+12: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a(\mathbf{b}\_a - \mathbf{B}\_a\hat{\boldsymbol{\beta}})\\)  
 8: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
 9: \\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} +  \alpha\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
 10: \\(\qquad\\) **end for**  
