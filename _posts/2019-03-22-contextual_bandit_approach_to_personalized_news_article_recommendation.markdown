@@ -153,14 +153,16 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 12: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\left(\mathbf{b}\_a - \mathbf{B}\_a\hat{\boldsymbol{\beta}}\right)\\)  
 13: \\(\qquad \qquad s\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_0\mathbf{z}\_{t, a} - 2\mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_0\mathbf{B}^{\mathsf{T}}_a\mathbf{A}^{-1}_a\mathbf{x}\_{t, a} + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a} + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{B}_a\mathbf{A}^{-1}_0\mathbf{B}^{\mathsf{T}}_a\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)  
 14: \\(\qquad \qquad p\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\beta}} + \mathbf{x}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{s\_{t, a}}\\)  
-15: \\(\qquad \\) **end for**
+15: \\(\qquad \\) **end for**  
 16: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
-9: \\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} +  \alpha\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
-10: \\(\qquad\\) **end for**  
-11: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
-12: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
-13: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
-14: **end for**
+17:  
+18:  
+19: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
+20:  
+21: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
+22:  
+23:  
+24: **end for**
   
 # 4. 평가 방법론
   
