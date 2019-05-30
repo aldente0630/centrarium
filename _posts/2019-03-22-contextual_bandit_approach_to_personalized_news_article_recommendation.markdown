@@ -144,6 +144,8 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 3: **for** \\(t = 1, 2, 3, \ldots , T\\) **do**   
 4: \\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 (\\(\mathbf{z}\_{t, a}, \mathbf{x}\_{t, a} \in \Bbb{R}^{k + d}\\))를 관측함   
 5: \\(\qquad \hat{\boldsymbol{\beta}} \leftarrow \mathbf{A}^{-1}_0\mathbf{b}_0\\)  
+6: \\(\qquad \\) **for all** \\(a \in \mathcal{A}_t\\) **do** 
+7: \\(\qquad \qquad\\)
 6: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 7: \\(\qquad \qquad \\) **end if**   
 8: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
