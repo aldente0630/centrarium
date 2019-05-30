@@ -151,7 +151,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 10: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 11: \\(\qquad \qquad \\) **end if**   
 12: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\left(\mathbf{b}\_a - \mathbf{B}\_a\hat{\boldsymbol{\beta}}\right)\\)  
-13: \\(\qquad \qquad s\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{z}\_{t, a} - 2\mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{B}^{\mathsf{T}}_a\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)
+13: \\(\qquad \qquad s\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_0\mathbf{z}\_{t, a} - 2\mathbf{z}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_0\mathbf{B}^{\mathsf{T}}_a\mathbf{A}^{-1}_a\mathbf{x}\_{t, a} + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a} + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)
 A−1
 0 zt,a − 2z
 t,aA−1
