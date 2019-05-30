@@ -139,7 +139,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 **알고리즘 2** 혼합 선형 모형을 이용한 LinUCB
 - - -
 0: 입력: \\(\alpha \in \Bbb{R}\_+\\)  
-1: \\(\mathbf{A}_0 \leftarrow \mathbf{I}\_k\\) (\\(k\\)차원의 항등 행렬)  
+1: \\(\mathbf{A}\_0 \leftarrow \mathbf{I}\_k\\) (\\(k\\)차원의 항등 행렬)  
 2: \\(\mathbf{b}_0 \leftarrow \mathbf{0}\_k\\) (\\(k\\)차원의 영 벡터)  
 3: **for** \\(t = 1, 2, 3, \ldots , T\\) **do**   
 4: \\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 (\\(\mathbf{z}\_{t, a}, \mathbf{x}\_{t, a} \in \Bbb{R}^{k + d}\\))를 관측함   
@@ -151,7 +151,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 10: \\( \qquad \qquad \qquad \mathbf{b}\_a \leftarrow \mathbf{0}\_{d \times 1}\\) (\\(d\\) 차원의 영 벡터)  
 11: \\(\qquad \qquad \\) **end if**   
 12: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\left(\mathbf{b}\_a - \mathbf{B}\_a\hat{\boldsymbol{\beta}}\right)\\)  
-13: \\(\qquad \qquad s_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{z}_{t, a}\\)
+13: \\(\qquad \qquad s\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{z}_{t, a}\\)
 A−1
 0 zt,a − 2z
 t,aA−1
