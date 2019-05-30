@@ -155,8 +155,8 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 14: \\(\qquad \qquad p\_{t, a} \leftarrow \mathbf{z}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\beta}} + \mathbf{x}^{\mathsf{T}}\_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha\sqrt{s\_{t, a}}\\)  
 15: \\(\qquad \\) **end for**  
 16: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
-17: \\(\qquad \mathbf{A}\_0 \leftarrow \mathbf{A}\_0 + \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}_{a_t}\mathbf{B}\_{a_t} \\)
-18: \\(\qquad \mathbf{b}\_0 \leftarrow \mathbf{b}\_0 + \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}_{a_t}\mathbf{b}\_{a_t} \\)
+17: \\(\qquad \mathbf{A}\_0 \leftarrow \mathbf{A}\_0 + \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}\_{a_t}\mathbf{B}\_{a_t} \\)
+18: \\(\qquad \mathbf{b}\_0 \leftarrow \mathbf{b}\_0 + \mathbf{B}^{\mathsf{T}}\_{a_t}\mathbf{A}^{-1}\_{a_t}\mathbf{b}\_{a_t} \\)
 19: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
 20: \\(\qquad \mathbf{B}\_{a_t} \leftarrow \mathbf{B}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{z}^{\mathsf{T}}\_{t, a_t}\\)  
 21: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
