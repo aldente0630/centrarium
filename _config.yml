@@ -185,10 +185,10 @@ social:
     
   - name: Medium
     icon: medium
-    username: # aldente0630
-    url: # https://medium.com/@aldente0630
+    username: aldente0630
+    url: https://medium.com/@aldente0630
     desc: Follow me on Medium
-    share: false
+    share: true
 
 # Social sharing protocols
 # These are for automatically generating sharing metadata for FB and Twitter
