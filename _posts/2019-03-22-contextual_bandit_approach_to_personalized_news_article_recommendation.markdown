@@ -182,7 +182,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
   
 정리 1. 맥락에 대한 모든 분포 \\(D\\), 모든 정책 \\(\pi\\), 모든 \\(T\\) , 모든 사건의 순서 \\(h_T\\)에 대하여,  
   
-$$ Pr_{Policy_Evaluator(\pi, S)}(h_T) = Pr_{\pi, D}(h_T) $$  
+$$ \Pr_{Policy\_Evaluator(\pi, S)}(h_T) = \Pr_{\pi, D}(h_T) $$  
 
   
 (번역 중)
