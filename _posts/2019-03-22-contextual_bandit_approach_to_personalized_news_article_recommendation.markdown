@@ -186,9 +186,9 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 2: \\(R_0 \leftarrow 0\\) {초기 0값의 총 손익}  
 3: **for** \\(t = 1, 2, 3, \ldots, T\\) **do**  
 4: \\(\qquad\\) **repat**  
-5: \\(\qquad \qquad\\) 다음 사건 \\((\mathbf{x}\_1, \ldots, \mathbf{x}_K, a, r_a)\\)을 취함  
-6: \\(\qquad\\) **until** \\(\pi(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}_K)) = a\\)  
-7: \\(\qquad h_t \leftarrow CONCATENATE(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}_K, a, r_a))\\)  
+5: \\(\qquad \qquad\\) 다음 사건 \\((\mathbf{x}\_1, \ldots, \mathbf{x}\_K, a, r_a)\\)을 취함  
+6: \\(\qquad\\) **until** \\(\pi(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}\_K)) = a\\)  
+7: \\(\qquad h_t \leftarrow CONCATENATE(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}\_K, a, r_a))\\)  
 8: \\(\qquad R_t \leftarrow R_{t-1} + r_a\\)   
 9: **end for**  
 10: 출력: \\(R_T / T\\)  
