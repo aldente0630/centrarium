@@ -223,7 +223,7 @@ $$ \Pr_{Policy\_Evaluator(\pi, S)}((\mathbf{x}_{t, 1}, \ldots, \mathbf{x}_{t, K}
 
 Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 가장 많이 방문하는 인터넷 페이지 중 하나이다. 그림 1의 스냅샷을 참조하라. Today Module의 "추천" 기본 탭은 양질의 기사 4개 중 하나(주로 뉴스)를 강조 표시한다. 이 4개의 기사는 편집자가 시간 단위로 선별하는 기사 풀에서 선택한다. 그림 1에 나와있는 것처럼 바닥 글 위치에 F1–F4로 색인화한 4개의 기사가 있다. 각 기사는 작은 그림과 제목으로 표시된다. 4개의 기사 중 하나가 스토리 위치에서 강조 표시되며 관련 링크와 함께 큰 그림, 제목 그리고 짧은 요약이 게시된다. 기본적으로 F1 기사가 스토리 위치에서 강조 표시된다. 기사에 관심이 있는 경우 스토리 위치에 강조 표시된 기사를 클릭하면 자세한 내용을 읽을 수 있다. 해당 사건은 스토리 클릭으로 기록된다. 방문자의 주목을 끌기 위해 개별 관심사에 따라 사용 가능한 기사의 순위를 매기고 스토리 위치에 각 방문자가 가장 흥미 있을 기사를 강조, 노출하고 싶다.
 
-![그림1](https://aldente0630.github.io/assets/contextual-bandit_approach_to_personalized_news _article_ recommendation1.png) 
+![그림1](https://aldente0630.github.io/assets/contextual-bandit_approach_to_personalized_news_article_recommendation1.png) 
 **그림 1: Yahoo!의 Today Module에서 “추천” 탭의 스냅샷 첫 페이지. 기본적으로 F1 위치의 기사는 스토리 위치에서 강조 표시된다.**
   
 ## 5.2 실험 설정
