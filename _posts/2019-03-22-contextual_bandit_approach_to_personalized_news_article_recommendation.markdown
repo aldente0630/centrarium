@@ -315,7 +315,7 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
 조정 데이터(그림 2 참조)에 최적화된 파라미터를 사용하여 알고리즘을 평가 데이터에 대해 실행한 후 CTR을 표1에 요약했다. 이 표는 또한 **\\(\epsilon\\)-탐욕**을 기준선 삼아 CTR 상승분을 기재한다. **전지적** 정책의 CTR은 1.615이므로 알고리즘 CTR이 이보다 훨씬 크다는건 개인화에 사용자 / 기사 변수를 효과적으로 사용했음을 의미한다. 제시된 CTR은 무작위 정책의 CTR로 정규화한 것임을 기억하라. 다음 이어지는 절에서 결과를 자세히 살펴보겠다.
 
 ![표1](https://aldente0630.github.io/assets/contextual-bandit_approach_to_personalized_news_article_recommendation3.png) 
-**표 1: 성능 평가: 배포와 학습 버킷의 1주일치 평가 데이터셋에 대한 모든 알고리즘의 CTR(표에서 각각 "배포"와 "학습"으로 표시). 백분율이 있는 숫자는 \\(\epsilon\\)-탐욕과 비교한 CTR 상승분이다.**
+**표 1: 성능 평가: 배포와 학습 버킷의 1주일치 평가 데이터셋에 대한 모든 알고리즘의 CTR(표에서 각각 "deploy"와 "learn"으로 표시). 백분율이 있는 숫자는 \\(\epsilon\\)-탐욕과 비교한 CTR 상승분이다.**
   
 ### 변수 사용에 대하여
 
@@ -333,5 +333,5 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
 [^5]: 이를 보기 기반의 무작위 배정이라고 한다. 브라우저를 새로 고치면 사용자는 임의화 버킷에 들어가지 않을 수도 있다.
 [^6]: W. Chu and S.-T. Park. Personalized recommendation on dynamic content using predictive bilinear models. In *Proc. of the 18th International Conf. on World Wide Web*, pages 691–700, 2009.
 [^7]: W.Chu,S.-T.Park,T.Beaupre,N.Motgi,A.Phadke, S. Chakraborty, and J. Zachariah. A case study of behavior-driven conjoint analysis on Yahoo!: Front Page Today Module. In *Proc. of the 15th ACM SIGKDD International Conf. on Knowledge Discovery and Data Mining*, pages 1097–1104, 2009.
-[^8]: 부정확 한 CTR 추정을 피하기 위해 알고리즘에 의해 가장 자주 선택된 50 개의 기사 만 자체 도표에 포함되었습니다. 따라서 다른 알고리즘에 대한 도표는 비교할 수 없습니다.
+[^8]: 부정확한 CTR 추정을 피하기 위해 해당 알고리즘이 가장 자주 선택한 50개 기사만 도표에 포함시켰다. 따라서 다른 알고리즘에 대한 도표와 직접 비교할 수 없다.
 [^9]: D. Agarwal, B.-C. Chen, and P. Elango. Explore/exploit schemes for web content optimization. In *Proc. of the 9th International Conf. on Data Mining*, 2009.
