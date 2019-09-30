@@ -82,31 +82,34 @@ $$R_{\mathsf{A}}(T) \overset{\underset{\mathrm{def}}{}}{=} \mathbf{E}[\sum_{t = 
   
 ## 3.1 분리 선형 모형을 이용한 LinUCB
   
-2.1절의 표기법을 그대로 사용하겠다. 모든 \\(t\\)에 대하여 슬롯 손잡이 \\(a\\)의 손익 기대값은 \\(d\\)-차원 변수 \\(\mathbf{x}_t\\)에 선형이며 미지의 계수 벡터 \\(\boldsymbol{\theta}^*_a\\)를 갖는다고 가정한다.
-  
-$$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a. \qquad (2)$$
-  
-파라미터를 다른 슬롯 손잡이와 공유하지 않기 때문에 본 모형은 *분리형*이다. \\(\mathbf{D}_a\\)를 \\(t\\)번째 시도에서의 \\(m \times d\\) 차원인 설계 행렬이라고 정의하자. 행은 \\(m\\) 개의 훈련 입력값(예: 기사 \\(a\\)에 대해 이전 관측한 맥락 정보)에 해당하며 \\(\mathbf{c}_a \in \mathbb{R}^m\\)를 그에 상응하는 응답 벡터(예: 상응하는 \\(m\\) 개의 클릭 여부 사용자 피드백)라고 하자. 훈련 데이터 \\(\(\mathbf{D}_a, \mathbf{c}_a\)\\)에 릿지 회귀 분석을 적용하면 계수 추정값을 얻을 수 있다.
-  
+2.1절의 표기법을 그대로 사용하겠다. 모든 \\(t\\)에 대하여 슬롯 손잡이 \\(a\\)의 손익 기댓값은 \\(d\\)-차원 변수 \\(\mathbf{x}_t\\)에 선형이며 미지의 계수 벡터 \\(\boldsymbol{\theta}^*_a\\)를 갖는다고 가정한다.  
+
+$$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{x}^{\mathsf{T}}_{t, a}\boldsymbol{\theta}^*_a. \qquad (2)$$  
+
+파라미터를 다른 슬롯 손잡이와 공유하지 않기 때문에 본 모형은 *분리형*이다. \\(\mathbf{D}_a\\)를 \\(t\\)번째 시도에서의 \\(m \times d\\) 차원인 설계 행렬이라고 정의하자. 행은 \\(m\\) 개의 훈련 입력값(예: 기사 \\(a\\)에 대해 이전 관측한 맥락 정보)에 해당하며 \\(\mathbf{c}_a \in \mathbb{R}^m\\)를 그에 상응하는 응답 벡터(예: 상응하는 \\(m\\) 개의 클릭 여부 사용자 피드백)라고 하자. 훈련 데이터 \\(\(\mathbf{D}_a, \mathbf{c}_a\)\\)에 릿지 회귀 분석을 적용하면 계수 추정 값을 얻을 수 있다.  
+
 $$\hat{\boldsymbol{\theta}}_a = (\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{D}^{\mathsf{T}}_a\mathbf{c}_a,\qquad (3)$$
 
 여기서 \\(\mathbf{I}_d\\)는 \\(d \times d\\) 차원인 항등 행렬이다. \\(\mathbf{c}_a\\)의 성분들이 \\(\mathbf{D}_a\\)의 상응하는 행에 대해 조건부 독립일 때, 임의의 \\(\delta > 0\\)와 \\(\mathbf{x}\_{t, a} \in \mathbb{R}^d\\)에 대해 적어도 \\(1 - \delta\\)의 확률로
 
-$$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}]| \le \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}(\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{x}_{t, a}}\qquad (4)$$
-  
-이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말해서 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기대값에 대해 엄밀한 UCB를 합리적으로 제공하며 이로부터 UCB 유형의 슬롯 손잡이 선택 전략이 파생될 수 있다. 각 \\(t\\)번째 시도에서 
-  
-$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$
-  
-을 고른다. 식 (4)에서의 신뢰구간은 다른 원리를 적용해 계산해낼 수 있다. 예를 들자면 릿지 회귀는 베이즈 식의 점 추정으로 해석할 수 있는데 여기서 계수 벡터의 사후 분포 즉, \\(p(\boldsymbol{\theta}\_a)\\)는 평균 \\(\hat{\boldsymbol{\theta}}_a\\)와 공분산 \\(\mathbf{A}^{-1}_a\\)를 갖는 정규분포이다. 모형이 주어졌을때 손익 기대값 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\boldsymbol{\theta}^*\_a\\)의 예측 분산은 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)으로, 표준편차는 \\(\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}}\\)로 계산된다. 또한 정보 이론에서 \\(p(\boldsymbol{\theta}\_a)\\)의 미분 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det \mathbf{A}_a)\\)로 정의된다. 점 \\(\mathbf{x}\_{t, a}\\)이 새로 포함되어 갱신이 발생할 경우 \\(p(\boldsymbol{\theta}\_a)\\)의 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det (\mathbf{A}_a + \mathbf{x}\_{t, a}\mathbf{x}^{\mathsf{T}}\_{t, a}))\\)가 된다. 사후분포 모형의 엔트로피 감소분은 \\(-{1 \over 2}\ln(1 + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a})\\)이다. \\(\mathbf{x}\_{t, a}\\)이 모형을 개선하는데 기여한 정도를 계산할 때 이 양을 종종 사용한다. 따라서 식 (5)에서 슬롯 손잡이 선택 기준은 손익 추정과 모형 분산 감소 간의, 덧셈으로 연결된 트레이드 오프 수준이라고 생각할 수있다.
-  
-알고리즘 1은 입력 파라미터가 오직 \\(\alpha\\)인 **LinUCB** 알고리즘 전반에 대하여 자세하게 설명한다. 식 (4)에 표시한 \\(\alpha\\)를 보라. 일부 응용 프로그램에서는 보수적으로 큰 값을 취하기도 하는데 해당 파라미터를 최적화하면 전체 손익을 높일 수 있다. 모든 UCB 방법과 마찬가지로 **LinUCB**는 UCB가 가장 높은 슬롯 손잡이를 항상 선택한다(식 (5)와 같다).
-  
-이 알고리즘은 몇 가지 좋은 성질이 있다. 첫째, 계산 복잡도가 슬롯 손잡이 개수에 선형이며 변수 개수에 최대 세제곱이다. 계산량을 더 줄이기 위해 모든 단계(\\(O(d^2)\\) 시간이 걸리는)에서 \\(\mathbf{A}\_{a_t}\\)를 실시간으로 업데이트하는 대신 주기적으로 \\(\mathbf{Q}_a \overset{\underset{\mathrm{def}}{}}{=} \mathbf{A}^{-1}\_{a_t}\\\) (모든 \\(a\\)에 대하여)를 계산하고 캐시할 수 있다. 둘째, 알고리즘은 동적인 슬롯 손잡이 집합에 대해 잘 작동하며 \\(\mathcal{A}\_t\\)의 크기가 너무 크지 않은 한 효율적이다. 이는 많은 응용 프로그램에 해당하는 경우이다. 예를 들어 뉴스 기사 추천의 경우 편집자가 기사를 풀에 추가 / 제거하기 때문에 본질적으로 풀의 크기는 일정하다. 셋째, 본 논문의 주안점은 아니지만 해당 논문[^3]의 분석 결과를 다음과 같이 적용해볼 수 있다. 집합 \\(\mathcal{A}\_t\\)가 고정되어 있고 슬롯 손잡이가 \\(K\\)개일 경우 데이터가 증가하면 신뢰 구간(즉, 식 (4)의 우항)이 충분히 빠르게 감소하며 강력한 리그릿 상한 \\(\tilde{O}(\sqrt{KdT})\\)을 갖는다. 이는 앞서 언급한 최신 논문 중 식 (2), 다중 슬롯머신 실험 결과에 부합한다. 본 이론적 결과는 알고리즘이 기본적으로 양질이며 효율적임을 나타낸다.
+$$|\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a - \mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}]| \le \alpha\sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}(\mathbf{D}^{\mathsf{T}}_a\mathbf{D}_a + \mathbf{I}_d)^{-1}\mathbf{x}_{t, a}}\qquad (4)$$  
+
+이다. 여기서 \\(\alpha = 1 + \sqrt{\ln{\(2/\delta\)}/2}\\)은 상수이다. 다시 말해서 위 부등식은 슬롯 손잡이 \\(a\\)의 손익 기댓값에 대해 엄밀한 UCB를 합리적으로 제공하며 이로부터 UCB 유형의 슬롯 손잡이 선택 전략이 파생될 수 있다. 각 \\(t\\)번째 시도에서   
+
+$$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left(\mathbf{x}^{\mathsf{T}}_{t, a}\hat{\boldsymbol{\theta}}_a + \alpha \sqrt{\mathbf{x}^{\mathsf{T}}_{t, a}\mathbf{A}^{-1}_a\mathbf{x}_{t, a}} \right) \qquad (5)$$  
+
+을 고른다. 식 (4)에서의 신뢰구간은 다른 원리를 적용해 계산해낼 수 있다. 예를 들자면 릿지 회귀는 베이즈 식의 점 추정으로 해석할 수 있는데 여기서 계수 벡터의 사후 분포 즉, \\(p(\boldsymbol{\theta}\_a)\\)는 평균 \\(\hat{\boldsymbol{\theta}}_a\\)와 공분산 \\(\mathbf{A}^{-1}_a\\)를 갖는 정규분포이다. 모형이 주어졌을 때 손익 기댓값 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\boldsymbol{\theta}^*\_a\\)의 예측 분산은 \\(\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}\\)으로, 표준편차는 \\(\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a}}\\)로 계산된다. 또한 정보 이론에서 \\(p(\boldsymbol{\theta}\_a)\\)의 미분 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det \mathbf{A}_a)\\)로 정의된다. 점 \\(\mathbf{x}\_{t, a}\\)이 새로 포함되어 갱신이 발생할 경우 \\(p(\boldsymbol{\theta}\_a)\\)의 엔트로피는 \\(-{1 \over 2} \ln((2\pi)^d\det (\mathbf{A}_a + \mathbf{x}\_{t, a}\mathbf{x}^{\mathsf{T}}\_{t, a}))\\)가 된다. 사후 분포 모형의 엔트로피 감소분은 \\(-{1 \over 2}\ln(1 + \mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}_a\mathbf{x}\_{t, a})\\)이다. \\(\mathbf{x}\_{t, a}\\)이 모형을 개선하는데 기여한 정도를 계산할 때 이 양을 종종 사용한다. 따라서 식 (5)에서 슬롯 손잡이 선택 기준은 손익 추정과 모형 분산 감소 간의, 덧셈으로 연결된 트레이드오프 수준이라고 생각할 수 있다.  
+
+알고리즘 1은 입력 파라미터가 오직 \\(\alpha\\)인 **LinUCB** 알고리즘 전반에 대하여 자세하게 설명한다. 식 (4)에 표시한 \\(\alpha\\)를 보라. 일부 응용 프로그램에서는 보수적으로 큰 값을 취하기도 하는데 해당 파라미터를 최적화하면 전체 손익을 높일 수 있다. 모든 UCB 방법과 마찬가지로 **LinUCB**는 UCB가 가장 높은 슬롯 손잡이를 항상 선택한다(식 (5)와 같다).  
+
+이 알고리즘은 몇 가지 좋은 성질이 있다. 첫째, 계산 복잡도가 슬롯 손잡이 개수에 선형이며 변수 개수에 최대 세제곱이다. 계산량을 더 줄이기 위해 모든 단계(\\(O(d^2)\\) 시간이 걸리는)에서 \\(\mathbf{A}\_{a_t}\\)를 실시간으로 업데이트하는 대신 주기적으로 \\(\mathbf{Q}_a \overset{\underset{\mathrm{def}}{}}{=} \mathbf{A}^{-1}\_{a_t}\\\) (모든 \\(a\\)에 대하여)를 계산하고 캐시 할 수 있다. 둘째, 알고리즘은 동적인 슬롯 손잡이 집합에 대해 잘 작동하며 \\(\mathcal{A}\_t\\)의 크기가 너무 크지 않은 한 효율적이다. 이는 많은 응용 프로그램에 해당하는 경우이다. 예를 들어 뉴스 기사 추천의 경우 편집자가 기사를 풀에 추가 / 제거하기 때문에 본질적으로 풀의 크기는 일정하다. 셋째, 본 논문의 주안점은 아니지만 해당 논문[^3]의 분석 결과를 다음과 같이 적용해볼 수 있다. 집합 \\(\mathcal{A}\_t\\)가 고정되어 있고 슬롯 손잡이가 \\(K\\)개일 경우 데이터가 증가하면 신뢰 구간(즉, 식 (4)의 우항)이 충분히 빠르게 감소하며 강력한 리그릿 상한 \\(\tilde{O}(\sqrt{KdT})\\)을 갖는다. 이는 앞서 언급한 최신 논문 중 식 (2), 다중 슬롯머신 실험 결과에 부합한다. 본 이론적 결과는 알고리즘이 기본적으로 양질이며 효율적임을 나타낸다.
 
 - - -
+
 **알고리즘 1** 분리 선형 모형을 이용한 LinUCB
+
 - - -
+
 0: 입력: \\(\alpha \in \Bbb{R}\_+\\)  
 1: **for** \\(t = 1, 2, 3, \ldots , T\\) **do**  
 2: \\(\qquad\\) 모든 슬롯 손잡이 \\(a \in \mathcal{A}_t\\)의 변수 \\(\mathbf{x}\_{t, a} \in \Bbb{R}_d\\)를 관측함  
@@ -118,12 +121,12 @@ $$a_t \overset{\underset{\mathrm{def}}{}}{=} \arg\max_{a \in \mathcal{A}_t}\left
 8: \\(\qquad \qquad \hat{\boldsymbol{\theta}}\_a \leftarrow \mathbf{A}^{-1}\_a\mathbf{b}\_a \\)  
 9: \\(\qquad \qquad p\_{t, a} \leftarrow \hat{\boldsymbol{\theta}}^{\mathsf{T}}_a\mathbf{x}\_{t, a} +  \alpha\sqrt{\mathbf{x}^{\mathsf{T}}\_{t, a}\mathbf{A}^{-1}\_a\mathbf{x}\_{t, a}}\\)  
 10: \\(\qquad\\) **end for**  
-11: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수값 손익 \\(r_t\\)를 관측함  
+11: \\(\qquad\\) 슬롯 손잡이 \\(a_t = \arg\max\_{a \in \mathcal{A}\_t} p\_{t, a}\\)를 선택하되 동점인 경우 무작위로 정하고 실수 값 손익 \\(r_t\\)를 관측함  
 12: \\(\qquad \mathbf{A}\_{a_t} \leftarrow \mathbf{A}\_{a_t} + \mathbf{x}\_{t, a_t}\mathbf{x}^{\mathsf{T}}\_{t, a_t}\\)  
 13: \\(\qquad \mathbf{b}\_{a_t} \leftarrow \mathbf{b}\_{a_t} + r_t\mathbf{x}\_{t, a_t}\\)  
-14: **end for**
-  
-마지막으로 입력 변수 \\(\mathbf{x}_{t, a}\\)를 정규분포에서 i.i.d.로 추출한다는 가정 하에서(식 (2)의 모형화 가정에 덧붙여) Palidis 등은 UCB를 계산하기 위해 릿지 회귀의 해(식 (3)의 \\(\hat{\boldsymbol{\theta}}_a\\)) 대신 최소 자승 해 \\(\tilde{\boldsymbol{\theta}}_a\\)를 이용한 유사 알고리즘을 제안했다. 그러나 본 접근법(그리고 이론적 분석)이 보다 일반적이며 입력 변수가 정상(stationary) 상태가 아닐 경우에도 유효하다. 보다 중요하게 기본 알고리즘 1을 Pavlidis 등이 다루지 않은, 훨씬 더 흥미로운 경우로 확장하는 방식에 관해 다음 절에서 논할 것이다.
+14: **end for**  
+
+마지막으로 입력 변수 \\(\mathbf{x}_{t, a}\\)를 정규분포에서 i.i.d.로 추출한다는 가정 하에서(식 (2)의 모형화 가정에 덧붙여) Palidis 등은 UCB를 계산하기 위해 릿지 회귀의 해(식 (3)의 \\(\hat{\boldsymbol{\theta}}_a\\)) 대신 최소 자승 해 \\(\tilde{\boldsymbol{\theta}}_a\\)를 이용한 유사 알고리즘을 제안했다. 그러나 본 접근법(그리고 이론적 분석)이 보다 일반적이며 입력 변수가 정상(stationary) 상태가 아닐 경우에도 유효하다. 보다 중요하게 기본 알고리즘 1을 Pavlidis 등이 다루지 않은, 훨씬 더 흥미로운 경우로 확장하는 방법에 관해 다음 절에서 논할 것이다.
   
 ## 3.2 혼합 선형 모형을 이용한 LinUCB
   
