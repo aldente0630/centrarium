@@ -194,7 +194,7 @@ $$\mathbf{E}[r_{t, a}|\mathbf{x}_{t, a}] = \mathbf{z}^{\mathsf{T}}_{t, a}\boldsy
 1: \\(h_0 \leftarrow \varnothing\\) {초기의 빈 이력}  
 2: \\(R_0 \leftarrow 0\\) {초기 0 값의 총 손익}  
 3: **for** \\(t = 1, 2, 3, \ldots, T\\) **do**  
-4: \\(\qquad\\) **repat**  
+4: \\(\qquad\\) **repeat**  
 5: \\(\qquad \qquad\\) 다음 이벤트 \\((\mathbf{x}\_1, \ldots, \mathbf{x}\_K, a, r_a)\\)을 취함  
 6: \\(\qquad\\) **until** \\(\pi(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}\_K)) = a\\)  
 7: \\(\qquad h_t \leftarrow CONCATENATE(h_{t-1}, (\mathbf{x}\_1, \ldots, \mathbf{x}\_K, a, r_a))\\)  
