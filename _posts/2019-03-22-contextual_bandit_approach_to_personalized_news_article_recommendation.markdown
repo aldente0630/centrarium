@@ -249,8 +249,8 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
   
 이제 실험을 위해 구성한 사용자 / 기사 변수에 대해 설명하겠다. 3장에서의 **LinUCB** 두 가지 형태를 실험하고 혼합 모형이 학습 속도를 향상시킬 수 있다는 가설을 검증하기 위해 분리 모형, 혼합 모형 각각을 위해 두 종류의 변수 집합을 사용했다.
   
-원천 사용자 변수를 "서포트"로 거르고 시작하자. 변수의 서포트란 해당 변수를 갖는 사용자의 비율이다. 데이터의 잡음을 줄이기 위해 높은 서포트를 갖는 변수만 선택했다. 구체적으로 서포트 0.1 이상인 변수만 사용했다. 그런 다음 각 사용자를 1,000개가 넘는 범주형 구성 요소의 원천 변수 벡터로 표현했다. 이것은 다음 내용을 포함한다. (i) 
-인구 통계학적 정보: 성별(2개의 범주)과 연령을 이용해 10개 세그먼트로 구분했다. (ii) 지리적 변수: 전 세계 또는 미국 주의 약 200곳 대도시, 그리고 (iii) 행위 유형: Yahoo! 내 사용자 컨텐츠 소비 기록을 요약한 약 1,000개의 이진 범주 변수. 이 변수들 외에 사용자를 식별하는 데 다른 정보는 사용하지 않았다.
+원천 사용자 변수를 "지지도"로 거르고 시작하자. 변수의 지지도란 해당 변수를 갖는 사용자의 비율이다. 데이터의 잡음을 줄이기 위해 높은 지지도를 갖는 변수만 선택했다. 구체적으로 지지도 0.1 이상인 변수만 사용했다. 그런 다음 각 사용자를 1,000개가 넘는 범주형 구성 요소의 원천 변수 벡터로 표현했다. 이건 다음 내용을 포함한다. (i) 
+인구 통계학적 정보: 성별(2개의 범주)과 연령을 이용해 10개 세그먼트로 구분했다. (ii) 지리적 변수: 전 세계 또는 미국 주의 약 200곳 대도시, 그리고 (iii) 행위 유형: Yahoo! 내 사용자 컨텐츠 소비 기록을 요약한 약 1,000개의 이진 범주 변수. 이 변수들 외에 사용자를 식별하는데 다른 정보는 사용하지 않았다.
   
 비슷하게 각 기사는 동일한 방식으로 구성한 범주형 변수 약 100개의 원천 변수 벡터로 표현하였다. (i) URL 범주: 기사 출처 URL에서 유추한 수십 개의 범주 (ii) 편집자 범주: 기사 내용을 요약하기 위해 편집자가 손수 태그를 붙이는 주제 수십 개.
   
@@ -369,7 +369,7 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
 [^2]: \\(\tilde{O}(\cdot)\\)의 경우 로그 인수가 표기에서 빠지는 점을 제외하면 \\(O(\cdot)\\)와 동일하다.
 [^3]: P. Auer. Using confidence bounds for exploitation-exploration trade-offs. *Journal of Machine Learning Research*, 3:397–422, 2002.
 [^4]: D. Precup, R. S. Sutton, and S. P. Singh. Eligibility traces for off-policy policy evaluation. In Proc. of the 17th Interational Conf. on Machine Learning, pages 759–766, 2000.
-[^5]: 이를 보기 기반의 무작위 배정이라고 한다. 브라우저를 새로 고치면 사용자는 임의화 버킷에 들어가지 않을 수도 있다.
+[^5]: 이를 보기 기반의 무작위 배정이라고 한다. 브라우저를 새로 고치면 해당 사용자는 임의화 버킷에 들어가지 않을 수도 있다.
 [^6]: W. Chu and S.-T. Park. Personalized recommendation on dynamic content using predictive bilinear models. In *Proc. of the 18th International Conf. on World Wide Web*, pages 691–700, 2009.
 [^7]: W.Chu,S.-T.Park,T.Beaupre,N.Motgi,A.Phadke, S. Chakraborty, and J. Zachariah. A case study of behavior-driven conjoint analysis on Yahoo!: Front Page Today Module. In *Proc. of the 15th ACM SIGKDD International Conf. on Knowledge Discovery and Data Mining*, pages 1097–1104, 2009.
 [^8]: D. Agarwal, B.-C. Chen, and P. Elango. Explore/exploit schemes for web content optimization. In *Proc. of the 9th International Conf. on Data Mining*, 2009.
