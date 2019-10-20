@@ -327,9 +327,9 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
   
 ### 변수 사용에 대하여
 
-  먼저 기사 추천에 변수를 사용하는 것이 도움이 되는지 조사해보자. 사용자 변수를 고려한 **\\(\epsilon\\)-탐욕(세분화/분리/혼합)**과 UCB 방법(**ucb (세분화)**와 **linucb(분리/혼합)**) 모두 기준선인 **\\(\epsilon\\)-탐욕** 대비 CTR을 약 10% 상승시켰다. 이는 표1에서 확인할 수 있다. 
+  먼저 기사 추천에 변수를 사용하는 것이 도움이 되는지 조사해보자. 사용자 변수를 고려한 **\\(\epsilon\\)-탐욕(세분화/분리/혼합)**과 UCB 방법(**ucb (세분화)**와 **linucb(분리/혼합)**) 모두 기준선인 **\\(\epsilon\\)-탐욕** 대비 결과 CTR을 약 10% 상승시켰다. 이는 표1에서 확인할 수 있다. 
     
-  그림 3은 기사 별 CTR(알고리즘이 선택한 경우)이 기본 CTR(맥락 무관한 CTR)과 비교할 때 얼마나 향상했는지를 보여준다.[^9] 이를 통해 변수 효과를 한눈에 확인할 수 있다. 여기서 기사의 기본 CTR은 임의의 사용자가 해당 기사를 얼마나 관심 있어할지 측정하는 지표로 이벤트 로그를 통해 추정해냈다. 따라서 기사의 기본 CTR 대비 상승한 수치의 비가 높으면 알고리즘이 관심 있는 사용자에게 해당 기사를 추천한다는 강력한 증거가 된다. 그림 3(a)는 **\\(\epsilon\\)-탐욕**이나 **ucb**가 사용자 정보를 사용하지 않았기 때문에 기사의 CTR을 상승시킬 수 없었음을 보여준다. 대조적으로, 다른 세 도표 모두 개인화 추천을 고려했을 때의 명확한 이점을 보여준다. 극단적으로(그림 3(c)) 기사의 CTR 중 하나는 1.31에서 3.03으로 132% 개선되었다.
+  그림 3은 기사 별 CTR(알고리즘이 선택한 경우)이 기본 CTR(맥락 무관한 CTR) 대비 얼마나 향상했는지를 보여준다.[^9] 이를 통해 변수 효과를 한눈에 확인할 수 있다. 여기서 기사의 기본 CTR은 임의의 사용자가 해당 기사를 얼마나 관심 있어할지 측정하는 지표로 이벤트 로그를 통해 추정해냈다. 따라서 기사의 기본 CTR 대비 상승한 수치의 비가 높으면 알고리즘이 관심 있는 사용자에게 해당 기사를 추천한다는 강력한 증거가 된다. 그림 3(a)는 **\\(\epsilon\\)-탐욕**이나 **ucb**가 사용자 정보를 사용하지 않았기 때문에 기사의 CTR을 상승시킬 수 없었음을 보여준다. 대조적으로, 다른 세 도표 모두 개인화 추천을 고려했을 때의 명확한 이점을 보여준다. 극단적으로(그림 3(c)) 기사의 CTR 중 하나는 1.31에서 3.03으로 132% 개선되었다.
   
 ![그림3](https://aldente0630.github.io/assets/contextual-bandit_approach_to_personalized_news_article_recommendation4.png) 
 **그림 3: 평가 데이터를 100% 사용했을 때 가장 많이 선택된 기사 50개에 관한 기본 CTR 대비 상승한 CTR(학습 버킷)의 산점도. 빨간 십자가는** \\(\epsilon\\)**-탐욕 알고리즘을 위한 것이고 파란 원은 UCB 알고리즘을 위한 것이다. 가장 자주 선택된 기사의 집합은 알고리즘마다 다르다. 자세한 내용은 본문을 참조하라.**
@@ -372,5 +372,5 @@ Today Module은 Yahoo! 앞단 페이지 중 가장 눈에 띄는 패널이며 �
 [^6]: W. Chu and S.-T. Park. Personalized recommendation on dynamic content using predictive bilinear models. In *Proc. of the 18th International Conf. on World Wide Web*, pages 691–700, 2009.
 [^7]: W.Chu,S.-T.Park,T.Beaupre,N.Motgi,A.Phadke, S. Chakraborty, and J. Zachariah. A case study of behavior-driven conjoint analysis on Yahoo!: Front Page Today Module. In *Proc. of the 15th ACM SIGKDD International Conf. on Knowledge Discovery and Data Mining*, pages 1097–1104, 2009.
 [^8]: D. Agarwal, B.-C. Chen, and P. Elango. Explore/exploit schemes for web content optimization. In *Proc. of the 9th International Conf. on Data Mining*, 2009.
-[^9]: 부정확한 CTR 추정을 피하기 위해 해당 알고리즘이 가장 자주 선택한 50개 기사만 *그것에 대한* 도표에 그려넣었다. 따라서 다른 알고리즘에 대한 도표와 직접 비교할 수 없다.
+[^9]: 부정확한 CTR 추정을 피하기 위해 해당 알고리즘이 가장 자주 선택한 50개 기사만 골라 *그것들만* 도표에 그려넣었다. 따라서 다른 알고리즘에 대한 도표와 직접 비교할 수 없다.
 [^10]: 덜 중요한 학습 버킷의 경우 **linucb (disjoint)**에 대한 두 번의 예외가 있었다.
