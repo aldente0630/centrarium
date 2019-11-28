@@ -2,7 +2,7 @@
 layout: post
 title: CTR Prediction at Large Scale using 'PySpark' and 'xLearn'
 date: 2019-11-28 00:00:00
-author: Jonas Kim
+author: aldente0630
 categories: Data-Science
 ---  
 
