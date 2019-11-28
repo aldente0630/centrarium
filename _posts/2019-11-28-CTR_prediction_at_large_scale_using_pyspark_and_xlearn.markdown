@@ -12,3 +12,5 @@ Suppose we need to perform CTR prediction for a large dataset. It's a dataset th
 * Prediction work will be also performed using Spark clusters.
 
 We use the FM / FFM algorithms instead of other classifiers for CTR prediction. This is because they are robust on input sources and provides an absolute predicted CTR value more accurately than the relative rank for classification. The fastest FM / FFM library implemented in the Python language is now [xLearn](https://github.com/aksnzhy/xlearn) so we'll use it. Although not common, let's start by drawing a model serving pipeline for CTR prediction.
+  
+(To be continued)
