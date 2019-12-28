@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DeepFM: CTR 예측을 위한 신경망 기반 팩토라이제이션 머신
+title: DeepFM, CTR 예측을 위한 신경망 기반 팩토라이제이션 머신
 date: 2019-12-29 00:00:00
 author: Shenzhen Graduate School, Harbin Institute of Technology, Noah’s Ark Research Lab, Huawei
 categories: Data-Science
