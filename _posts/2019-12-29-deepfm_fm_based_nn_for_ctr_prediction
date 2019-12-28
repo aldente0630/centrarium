@@ -1,0 +1,13 @@
+---
+layout: post
+title: DeepFM: CTR 예측을 위한 신경망 기반 팩토라이제이션 머신
+date: 2019-12-29 00:00:00
+author: Shenzhen Graduate School, Harbin Institute of Technology, Noah’s Ark Research Lab, Huawei
+categories: Data-Science
+---  
+  
+  
+**Huifeng Guo, Ruiming Tang, Yunming Ye, Zhenguo Li, Xiuqiang He의 [*DeepFM: A Factorization-Machine based Neural Network for CTR Prediction*](https://arxiv.org/pdf/1703.04247.pdf)을 번역했습니다.**
+  
+  
+- - -
