@@ -2,7 +2,7 @@
 layout: post
 title: DeepFM, CTR 예측을 위한 신경망 기반 팩토라이제이션 머신
 date: 2019-12-29 00:00:00
-author: Shenzhen Graduate School, Harbin Institute of Technology, Noah’s Ark Research Lab, Huawei
+author: Harbin Institute of Technology, Huawei
 categories: Data-Science
 ---  
   
@@ -18,3 +18,4 @@ categories: Data-Science
   
 # 1. 서론
   
+CTR(Click-Through Rate) 예측은 사용자가 추천 품목을 클릭할 확률을 추정해야 하는 추천 시스템에서 중요하다. 많은 추천 시스템에서 목표는 클릭 수를 최대화하는 것이므로 사용자에게 반환되는 항목의 예상 CTR을 기준으로 순위를 지정할 수 있습니다. 온라인 광고와 같은 다른 응용 시나리오에서는 수익을 향상시키는 것도 중요하므로 순위 전략은 모든 후보자에 대해 CTR × bid로 조정될 수 있습니다. 여기서 "bid"는 품목이 사용자가 클릭합니다. 두 경우 모두 키가 CTR을 정확하게 추정하는 것이 확실합니다.
