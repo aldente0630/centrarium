@@ -32,10 +32,12 @@ FTRL 같은 일반화 선형 모형의 경우 단순하지만 실제 성능은 �
   
 * FM과 심층 신경망(DNN)의 구조를 통합한, 새로운 신경망 모형 DeepFM(그림 1)을 제안한다. 변수 간 저차 상호 작용을 FM처럼 모델링하고 변수 간 고차 상호작용을 DNN 처럼 모델링한다. Wide & Deep 모형과 달리 DeepFM은 특성 공학 작업 없이 종단 간 학습을 수행할 수 있다.
   
-* DeepFM은 Wide & Deep 모형과 달리 넓은 부분과 깊은 부분이 동일한 입력과 임베딩 벡터를 공유하므로 효율적으로 학습할 수 있다. Wide & Deep 모형은 입력 벡터는 넓은 부분의 입력 벡터에 수동으로 설계된 페어 와이즈 피처 상호 작용을 포함하기 때문에 크기가 클 수 있으므로 복잡성이 크게 증가합니다.
+* DeepFM은 Wide & Deep 모형과 달리 넓은 부분과 깊은 부분이 동일한 입력과 임베딩 벡터를 공유하므로 효율적으로 학습할 수 있다. Wide & Deep 모형은 넓은 부분의 입력 벡터로서 수동으로 설계한, 변수 쌍의 상호 작용을 포함하기 때문에 입력 벡터 크기가 커질 수 있으므로 복잡도가 크게 증가한다.
 
 * DeepFM 평가를 위해 벤치마크 데이터와 상용 데이터 모두 사용했고 기존 모형을 CTR 예측 면에서 일관되게 개선했다.
-
+  
+# 2. 접근법
+  
 [^1]: Yin Zheng, Yu-Jin Zhang, and Hugo Larochelle. A deep and autoregressive approach for topic modeling of multimodal data. *IEEE Trans. Pattern Anal. Mach. Intell.*, 38(6):1056–1069, 2016.  
 [^2]: Yanru Qu, Han Cai, Kan Ren, Weinan Zhang, Yong Yu, Ying Wen, and Jun Wang. Product- based neural networks for user response prediction. *CoRR*, abs/1611.00144, 2016.  
 [^3]: Heng-Tze Cheng, Levent Koc, Jeremiah Harmsen, Tal Shaked, Tushar Chandra, Hrishi Aradhye, Glen Anderson, Greg Corrado, Wei Chai, Mustafa Ispir, Rohan Anil, Zakaria Haque, Lichan Hong, Vihan Jain, Xiaobing Liu, and Hemal Shah. Wide & deep learning for recommender systems. *CoRR*, abs/1606.07792, 2016.
