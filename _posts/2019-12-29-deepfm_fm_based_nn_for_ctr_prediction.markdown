@@ -37,9 +37,11 @@ FTRL 같은 일반화 선형 모형의 경우 단순하지만 실제 성능은 �
 * DeepFM 평가를 위해 벤치마크 데이터와 상용 데이터 모두 사용했고 기존 모형을 CTR 예측 면에서 일관되게 개선했다.
 
 ![그림1](https://aldente0630.github.io/assets/deepfm_fm_based_nn_for_ctr_prediction1.png) 
-그림 1: DeepFM의 넓은 부분과 깊은 부분을 갖는 구조. 넓은 부분과 깊은 부분 구성 요소가 동일한 입력 원천 변수 벡터를 공유하므로 DeepFM은 입력 원천 변수로부터 동시에 변수 간 저차와 고차 상호 작용을 학습 할 수 있다.
+그림 1: DeepFM의 넓은 부분과 깊은 부분을 갖는 구조. 넓은 부분과 깊은 부분 구성 요소가 동일한 입력 원천 변수 벡터를 공유하므로 DeepFM은 입력 원천 변수로부터 동시에 변수 간 저차와 고차 상호 작용을 학습할 수 있다.
   
 # 2. 접근법
+  
+  훈련을위한 데이터 세트가 n 개의 인스턴스 (χ, y)로 구성되어 있고, 여기서 χ는 일반적으로 한 쌍의 사용자와 항목을 포함하는 m- 필드 데이터 레코드이고 y ∈ {0, 1}은 관련된 레이블을 나타내는 사용자입니다. 클릭 동작 (y = 1은 사용자가 항목을 클릭했음을 의미하고 그렇지 않으면 y = 0을 의미) χ 범주 형 필드 (예 : 성별, 위치) 및 연속 필드 (예 : 연령)를 포함 할 수 있습니다. 각 범주 형 필드는 one-hot 인코딩의 벡터로 표시되며 각 연속 형 필드는 값 자체 또는 one-hot 인코딩 후의 벡터로 표시됩니다. 그런 다음 각 인스턴스는 (x, y)로 변환됩니다. 여기서 x = [xfield1, xfield2, ..., xfiledj, ..., xfieldm]은 d 차원 벡터이며 xfieldj는 j의 벡터 표현입니다. χ의 두번째 필드. 일반적으로 x는 차원이 높고 매우 희박합니다. CTR 예측의 임무는 사용자가 주어진 상황에서 특정 앱을 클릭 할 확률을 추정하기 위해 예측 모델 y = CTR 모델 (x)을 구축하는 것입니다.
   
 [^1]: Yin Zheng, Yu-Jin Zhang, and Hugo Larochelle. A deep and autoregressive approach for topic modeling of multimodal data. *IEEE Trans. Pattern Anal. Mach. Intell.*, 38(6):1056–1069, 2016.  
 [^2]: Yanru Qu, Han Cai, Kan Ren, Weinan Zhang, Yong Yu, Ying Wen, and Jun Wang. Product- based neural networks for user response prediction. *CoRR*, abs/1611.00144, 2016.  
