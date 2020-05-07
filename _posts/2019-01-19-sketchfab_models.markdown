@@ -757,7 +757,7 @@ brew install gcc --without-multilib
 git clone git@github.com:lyst/lightfm.git
 ```
 
-그런 다음 `setup.py`를 열어서 `use_openmp`라는 변수가 정의된 곳으로 이동한 뒤 `True`로 설정해라. 그러고 나서 `cd lightfm && pip install -e`를 입력해라.
+그런 다음 `setup.py`를 열어서 `use_openmp`라는 변수가 정의된 곳으로 이동한 뒤 `True`로 설정해라. 그러고 나서 `cd lightfm && pip install -e .`를 입력해라.
   
 모든 작업이 끝났다면 몇몇 모형을 훈련하기 위해 코드를 작성해보겠다.
   
