@@ -25,5 +25,8 @@ categories: Data-Science
     
 ![그림1](https://aldente0630.github.io/assets/practical_advice_for_analysis_of_large_complex_data_sets1.png)
   
-# 기술적인 
+# 기술적인 영역
   
+### 분포를 눈으로 확인하라
+  
+일반적으로 분포에 대해 의사 소통하기 위해 요약 메트릭 (평균, 중앙값, 표준 편차 등)을 사용하지만 일반적으로 분포에 대해 훨씬 더 풍부한 표현을보고 있어야합니다. 히스토그램, CDF, Q-Q 플롯 등과 같은 요소를 사용하면 다중 모드 동작 또는 요약 방법을 결정해야하는 중요한 특이 치 클래스와 같은 데이터의 중요한 흥미로운 기능이 있는지 확인할 수 있습니다.
