@@ -22,5 +22,8 @@ categories: Data-Science
   * *기술적인 영역*: 데이터를 조작하고 검증하는 방법에 대한 아이디어와 기술.
   * *절차적인 영역*: 어떻게 데이터에 접근할지, 스스로 대답해야할 질문은 무엇인지, 확인해야할 내용은 무엇인지에 대한 안내.
   * *사회적인 영역*: 다른 사람과 협력하고 데이터와 인사이트에 대해 의사소통하는 방법.
+    
+![그림1](https://aldente0630.github.io/assets/practical_advice_for_analysis_of_large_complex_data_sets1.png)
   
-  practical_advice_for_analysis_of_large_complex_data_sets1.png
+# 기술적인 
+  
