@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 크고 복잡한 데이터셋 분석을 위한 실무 지침
+title: 복잡한 대규모 데이터 세트의 분석에 대한 실무 조언
 date: 2020-05-31 00:00:00
 author: Patrick Riley
 categories: Data-Science
