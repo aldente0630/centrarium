@@ -11,7 +11,9 @@ categories: Data-Science
   
   
 - - -
-
+  
+![GPT-3는 처음에 많은 걸 이야기한다.](https://aldente0630.github.io/assets/language_models_are_few_shot_learners1.jpeg)
+   
 [OpenAI](https://openai.com)는 최근 자연어 처리를 위한 심층 학습 모델 [GPT-3](https://github.com/openai/gpt-3) 설명을 담은 논문을 발표했다. GPT-3는 이전 버전인 GPT-2보다 파라미터 개수가 무려 **100배** 많은 **175억 개**(!!!)이다. 해당 모델의 경우 거의 5조 개에 가까운 단어들로 사전 훈련을 수행했고 미세 조정 없이도 여러 NLP 벤치 마크에서 SOTA 성능을 달성했다.
 
 ### 다시 한번 말하지만 “미세 조정 없이”
