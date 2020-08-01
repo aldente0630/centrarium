@@ -30,4 +30,8 @@ categories: Data-Science
 # 당신에게 필요한 건 언어 모델 뿐.
 따라서 자연어 생성에 적합해 보인다. 내가 여기서 주로 살펴보고 싶은 건 학문적인 성취이다. Microsoft, Google 또는 OpenAI 같은 최첨단 기술 회사만 접근 가능한 GPT-3를 우리에게 유용한 상용 유틸리티에 적용해보는 일은 불가능(적어도 현재는 불가능)하다.
 
+# 더 파고 들기 전에 지금까지 있었던 일들을 살펴보자…
+
+* 신경망을 적용하면서 NLP에 엄청나게 많은 발전이 있어왔으며 이는 2013년 [Tomas Mikolov](https://scholar.google.com/citations?user=oBu8kMMAAAAJ&hl=en)가 [Word2vec](https://arxiv.org/abs/1301.3781)를 도입하면서 시작됐다. Word2Vec은 단어에 대해 문맥에 따라 자기 지도 방식으로 학습한 분산 표현이다.
+
 (번역 중) 
