@@ -18,7 +18,7 @@ categories: Data-Science
 
 [논문](https://github.com/openai/gpt-3)을 보면 **GPT-3**은 **BERT** 같은 디노이징 오토인코더(denoising autoencoder)가 아닌, 자기 회귀 언어 모델이다. 두 언어 모델 아키텍처 간의 차이점에 대해 글을 써보기로 마음먹었다. 해당 논문은 거대한 언어 모델로 무엇을 할 수 있는지에 관한 조사 자료이다. 이 언어 모델은 다른 사람이 만든 언어 모델보다 규모가 훨씬 더 크다.
   
-*OpenAI 연구원: “우리는 주어진 작업에 의존하지 않는 보편적 성능에 중점을 두었기 때문에 GPT-3을 미세 조정하지 않았습니다.”*
+*OpenAI 연구원: “우리는 주어진 작업에 의존성을 갖지 않는 보편적 성능에 중점을 두었기 때문에 GPT-3을 미세 조정하지 않았습니다.”*
 
 ### GPT-3은 파라미터 개수 1억 2,500만 개에서 175억 개까지 8개의 서로 다른 크기로 제공된다.
 * 가장 큰 GPT-3 모델을 보면 이전 기록 보유자인 [T5](https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html)(11억 개)와 [튜링-NLG](https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/)(17억 개)보다 규모가 훨씬 더 크다.
