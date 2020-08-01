@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OpenAI GPT-3\\: 언어 모델은 퓨-샷 학습자이다
+title: OpenAI GPT-3 언어 모델은 퓨-샷 학습자이다
 date: 2020-08-01 00:00:00
 author: Soheil Tehranipour
 categories: Data-Science
