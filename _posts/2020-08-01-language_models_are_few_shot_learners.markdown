@@ -28,4 +28,6 @@ categories: Data-Science
 * 가장 작은 모델은 [ALBERT-기본](https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html)인데 위 차트에 그 크기가 나와있다.
   
 # 당신에게 필요한 건 언어 모델 뿐.
-따라서 자연어 생성에 적합해 보인다. 내가 여기서 탐구하고 싶은 것 중 하나는 주로 학문적 노력입니다. 업계에서 우리를 도울 수있는 상용 유틸리티는 Microsoft, Google 또는 OpenAI와 같은 최첨단 기술 회사에만 도달하는 GPT-3 (적어도 불가능하지는 않음)으로는 불가능합니다.
+따라서 자연어 생성에 적합해 보인다. 내가 여기서 주로 살펴보고 싶은 건 학문적인 성취이다. Microsoft, Google 또는 OpenAI 같은 최첨단 기술 회사만 접근 가능한 GPT-3를 우리에게 유용한 상용 유틸리티에 적용해보는 일은 불가능(적어도 현재는 불가능)하다.
+
+(번역 
