@@ -22,6 +22,7 @@ categories: Data-Science
   
 *OpenAI 연구원: “우리는 주어진 작업에 의존성을 갖지 않는 보편적 성능에 중점을 두었기 때문에 GPT-3을 미세 조정하지 않았습니다.”*
 
+![비교: 모델 간 파리미터 크기.](https://aldente0630.github.io/assets/language_models_are_few_shot_learners2.png)
 ### GPT-3은 파라미터 개수 1억 2,500만 개에서 175억 개까지 8개의 서로 다른 크기로 제공된다.
 * 가장 큰 GPT-3 모델을 보면 이전 기록 보유자인 [T5](https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html)(11억 개)와 [튜링-NLG](https://www.microsoft.com/en-us/research/blog/turing-nlg-a-17-billion-parameter-language-model-by-microsoft/)(17억 개)보다 규모가 훨씬 더 크다.
 * 가장 작은 모델은 [ALBERT-기본](https://ai.googleblog.com/2019/12/albert-lite-bert-for-self-supervised.html)인데 위 차트에 그 크기가 나와있다.
