@@ -32,6 +32,10 @@ categories: Data-Science
 
 # 더 파고 들기 전에 지금까지 있었던 일들을 살펴보자…
 
-* 신경망을 적용하면서 NLP에 엄청나게 많은 발전이 있어왔으며 이는 2013년 [Tomas Mikolov](https://scholar.google.com/citations?user=oBu8kMMAAAAJ&hl=en)가 [Word2vec](https://arxiv.org/abs/1301.3781)를 도입하면서 시작됐다. Word2Vec은 단어에 대해 문맥에 따라 자기 지도 방식으로 학습한 분산 표현이다.
+* 신경망을 적용하면서 NLP에 엄청나게 많은 발전이 있어왔으며 이는 2013년 [Tomas Mikolov](https://scholar.google.com/citations?user=oBu8kMMAAAAJ&hl=en)가 [Word2vec](https://arxiv.org/abs/1301.3781)를 도입하면서 시작됐다. Word2vec은 단어에 대해 문맥에 따라 자기 지도 방식으로 학습한 분산 표현이다.
+
+* 그 다음 LSTM 유형의 언어 모델이 사용되었는데 그것은 토큰을 시간의 순서 대로 표현하는 법을 학습했고 양방향으로 학습하는 파생 모델도 있었다. 2018년 대단한 일이 일어났는데 [Jeremy Howard](https://www.usfca.edu/faculty/jeremy-howard)와 [Sebastian Ruder](https://scholar.google.com/citations?user=8ONXPV8AAAAJ&hl=en)가 [ULMFiT](https://arxiv.org/abs/1801.06146)를 발표하면서 자연어 처리에 전이 학습을 도입한 것이다.
+
+* *Word2vec*는 기술적으로 전이 학습이지만 언어 모델의 관점에서 전이 학습은 개별 토큰이 아닌 전체 토큰 사이의 종속성을 배우는 것이 었으며 다운 스트림 작업에서 미세 조정할 수 있습니다.
 
 (번역 중) 
