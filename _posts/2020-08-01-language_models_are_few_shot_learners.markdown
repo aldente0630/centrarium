@@ -36,6 +36,6 @@ categories: Data-Science
 
 * 그 다음 LSTM 유형의 언어 모델이 사용되었는데 그것은 토큰을 시간의 순서 대로 표현하는 법을 학습했고 양방향으로 학습하는 파생 모델도 있었다. 2018년 대단한 일이 일어났는데 [Jeremy Howard](https://www.usfca.edu/faculty/jeremy-howard)와 [Sebastian Ruder](https://scholar.google.com/citations?user=8ONXPV8AAAAJ&hl=en)가 [ULMFiT](https://arxiv.org/abs/1801.06146)를 발표하면서 자연어 처리에 전이 학습을 도입한 것이다.
 
-* *Word2vec*는 기술적으로 전이 학습이지만 언어 모델의 관점에서 전이 학습은 개별 토큰이 아닌 전체 토큰 사이의 종속성을 배우는 것이 었으며 다운 스트림 작업에서 미세 조정할 수 있습니다.
+* *Word2vec*는 기술적으로 전이 학습이지만 언어 모델 관점의 전이 학습이다. 이것은 개별 토큰이 아닌 전체 토큰 사이의 종속성을 학습하며 이어지는 하위 작업에서 미세 조정을 수행할 수 있다.
 
 (번역 중) 
