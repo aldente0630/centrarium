@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 비지도 학습을 이용한 이상 거래 탐지
+title: 비지도 학습을 이용한 IEEE-CIS 이상 거래 탐지
 date: 2021-04-29 00:00:00
 author: Jonas Kim
 categories: Data-Science
