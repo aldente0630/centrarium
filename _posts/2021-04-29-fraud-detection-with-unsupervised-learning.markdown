@@ -46,7 +46,7 @@ I used popular tree ensemble models, namely **Isolation Forest** and **Random Cu
 * [Li, Z., Zhao, Y., Botta, N., Ionescu, C. and Hu, X. COPOD: Copula-Based Outlier Detection. IEEE International Conference on Data Mining (ICDM), 2020.](https://arxiv.org/pdf/2009.09463.pdf)
   
 Isolation Forest fitting used 12 cores as multi-threading, but COPOD was fitted with a single thread. Random Cut Forest was trained using AWS EC2 `ml.m4.xlarge` instance.
-
+ 
 ## Model Evaluation
 Anomaly scores output by the models have log-normal distributions with long tails as expected.
   
