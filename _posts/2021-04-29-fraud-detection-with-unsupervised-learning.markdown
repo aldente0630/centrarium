@@ -36,7 +36,7 @@ Finally I calculated the correlation coefficient matrix. While most of the featu
 ## Data Splitting & Preprocessing
 In the general case of unsupervised learning, it is not possible to evaluate the predictive performance, but since there are labels in this example, 20% of the total was splitted into the validation dataset. Ordinal Encoding and imputation were applied to categorical features, and imputation was applied after normalization to numeric features. To view the transformed validation dataset, the dimensions of the dataset was reduced using **t-SNE**. The manifold looks like a twisted band, and the fraudulent labels appear to exist outside the clusters. Therefore, it seems that pretty good accuracy can be achieved even with unsupervised learning.
   
-![Scatter Plot of Manifold with t-SNE](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-scatter_of_manifold.png)
+![Scatter Plot of Manifold with t-SNE](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning5.svg)
 
 ## Modeling with Isolation Forest, Random Cut Forest and COPOD
 I used popular tree ensemble models, namely **Isolation Forest** and **Random Cut Forest**, and the latest algorithm **Copula-based Outlier Detection**(COPOD). For a detailed description of the algorithms, refer to the following links.
@@ -50,13 +50,13 @@ Isolation Forest fitting used 12 cores as multi-threading, but COPOD was fitted 
 ## Model Evaluation
 Anomaly scores output by the models have log-normal distributions with long tails as expected.
   
-![Histograms of Models](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-hist_of_models.png)
+![Histograms of Models](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning6.svg)
   
 **COPOD is the highest for both AUROC and AUPRC, followed by Isolation Forest, followed by Random Cut Forest.**
   
-![ROC Curves](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-roc_curves2.png)
+![ROC Curves](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning7.svg)
   
-![PR Curves](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-pr_curves.png)
+![PR Curves](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning8.svg)
   
 The results are summarized in a table as follows.
   
