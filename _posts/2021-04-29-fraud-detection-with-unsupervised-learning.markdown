@@ -68,6 +68,3 @@ The results are summarized in a table as follows.
 
 ## Submission
 COPOD performance was the best in AUROC, the competition criterion, so I fitted the entire dataset with it and submitted the predictions. The final result is AUROC 82.03%, which is quite far from 94.59%, which is No. 1 in the private leaderboard, but the possibility as unsupervised learning could be found.
-
-ㅇ
-ㅇㅇ
