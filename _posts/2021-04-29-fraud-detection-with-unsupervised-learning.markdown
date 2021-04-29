@@ -19,7 +19,7 @@ categories: Data-Science
 ## EDA
 To preprocess data for modeling, I quickly explored proportions of missing values, cardinalities of categorical features, distributions of numerical features, and a correlation coefficient matrix. For the efficiency of the calculation, I selected 100 features by random sampling and looked at the proportions of their missing values. I have found that most of the features have a fairly high percentage of missing values.
   
-![Proportions of Missing Values](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-prop_of_missing_values.png)
+![Proportions of Missing Values](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning1.svg)
   
 A list and description of categorical features can be found on [this Kaggle page](https://www.kaggle.com/c/ieee-fraud-detection/data). Some categorical features have more than a few hundred categories, or even more than 10,000.
 
