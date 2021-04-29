@@ -23,15 +23,15 @@ To preprocess data for modeling, I quickly explored proportions of missing value
   
 A list and description of categorical features can be found on [this Kaggle page](https://www.kaggle.com/c/ieee-fraud-detection/data). Some categorical features have more than a few hundred categories, or even more than 10,000.
 
-![Cardinalities of Categorical Features](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-card_of_cat_features.png)
+![Cardinalities of Categorical Features](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning2.svg)
   
 In order to examine the distribution of numerical features, some of the features with few missing values and adequately distributed were randomly selected. From the histograms, it can be seen that most of the features have a long tail.
 
-![Histograms of Numeric Features](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-hist_of_num_features.png)  
+![Histograms of Numeric Features](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning3.svg)  
   
 Finally I calculated the correlation coefficient matrix. While most of the features are not correlated, some have very high positive correlations.
 
-![Correlation Matrix](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning-corr_matrix.png)
+![Correlation Matrix](https://aldente0630.github.io/assets/fraud_detection_with_unsupervised_learning4.svg)
 
 ## Data Splitting & Preprocessing
 In the general case of unsupervised learning, it is not possible to evaluate the predictive performance, but since there are labels in this example, 20% of the total was splitted into the validation dataset. Ordinal Encoding and imputation were applied to categorical features, and imputation was applied after normalization to numeric features. To view the transformed validation dataset, the dimensions of the dataset was reduced using **t-SNE**. The manifold looks like a twisted band, and the fraudulent labels appear to exist outside the clusters. Therefore, it seems that pretty good accuracy can be achieved even with unsupervised learning.
